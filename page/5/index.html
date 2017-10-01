@@ -540,6 +540,74 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/06/14/2017-06-14-starting-from-scratch-do-shopping-site-21st-chapter-to-increase-commodity-like-functionality/" title="「从零开始做购物网站」第21章 增加商品点赞功能" itemprop="url">「从零开始做购物网站」第21章 增加商品点赞功能</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-14T15:55:00.000Z" itemprop="datePublished"> 发表于 2017-06-14</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <blockquote>
+<p>大家好，本系列文章主要是对我参加全栈营JDstore魔改大赛作品<a href="http://kerzzi.logdown.com/posts/1903205-magic-change-contest-entries-monsoon" target="_blank" rel="external">「季风 &amp; MONSOON」</a>的复盘。由于本人也是新手，文章中一定有很多幼稚的错误或代码，希望大家帮忙指出，可反馈至我的邮箱kerzzi@outlook.com，我会持续完善本系列。非常感谢。<br>本系列是在全栈营JDstore教程基础之上进行魔改，本系列第1-11章节为全栈营JDstore教程，请在完成全栈营JDstore教程的基础上进行测试。</p>
+</blockquote>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><blockquote>
+<p>增加商品点赞功能</p>
+</blockquote>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="Step-0-建立新分支"><a href="#Step-0-建立新分支" class="headerlink" title="Step 0:建立新分支"></a>Step 0:建立新分支</h3><p>执行<figure class="highlight plain"><figcaption><span>checkout -b story15```。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### Step 1:</div><div class="line">打开Gemfile</div><div class="line">```ruby Gemfile</div><div class="line">  gem &apos;will_paginate&apos;</div><div class="line">  gem &apos;paperclip&apos;</div><div class="line">+ gem &apos;acts_as_votable&apos;, &apos;~&gt; 0.10.0&apos;</div></pre></td></tr></table></figure></p>
+<p>执行<figure class="highlight plain"><figcaption><span>install```。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### Step 3:建立migration</div><div class="line">运行```rails g acts_as_votable:migration```。</div><div class="line"></div><div class="line">运行```rake db:migrate```。</div><div class="line"></div><div class="line"></div><div class="line">### Step 2:修改product.rb</div><div class="line">打开app/models/product.rb，增加一行代码</div><div class="line">```ruby app/models/product.rb</div><div class="line">  has_one :main_product_image, -&gt; &#123; order(weight: &apos;desc&apos;) &#125;,class_name: :ProductImage</div><div class="line"></div><div class="line">+ acts_as_votable</div><div class="line"></div><div class="line">  before_create :set_default_attrs #产品创建之前生成唯一uuid</div></pre></td></tr></table></figure></p>
+<h3 id="Step-3-修改routes-rb"><a href="#Step-3-修改routes-rb" class="headerlink" title="Step 3:修改routes.rb"></a>Step 3:修改routes.rb</h3><p>在routes.rb中的加入代码<br><figure class="highlight ruby"><figcaption><span>config/routes.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">resources <span class="symbol">:products</span> <span class="keyword">do</span></div><div class="line">  member <span class="keyword">do</span></div><div class="line">    post <span class="symbol">:add_to_cart</span></div><div class="line">    put <span class="string">"like"</span>, <span class="symbol">to:</span> <span class="string">"products#upvote"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<h3 id="Step-4-修改controller"><a href="#Step-4-修改controller" class="headerlink" title="Step 4:修改controller"></a>Step 4:修改controller</h3><p>在app/controllers/products_controller.rb中加入<br><figure class="highlight ruby"><figcaption><span>app/controllers/products_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">before_action <span class="symbol">:authenticate_user!</span>, <span class="symbol">only:</span> [<span class="symbol">:upvote</span>, <span class="symbol">:downvote</span>]</div><div class="line">...</div><div class="line">...</div><div class="line">...</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">upvote</span></span></div><div class="line">  @product = Product.find(params[<span class="symbol">:id</span>])</div><div class="line">  @product.upvote_by current_user</div><div class="line">  redirect_to <span class="symbol">:back</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">downvote</span></span></div><div class="line">  @product=Product.find(params[<span class="symbol">:id</span>])</div><div class="line">  @product.downvote_by current_user</div><div class="line">  redirect_to <span class="symbol">:back</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<h3 id="Step-5-修改html-erb文件-在需要添加点赞功能的页面加入如下的内容："><a href="#Step-5-修改html-erb文件-在需要添加点赞功能的页面加入如下的内容：" class="headerlink" title="Step 5:修改html.erb文件,在需要添加点赞功能的页面加入如下的内容："></a>Step 5:修改html.erb文件,在需要添加点赞功能的页面加入如下的内容：</h3><p>在需要添加点赞功能的页面加入如下的内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;%= link_to like_product_path(product), method: :put do %&gt;</div><div class="line">    &lt;div class=&quot;pi-thumbs-up&quot;&gt;</div><div class="line">        赞（&lt;%= product.get_upvotes.size %&gt;）</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;% end %&gt;</div></pre></td></tr></table></figure></p>
+<p>在需要添加点差评功能的页面加入如下的内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;%= link_to dislike_product_path(product), method: :put do %&gt;</div><div class="line">&lt;div class=&quot;pi-thumbs-down&quot;&gt;</div><div class="line">    踩（&lt;%=product.get_downvotes.size%&gt;）</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>其中路径的参数是选择@product还是product要根据具体的页面来确定。</p>
+<p>我们这里暂时增加点赞功能，所以</p>
+<p>打开app/views/products/show.html.erb，增加如下代码<br><figure class="highlight ruby"><figcaption><span>app/views/products/show.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">      &lt;h3&gt;&lt;strong&gt;现价: ¥&lt;%= @product.price %&gt;&lt;<span class="regexp">/strong&gt; &lt;/h</span>3&gt;</div><div class="line">      &lt;p&gt;购买: &lt;input type=<span class="string">"text"</span> name=<span class="string">"quantity"</span> value=<span class="string">"1"</span> /&gt;件&lt;<span class="regexp">/p&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">+     &lt;%= link_to like_product_path(@product), method: :put do %&gt;</span></div><div class="line"><span class="regexp">+         &lt;div class="pi-thumbs-up"&gt;</span></div><div class="line"><span class="regexp">+             赞（&lt;%= @product.get_upvotes.size %&gt;）</span></div><div class="line"><span class="regexp">+         &lt;/div</span>&gt;</div><div class="line">+     &lt;% <span class="keyword">end</span> %&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="Step-6-将变更-commit-进去-git-里面。"><a href="#Step-6-将变更-commit-进去-git-里面。" class="headerlink" title="Step 6:将变更 commit 进去 git 里面。"></a>Step 6:将变更 commit 进去 git 里面。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m &quot;完成商品点赞功能&quot;</div><div class="line">git push origin story15</div><div class="line">git checkout master</div><div class="line">git merge story15</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
+<h2 id="本章详解"><a href="#本章详解" class="headerlink" title="本章详解"></a>本章详解</h2><blockquote>
+<p> 努力更新中，上班族请理解。。。。。</p>
+</blockquote>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/06/14/2017-06-14-1951289/" title="「从零开始做购物网站」第23章 开发个人中心和默认收货地址" itemprop="url">「从零开始做购物网站」第23章 开发个人中心和默认收货地址</a>
   </h1>
   <p class="article-author">By
@@ -673,74 +741,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/06/14/2017-06-14-starting-from-scratch-do-shopping-site-21st-chapter-to-increase-commodity-like-functionality/" title="「从零开始做购物网站」第21章 增加商品点赞功能" itemprop="url">「从零开始做购物网站」第21章 增加商品点赞功能</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
-		
-  <p class="article-time">
-    <time datetime="2017-06-14T15:55:00.000Z" itemprop="datePublished"> 发表于 2017-06-14</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <blockquote>
-<p>大家好，本系列文章主要是对我参加全栈营JDstore魔改大赛作品<a href="http://kerzzi.logdown.com/posts/1903205-magic-change-contest-entries-monsoon" target="_blank" rel="external">「季风 &amp; MONSOON」</a>的复盘。由于本人也是新手，文章中一定有很多幼稚的错误或代码，希望大家帮忙指出，可反馈至我的邮箱kerzzi@outlook.com，我会持续完善本系列。非常感谢。<br>本系列是在全栈营JDstore教程基础之上进行魔改，本系列第1-11章节为全栈营JDstore教程，请在完成全栈营JDstore教程的基础上进行测试。</p>
-</blockquote>
-<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><blockquote>
-<p>增加商品点赞功能</p>
-</blockquote>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="Step-0-建立新分支"><a href="#Step-0-建立新分支" class="headerlink" title="Step 0:建立新分支"></a>Step 0:建立新分支</h3><p>执行<figure class="highlight plain"><figcaption><span>checkout -b story15```。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### Step 1:</div><div class="line">打开Gemfile</div><div class="line">```ruby Gemfile</div><div class="line">  gem &apos;will_paginate&apos;</div><div class="line">  gem &apos;paperclip&apos;</div><div class="line">+ gem &apos;acts_as_votable&apos;, &apos;~&gt; 0.10.0&apos;</div></pre></td></tr></table></figure></p>
-<p>执行<figure class="highlight plain"><figcaption><span>install```。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### Step 3:建立migration</div><div class="line">运行```rails g acts_as_votable:migration```。</div><div class="line"></div><div class="line">运行```rake db:migrate```。</div><div class="line"></div><div class="line"></div><div class="line">### Step 2:修改product.rb</div><div class="line">打开app/models/product.rb，增加一行代码</div><div class="line">```ruby app/models/product.rb</div><div class="line">  has_one :main_product_image, -&gt; &#123; order(weight: &apos;desc&apos;) &#125;,class_name: :ProductImage</div><div class="line"></div><div class="line">+ acts_as_votable</div><div class="line"></div><div class="line">  before_create :set_default_attrs #产品创建之前生成唯一uuid</div></pre></td></tr></table></figure></p>
-<h3 id="Step-3-修改routes-rb"><a href="#Step-3-修改routes-rb" class="headerlink" title="Step 3:修改routes.rb"></a>Step 3:修改routes.rb</h3><p>在routes.rb中的加入代码<br><figure class="highlight ruby"><figcaption><span>config/routes.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">resources <span class="symbol">:products</span> <span class="keyword">do</span></div><div class="line">  member <span class="keyword">do</span></div><div class="line">    post <span class="symbol">:add_to_cart</span></div><div class="line">    put <span class="string">"like"</span>, <span class="symbol">to:</span> <span class="string">"products#upvote"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<h3 id="Step-4-修改controller"><a href="#Step-4-修改controller" class="headerlink" title="Step 4:修改controller"></a>Step 4:修改controller</h3><p>在app/controllers/products_controller.rb中加入<br><figure class="highlight ruby"><figcaption><span>app/controllers/products_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">before_action <span class="symbol">:authenticate_user!</span>, <span class="symbol">only:</span> [<span class="symbol">:upvote</span>, <span class="symbol">:downvote</span>]</div><div class="line">...</div><div class="line">...</div><div class="line">...</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">upvote</span></span></div><div class="line">  @product = Product.find(params[<span class="symbol">:id</span>])</div><div class="line">  @product.upvote_by current_user</div><div class="line">  redirect_to <span class="symbol">:back</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">downvote</span></span></div><div class="line">  @product=Product.find(params[<span class="symbol">:id</span>])</div><div class="line">  @product.downvote_by current_user</div><div class="line">  redirect_to <span class="symbol">:back</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<h3 id="Step-5-修改html-erb文件-在需要添加点赞功能的页面加入如下的内容："><a href="#Step-5-修改html-erb文件-在需要添加点赞功能的页面加入如下的内容：" class="headerlink" title="Step 5:修改html.erb文件,在需要添加点赞功能的页面加入如下的内容："></a>Step 5:修改html.erb文件,在需要添加点赞功能的页面加入如下的内容：</h3><p>在需要添加点赞功能的页面加入如下的内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;%= link_to like_product_path(product), method: :put do %&gt;</div><div class="line">    &lt;div class=&quot;pi-thumbs-up&quot;&gt;</div><div class="line">        赞（&lt;%= product.get_upvotes.size %&gt;）</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;% end %&gt;</div></pre></td></tr></table></figure></p>
-<p>在需要添加点差评功能的页面加入如下的内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;%= link_to dislike_product_path(product), method: :put do %&gt;</div><div class="line">&lt;div class=&quot;pi-thumbs-down&quot;&gt;</div><div class="line">    踩（&lt;%=product.get_downvotes.size%&gt;）</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<p>其中路径的参数是选择@product还是product要根据具体的页面来确定。</p>
-<p>我们这里暂时增加点赞功能，所以</p>
-<p>打开app/views/products/show.html.erb，增加如下代码<br><figure class="highlight ruby"><figcaption><span>app/views/products/show.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">      &lt;h3&gt;&lt;strong&gt;现价: ¥&lt;%= @product.price %&gt;&lt;<span class="regexp">/strong&gt; &lt;/h</span>3&gt;</div><div class="line">      &lt;p&gt;购买: &lt;input type=<span class="string">"text"</span> name=<span class="string">"quantity"</span> value=<span class="string">"1"</span> /&gt;件&lt;<span class="regexp">/p&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">+     &lt;%= link_to like_product_path(@product), method: :put do %&gt;</span></div><div class="line"><span class="regexp">+         &lt;div class="pi-thumbs-up"&gt;</span></div><div class="line"><span class="regexp">+             赞（&lt;%= @product.get_upvotes.size %&gt;）</span></div><div class="line"><span class="regexp">+         &lt;/div</span>&gt;</div><div class="line">+     &lt;% <span class="keyword">end</span> %&gt;</div></pre></td></tr></table></figure></p>
-<h3 id="Step-6-将变更-commit-进去-git-里面。"><a href="#Step-6-将变更-commit-进去-git-里面。" class="headerlink" title="Step 6:将变更 commit 进去 git 里面。"></a>Step 6:将变更 commit 进去 git 里面。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m &quot;完成商品点赞功能&quot;</div><div class="line">git push origin story15</div><div class="line">git checkout master</div><div class="line">git merge story15</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
-<h2 id="本章详解"><a href="#本章详解" class="headerlink" title="本章详解"></a>本章详解</h2><blockquote>
-<p> 努力更新中，上班族请理解。。。。。</p>
-</blockquote>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <a class="extend prev" rel="prev" href="/page/4/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/6/">Next<span></span></a>
@@ -815,11 +815,11 @@
 			
 		
 			
-				<li><a href="/tags/我的原则/" title="我的原则">我的原则<sup>1</sup></a></li>
+				<li><a href="/tags/3条铁律/" title="3条铁律">3条铁律<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/3条铁律/" title="3条铁律">3条铁律<sup>1</sup></a></li>
+				<li><a href="/tags/我的原则/" title="我的原则">我的原则<sup>1</sup></a></li>
 			
 		
 			
