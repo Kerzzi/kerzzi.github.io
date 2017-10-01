@@ -1,0 +1,579 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【提取练习】Nic老师周四答疑：基础知识补充与开发技巧 |20170413 | 柯子的行思笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kerzzi">
+    
+
+    
+    <meta name="description" content="这是Nic老师周四答疑的提取练习，加上我自己收集的知识。 放下你的纠结非常建议你不要在小白时期这样做  尝试搞懂“过多”的为什么，可以记下来，在周四提问助教。 了解一个需要花上超过一天的问题。  小技巧让你的开发更顺手1、指令下错时的自救法 在 Rails 中，可以使用 rails destroy 命令完成撤销操作。一般来说，下面这两个命令是相互抵消的： generate controller S">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【提取练习】Nic老师周四答疑：基础知识补充与开发技巧 |20170413">
+<meta property="og:url" content="https://kerzzi.github.io/2017/04/13/2017-04-13-extraction-practice-miss-nic-answers-on-thursday-basic-knowledge-of-supplements-and-develops-skills-20170413/index.html">
+<meta property="og:site_name" content="柯子的行思笔记">
+<meta property="og:description" content="这是Nic老师周四答疑的提取练习，加上我自己收集的知识。 放下你的纠结非常建议你不要在小白时期这样做  尝试搞懂“过多”的为什么，可以记下来，在周四提问助教。 了解一个需要花上超过一天的问题。  小技巧让你的开发更顺手1、指令下错时的自救法 在 Rails 中，可以使用 rails destroy 命令完成撤销操作。一般来说，下面这两个命令是相互抵消的： generate controller S">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-30T14:18:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【提取练习】Nic老师周四答疑：基础知识补充与开发技巧 |20170413">
+<meta name="twitter:description" content="这是Nic老师周四答疑的提取练习，加上我自己收集的知识。 放下你的纠结非常建议你不要在小白时期这样做  尝试搞懂“过多”的为什么，可以记下来，在周四提问助教。 了解一个需要花上超过一天的问题。  小技巧让你的开发更顺手1、指令下错时的自救法 在 Rails 中，可以使用 rails destroy 命令完成撤销操作。一般来说，下面这两个命令是相互抵消的： generate controller S">
+
+    
+    <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="柯子的行思笔记" title="柯子的行思笔记"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
+				<h2 class="blog-motto">叫我柯子就好</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/04/13/2017-04-13-extraction-practice-miss-nic-answers-on-thursday-basic-knowledge-of-supplements-and-develops-skills-20170413/" title="【提取练习】Nic老师周四答疑：基础知识补充与开发技巧 |20170413" itemprop="url">【提取练习】Nic老师周四答疑：基础知识补充与开发技巧 |20170413</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-13T13:41:00.000Z" itemprop="datePublished"> 发表于 2017-04-13</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#放下你的纠结"><span class="toc-number">1.</span> <span class="toc-text">放下你的纠结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小技巧让你的开发更顺手"><span class="toc-number">2.</span> <span class="toc-text">小技巧让你的开发更顺手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、指令下错时的自救法"><span class="toc-number">2.1.</span> <span class="toc-text">1、指令下错时的自救法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、Heroku是什么"><span class="toc-number">2.2.</span> <span class="toc-text">6、Heroku是什么</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<p>这是Nic老师周四答疑的提取练习，加上我自己收集的知识。</p>
+<h2 id="放下你的纠结"><a href="#放下你的纠结" class="headerlink" title="放下你的纠结"></a>放下你的纠结</h2><p>非常建议你不要在小白时期这样做</p>
+<ol>
+<li>尝试搞懂“过多”的为什么，可以记下来，在周四提问助教。</li>
+<li>了解一个需要花上超过一天的问题。</li>
+</ol>
+<h2 id="小技巧让你的开发更顺手"><a href="#小技巧让你的开发更顺手" class="headerlink" title="小技巧让你的开发更顺手"></a>小技巧让你的开发更顺手</h2><h3 id="1、指令下错时的自救法"><a href="#1、指令下错时的自救法" class="headerlink" title="1、指令下错时的自救法"></a>1、指令下错时的自救法</h3><blockquote>
+<p>在 Rails 中，可以使用 rails destroy 命令完成撤销操作。一般来说，下面这两个命令是相互抵消的：</p>
+<figure class="highlight plain"><figcaption><span>generate controller StaticPages ```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; ```rails destroy  controller StaticPages</div></pre></td></tr></table></figure>
+<p>使用命令生成模型：</p>
+<figure class="highlight plain"><figcaption><span>generate model User name:string email:string```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; 这个操作可以使用下面的命令撤销：</div><div class="line"></div><div class="line">&gt; ```rails destroy model User</div></pre></td></tr></table></figure>
+<p>（这里，我们可以省略命令行中其余的参数）</p>
+<p>对模型来说，还涉及到撤销迁移。迁移通过下面的命令改变数据库的状态：</p>
+<figure class="highlight plain"><figcaption><span>db:migrate```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; 我们可以使用下面的命令撤销前一个迁移操作：</div><div class="line"></div><div class="line">&gt;```rails db:rollback</div></pre></td></tr></table></figure>
+<p>如果要回到最开始的状态，可以使用：</p>
+<figure class="highlight plain"><figcaption><span>db:migrate VERSION</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt; 你可能猜到了，把数字 0 换成其他数字就会回到相应的版本，这些版本数字是按照迁移执行的顺序排列的。</div><div class="line"></div><div class="line">&gt; 知道这些技术，我们就能得心应对开发过程中遇到的各种问题了。</div><div class="line"></div><div class="line"></div><div class="line">### 2、Atom快捷篇</div><div class="line">1. ```cmd+p``` 快速开启档案</div><div class="line">2. 整个目录的文档中搜索单词，可以用```command + shift + F</div></pre></td></tr></table></figure>
+</blockquote>
+<ol>
+<li>单个文档中搜索<figure class="highlight plain"><figcaption><span>+ F```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">4. mkdir是创建一个新的文件夹，touch是在某个文件夹里创建一个新的文件！mkdir是创建文件夹linux的指令 ，rails g 是ruby的语言。</div><div class="line"></div><div class="line">### 3、开发必须有始有终</div><div class="line">先打完开头和结尾。</div></pre></td></tr></table></figure></li>
+</ol>
+<p>def end<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>&lt;%=  %&gt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p><div> </div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>do … end<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">等</div><div class="line"></div><div class="line"></div><div class="line">### 4、强化终端，除了美观更实用</div><div class="line">1. 在终端使用```echo $0 ```命令确认你使用的是```bash``` 还是 ```zsh</div></pre></td></tr></table></figure></p>
+<ol>
+<li><a href="http://docs.qzy.camp/docs/iterm2" target="_blank" rel="external">安装iterm2及美化操作</a></li>
+<li>在终端<figure class="highlight plain"><figcaption><span>+ Tab```试试</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">4. [zsh使用技巧](http://kerzzi.logdown.com/posts/1703238--wish-i-had-known-of-zsh-tips)。</div><div class="line">5. **按tab键可以在终端自动补全**</div><div class="line">6. 在terminal中按```contl+A```可以将光标指向最前面，那修改完了，要回到最最后面的快捷键是```contl+E```。</div><div class="line">7. **按上键是重复上一个命令**。</div><div class="line"></div><div class="line"></div><div class="line">### 5、Git基础知识</div><div class="line">1. ```git diff```用来对比commit之后的不同之处。</div><div class="line">2. 按照rails101做joblisting，把job输成了group，结果产生的文件都是group名称。我删除这个分支，可是那些group的文件夹仍然存在。怎么删掉？答：一个小技巧（**删除上一次commit到目前为止的所有变动**），先```git status```,看看哪些文件被改动了，然后```git add .```将改动内容放入暂存区，接着```git stash```让进入暂存区的内容进入缓存状态, 然后```git stash clear```,这样就清理了stash状态的改动内容，然后```git status```就可以看到已经没有改动的文件了。</div><div class="line">3. 老师在view里写路径的时候，比方说，```new_admin_job_path(@job)```有的时候需要后面挂这个@job,有的时候不需要，每次我都要靠着红字报错才能修改对。该怎么理解这个呢?答：**不使用job时，说明是路径是一个jobs集合页面。指定的话就是一个具体的job页面。**</div><div class="line">4. 如何回到上一个git commit时的文件存档？答：```git checkout . ```**放弃所有文件的修改（只对已经被 git 追踪过的文件有效），当你的文件被改烂了而又不想保存变更的时候，这个命令可以让项目的状态回到上一次 commit 的状态。</div><div class="line">5. 不小心在系统根目录使用了 ```git init```，用什么命令可以撤销？答：你可以试试 ```rm -rf .git```，其实执行```git init``` 就是在系统层面上建立了一个隐藏的文件夹，用来追踪你的改动，所以一般不建议在根目录使用这个命令。这个命令是删除命令，可以删除文件夹。</div><div class="line">6. 回到上一个git 存档时的文件状态。使用命令```git reset --hard HEAD~ ```这个会删除本地的更改,或者先```git log```查看有几个git, 然后使用```git reset --hard HEAD~1```回到排在第一个位置的状态。后面的数字根据需要改变。</div><div class="line">![](https://ww2.sinaimg.cn/large/006tKfTcgy1feldwp0w1kj31kw0zhgre.jpg)</div><div class="line"></div><div class="line">下文来自[nfreeness师兄](http://nfreeness.logdown.com/posts/2016/10/01/938720)：</div><div class="line">&gt; **What is git?**</div><div class="line">&gt; git 是 Linux 之父 Linus Torvalds 开发出来的一套代码版本控制系统。你可以把 git 想像成游戏时存档的工具，每当程式开发到一定的段落，就使用 git 存档一下。</div><div class="line"></div><div class="line">&gt; **git config**</div><div class="line">&gt; 就像是首次玩游戏一样，你必须设定游戏玩家角色叫什么。在安装完 git 之后我们必须设定两个参数：</div><div class="line">&gt; ```git config --global user.name &quot;Jone Doe&quot;</div></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<figure class="highlight plain"><figcaption><span>config --global user.email johndoe@example.com```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&gt; 这样以后进行存档时，就会纪录你是这次进度的存档者。</div><div class="line"></div><div class="line">&gt; git init</div><div class="line">&gt; 默认情况下 git 不会对我们的项目进行版本控制，所以每次新建一个项目之后，需要使用 git init 这个命令，来告诉 git 对我们的项目进行追踪，但是这个命令只要使用一次就可以了，之后在这个项目里，你只要 ```git add . ``` 添加变动 和``` git commit``` 保存变动即可。</div><div class="line">&gt; 注意：千万不要在系统根目录下使用 git init，否则你整个电脑的所有文件都会被记录！</div><div class="line"></div><div class="line">&gt; git status</div><div class="line">&gt; ```git status``` 会告诉你 git 追踪到的所有新增、修改、删除的文件。</div><div class="line">&gt; 比如我们修改了 ```gemfile``` 和 ```README.md``` 两个文件，</div><div class="line">&gt; 然后我们输入 ```git add README.md```，再输入 ```git status</div></pre></td></tr></table></figure>
+<p>你会发现 <code>README.md</code> 变成绿色，<code>gemfile</code> 档案还是红色。<br>这表示我们已经将 <code>README.md</code>设定为预备储存进度的文件”。</p>
+<p>git add<br><code>git add foo.txt</code> 把名为 foo.txt 的文件加进追踪修订。<br><code>git add .</code> (“git add dot”) 把当前项目文件夹里（即 .）所有新文件和改过的文件加进追踪修订，但“保留”你删掉的文件。<br><code>git add -A</code> 全部加进追踪修订，包括删掉的文件。“把删掉的文件加进来”听起来很奇怪，但如果你把版本控制系统想像成是追踪“修改”的工具，或许就会懂了。多数人用 git add . ，但 git add -A 会比较安全。</p>
+<p>git commit<br><code>git commit</code> 告诉 git 真的要执行你叫它做的事。<br>分成 add 和 commit 两个步骤的好处是，如此你就可以把多个修改合并在一起。<br><code>git commit</code> 的用法是 <code>git commit -m “描述”</code> ，记得要加 -m 这个参数，后面的 ”描述” 里，是指你这一次commit 到底做了哪些修改，至少你不能每次都用 Added all the things ，不然以后你查看记录的时候每一次都是 Added all the things，就会不知道自己做了什么。</p>
+<p>前方乱入：<code>git reset --hard HEAD~</code> <strong>快速回到上一次 commit 状态。</strong></p>
+<p>git push<br>把你本地有经过 git commit 过的代码推送到远端 github 或是 heroku之类的储存库上面去。<br><code>git push --all origin</code> 接将所有分支全 push 到 github 上。<br><code>git push origin master</code> 将本地的 master 分支 push 到 github 上。</p>
+<p>git pull<br>在多人合作开发的项目中需要经常将其他人 push 到 github 上面的代码 “拉” 到本地，这样才能同步变动。<br><code>git pull origin develop</code> 将 github 的 develop 分支 pull 到本地的当前分支。</p>
+<p>git clone<br><code>git clone</code> 的作用是将 github 上面的项目（别人的或自己的）克隆到本地。<br><strong>注意，不要在一个已经 git init 过的目录下进行 git clone。</strong></p>
+<p><code>git clone https://github.com/twbs/bootstrap.git</code> 将 github 上 twbs 这个用户的 bootstrap 项目代码克隆到你的电脑上（这会建立一个名为 bootstrap 的文件夹）。<br><code>git clone https://github.com/twbs/bootstrap.git my_bootstrap</code> 和上个命令一样，但是这里会创建一个名为 my_bootstrap 的文件夹用于存放代码。<br><code>git clone https://github.com/twbs/bootstrap.git -b v3-dev</code> 这是只将 v3-dev 这个分支 clone 下来。</p>
+<p>git branch<br>git 除了可以保存项目进度，还可以通过分支（branch）来管理不同的开发状态，比如 master 分支是主分支，用于发布正式版本，一般不直接在这上面进行修改; develop 分支则是开发用的；还可以在 develop 的基础上延伸每一功能模块分支，当修改好了之后再 merge 到 develop 分支。</p>
+<p>git branch 查看项目有多少个分支，且当前处于哪个分支。<br><code>git branch fixbug</code> 以当前分支为副本，建立一个名为 fixbug 的分支。<br><code>git branch -D fixbug</code> 删除名为 fixbug 的分支（当前分支必须是 fixbug 之外的其他分支才能删除）。</p>
+<p>git checkout<br><code>git checkout .</code><strong>放弃所有文件的修改（只对已经被 git 追踪过的文件有效），当你的文件被改烂了而又不想保存变更的时候，这个命令可以让项目的状态回到上一次 commit 的状态</strong>，当然也可以用 <code>git checkout 文件名</code> 只放弃某个被改烂的文件。<br><code>git checkout fixbug</code> 从当前分支切换到 fixbug 分支。<br><code>git checkout -b fixbug02</code> 以当前分支为副本建立一个 fixbug02 分支，并直接切换到新建的分支( 用 git branch 新建分支不会切换到新分支 )。</p>
+<p>git stash<br><code>git stash</code> 将所有修改缓存起来（而不是保存），这样你就可以 checkout 到其他分支而不需 commit 。<br><code>git stash apply</code> 将 git stash 缓存的文件重新调出来。</p>
+<p>git merge<br><code>git merge develop</code> 假设当前在 master 分支下，这个命令的意思是将 develop 分支里的内容合并到 master 分支。</p>
+<p>git log<br><code>git log</code> 查看过去的 commit 记录，包含了 commit 的 SHA1值（ commit id ）、修改人信息、修改时间、备注信息等。<strong>在显示 log 的状态下，按 Q 键退出查看</strong>。</p>
+<p>git diff<br><code>git diff</code> 用于查看“代码”的增删改，它与 <code>git status</code> 不同（查看“文件”的增删改），<strong>在 commit 之前，通过 git diff 查看代码的具体变动，比如减少了某一行代码或者新增了某一个行代码</strong>。<strong>同样是按 Q 键退出查看</strong>。</p>
+</blockquote>
+<p><a href="http://zencode.cn/2012/12/gitbasis/" target="_blank" rel="external">Git入门常用命令</a><br><a href="https://tonydeng.github.io/2015/07/08/how-to-undo-almost-anything-with-git/" target="_blank" rel="external">Git的各种Undo技巧</a></p>
+<h3 id="6、Heroku是什么"><a href="#6、Heroku是什么" class="headerlink" title="6、Heroku是什么"></a>6、Heroku是什么</h3><ol>
+<li>如何删除Heroku上的应用。</li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://kerzzi.github.io/2017/04/13/2017-04-13-extraction-practice-miss-nic-answers-on-thursday-basic-knowledge-of-supplements-and-develops-skills-20170413/" data-title="【提取练习】Nic老师周四答疑：基础知识补充与开发技巧 |20170413 | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/04/14/2017-04-14-error-log-not-to-re-open-the-rails-s-results-in-an-error/" title="【错误记录】没有重开rails s 导致错误">
+  <strong>上一篇：</strong><br/>
+  <span>
+  【错误记录】没有重开rails s 导致错误</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/04/13/2017-04-13--wish-i-had-known-of-zsh-tips/"  title=" 真希望早点知道的zsh技巧">
+ <strong>下一篇：</strong><br/> 
+ <span> 真希望早点知道的zsh技巧
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#放下你的纠结"><span class="toc-number">1.</span> <span class="toc-text">放下你的纠结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#小技巧让你的开发更顺手"><span class="toc-number">2.</span> <span class="toc-text">小技巧让你的开发更顺手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、指令下错时的自救法"><span class="toc-number">2.1.</span> <span class="toc-text">1、指令下错时的自救法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、Heroku是什么"><span class="toc-number">2.2.</span> <span class="toc-text">6、Heroku是什么</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/全栈营/" title="全栈营">全栈营<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/千字文训练/" title="千字文训练">千字文训练<sup>12</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/通往财富自由之路/" title="通往财富自由之路">通往财富自由之路<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/公开写作/" title="公开写作">公开写作<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/财富自由/" title="财富自由">财富自由<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/区块链研习笔记/" title="区块链研习笔记">区块链研习笔记<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spenser自媒体写作强化营/" title="Spenser自媒体写作强化营">Spenser自媒体写作强化营<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/写作/" title="写作">写作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/生活/" title="生活">生活<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/如何写作/" title="如何写作">如何写作<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/我的原则/" title="我的原则">我的原则<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/3条铁律/" title="3条铁律">3条铁律<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/游记/" title="游记">游记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/千字文/" title="千字文">千字文<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/读书笔记/" title="读书笔记">读书笔记<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kerzzi">Kerzzi</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

@@ -1,0 +1,1014 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>柯子的行思笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kerzzi">
+    
+
+    
+    <meta name="description" content="柯子的行思笔记">
+<meta property="og:type" content="website">
+<meta property="og:title" content="柯子的行思笔记">
+<meta property="og:url" content="https://kerzzi.github.io/page/10/index.html">
+<meta property="og:site_name" content="柯子的行思笔记">
+<meta property="og:description" content="柯子的行思笔记">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="柯子的行思笔记">
+<meta name="twitter:description" content="柯子的行思笔记">
+
+    
+    <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="柯子的行思笔记" title="柯子的行思笔记"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
+				<h2 class="blog-motto">叫我柯子就好</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/04/15/2017-04-15-1710379/" title="线上Meetup问题准备（含他人问题及解答）|20170415" itemprop="url">线上Meetup问题准备（含他人问题及解答）|20170415</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-15T13:03:00.000Z" itemprop="datePublished"> 发表于 2017-04-15</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="我的问题"><a href="#我的问题" class="headerlink" title="我的问题"></a>我的问题</h2><h3 id="问题1："><a href="#问题1：" class="headerlink" title="问题1："></a>问题1：</h3><p>CRUD中<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">答：前者``` @group = Group.new```是虚的（空的、nil），对应的是def new方法，这个方法没有数据需要写入数据库中，这个方法是为了让对应的new.html.erb页面显示出来。而这个页面在最初是空白（nil）状态，因此不需要参数，实际上也没有参数。</div><div class="line"></div><div class="line">后者```@group = Group.new(group_params)```是实的，这里的实例变量@group中是含有数据的，对应的是def create方法（def update中原理类似），这个方法后面需要保存@group.save至数据中，而且对应的页面此时确实是有数据的，因此需要参数**。def create含义就是**：将资料Group.new(group_params)传入实例变量@group中，然后对实例变量@group调用save方法，将其存入数据中。</div><div class="line"></div><div class="line">**我的补充内容：**</div><div class="line"></div><div class="line">* index、show、new和edit方法都仅仅是显示对应的页面，并不涉及将数据保存或更新到数据库，仅create、update和destroy方法才会与数据库进行交互动作。</div><div class="line"></div><div class="line">* 因为update action和destroy action对应的网址与show action一样，均为group_path(group)，那这样会不会出问题呢?</div><div class="line"></div><div class="line">* 是这样的，group_path（group)的默认导向是show action, 我们在使用update action和destroy action时，必须额外指明method，这样就不会出错了。如下：```&lt;%= link_to(&quot;Delete&quot;, group_path(group),  class: &quot;btn btn-sm btn-default&quot;, method: :delete, data: &#123; confirm: &quot;Are you sure?&quot; &#125; )%&gt;```。</div><div class="line"></div><div class="line">### 问题2：</div><div class="line">问号？、感叹号！、冒号、空格的用法？自己的一些总结如下，但不是很清晰。请帮忙解答。</div><div class="line"></div><div class="line">#### 问号与感叹号：</div><div class="line">（1）```if !current_user.admin?```， 感叹号在单词前代表逻辑非，“？”多被用于返回Boolean值的方法。</div><div class="line">（2）```authenticate_user!```，“！”出现在方法名尾部的感叹号表明使用该方法是需要多加小心。通常情况下，不带感叹号的方法返调用该方法的一个拷贝，而带感叹号的方法则是一个可变方法，该方法会修改原来的对象，如Array类中的```sort```和```sort!</div></pre></td></tr></table></figure></p>
+<p>（3）是否还有其他用法？<br>答：目前就这样，碰到时在总结。</p>
+<h4 id="冒号："><a href="#冒号：" class="headerlink" title="冒号："></a>冒号：</h4><p>（1）有时冒号在单词的前面<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">（2）```before_action: authenticate_user!```就是错误的，冒号应该仅跟```authenticate_user!```，即 ```before_action :authenticate_user!</div></pre></td></tr></table></figure></p>
+<p>（3）冒号的其他用法，比如实测</p>
+<ul>
+<li><figure class="highlight plain"><figcaption><span>g controller admin::jobs```与```rails g controller admin/jobs```作用一样。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div></pre></td><td class="code"><pre><div class="line">* ```:data =&gt; &#123; :confirm =&gt; &quot;Are you sure?&quot; &#125;)```和```:data =&gt; &#123; confirm: &quot;Are you sure?&quot;&#125;)```作用一样。</div><div class="line">* ```flash[:alert] = &apos;You are not admin’```与```alert： &apos;You are not admin’```作用一样。</div><div class="line">* ```has_many :participated_groups, :through =&gt; :group_relationships, :source =&gt; :group```和```has_many :participated_groups, through: :group_relationships, source: :group```效果一样。```only: [:new, :create, :update, :edit, :destroy]```是不是也可以写为：```:only =&gt; [:new, :create, :update, :edit, :destroy]```？</div><div class="line">（4）冒号是否还有其他用法？</div><div class="line">答：目前就这样，碰到时在总结。</div><div class="line"></div><div class="line">#### 空格：</div><div class="line">（1）```link_to(“My Groups”,account_groups_path)```中的link_to与后面的内容之间不能有空格。之前因为有空格出现过报错。</div><div class="line">（2）```method: :delete```中两个冒号之间又必须有空格，否则会报错，如果中间没有空格，atom中的颜色不会改变。</div><div class="line">（3）空格使用注意事项有哪些？</div><div class="line">答：目前就这样，碰到时在总结。</div><div class="line"></div><div class="line">### 问题3：</div><div class="line">Controller文件中用到的一些自定义属性（方法？），既可以在Controller文件中定义、又可以在对应的model文件中定义、有的甚至可以在helper中定义。这3者有什么区别？</div><div class="line"></div><div class="line">答：大部分的自定义方法基本都可以在controller中定义，但是为了保持controller中的简洁，最好将其取出来，建议按照如下规则取出来：</div><div class="line">* 与数据本身（即后端）相关的方法，最好定义在对应的model文件中。</div><div class="line">* 与页面（即前端）相关的方法，最好定义在对应的helper文件中。因为在html中插入大段的ruby代码是非常不美观，也不便于维护的，应尽量保持HTML文件的干净。</div><div class="line">* 有时考虑复用的情况，需要将其放在application_controller中。</div><div class="line"></div><div class="line">### 问题4：</div><div class="line">与上一个问题类似。helper和partial的区别是什么？（如```flashes_helper```和```_flashes,html.erb```）我的理解是Helper中定义公用的方法，而partial中是局部view文件，这样理解对吗？</div><div class="line"></div><div class="line">答：[参考nic助教的文章。](http://blog.niclin.tw/posts/352735-when-to-use-a-helper-when-to-use-partial)</div><div class="line"></div><div class="line">&gt; **Helper:**</div><div class="line">&gt; **使用 Helper 的情境多半是：**</div><div class="line">&gt; 產生的 HTML code 需要與原始程式碼進行一些邏輯混合，但不希望 View 裡面搞得太髒。</div><div class="line">&gt; 需要與預設的 Rails 內建的一些方便 Helper 交叉使用。</div><div class="line">&gt; **使用 Helper 封裝程式碼可以帶給專案以下一些優點：**</div><div class="line">&gt; Don&apos;t repeat yourself（DRY）程式碼不重複</div><div class="line">&gt; Good Encapsulation好的封裝性</div><div class="line">&gt; 提供 view 模板良好的組織</div><div class="line">&gt; 易於修改程式碼</div><div class="line">&gt; **partial:**</div><div class="line">&gt; Partial 簡單說就是程式碼中的一小段，通常使用在 HTML 中讓 View的Code 可以更乾淨，將重複使用到的區塊切成獨立的 Partial，比方說頁首頁尾、表單、社群插件等等，讓任何一個頁面都可以讀取這段Partial而不用重複寫一次一模一樣的Code。</div><div class="line">&gt; **使用 的情境是：**</div><div class="line">&gt; long template | 如果當檔 HTML 超過兩頁</div><div class="line">&gt; highly duplicated | HTML 內容高度重複</div><div class="line">&gt; independent blocks | 可獨立作為功能區塊</div><div class="line">&gt; 什麼時機使用：</div><div class="line">&gt; partial 負責處理大片的 HTML code，或是之後要利用 ajax render 出來的片段。</div><div class="line">&gt; helper 則負責處理跟邏輯判斷有關的東西。</div><div class="line"></div><div class="line">### 问题5：</div><div class="line"></div><div class="line">role = “alert” 的含义？ nav-collapse的用途？```&lt;b class=&quot;caret&quot;&gt;&lt;/b&gt;```的作用？role、type、id的区别？</div><div class="line"></div><div class="line"></div><div class="line">答：参考这两篇文章：[Bootstrap:全局 CSS 样式](http://v3.bootcss.com/css/);[Bootstrap：组件](http://v3.bootcss.com/components/)。</div><div class="line"></div><div class="line">### 问题6：</div><div class="line"></div><div class="line">cp config/database.yml.example config/database.yml这个的用途是什么？</div><div class="line"></div><div class="line">答：yml是用来保存秘钥等私密信息的，而github能colone的文件都是公开的，如果上传了这个文件，坏人就可以破解这个文件，来做坏事。xdide老师在上传自己的job-listing时没有将这个文件上传，因此我们在clone时是缺少这个文件的。而如果缺少这个文件，我们本地运行时则会报错，因此需要cp一个虚假的yml.example文件到我们本地，并且命名为database.yml。这样就不会报错了。</div><div class="line">![](https://ww1.sinaimg.cn/large/006tKfTcgy1feom6abc0qj31kw1bdjvt.jpg)</div><div class="line"></div><div class="line">### 问题7：</div><div class="line">* 一些方法中带参数和不带参数的区别？如[招聘网站6-4 step7](https://fullstack.xinshengdaxue.com/posts/550)中```jobs_helper.rb```中，这个方法 ```def render_job_status(job)``` 为什么要带参数job？</div><div class="line"></div><div class="line">答：因为这个方法是判断具体某个job的状态，所以需要带参数job，以便区分。</div><div class="line"></div><div class="line">* 另外前天的nic老师的分享中没完全听懂，```admin_job_path(job)```和```admin_jobs_path```的区别？是不是路径名中是集合（即带s）后面就不需要（job）,如果是单个job的页面就必须有（job）？另外```redirect_to group_path(@group)```和```join_group_path(@group)```这里面为什么要有@符号？https://fullstack.xinshengdaxue.com/posts/84 step3</div><div class="line"></div><div class="line">答：前面的理解【路径名中是集合（即带s）后面就不需要（job）,如果是单个job的页面就必须有（job）】是正确的，@group是具体某个实例变量，下面的代码中之所以要有@符号，是因为我们要加入的就是```@group = Group.find(params[:id])```这个具体的group，不是其他的group。</div><div class="line"></div><div class="line">```ruby app/controllers/groups_controller.rb</div><div class="line">+  def join</div><div class="line">+   @group = Group.find(params[:id])</div><div class="line">+  </div><div class="line">+    if !current_user.is_member_of?(@group)</div><div class="line">+      current_user.join!(@group)</div><div class="line">+      flash[:notice] = &quot;加入本讨论版成功！&quot;</div><div class="line">+    else</div><div class="line">+      flash[:warning] = &quot;你已经是本讨论版成员了！&quot;</div><div class="line">+    end</div><div class="line">+  </div><div class="line">+    redirect_to group_path(@group)</div><div class="line">+  end</div><div class="line">+  </div><div class="line">+  def quit</div><div class="line">+    @group = Group.find(params[:id])</div><div class="line">+  </div><div class="line">+    if current_user.is_member_of?(@group)</div><div class="line">+      current_user.quit!(@group)</div><div class="line">+      flash[:alert] = &quot;已退出本讨论版！&quot;</div><div class="line">+    else</div><div class="line">+      flash[:warning] = &quot;你不是本讨论版成员，怎么退出 XD&quot;</div><div class="line">+    end</div><div class="line">+  </div><div class="line">+    redirect_to group_path(@group)</div><div class="line">+  end</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>补充说明：</strong><br>下面的第一段代码中，<figure class="highlight plain"><figcaption><span>@jobs.each do |job| %>```中|job|这个是可以为任意字符或字符串的，它只是一个**代指**，可以代指@jobs这个集合中的**每一个**元素（而不是特定的某个元素），它可以改为|f|、|j|等等，如果改为|j|后面的 ```<%< span=""></%<></span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">而``` &lt;% @jobs.each do |job| %&gt;```中的@jobs是**特指**job的集合，这个集合从数据中捞出所有的job，然后赋值给|job|,接着进行下面的循环操作。</div><div class="line"></div><div class="line">**第一段代码**，使用job指代@jobs中的元素。</div><div class="line"></div><div class="line">```ruby code1</div><div class="line"> &lt;table class=&quot;table table-boldered&quot;&gt;</div><div class="line">  &lt;% @jobs.each do |job| %&gt;</div><div class="line">  &lt;tr&gt;</div><div class="line">    &lt;td&gt;</div><div class="line">      &lt;%= link_to(job.title, admin_job_path(job)) %&gt;</div><div class="line">    &lt;/td&gt;</div><div class="line">    &lt;td&gt;</div><div class="line">      &lt;%= link_to(&quot;Edit&quot;, edit_admin_job_path(job)) %&gt;</div><div class="line">      &lt;%= link_to(&quot;Destroy&quot;, admin_job_path(job), :method =&gt; :delete, :data =&gt; &#123; :confirm =&gt; &quot;Are you sure?&quot; &#125;) %&gt;</div><div class="line">    &lt;/td&gt;</div><div class="line">    &lt;td&gt;</div><div class="line">      &lt;%= job.created_at %&gt;</div><div class="line">    &lt;/td&gt;</div><div class="line">  &lt;/tr&gt;</div><div class="line">  &lt;% end %&gt;</div><div class="line">&lt;/table&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>第二段代码</strong>，使用f指代@forms中的元素。</p>
+<figure class="highlight ruby"><figcaption><span>app/views/resumes/new.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;%= simple_form_for [@job, @resume] <span class="keyword">do</span> <span class="params">|f|</span> %&gt;</div><div class="line">  &lt;%= f.input <span class="symbol">:content</span> %&gt;</div><div class="line">  &lt;%= f.input <span class="symbol">:attachment</span> %&gt;</div><div class="line"></div><div class="line">  &lt;%= f.submit <span class="string">"送出"</span> %&gt;</div><div class="line">&lt;% <span class="keyword">end</span> %&gt;</div></pre></td></tr></table></figure>
+<h3 id="问题8："><a href="#问题8：" class="headerlink" title="问题8："></a>问题8：</h3><p>能否在解释下<code>git checkout xxx</code> 和 <code>git reset --hard HEAD~1</code>区别？如果想返回特定的commit状态，如何返回？我有时出现bug后想回到上次，使用了这两个命令，发现atom中许多文件便为未保存状态，上方有蓝点提示，这时我需要将这些文件都<code>cmd+s</code>一遍吗？</p>
+<p>答：前者是大存档，后者是小存档。估计我之所以出现BUG就是因为之前的文件没有保存，正常情况下切换分支或者回到之前的commit状态并不会出现文件没保存，如果出现没保存的文件，只可能是在当时的commit状态就没有进行保存。<br>强烈建议：atom 中仅同时保持最多3个常用页签，正常<code>cmd+s</code>保存完毕后，一定要<code>cmd+w</code>关闭该页签。</p>
+<h2 id="他人的问题："><a href="#他人的问题：" class="headerlink" title="他人的问题："></a>他人的问题：</h2><h3 id="问题1：-1"><a href="#问题1：-1" class="headerlink" title="问题1："></a>问题1：</h3><p><code>&lt;p&gt;&lt;%= simple_format(@job.description) %&gt;&lt;/p&gt;</code>这段代码什么意思?</p>
+<p>答：顯示出指定的job的description,并且用simple_format顯示斷行。</p>
+<h3 id="问题2："><a href="#问题2：" class="headerlink" title="问题2："></a>问题2：</h3><p>做ＣＲＵＤ時，要先在controller裡寫完七個動作（index, show, new,create,update,edit,destroy) 再去寫html。還是一個動作寫完就去寫對應的html？ 因為教材在做Admin/jobs的ＣＲＵＤ時是先寫完ＣＲＵＤ再寫對應的html？</p>
+<p>答：看个人习惯，建议先写1个动作，然后去写对应的html。这样方便分别commit，减少出BUG的几率。</p>
+<h3 id="问题3："><a href="#问题3：" class="headerlink" title="问题3："></a>问题3：</h3><p>请问rails101和job listing里都做了hello world页面，但是这个页面最后网页上并没有用上，为什么要加呢？</p>
+<p>答：因为安装bootstrop后无法知道是否安装完成。需要一个页面显示效果。</p>
+<h3 id="问题4："><a href="#问题4：" class="headerlink" title="问题4："></a>问题4：</h3><p>缺乏动力、如何让自己上瘾、有成就感，奖励系统的建立？</p>
+<p>答：</p>
+<ol>
+<li>打鸡血的好去处，公众号右下角10个鸡血视频（开悟的蜗牛_微信公众号：guo_forrest）</li>
+<li>相信自己，据上一期的总结，跟上学习进度，就已经到前40%了。</li>
+<li>写博客，分享给他人看，教别人等获得成就感。可以<a href="http://anndo-blog.logdown.com/posts/1667494" target="_blank" rel="external">使用Google Analytics 追踪你的 Logdown 流量</a>，看看有哪些人阅读了你的博客。</li>
+<li>新生大学的奖励系统：如最近发的得到500元卡和黑科技本子、各种比赛的奖品等。</li>
+<li>你的学费18000元，即这2个月的内，每天学习的金钱成本是300元人民币，只要有一天不学习，你就白白丢掉了300元。还不赶紧去行动！</li>
+</ol>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>很多问题，他人都已经总结过了。可以通过阅读上一期或同期学员的Logdown了解这些知识。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/04/15/2017-04-15-error-log-spelling-error-code-completion-results-in-an-error-and-restart-to-cure/" title="【错误记录】拼写错误、代码补全导致错误以及重启治百病" itemprop="url">【错误记录】拼写错误、代码补全导致错误以及重启治百病</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-15T02:58:00.000Z" itemprop="datePublished"> 发表于 2017-04-15</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>对今天上午遇到的BUG及相应处理措施进行复盘。</p>
+<h2 id="拼写或少写符号错误"><a href="#拼写或少写符号错误" class="headerlink" title="拼写或少写符号错误"></a>拼写或少写符号错误</h2><p>应为:style,少个冒号<br><img src="https://ww4.sinaimg.cn/large/006tKfTcgy1fen6j6l1auj31kw1qugpz.jpg" alt=""><br>拼写错误：save写成sava<br><img src="https://ww2.sinaimg.cn/large/006tKfTcgy1fen6jecf0yj31kw1qu44t.jpg" alt=""></p>
+<h2 id="代码补全导致错误"><a href="#代码补全导致错误" class="headerlink" title="代码补全导致错误"></a>代码补全导致错误</h2><p>由于我启用了代码补全功能，偶尔发生补全内容不是我想要的情况。<br><img src="https://ww1.sinaimg.cn/large/006tKfTcgy1fen6jp8g77j31kw1bfq8o.jpg" alt=""><br><img src="https://ww4.sinaimg.cn/large/006tKfTcgy1fen6jwq06ej31kw1quwkd.jpg" alt=""></p>
+<h2 id="重启治百病"><a href="#重启治百病" class="headerlink" title="重启治百病"></a>重启治百病</h2><p>重启电脑、重启<code>rails s</code>真的可以解决至少100个BUG。</p>
+<p>招聘网站 11-2 step8完成后出现如下错误，实际上文件中并没有错误，必须重启<code>rails s</code>，才能显示效果。</p>
+<p><code>cmd + /</code> 是atom中html文件的注释功能快捷键。</p>
+<p><img src="https://ww1.sinaimg.cn/large/006tKfTcgy1fen6k25tw7j31kw1quaed.jpg" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/04/14/2017-04-14-the-wrong-how-to-modify-the-column-name/" title="【错误记录】如何修改Model的栏目名称？" itemprop="url">【错误记录】如何修改Model的栏目名称？</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-14T13:38:00.000Z" itemprop="datePublished"> 发表于 2017-04-14</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>微信群里讨论的一个问题，比较实用，参考<a href="http://raimonfuns-blog.logdown.com/" target="_blank" rel="external">陈俊鸿同学的博客</a>。</p>
+<blockquote>
+<p>动作<br>创建表的时候，手残把栏目名敲错了<figure class="highlight plain"><figcaption><span>g model post titlr:string content:text```。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&gt; 分析</div><div class="line">&gt; 把栏目名从```titlr```改成```title</div></pre></td></tr></table></figure></p>
+<p>解决方法<br>step1:<br>执行<figure class="highlight plain"><figcaption><span>g migration FixColumnName```创建migration</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">&gt; step2:</div><div class="line">&gt; 修改```db/xxxxxx_fix_column_name.rb</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> class FixColumnName &lt; ActiveRecord::Migration[5.0]</div><div class="line">  def change</div><div class="line">    rename_column :posts, :titlr, :title</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
+<p>step3:<br>执行<code>rails db:migrate</code>，done！</p>
+</blockquote>
+<p><strong>参考链接：</strong><br><a href="http://stackoverflow.com/questions/1992019/how-can-i-rename-a-database-column-in-a-ruby-on-rails-migration" target="_blank" rel="external">How can I rename a database column in a Ruby on Rails migration?</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/04/14/2017-04-14-error-log-not-to-re-open-the-rails-s-results-in-an-error/" title="【错误记录】没有重开rails s 导致错误" itemprop="url">【错误记录】没有重开rails s 导致错误</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-14T13:10:00.000Z" itemprop="datePublished"> 发表于 2017-04-14</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>安装完devise后出现如下错误提示。我误以为自己写错了，花了很长时间去debug,但其实是没有重开<code>rails s</code>。今后出现不明BUG（非拼写错误的BUG），首先要重启治百病。</p>
+<p><img src="https://ww4.sinaimg.cn/large/006tKfTcgy1femil0nbbaj31kw1qugqc.jpg" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/04/13/2017-04-13-extraction-practice-miss-nic-answers-on-thursday-basic-knowledge-of-supplements-and-develops-skills-20170413/" title="【提取练习】Nic老师周四答疑：基础知识补充与开发技巧 |20170413" itemprop="url">【提取练习】Nic老师周四答疑：基础知识补充与开发技巧 |20170413</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-13T13:41:00.000Z" itemprop="datePublished"> 发表于 2017-04-13</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>这是Nic老师周四答疑的提取练习，加上我自己收集的知识。</p>
+<h2 id="放下你的纠结"><a href="#放下你的纠结" class="headerlink" title="放下你的纠结"></a>放下你的纠结</h2><p>非常建议你不要在小白时期这样做</p>
+<ol>
+<li>尝试搞懂“过多”的为什么，可以记下来，在周四提问助教。</li>
+<li>了解一个需要花上超过一天的问题。</li>
+</ol>
+<h2 id="小技巧让你的开发更顺手"><a href="#小技巧让你的开发更顺手" class="headerlink" title="小技巧让你的开发更顺手"></a>小技巧让你的开发更顺手</h2><h3 id="1、指令下错时的自救法"><a href="#1、指令下错时的自救法" class="headerlink" title="1、指令下错时的自救法"></a>1、指令下错时的自救法</h3><blockquote>
+<p>在 Rails 中，可以使用 rails destroy 命令完成撤销操作。一般来说，下面这两个命令是相互抵消的：</p>
+<figure class="highlight plain"><figcaption><span>generate controller StaticPages ```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&gt; ```rails destroy  controller StaticPages</div></pre></td></tr></table></figure>
+<p>使用命令生成模型：</p>
+<figure class="highlight plain"><figcaption><span>generate model User name:string email:string```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; 这个操作可以使用下面的命令撤销：</div><div class="line"></div><div class="line">&gt; ```rails destroy model User</div></pre></td></tr></table></figure>
+<p>（这里，我们可以省略命令行中其余的参数）</p>
+<p>对模型来说，还涉及到撤销迁移。迁移通过下面的命令改变数据库的状态：</p>
+<figure class="highlight plain"><figcaption><span>db:migrate```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&gt; 我们可以使用下面的命令撤销前一个迁移操作：</div><div class="line"></div><div class="line">&gt;```rails db:rollback</div></pre></td></tr></table></figure>
+<p>如果要回到最开始的状态，可以使用：</p>
+<figure class="highlight plain"><figcaption><span>db:migrate VERSION</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt; 你可能猜到了，把数字 0 换成其他数字就会回到相应的版本，这些版本数字是按照迁移执行的顺序排列的。</div><div class="line"></div><div class="line">&gt; 知道这些技术，我们就能得心应对开发过程中遇到的各种问题了。</div><div class="line"></div><div class="line"></div><div class="line">### 2、Atom快捷篇</div><div class="line">1. ```cmd+p``` 快速开启档案</div><div class="line">2. 整个目录的文档中搜索单词，可以用```command + shift + F</div></pre></td></tr></table></figure>
+</blockquote>
+<ol>
+<li>单个文档中搜索<figure class="highlight plain"><figcaption><span>+ F```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">4. mkdir是创建一个新的文件夹，touch是在某个文件夹里创建一个新的文件！mkdir是创建文件夹linux的指令 ，rails g 是ruby的语言。</div><div class="line"></div><div class="line">### 3、开发必须有始有终</div><div class="line">先打完开头和结尾。</div></pre></td></tr></table></figure></li>
+</ol>
+<p>def end<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>&lt;%=  %&gt;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p><div> </div><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>do … end<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">等</div><div class="line"></div><div class="line"></div><div class="line">### 4、强化终端，除了美观更实用</div><div class="line">1. 在终端使用```echo $0 ```命令确认你使用的是```bash``` 还是 ```zsh</div></pre></td></tr></table></figure></p>
+<ol>
+<li><a href="http://docs.qzy.camp/docs/iterm2" target="_blank" rel="external">安装iterm2及美化操作</a></li>
+<li>在终端<figure class="highlight plain"><figcaption><span>+ Tab```试试</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">4. [zsh使用技巧](http://kerzzi.logdown.com/posts/1703238--wish-i-had-known-of-zsh-tips)。</div><div class="line">5. **按tab键可以在终端自动补全**</div><div class="line">6. 在terminal中按```contl+A```可以将光标指向最前面，那修改完了，要回到最最后面的快捷键是```contl+E```。</div><div class="line">7. **按上键是重复上一个命令**。</div><div class="line"></div><div class="line"></div><div class="line">### 5、Git基础知识</div><div class="line">1. ```git diff```用来对比commit之后的不同之处。</div><div class="line">2. 按照rails101做joblisting，把job输成了group，结果产生的文件都是group名称。我删除这个分支，可是那些group的文件夹仍然存在。怎么删掉？答：一个小技巧（**删除上一次commit到目前为止的所有变动**），先```git status```,看看哪些文件被改动了，然后```git add .```将改动内容放入暂存区，接着```git stash```让进入暂存区的内容进入缓存状态, 然后```git stash clear```,这样就清理了stash状态的改动内容，然后```git status```就可以看到已经没有改动的文件了。</div><div class="line">3. 老师在view里写路径的时候，比方说，```new_admin_job_path(@job)```有的时候需要后面挂这个@job,有的时候不需要，每次我都要靠着红字报错才能修改对。该怎么理解这个呢?答：**不使用job时，说明是路径是一个jobs集合页面。指定的话就是一个具体的job页面。**</div><div class="line">4. 如何回到上一个git commit时的文件存档？答：```git checkout . ```**放弃所有文件的修改（只对已经被 git 追踪过的文件有效），当你的文件被改烂了而又不想保存变更的时候，这个命令可以让项目的状态回到上一次 commit 的状态。</div><div class="line">5. 不小心在系统根目录使用了 ```git init```，用什么命令可以撤销？答：你可以试试 ```rm -rf .git```，其实执行```git init``` 就是在系统层面上建立了一个隐藏的文件夹，用来追踪你的改动，所以一般不建议在根目录使用这个命令。这个命令是删除命令，可以删除文件夹。</div><div class="line">6. 回到上一个git 存档时的文件状态。使用命令```git reset --hard HEAD~ ```这个会删除本地的更改,或者先```git log```查看有几个git, 然后使用```git reset --hard HEAD~1```回到排在第一个位置的状态。后面的数字根据需要改变。</div><div class="line">![](https://ww2.sinaimg.cn/large/006tKfTcgy1feldwp0w1kj31kw0zhgre.jpg)</div><div class="line"></div><div class="line">下文来自[nfreeness师兄](http://nfreeness.logdown.com/posts/2016/10/01/938720)：</div><div class="line">&gt; **What is git?**</div><div class="line">&gt; git 是 Linux 之父 Linus Torvalds 开发出来的一套代码版本控制系统。你可以把 git 想像成游戏时存档的工具，每当程式开发到一定的段落，就使用 git 存档一下。</div><div class="line"></div><div class="line">&gt; **git config**</div><div class="line">&gt; 就像是首次玩游戏一样，你必须设定游戏玩家角色叫什么。在安装完 git 之后我们必须设定两个参数：</div><div class="line">&gt; ```git config --global user.name &quot;Jone Doe&quot;</div></pre></td></tr></table></figure></li>
+</ol>
+<blockquote>
+<figure class="highlight plain"><figcaption><span>config --global user.email johndoe@example.com```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&gt; 这样以后进行存档时，就会纪录你是这次进度的存档者。</div><div class="line"></div><div class="line">&gt; git init</div><div class="line">&gt; 默认情况下 git 不会对我们的项目进行版本控制，所以每次新建一个项目之后，需要使用 git init 这个命令，来告诉 git 对我们的项目进行追踪，但是这个命令只要使用一次就可以了，之后在这个项目里，你只要 ```git add . ``` 添加变动 和``` git commit``` 保存变动即可。</div><div class="line">&gt; 注意：千万不要在系统根目录下使用 git init，否则你整个电脑的所有文件都会被记录！</div><div class="line"></div><div class="line">&gt; git status</div><div class="line">&gt; ```git status``` 会告诉你 git 追踪到的所有新增、修改、删除的文件。</div><div class="line">&gt; 比如我们修改了 ```gemfile``` 和 ```README.md``` 两个文件，</div><div class="line">&gt; 然后我们输入 ```git add README.md```，再输入 ```git status</div></pre></td></tr></table></figure>
+<p>你会发现 <code>README.md</code> 变成绿色，<code>gemfile</code> 档案还是红色。<br>这表示我们已经将 <code>README.md</code>设定为预备储存进度的文件”。</p>
+<p>git add<br><code>git add foo.txt</code> 把名为 foo.txt 的文件加进追踪修订。<br><code>git add .</code> (“git add dot”) 把当前项目文件夹里（即 .）所有新文件和改过的文件加进追踪修订，但“保留”你删掉的文件。<br><code>git add -A</code> 全部加进追踪修订，包括删掉的文件。“把删掉的文件加进来”听起来很奇怪，但如果你把版本控制系统想像成是追踪“修改”的工具，或许就会懂了。多数人用 git add . ，但 git add -A 会比较安全。</p>
+<p>git commit<br><code>git commit</code> 告诉 git 真的要执行你叫它做的事。<br>分成 add 和 commit 两个步骤的好处是，如此你就可以把多个修改合并在一起。<br><code>git commit</code> 的用法是 <code>git commit -m “描述”</code> ，记得要加 -m 这个参数，后面的 ”描述” 里，是指你这一次commit 到底做了哪些修改，至少你不能每次都用 Added all the things ，不然以后你查看记录的时候每一次都是 Added all the things，就会不知道自己做了什么。</p>
+<p>前方乱入：<code>git reset --hard HEAD~</code> <strong>快速回到上一次 commit 状态。</strong></p>
+<p>git push<br>把你本地有经过 git commit 过的代码推送到远端 github 或是 heroku之类的储存库上面去。<br><code>git push --all origin</code> 接将所有分支全 push 到 github 上。<br><code>git push origin master</code> 将本地的 master 分支 push 到 github 上。</p>
+<p>git pull<br>在多人合作开发的项目中需要经常将其他人 push 到 github 上面的代码 “拉” 到本地，这样才能同步变动。<br><code>git pull origin develop</code> 将 github 的 develop 分支 pull 到本地的当前分支。</p>
+<p>git clone<br><code>git clone</code> 的作用是将 github 上面的项目（别人的或自己的）克隆到本地。<br><strong>注意，不要在一个已经 git init 过的目录下进行 git clone。</strong></p>
+<p><code>git clone https://github.com/twbs/bootstrap.git</code> 将 github 上 twbs 这个用户的 bootstrap 项目代码克隆到你的电脑上（这会建立一个名为 bootstrap 的文件夹）。<br><code>git clone https://github.com/twbs/bootstrap.git my_bootstrap</code> 和上个命令一样，但是这里会创建一个名为 my_bootstrap 的文件夹用于存放代码。<br><code>git clone https://github.com/twbs/bootstrap.git -b v3-dev</code> 这是只将 v3-dev 这个分支 clone 下来。</p>
+<p>git branch<br>git 除了可以保存项目进度，还可以通过分支（branch）来管理不同的开发状态，比如 master 分支是主分支，用于发布正式版本，一般不直接在这上面进行修改; develop 分支则是开发用的；还可以在 develop 的基础上延伸每一功能模块分支，当修改好了之后再 merge 到 develop 分支。</p>
+<p>git branch 查看项目有多少个分支，且当前处于哪个分支。<br><code>git branch fixbug</code> 以当前分支为副本，建立一个名为 fixbug 的分支。<br><code>git branch -D fixbug</code> 删除名为 fixbug 的分支（当前分支必须是 fixbug 之外的其他分支才能删除）。</p>
+<p>git checkout<br><code>git checkout .</code><strong>放弃所有文件的修改（只对已经被 git 追踪过的文件有效），当你的文件被改烂了而又不想保存变更的时候，这个命令可以让项目的状态回到上一次 commit 的状态</strong>，当然也可以用 <code>git checkout 文件名</code> 只放弃某个被改烂的文件。<br><code>git checkout fixbug</code> 从当前分支切换到 fixbug 分支。<br><code>git checkout -b fixbug02</code> 以当前分支为副本建立一个 fixbug02 分支，并直接切换到新建的分支( 用 git branch 新建分支不会切换到新分支 )。</p>
+<p>git stash<br><code>git stash</code> 将所有修改缓存起来（而不是保存），这样你就可以 checkout 到其他分支而不需 commit 。<br><code>git stash apply</code> 将 git stash 缓存的文件重新调出来。</p>
+<p>git merge<br><code>git merge develop</code> 假设当前在 master 分支下，这个命令的意思是将 develop 分支里的内容合并到 master 分支。</p>
+<p>git log<br><code>git log</code> 查看过去的 commit 记录，包含了 commit 的 SHA1值（ commit id ）、修改人信息、修改时间、备注信息等。<strong>在显示 log 的状态下，按 Q 键退出查看</strong>。</p>
+<p>git diff<br><code>git diff</code> 用于查看“代码”的增删改，它与 <code>git status</code> 不同（查看“文件”的增删改），<strong>在 commit 之前，通过 git diff 查看代码的具体变动，比如减少了某一行代码或者新增了某一个行代码</strong>。<strong>同样是按 Q 键退出查看</strong>。</p>
+</blockquote>
+<p><a href="http://zencode.cn/2012/12/gitbasis/" target="_blank" rel="external">Git入门常用命令</a><br><a href="https://tonydeng.github.io/2015/07/08/how-to-undo-almost-anything-with-git/" target="_blank" rel="external">Git的各种Undo技巧</a></p>
+<h3 id="6、Heroku是什么"><a href="#6、Heroku是什么" class="headerlink" title="6、Heroku是什么"></a>6、Heroku是什么</h3><ol>
+<li>如何删除Heroku上的应用。</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/04/13/2017-04-13--wish-i-had-known-of-zsh-tips/" title=" 真希望早点知道的zsh技巧" itemprop="url"> 真希望早点知道的zsh技巧</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-13T13:05:00.000Z" itemprop="datePublished"> 发表于 2017-04-13</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p><a href="http://w4lle.github.io/2016/02/01/%E7%BB%88%E6%9E%81Shell-Zsh-%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/" target="_blank" rel="external">http://w4lle.github.io/2016/02/01/%E7%BB%88%E6%9E%81Shell-Zsh-%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/</a></p>
+<p><a href="http://hackerxu.com/2014/11/19/ZSH.html" target="_blank" rel="external">http://hackerxu.com/2014/11/19/ZSH.html</a></p>
+<p><a href="http://wulfric.me/2015/08/zsh/" target="_blank" rel="external">http://wulfric.me/2015/08/zsh/</a></p>
+<p><a href="http://yijiebuyi.com/blog/b9b5e1ebb719f22475c38c4819ab8151.html" target="_blank" rel="external">http://yijiebuyi.com/blog/b9b5e1ebb719f22475c38c4819ab8151.html</a></p>
+<p><a href="https://linux.cn/article-1989-1.html" target="_blank" rel="external">https://linux.cn/article-1989-1.html</a></p>
+<p><a href="https://segmentfault.com/a/1190000002658335" target="_blank" rel="external">https://segmentfault.com/a/1190000002658335</a></p>
+<p><a href="http://www.ixirong.com/2015/04/27/strong-bash-use-oh-my-zsh/" target="_blank" rel="external">http://www.ixirong.com/2015/04/27/strong-bash-use-oh-my-zsh/</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/04/12/2017-04-12-1701060/" title="【错误记录】输入错误与路径设置错误" itemprop="url">【错误记录】输入错误与路径设置错误</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-12T12:53:00.000Z" itemprop="datePublished"> 发表于 2017-04-12</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="错误1"><a href="#错误1" class="headerlink" title="错误1"></a>错误1</h2><p>将<code>presence</code> 写为 <code>persence</code>。<br><img src="https://ww4.sinaimg.cn/large/006tKfTcgy1fek6uzoz0hj31kw1estc4.jpg" alt=""></p>
+<h2 id="错误2"><a href="#错误2" class="headerlink" title="错误2"></a>错误2</h2><p>路径<code>admin_job_path(job)</code> 写为<code>admin_jobs_path(job)</code>。<br>因为destroy动作是对<code>admin_job_path(job)</code>这个路径进行操作的。而<code>admin_jobs_path(job)</code>是destroy动作完成后返回的路径（页面）。<br><img src="https://ww1.sinaimg.cn/large/006tKfTcgy1fek6v7efx2j31kw1cztdu.jpg" alt=""><br><img src="https://ww4.sinaimg.cn/large/006tKfTcgy1fek6vf905cg30za0k9td1.gif" alt=""><br><img src="https://ww4.sinaimg.cn/large/006tKfTcgy1fek6vmqkgoj31kw1qun4n.jpg" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/04/11/2017-04-11-error-log-input-bug/" title="【错误记录】3个输入错误导致的BUG" itemprop="url">【错误记录】3个输入错误导致的BUG</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-11T14:31:00.000Z" itemprop="datePublished"> 发表于 2017-04-11</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="错误1"><a href="#错误1" class="headerlink" title="错误1"></a>错误1</h2><p><img src="https://ww2.sinaimg.cn/large/006tKfTcgy1fej42qujubj31kw1quwiq.jpg" alt=""><br><img src="https://ww3.sinaimg.cn/large/006tKfTcgy1fej432vdfdj31kw1es0w0.jpg" alt=""></p>
+<h2 id="错误2"><a href="#错误2" class="headerlink" title="错误2"></a>错误2</h2><p><img src="https://ww3.sinaimg.cn/large/006tKfTcgy1fej43ajaidj31kw1es78o.jpg" alt=""></p>
+<h2 id="错误3"><a href="#错误3" class="headerlink" title="错误3"></a>错误3</h2><p><img src="https://ww1.sinaimg.cn/large/006tKfTcgy1fej43lm1icj31kw1esaes.jpg" alt=""></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/04/10/2017-04-10-error-log-implementation-of-rails-s-appears-a-server-is-already-running-tips/" title="【错误记录】执行rails s出现： A server is already running 提示" itemprop="url">【错误记录】执行rails s出现： A server is already running 提示</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-10T13:15:00.000Z" itemprop="datePublished"> 发表于 2017-04-10</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="错误详情"><a href="#错误详情" class="headerlink" title="错误详情"></a>错误详情</h2><p>实做全栈营 招聘网站 第二周 内容的时候。打开终端输入<figure class="highlight plain"><figcaption><span>s```出现如下错误。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">错误提示：```A server is already running</div></pre></td></tr></table></figure></p>
+<p>但是并没有同时运行 rails server 。<br><img src="https://ww1.sinaimg.cn/large/006tKfTcgy1fehw92f39pj31kw0mpwi4.jpg" alt=""></p>
+<h2 id="纠正措施"><a href="#纠正措施" class="headerlink" title="纠正措施"></a>纠正措施</h2><p>非常巧的是，我在开始实操之前扫了一眼今天论坛推荐的文章。<br>其中有篇<a href="http://anndo-blog.logdown.com/" target="_blank" rel="external">Anndo</a>同学写的错误记录，名字正是 <a href="http://anndo-blog.logdown.com/posts/1683245" target="_blank" rel="external">報錯紀錄： A server is already running</a>。</p>
+<p>参考他的文章，1分钟解决了BUG，好痛快！</p>
+<p>下面内容来自<a href="http://anndo-blog.logdown.com/posts/1683245" target="_blank" rel="external">報錯紀錄： A server is already running</a>。</p>
+<blockquote>
+<p><strong>解决措施：</strong><br><strong>自己方式：</strong>用終端機所給的 .pid　檔案路徑，利用指令： rm -rf &lt;檔案路徑&gt; 刪除該 Server.pid 檔，再重新執行 rails server。<br><strong>助教解答：</strong>在終端機運行指令 <code>kill -9 $(lsof -wnitcp:3000 -t)</code>。</p>
+<p>其他觀察：<br>刪除該 Server.pid 檔後，開啟 Finder 到 .pid 所在資料夾，試試看：執行 rails s 開啟 server、執行 ctrl + c 關閉。會觀察到：<br><strong>當我們開啟 server 時，資料夾會多一個 Server.pid，利用 ctrl + c 結束 rails server 時，該檔案則會被刪除。然而，如果是在 server 運行的狀況下，直接關閉終端機，這個檔案仍然會存在。</strong><br>上一次關閉終端機時沒有用 ctrl + c先結束 rails server，因此少了把 .pid 檔移除掉的步驟。在下一次再開終端機要運行時，就會發生 “A server is already running” 的問題。所以務必要養成用 ctrl + c 關閉 rails server 的習慣。</p>
+</blockquote>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/04/10/2017-04-10-how-the-mvp-was-tempered/" title="MVP是如何炼成的" itemprop="url">MVP是如何炼成的</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-10T13:11:00.000Z" itemprop="datePublished"> 发表于 2017-04-10</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <p>MVP:最小的解决问题。<br>这是Xdite老师周一（20170410）分享内容，简单总结。</p>
+<h2 id="如何练习解决最小需求的能力？"><a href="#如何练习解决最小需求的能力？" class="headerlink" title="如何练习解决最小需求的能力？"></a>如何练习解决最小需求的能力？</h2><p>如何将点子落地——拆架构的能力<br>利用”16格笔记法“和”User Story“来梳理最小架构（原型），防止走偏。</p>
+<blockquote>
+<p>具体操作：</p>
+<ol>
+<li>想到一个点子，如招聘网站。</li>
+<li>用2张16格纸，写下你能想到的应该具有的32个功能。</li>
+<li>按照 Must Have、Should Have、Could Have和Nice To Have对这32个功能进行重要性分类。</li>
+<li>划去Nice To Have、Could Have、Should Have上的功能。</li>
+<li>剩下的8格，就是我第一阶段该做的事情。</li>
+<li>根据这剩下的8格，写下<a href="http://kerzzi.logdown.com/posts/1687667" target="_blank" rel="external">User Stroy</a>。</li>
+</ol>
+</blockquote>
+<p><img src="https://ww3.sinaimg.cn/large/006tKfTcgy1fehw5ne30cj31b60q8di2.jpg" alt=""><br><img src="https://ww2.sinaimg.cn/large/006tKfTcgy1fehw6c0j1wj31ao0q4q4f.jpg" alt=""></p>
+<h2 id="不要将注意力放在不懂的地方，而是放在已经掌握的地方。"><a href="#不要将注意力放在不懂的地方，而是放在已经掌握的地方。" class="headerlink" title="不要将注意力放在不懂的地方，而是放在已经掌握的地方。"></a>不要将注意力放在不懂的地方，而是放在已经掌握的地方。</h2><p>我们不会的有很多，不要怕，静下心来，考虑下我们可以做出来什么，现将能做的做出来。</p>
+<p><strong>举例：</strong></p>
+<ol>
+<li>Xdite老师从业10年很多Rails语法也并不知道。用到时去Google就可以了。</li>
+<li>全栈营的早期版本和Xdite老师的招聘网站出版都很丑陋，但是基本功能齐全。</li>
+</ol>
+<p><img src="https://ww4.sinaimg.cn/large/006tKfTcgy1fehw6l3j4mj31as0qg40q.jpg" alt=""><br><img src="https://ww2.sinaimg.cn/large/006tKfTcgy1fehw6tx4dqj31ag0qawhv.jpg" alt=""><br><img src="https://ww3.sinaimg.cn/large/006tKfTcgy1fehw71ylxcj31ba0s4ac0.jpg" alt=""><br><img src="https://ww3.sinaimg.cn/large/006tKfTcgy1fehw7almroj31ay0qy40k.jpg" alt=""></p>
+<p><strong>普通人逆袭超简单：</strong></p>
+<ul>
+<li>勇于践行即可超过90%的人。</li>
+<li>有独立作品即可超过99%的人。</li>
+<li>思考如何将我的时间卖出多份</li>
+</ul>
+<p>玩比赛的重点，在于你做成了什么功能，然后教给别人、教给别人、教给别人。</p>
+<p>Job Listing大赛要实际解决别人的日常小压力，解决别人的重复劳动。<br>比如：Xdite老师的极速读书会。</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+  <nav id="page-nav" class="clearfix">
+    <a class="extend prev" rel="prev" href="/page/9/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span><a class="page-number" href="/page/11/">11</a><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/11/">Next<span></span></a>
+  </nav>
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/全栈营/" title="全栈营">全栈营<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/千字文训练/" title="千字文训练">千字文训练<sup>12</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/通往财富自由之路/" title="通往财富自由之路">通往财富自由之路<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/公开写作/" title="公开写作">公开写作<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/财富自由/" title="财富自由">财富自由<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/区块链研习笔记/" title="区块链研习笔记">区块链研习笔记<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spenser自媒体写作强化营/" title="Spenser自媒体写作强化营">Spenser自媒体写作强化营<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/写作/" title="写作">写作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/生活/" title="生活">生活<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/如何写作/" title="如何写作">如何写作<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/我的原则/" title="我的原则">我的原则<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/3条铁律/" title="3条铁律">3条铁律<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/游记/" title="游记">游记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/千字文/" title="千字文">千字文<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/读书笔记/" title="读书笔记">读书笔记<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kerzzi">Kerzzi</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>

@@ -1,0 +1,644 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>FCC学习笔记：Computer Basics | 柯子的行思笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kerzzi">
+    
+
+    
+    <meta name="description" content="计算机由4个基本部分组成：输入、输出、CPU（中央处理器）、存储器。 现在存储器可以分为短期存储器, 称作RAM, 或者是长期存储器。长期存储器通常是硬盘, 但是也可以是使CD-ROM或者是闪存设备, 或是任何这一类的。 主板，扩展槽和电源：    主板是连接这些硬件的东西。当这些数据到处流动试图找出该去哪时, 主板帮助他们导流他们，使他们去向正确的地方。 扩展卡是声卡，显卡，这类可以提升用户体">
+<meta name="keywords" content="千字文训练,freeCodeCamp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FCC学习笔记：Computer Basics">
+<meta property="og:url" content="https://kerzzi.github.io/2017/10/01/2017-10-01-FCC-computer-basics/index.html">
+<meta property="og:site_name" content="柯子的行思笔记">
+<meta property="og:description" content="计算机由4个基本部分组成：输入、输出、CPU（中央处理器）、存储器。 现在存储器可以分为短期存储器, 称作RAM, 或者是长期存储器。长期存储器通常是硬盘, 但是也可以是使CD-ROM或者是闪存设备, 或是任何这一类的。 主板，扩展槽和电源：    主板是连接这些硬件的东西。当这些数据到处流动试图找出该去哪时, 主板帮助他们导流他们，使他们去向正确的地方。 扩展卡是声卡，显卡，这类可以提升用户体">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-01T03:29:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FCC学习笔记：Computer Basics">
+<meta name="twitter:description" content="计算机由4个基本部分组成：输入、输出、CPU（中央处理器）、存储器。 现在存储器可以分为短期存储器, 称作RAM, 或者是长期存储器。长期存储器通常是硬盘, 但是也可以是使CD-ROM或者是闪存设备, 或是任何这一类的。 主板，扩展槽和电源：    主板是连接这些硬件的东西。当这些数据到处流动试图找出该去哪时, 主板帮助他们导流他们，使他们去向正确的地方。 扩展卡是声卡，显卡，这类可以提升用户体">
+
+    
+    <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="柯子的行思笔记" title="柯子的行思笔记"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
+				<h2 class="blog-motto">叫我柯子就好</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/01/2017-10-01-FCC-computer-basics/" title="FCC学习笔记：Computer Basics" itemprop="url">FCC学习笔记：Computer Basics</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-09-30T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-10-01</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			
+		
+		</div>
+		
+		<ol>
+<li>计算机由4个基本部分组成：<strong>输入、输出、CPU（中央处理器）、存储器</strong>。</li>
+<li>现在存储器可以分为短期存储器, 称作<strong>RAM</strong>, 或者是长期存储器。长期存储器通常是硬盘, 但是也可以是使CD-ROM或者是闪存设备, 或是任何这一类的。</li>
+<li>主板，扩展槽和电源：</li>
+</ol>
+<blockquote>
+<ul>
+<li>主板是连接这些硬件的东西。当这些数据到处流动试图找出该去哪时, 主板帮助他们导流他们，使他们去向正确的地方。</li>
+<li>扩展卡是声卡，显卡，这类可以提升用户体验的东西。</li>
+<li>电源,  给我们的计算机提供电力。</li>
+</ul>
+</blockquote>
+<ol>
+<li>一个芯片全是由成千上万的晶体管(一种只能是0或1的开关)组成的。所有的这些晶体管塞进了一个芯片里，并且这就是芯片存储信息的方式。在一个芯片上集成的晶体管数量决定了芯片的大小和速度。</li>
+<li>摩尔定律是观察到自从1965年<strong>芯片上的晶体管数量每两年</strong>增加一倍的一种规律。</li>
+<li>数据大小：最小的单位我们称之为1比特(bit)，</li>
+<li>比特(bit)只能是0或1。</li>
+</ol>
+<blockquote>
+<ul>
+<li>字节, 很常见, <strong>8比特(bit)</strong>。</li>
+<li>下一步是KB, 1024个字节, 或者8192个比特(bit)。</li>
+<li>之后是MB, <strong>1024个字节的2次方</strong>。</li>
+<li>之后就是GB了, 1024个字节的3次方； </li>
+<li>TB, 1024个字节的4次方。</li>
+<li>PB, 1024个字节的5次方。</li>
+</ul>
+</blockquote>
+<ol>
+<li>数据速率不同于数据大小, 通常是计算每秒多少比特, 而大小是计算有多少比特。</li>
+<li>超级计算机，服务器，工作站，个人电脑，微控制器</li>
+</ol>
+<blockquote>
+<ul>
+<li>超级计算机, 一种使用一种叫做并行处理的技术同理用很多CPU处理同一问题的计算机。</li>
+<li>服务器拥有并访问大量的数据或程序。</li>
+<li>工作站，一种和个人电脑非常相似的计算机, 但是更耗能且贵的多。</li>
+<li>微控制器， 一种可能你汽车里都有的计算机，它非常擅长处理小型的特定的任务但是不可以像个人计算机那样操作和使用。</li>
+</ul>
+</blockquote>
+<ol>
+<li>主板的构成是处理器和内存之间的桥梁-如果它不这样做，它就不是一个主板。大多数主板有扩展槽和接口。</li>
+</ol>
+<blockquote>
+<ul>
+<li>扩展槽使你可以任意插入提高计算机性能的东西，而不需要让中央处理器负担更多。举个例子，显卡和声卡可以提供更好的声音和更出色的显示效果从而显著提升用户体验，却不会拖慢电脑。</li>
+<li>除了扩展槽，主板还有接口。如链接USB，电源接口，SD卡，以太网，音频插孔。它们都是接口，主板上一个可以连接外源到CPU来获取或者给予信息的地方。</li>
+</ul>
+</blockquote>
+<ol>
+<li>数据网络:<strong>局域网(LAN)，广域网(WAN)，虚拟专用网(VPN)</strong>。</li>
+</ol>
+<blockquote>
+<ul>
+<li>局域网就像是一小组计算机连接在了一起。局域网最重要的是这些计算机离得很近。</li>
+<li>广域网是两个，三个或者更多的局域网长距离的连接起来。美国科罗拉多州的一所学校要想连接到密苏里的一所学校。他们可以使用广域网。</li>
+<li>你也许认为他们通过因特网(Internet)相连接，对于VPN来说(虚拟专用网，设计上和广域网相似)，你是对的。但是，一个广域网通常租用来自因特网公司的电缆来创建连接。</li>
+<li>同样是连接局域网，VPN使用互联网，而WAN使用租用线路。</li>
+</ul>
+</blockquote>
+<ol>
+<li>因特网(Internet)的第一部分：因特网是如何工作的。</li>
+</ol>
+<blockquote>
+<ul>
+<li>每个设备都有一个IP地址。IP地址是基于位置分配的。如果一个设备没有IP地址因特网不能向它分发数据。不止设备有，猫(modem)和路由器(router)也有，数据传输路上的每一步都有。</li>
+<li>IP地址由位置所决定，起始于5个大型国际地区。从左到右，这些数字意味着你的位置。当你Google “我附近最好吃的冰棍” 并且Google会给你靠近你的商家信息。这就是通过IP地址做到的。</li>
+</ul>
+</blockquote>
+<ol>
+<li>内容传递网络(CDN)是一种分布式服务器（网络），基于用户的地理位置向用户分发网页和其他Web内容。CDN的目标是建立更高质量的网络连接。CDNs通过为用户和目标站点之间建立快速通道或提供更快的建立在其他服务器上的镜像站点来达成目标。有可能的话，用户浏览器甚至会存储已经访问过的网站的缓存。</li>
+<li>电脑如何将模拟声音转换成数字文件：</li>
+</ol>
+<blockquote>
+<ul>
+<li>计算机采集和测量模拟声波上很多很多不同的点。把他们转化为数字。这就是所谓的采样。</li>
+<li>之后，计算机可以使用这些数字，并再次把它们变成声音。</li>
+</ul>
+</blockquote>
+<ol>
+<li>数据压缩：</li>
+</ol>
+<blockquote>
+<ul>
+<li>压缩声音的一种常用方法是以更低的频率采样。</li>
+<li>另一种方式是，它从一个中点而不是0开始采样，所以所采集的数字更小。</li>
+<li>在图像中，它是通过测量一组16个的像素来压缩的。</li>
+</ul>
+</blockquote>
+<ol>
+<li>路由器是连接不同的小范围网络的东西。</li>
+</ol>
+<blockquote>
+<ul>
+<li>每个路由器只需要知道自己的小网，即它旁边的站点。它不必知道整个互联网，它可以获取信息并说，好吧，我不知道确切位置这回事，但我会在正确的方向传递下去吧。这就是它所需要做的事。</li>
+<li>路由器可以是不同的尺寸，不同容量，但他们做的是知道自己的邻居，获得信息，并传递向正确的方向。</li>
+<li>路由器甚至不必须有完整的包的信息。如果一台电脑正试图将信息发送到另一个时，数据可能会在不同的路由器之间分开，但是这没问题。计算机仍然知道如何正确地把信息重新组合到一起。</li>
+<li>所发送信息的小碎片被称为数据包。包实际上是一小段二进制代码。</li>
+<li>这些小数据包通过路由器发送，并且如果一个文件是用一个信息包(发送)太大，它可以被分成帧（较小的小数据包）。</li>
+<li>帧发送到目的地不必采用相同的路由。他们可以决定哪个路由是开放的，取其速度最快，而且因为它们具有IP地址，所有的路由器知道从哪里发送。一旦他们到达终点目的地，计算机知道如何把所有的信息重新拼合到一起。</li>
+</ul>
+</blockquote>
+<hr>
+<p>我是柯子（Kerzzi），终生学习者，我的博客：<a href="https://kerzzi.github.io" target="_blank" rel="external">https://kerzzi.github.io</a><br>欢迎关注我的微信公众号「叫我柯子就好」，与你分享关于实践的高频小套路。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/freeCodeCamp/">freeCodeCamp</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/千字文训练/">千字文训练</a><a href="/tags/freeCodeCamp/">freeCodeCamp</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://kerzzi.github.io/2017/10/01/2017-10-01-FCC-computer-basics/" data-title="FCC学习笔记：Computer Basics | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/10/01/hello-world/" title="Hello World">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Hello World</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/09/28/2017-09-28-Wealth-freedom-005/"  title="几乎所有的进步，都是放弃了部分安全感">
+ <strong>下一篇：</strong><br/> 
+ <span>几乎所有的进步，都是放弃了部分安全感
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ 
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/全栈营/" title="全栈营">全栈营<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/千字文训练/" title="千字文训练">千字文训练<sup>12</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/通往财富自由之路/" title="通往财富自由之路">通往财富自由之路<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/公开写作/" title="公开写作">公开写作<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/财富自由/" title="财富自由">财富自由<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/区块链研习笔记/" title="区块链研习笔记">区块链研习笔记<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spenser自媒体写作强化营/" title="Spenser自媒体写作强化营">Spenser自媒体写作强化营<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/写作/" title="写作">写作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/生活/" title="生活">生活<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/如何写作/" title="如何写作">如何写作<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/我的原则/" title="我的原则">我的原则<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/3条铁律/" title="3条铁律">3条铁律<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/游记/" title="游记">游记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/千字文/" title="千字文">千字文<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/读书笔记/" title="读书笔记">读书笔记<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kerzzi">Kerzzi</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

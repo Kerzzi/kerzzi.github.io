@@ -1,0 +1,556 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>「从零开始做购物网站」第19章 暂停使用carrierwave，选用paperclip进行多图上传 | 柯子的行思笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kerzzi">
+    
+
+    
+    <meta name="description" content="大家好，本系列文章主要是对我参加全栈营JDstore魔改大赛作品「季风 &amp;amp; MONSOON」的复盘。由于本人也是新手，文章中一定有很多幼稚的错误或代码，希望大家帮忙指出，可反馈至我的邮箱kerzzi@outlook.com，我会持续完善本系列。非常感谢。本系列是在全栈营JDstore教程基础之上进行魔改，本系列第1-11章节为全栈营JDstore教程，请在完成全栈营JDstore教程的基">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「从零开始做购物网站」第19章 暂停使用carrierwave，选用paperclip进行多图上传">
+<meta property="og:url" content="https://kerzzi.github.io/2017/06/14/2017-06-14-starting-from-scratch-do-shopping-site-the-19th-chapter-suspended-carrierwave-use-paperclip-multiple-upload/index.html">
+<meta property="og:site_name" content="柯子的行思笔记">
+<meta property="og:description" content="大家好，本系列文章主要是对我参加全栈营JDstore魔改大赛作品「季风 &amp;amp; MONSOON」的复盘。由于本人也是新手，文章中一定有很多幼稚的错误或代码，希望大家帮忙指出，可反馈至我的邮箱kerzzi@outlook.com，我会持续完善本系列。非常感谢。本系列是在全栈营JDstore教程基础之上进行魔改，本系列第1-11章节为全栈营JDstore教程，请在完成全栈营JDstore教程的基">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-30T14:18:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「从零开始做购物网站」第19章 暂停使用carrierwave，选用paperclip进行多图上传">
+<meta name="twitter:description" content="大家好，本系列文章主要是对我参加全栈营JDstore魔改大赛作品「季风 &amp;amp; MONSOON」的复盘。由于本人也是新手，文章中一定有很多幼稚的错误或代码，希望大家帮忙指出，可反馈至我的邮箱kerzzi@outlook.com，我会持续完善本系列。非常感谢。本系列是在全栈营JDstore教程基础之上进行魔改，本系列第1-11章节为全栈营JDstore教程，请在完成全栈营JDstore教程的基">
+
+    
+    <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="柯子的行思笔记" title="柯子的行思笔记"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
+				<h2 class="blog-motto">叫我柯子就好</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/06/14/2017-06-14-starting-from-scratch-do-shopping-site-the-19th-chapter-suspended-carrierwave-use-paperclip-multiple-upload/" title="「从零开始做购物网站」第19章 暂停使用carrierwave，选用paperclip进行多图上传" itemprop="url">「从零开始做购物网站」第19章 暂停使用carrierwave，选用paperclip进行多图上传</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-14T15:54:00.000Z" itemprop="datePublished"> 发表于 2017-06-14</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目标"><span class="toc-number">1.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-number">2.</span> <span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-0-建立新分支"><span class="toc-number">2.1.</span> <span class="toc-text">Step 0:建立新分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-4-修改app-model-product-image-rb"><span class="toc-number">2.2.</span> <span class="toc-text">Step 4:修改app/model/product_image.rb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-5-修改app-models-product-rb"><span class="toc-number">2.3.</span> <span class="toc-text">Step 5:修改app/models/product.rb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-6-商品图片上传和删除功能开发"><span class="toc-number">2.4.</span> <span class="toc-text">Step 6:商品图片上传和删除功能开发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-7"><span class="toc-number">2.5.</span> <span class="toc-text">Step 7:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-8-修改admin-product-images-controller-rb"><span class="toc-number">2.6.</span> <span class="toc-text">Step 8:修改admin/product_images_controller.rb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-9-建立商品管理的页面"><span class="toc-number">2.7.</span> <span class="toc-text">Step 9:建立商品管理的页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-10-修改app-controller-admin-product-images-controller-rb"><span class="toc-number">2.8.</span> <span class="toc-text">Step 10:修改app/controller/admin/product_images_controller.rb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-11-商品图片的权重功能开发"><span class="toc-number">2.9.</span> <span class="toc-text">Step 11:商品图片的权重功能开发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-12-将变更-commit-进去-git-里面。"><span class="toc-number">2.10.</span> <span class="toc-text">Step 12:将变更 commit 进去 git 里面。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本章详解"><span class="toc-number">3.</span> <span class="toc-text">本章详解</span></a></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>大家好，本系列文章主要是对我参加全栈营JDstore魔改大赛作品<a href="http://kerzzi.logdown.com/posts/1903205-magic-change-contest-entries-monsoon" target="_blank" rel="external">「季风 &amp; MONSOON」</a>的复盘。由于本人也是新手，文章中一定有很多幼稚的错误或代码，希望大家帮忙指出，可反馈至我的邮箱kerzzi@outlook.com，我会持续完善本系列。非常感谢。<br>本系列是在全栈营JDstore教程基础之上进行魔改，本系列第1-11章节为全栈营JDstore教程，请在完成全栈营JDstore教程的基础上进行测试。</p>
+</blockquote>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><blockquote>
+<p>暂停使用carrierwave，选用paperclip进行多图上传</p>
+</blockquote>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="Step-0-建立新分支"><a href="#Step-0-建立新分支" class="headerlink" title="Step 0:建立新分支"></a>Step 0:建立新分支</h3><p>在终端执行<figure class="highlight plain"><figcaption><span>checkout -b story13```。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### Step 1:安装gem &apos;paperclip&apos;</div><div class="line"></div><div class="line">打开Gemfile</div><div class="line">```ruby Gemfile</div><div class="line">  gem &apos;ancestry&apos;</div><div class="line">  gem &apos;will_paginate&apos;</div><div class="line">+ gem &apos;paperclip&apos;</div></pre></td></tr></table></figure></p>
+<p>检查系统中是否已安装ImageMagick，在终端中输入：<figure class="highlight plain"><figcaption><span>convert```，如果有输出路径，比如```/usr/local/bin/convert```。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">说明已经安装了，如果没有安装,请先安装ImageMagick。</div><div class="line"></div><div class="line"></div><div class="line">执行```bundle install```。</div><div class="line"></div><div class="line"></div><div class="line">### Step 2:创建商品图片model</div><div class="line"></div><div class="line">在终端执行```rails g model product_image```。</div><div class="line"></div><div class="line">### Step 3:创建图片的关联关系：</div><div class="line">打开新创建migration文件，指定几个字段：</div><div class="line">```ruby db/migrate/20170610060029_create_product_images.rb</div><div class="line">class CreateProductImages &lt; ActiveRecord::Migration[5.0]</div><div class="line">  def change</div><div class="line">    create_table :product_images do |t|</div><div class="line"> +    t.belongs_to :product</div><div class="line"> +    t.integer :weight, default: 0</div><div class="line"> +    t.attachment :image</div><div class="line">      t.timestamps</div><div class="line">    end</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure></p>
+<p>在终端执行<figure class="highlight plain"><figcaption><span>db:migrate```。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">打开schema.rb可以查看生成了哪些字段</div><div class="line">中间以image开头的4个字段，是```t.attachment :image```语句自动生成的。</div><div class="line"></div><div class="line">```ruby config/schema.rb</div><div class="line">  create_table &quot;product_images&quot;, force: :cascade do |t|</div><div class="line">    t.integer  &quot;product_id&quot;</div><div class="line">    t.integer  &quot;weight&quot;,             default: 0</div><div class="line">    t.string   &quot;image_file_name&quot;</div><div class="line">    t.string   &quot;image_content_type&quot;</div><div class="line">    t.integer  &quot;image_file_size&quot;</div><div class="line">    t.datetime &quot;image_updated_at&quot;</div><div class="line">    t.datetime &quot;created_at&quot;,                     null: false</div><div class="line">    t.datetime &quot;updated_at&quot;,                     null: false</div><div class="line">    t.index [&quot;product_id&quot;], name: &quot;index_product_images_on_product_id&quot;</div><div class="line">  end</div></pre></td></tr></table></figure></p>
+<h3 id="Step-4-修改app-model-product-image-rb"><a href="#Step-4-修改app-model-product-image-rb" class="headerlink" title="Step 4:修改app/model/product_image.rb"></a>Step 4:修改app/model/product_image.rb</h3><p>打开app/model/product_image.rb<br><figure class="highlight ruby"><figcaption><span>打开app/model/product_image.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProductImage</span> &lt; ApplicationRecord</span></div><div class="line"></div><div class="line">  belongs_to <span class="symbol">:product</span></div><div class="line"></div><div class="line">  <span class="comment">#指定图片尺寸</span></div><div class="line">  has_attached_file <span class="symbol">:image</span>, <span class="symbol">styles:</span> &#123;</div><div class="line">    <span class="symbol">small:</span> <span class="string">'60^x60'</span>,</div><div class="line">    <span class="symbol">middle:</span> <span class="string">'200^x200'</span>,</div><div class="line">    <span class="symbol">big:</span> <span class="string">"960x"</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="comment">#限制上传类型</span></div><div class="line">  validates_attachment_content_type <span class="symbol">:image</span>, <span class="symbol">content_type:</span> /\Aimage\/.*\Z/</div><div class="line">  <span class="comment">#限制上传图片的大小</span></div><div class="line">  validates_attachment_size <span class="symbol">:image</span>, <span class="symbol">in:</span> <span class="number">0</span>..<span class="number">5</span>.megabytes</div><div class="line"></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<h3 id="Step-5-修改app-models-product-rb"><a href="#Step-5-修改app-models-product-rb" class="headerlink" title="Step 5:修改app/models/product.rb"></a>Step 5:修改app/models/product.rb</h3><p>打开app/models/product.rb，加入<br><figure class="highlight ruby"><figcaption><span>app/models/product.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">+  has_many <span class="symbol">:product_images</span>, -&gt; &#123; order(<span class="symbol">weight:</span> <span class="string">'desc'</span>) &#125;, <span class="symbol">dependent:</span> <span class="symbol">:destroy</span></div></pre></td></tr></table></figure></p>
+<h3 id="Step-6-商品图片上传和删除功能开发"><a href="#Step-6-商品图片上传和删除功能开发" class="headerlink" title="Step 6:商品图片上传和删除功能开发"></a>Step 6:商品图片上传和删除功能开发</h3><p>打开打开routes.rb,为图片管理创建路由<br><figure class="highlight ruby"><figcaption><span>config/routes.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Rails.application.routes.draw <span class="keyword">do</span></div><div class="line">  root <span class="string">'welcome#index'</span></div><div class="line"></div><div class="line">  resources <span class="symbol">:users</span></div><div class="line">  resources <span class="symbol">:sessions</span></div><div class="line"></div><div class="line">  delete <span class="string">'/logout'</span> =&gt; <span class="string">'sessions#destroy'</span>, <span class="symbol">as:</span> <span class="symbol">:logout</span></div><div class="line"></div><div class="line">  namespace <span class="symbol">:admin</span> <span class="keyword">do</span></div><div class="line">    root <span class="string">'sessions#new'</span></div><div class="line">    resources <span class="symbol">:sessions</span></div><div class="line">    resources <span class="symbol">:categories</span></div><div class="line"> -  resources <span class="symbol">:products</span></div><div class="line"> +   resources <span class="symbol">:products</span> <span class="keyword">do</span></div><div class="line"> +     resources <span class="symbol">:product_images</span>, <span class="symbol">only:</span> [<span class="symbol">:index</span>, <span class="symbol">:create</span>, <span class="symbol">:destroy</span>, <span class="symbol">:update</span>]</div><div class="line"> +   <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>虽然不指定动作也是可以的，但是这样做性能会提升，减少路由批评和查找的资源和时间消耗。</p>
+<h3 id="Step-7"><a href="#Step-7" class="headerlink" title="Step 7:"></a>Step 7:</h3><p>在终端执行<figure class="highlight plain"><figcaption><span>g controller admin::product_images```。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">这里之所以不将商品上传放在商品建立时的页面，是因为一旦商品建立时，图片已经上传完毕（上传需要一定的时间），但是如果商品信息不正确等原因可能导致上传失败，从而造成资源、性能和时间上的浪费，给后台的商品管理带来不便。因此我们将**图片上传**和**商品新建**完全分开设计。我们把商品图片作为商品的一个属性来独立管理。</div><div class="line"></div><div class="line">查看商品管理的路由：</div><div class="line"></div><div class="line">&gt; 这里分享一个小知识：输出路由过滤，如仅输出image相关的路由。</div><div class="line">&gt; 执行```rails routes | grep image```。, 输出结果</div></pre></td></tr></table></figure></p>
+<p>admin_product_product_images GET    /admin/products/:product_id/product_images(.:format)     admin/product_images#index<br>                             POST   /admin/products/:product_id/product_images(.:format)     admin/product_images#create<br> admin_product_product_image PATCH  /admin/products/:product_id/product_images/:id(.:format) admin/product_images#update<br>                             PUT    /admin/products/:product_id/product_images/:id(.:format) admin/product_images#update<br>                             DELETE /admin/products/:product_id/product_images/:id(.:format) admin/product_images#destroy<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line">打开app/views/admin/products/index.html.erb,加入商品图片管理按钮</div><div class="line"></div><div class="line">```ruby app/views/admin/products/index.html.erb</div><div class="line">    &lt;td align=&quot;right&quot;&gt;</div><div class="line">      &lt;%= link_to &quot;编辑&quot;, edit_admin_product_path(product) %&gt; </div><div class="line">      &lt;%= link_to &quot;删除&quot;, admin_product_path(product), method: :delete, &apos;data-confirm&apos;: &quot;确认删除吗?&quot; %&gt;</div><div class="line">+         &lt;%= link_to &quot;图片管理&quot;, admin_product_product_images_path(product_id: product) %&gt;</div><div class="line">    &lt;/td&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="Step-8-修改admin-product-images-controller-rb"><a href="#Step-8-修改admin-product-images-controller-rb" class="headerlink" title="Step 8:修改admin/product_images_controller.rb"></a>Step 8:修改admin/product_images_controller.rb</h3><p>前往admin/product_images_controller.rb<br><figure class="highlight ruby"><figcaption><span>app/controller/admin/product_images_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Admin::ProductImagesController</span> &lt; Admin::BaseController</span></div><div class="line"></div><div class="line">  before_action <span class="symbol">:find_product</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">index</span></span></div><div class="line">    @product = Product.find params[<span class="symbol">:product_id</span>]</div><div class="line">+   @product_images = @product.product_images</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<h3 id="Step-9-建立商品管理的页面"><a href="#Step-9-建立商品管理的页面" class="headerlink" title="Step 9:建立商品管理的页面"></a>Step 9:建立商品管理的页面</h3><p>在终端执行<figure class="highlight plain"><figcaption><span>app/views/admin/product_images/index.html.erb```。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```ruby app/views/admin/product_images/index.html.erb</div><div class="line">&lt;div&gt;</div><div class="line">  &lt;div class=&quot;pull-right&quot;&gt;</div><div class="line">    &lt;%= form_tag admin_product_product_images_path(product_id: @product), method: :post, enctype: &quot;multipart/form-data&quot;, class: &quot;form-horizontal&quot; do %&gt;</div><div class="line">      &lt;input type=&quot;file&quot; name=&quot;images[]&quot; multiple class=&quot;image-input&quot; /&gt;</div><div class="line">      &lt;%= submit_tag &quot;上传&quot;, class: &quot;btn btn-primary&quot; %&gt;</div><div class="line">    &lt;% end -%&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line"></div><div class="line">  &lt;h1&gt;</div><div class="line">    商品 #&lt;%= @product.id %&gt; &lt;%= @product.title %&gt; </div><div class="line">  &lt;/h1&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;div&gt;</div><div class="line">  &lt;table class=&quot;table table-striped&quot;&gt;</div><div class="line">    &lt;tr&gt;</div><div class="line">      &lt;th&gt;ID&lt;/th&gt;</div><div class="line">      &lt;th&gt;图片&lt;/th&gt;</div><div class="line">      &lt;th&gt;权重&lt;/th&gt;</div><div class="line">      &lt;th&gt;&lt;/th&gt;</div><div class="line">    &lt;/tr&gt;</div><div class="line"></div><div class="line">    &lt;% @product_images.each do |product_image| %&gt;</div><div class="line">      &lt;tr&gt;</div><div class="line">        &lt;td&gt;&lt;%= product_image.id %&gt;&lt;/td&gt;</div><div class="line">        &lt;td&gt;&lt;%= image_tag product_image.image.url(:middle) %&gt;&lt;/td&gt;</div><div class="line">        &lt;td&gt;</div><div class="line">          &lt;%= form_tag admin_product_product_image_path(@product, product_image), method: :put do %&gt;</div><div class="line">            &lt;input type=&quot;text&quot; value=&quot;&lt;%= product_image.weight %&gt;&quot; name=&quot;weight&quot; /&gt;</div><div class="line">            &lt;%= submit_tag &quot;更新&quot;, class: &quot;btn btn-default btn-xs&quot; %&gt;</div><div class="line">          &lt;% end -%&gt;</div><div class="line">        &lt;/td&gt;</div><div class="line">        &lt;td align=&quot;right&quot;&gt;</div><div class="line">          &lt;%= link_to &quot;删除&quot;, admin_product_product_image_path(@product, product_image), method: :delete, &apos;data-confirm&apos;: &quot;确认删除吗?&quot; %&gt;</div><div class="line">        &lt;/td&gt;</div><div class="line">      &lt;/tr&gt;</div><div class="line">    &lt;% end -%&gt;</div><div class="line">  &lt;/table&gt;</div><div class="line"></div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>打开products.scss文件，加入一个小样式（你可以自己修改）<br><figure class="highlight ruby"><figcaption><span>products.scss</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> /<span class="regexp">/ 图片上传区块样式</span></div><div class="line"><span class="regexp">input[type="file"] &#123;</span></div><div class="line"><span class="regexp">  &amp;.image-input &#123;</span></div><div class="line"><span class="regexp">    display: inline-block;</span></div><div class="line"><span class="regexp">    border: 1px solid #ccc;</span></div><div class="line"><span class="regexp">    padding: 5px 20px;</span></div><div class="line"><span class="regexp">    border-radius: 4px</span></div><div class="line"><span class="regexp">  &#125;</span></div><div class="line"><span class="regexp">&#125;</span></div></pre></td></tr></table></figure></p>
+<h3 id="Step-10-修改app-controller-admin-product-images-controller-rb"><a href="#Step-10-修改app-controller-admin-product-images-controller-rb" class="headerlink" title="Step 10:修改app/controller/admin/product_images_controller.rb"></a>Step 10:修改app/controller/admin/product_images_controller.rb</h3><p>打开app/controller/admin/product_images_controller.rb<br><figure class="highlight ruby"><figcaption><span>app/controller/admin/product_images_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Admin::ProductImagesController</span> &lt; Admin::BaseController</span></div><div class="line"></div><div class="line">  before_action <span class="symbol">:find_product</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">index</span></span></div><div class="line">    @product_images = @product.product_images</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">create</span></span></div><div class="line">    params[<span class="symbol">:images</span>].each <span class="keyword">do</span> <span class="params">|image|</span></div><div class="line">      @product.product_images &lt;&lt; ProductImage.new(<span class="symbol">image:</span> image)</div><div class="line">    <span class="keyword">end</span></div><div class="line"></div><div class="line">    redirect_to <span class="symbol">:back</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">destroy</span></span></div><div class="line">    @product_image = @product.product_images.find(params[<span class="symbol">:id</span>])</div><div class="line">    <span class="keyword">if</span> @product_image.destroy</div><div class="line">      flash[<span class="symbol">:notice</span>] = <span class="string">"删除成功"</span></div><div class="line">    <span class="keyword">else</span></div><div class="line">      flash[<span class="symbol">:notice</span>] = <span class="string">"删除失败"</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"></div><div class="line">    redirect_to <span class="symbol">:back</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">update</span></span></div><div class="line">    <span class="comment"># 取得当前的图片</span></div><div class="line">    @product_image = @product.product_images.find(params[<span class="symbol">:id</span>])</div><div class="line">    <span class="comment"># 取得当前图片的权重</span></div><div class="line">    @product_image.weight = params[<span class="symbol">:weight</span>]</div><div class="line">    <span class="keyword">if</span> @product_image.save</div><div class="line">      flash[<span class="symbol">:notice</span>] = <span class="string">"修改成功"</span></div><div class="line">    <span class="keyword">else</span></div><div class="line">      flash[<span class="symbol">:notice</span>] = <span class="string">"修改失败"</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"></div><div class="line">    redirect_to <span class="symbol">:back</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  private</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">find_product</span></span></div><div class="line">    @product = Product.find params[<span class="symbol">:product_id</span>]</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>正常应该先找到商品，再找该商品的图片,我们上边的代码用了重构。</p>
+<h3 id="Step-11-商品图片的权重功能开发"><a href="#Step-11-商品图片的权重功能开发" class="headerlink" title="Step 11:商品图片的权重功能开发"></a>Step 11:商品图片的权重功能开发</h3><p>给商品图片建立索引。<br>在终端执行 <figure class="highlight plain"><figcaption><span>g migration add_product_images_index```。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">打开db/migrate/20170610062347_add_product_images_index.rb，建立2个字段的联合索引</div><div class="line">```ruby db/migrate/20170610062347_add_product_images_index.rb</div><div class="line">class AddProductImagesIndex &lt; ActiveRecord::Migration[5.0]</div><div class="line">  def change</div><div class="line">+   add_index :product_images, [:product_id, :weight]</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure></p>
+<p>2个字段的联合索引</p>
+<p>在终端执行<figure class="highlight plain"><figcaption><span>db:migrate```。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">将路径public/system/product_images，加入.gitignore文件</div><div class="line">```ruby .gitignore</div><div class="line"># Ignore Byebug command history file.</div><div class="line">  .byebug_history</div><div class="line">  config/database.yml</div><div class="line">  public/uploads</div><div class="line">+ public/system/product_images</div></pre></td></tr></table></figure></p>
+<h3 id="Step-12-将变更-commit-进去-git-里面。"><a href="#Step-12-将变更-commit-进去-git-里面。" class="headerlink" title="Step 12:将变更 commit 进去 git 里面。"></a>Step 12:将变更 commit 进去 git 里面。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m &quot;完成独立的商品图片管理&quot;</div><div class="line">git push origin story13</div><div class="line">git checkout master</div><div class="line">git merge story13</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
+<h2 id="本章详解"><a href="#本章详解" class="headerlink" title="本章详解"></a>本章详解</h2><blockquote>
+<p> 努力更新中，上班族请理解。。。。。</p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://kerzzi.github.io/2017/06/14/2017-06-14-starting-from-scratch-do-shopping-site-the-19th-chapter-suspended-carrierwave-use-paperclip-multiple-upload/" data-title="「从零开始做购物网站」第19章 暂停使用carrierwave，选用paperclip进行多图上传 | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/06/14/2017-06-14-1951284/" title="「从零开始做购物网站」第20章 分类和商品展示页面开发">
+  <strong>上一篇：</strong><br/>
+  <span>
+  「从零开始做购物网站」第20章 分类和商品展示页面开发</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/06/14/2017-06-14-1951281/"  title="「从零开始做购物网站」第17章 完成商品分类功能开发">
+ <strong>下一篇：</strong><br/> 
+ <span>「从零开始做购物网站」第17章 完成商品分类功能开发
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目标"><span class="toc-number">1.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-number">2.</span> <span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-0-建立新分支"><span class="toc-number">2.1.</span> <span class="toc-text">Step 0:建立新分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-4-修改app-model-product-image-rb"><span class="toc-number">2.2.</span> <span class="toc-text">Step 4:修改app/model/product_image.rb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-5-修改app-models-product-rb"><span class="toc-number">2.3.</span> <span class="toc-text">Step 5:修改app/models/product.rb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-6-商品图片上传和删除功能开发"><span class="toc-number">2.4.</span> <span class="toc-text">Step 6:商品图片上传和删除功能开发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-7"><span class="toc-number">2.5.</span> <span class="toc-text">Step 7:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-8-修改admin-product-images-controller-rb"><span class="toc-number">2.6.</span> <span class="toc-text">Step 8:修改admin/product_images_controller.rb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-9-建立商品管理的页面"><span class="toc-number">2.7.</span> <span class="toc-text">Step 9:建立商品管理的页面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-10-修改app-controller-admin-product-images-controller-rb"><span class="toc-number">2.8.</span> <span class="toc-text">Step 10:修改app/controller/admin/product_images_controller.rb</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-11-商品图片的权重功能开发"><span class="toc-number">2.9.</span> <span class="toc-text">Step 11:商品图片的权重功能开发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-12-将变更-commit-进去-git-里面。"><span class="toc-number">2.10.</span> <span class="toc-text">Step 12:将变更 commit 进去 git 里面。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本章详解"><span class="toc-number">3.</span> <span class="toc-text">本章详解</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/全栈营/" title="全栈营">全栈营<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/千字文训练/" title="千字文训练">千字文训练<sup>12</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/通往财富自由之路/" title="通往财富自由之路">通往财富自由之路<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/公开写作/" title="公开写作">公开写作<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/财富自由/" title="财富自由">财富自由<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/区块链研习笔记/" title="区块链研习笔记">区块链研习笔记<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spenser自媒体写作强化营/" title="Spenser自媒体写作强化营">Spenser自媒体写作强化营<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/写作/" title="写作">写作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/生活/" title="生活">生活<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/如何写作/" title="如何写作">如何写作<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/我的原则/" title="我的原则">我的原则<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/3条铁律/" title="3条铁律">3条铁律<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/游记/" title="游记">游记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/千字文/" title="千字文">千字文<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/读书笔记/" title="读书笔记">读书笔记<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kerzzi">Kerzzi</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

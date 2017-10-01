@@ -1,0 +1,567 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>【教程文章】3步让你的工作列表大变样（可根据需求自己定制） | 柯子的行思笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kerzzi">
+    
+
+    
+    <meta name="description" content="昨天下午美化了我的项目展示列表：前后对比如下： 基于迷你教程的项目列表效果： 修改后的效果（职位推荐参考了@Jimmy Wang）： 实现教程step 0: 原始代码最初是基于迷你教程制作的，代码如下：app/views/jobs/index.heml.erb1234567891011121314151617181920212223242526272829&amp;lt;div class=&quot;pull-r">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【教程文章】3步让你的工作列表大变样（可根据需求自己定制）">
+<meta property="og:url" content="https://kerzzi.github.io/2017/04/23/2017-04-23-tutorial-paper-3-steps-to-make-your-taskbar-table-changed/index.html">
+<meta property="og:site_name" content="柯子的行思笔记">
+<meta property="og:description" content="昨天下午美化了我的项目展示列表：前后对比如下： 基于迷你教程的项目列表效果： 修改后的效果（职位推荐参考了@Jimmy Wang）： 实现教程step 0: 原始代码最初是基于迷你教程制作的，代码如下：app/views/jobs/index.heml.erb1234567891011121314151617181920212223242526272829&amp;lt;div class=&quot;pull-r">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ww2.sinaimg.cn/large/006tNbRwgy1fewiw8npkxj31kw10m76w.jpg">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006tNbRwgy1fewiwxa7rcj31kw2ftdly.jpg">
+<meta property="og:updated_time" content="2017-09-30T14:18:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【教程文章】3步让你的工作列表大变样（可根据需求自己定制）">
+<meta name="twitter:description" content="昨天下午美化了我的项目展示列表：前后对比如下： 基于迷你教程的项目列表效果： 修改后的效果（职位推荐参考了@Jimmy Wang）： 实现教程step 0: 原始代码最初是基于迷你教程制作的，代码如下：app/views/jobs/index.heml.erb1234567891011121314151617181920212223242526272829&amp;lt;div class=&quot;pull-r">
+<meta name="twitter:image" content="https://ww2.sinaimg.cn/large/006tNbRwgy1fewiw8npkxj31kw10m76w.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="柯子的行思笔记" title="柯子的行思笔记"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
+				<h2 class="blog-motto">叫我柯子就好</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/04/23/2017-04-23-tutorial-paper-3-steps-to-make-your-taskbar-table-changed/" title="【教程文章】3步让你的工作列表大变样（可根据需求自己定制）" itemprop="url">【教程文章】3步让你的工作列表大变样（可根据需求自己定制）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-04-23T04:55:00.000Z" itemprop="datePublished"> 发表于 2017-04-23</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#基于迷你教程的项目列表效果："><span class="toc-number">1.</span> <span class="toc-text">基于迷你教程的项目列表效果：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#修改后的效果（职位推荐参考了-Jimmy-Wang）："><span class="toc-number">2.</span> <span class="toc-text">修改后的效果（职位推荐参考了@Jimmy Wang）：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现教程"><span class="toc-number"></span> <span class="toc-text">实现教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-0-原始代码"><span class="toc-number"></span> <span class="toc-text">step 0: 原始代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step1：HTML文件修改，主要说明见注释内容。"><span class="toc-number"></span> <span class="toc-text">Step1：HTML文件修改，主要说明见注释内容。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step3-加上相应的样式"><span class="toc-number"></span> <span class="toc-text">step3:加上相应的样式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#测试账号："><span class="toc-number"></span> <span class="toc-text">测试账号：</span></a>
+		
+		</div>
+		
+		<p>昨天下午美化了我的项目展示列表：<br>前后对比如下：</p>
+<h5 id="基于迷你教程的项目列表效果："><a href="#基于迷你教程的项目列表效果：" class="headerlink" title="基于迷你教程的项目列表效果："></a>基于迷你教程的项目列表效果：</h5><p><img src="https://ww2.sinaimg.cn/large/006tNbRwgy1fewiw8npkxj31kw10m76w.jpg" alt=""></p>
+<h5 id="修改后的效果（职位推荐参考了-Jimmy-Wang）："><a href="#修改后的效果（职位推荐参考了-Jimmy-Wang）：" class="headerlink" title="修改后的效果（职位推荐参考了@Jimmy Wang）："></a>修改后的效果（<strong>职位推荐</strong>参考了@Jimmy Wang）：</h5><p><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1fewiwxa7rcj31kw2ftdly.jpg" alt=""></p>
+<h2 id="实现教程"><a href="#实现教程" class="headerlink" title="实现教程"></a>实现教程</h2><h3 id="step-0-原始代码"><a href="#step-0-原始代码" class="headerlink" title="step 0: 原始代码"></a>step 0: 原始代码</h3><p>最初是基于迷你教程制作的，代码如下：<br><figure class="highlight ruby"><figcaption><span>app/views/jobs/index.heml.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&lt;div class="pull-right"&gt;</div><div class="line">  &lt;%= link_to(<span class="string">'&lt;span class="glyphicon glyphicon-gift"&gt;创建新项目'</span>.html_safe,</div><div class="line">            new_job_path, <span class="class"><span class="keyword">class</span>: "<span class="title">btn</span> <span class="title">btn</span>-<span class="title">success</span> <span class="title">btn</span>-<span class="title">lg</span> <span class="title">btn3d</span>")%&gt;</span></div><div class="line">&lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">&lt;!-- 上面代码是根据我的网站需要保留的 --&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">&lt;table class="table table-boldered table-striped custab" &gt;</span></div><div class="line"><span class="regexp">  &lt;thead&gt;</span></div><div class="line"><span class="regexp">      &lt;tr&gt;</span></div><div class="line"><span class="regexp">          &lt;td&gt;项目名称&lt;/td</span>&gt;</div><div class="line">          &lt;td&gt;工作城市&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">          &lt;td&gt;团队名称&lt;/td</span>&gt;</div><div class="line">          &lt;td&gt;需求专业&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">          &lt;td&gt;发布时间&lt;/td</span>&gt;</div><div class="line">      &lt;<span class="regexp">/tr&gt;</span></div><div class="line"><span class="regexp">  &lt;/thead</span>&gt;</div><div class="line"></div><div class="line">  &lt;% @jobs.each <span class="keyword">do</span> <span class="params">|job|</span> %&gt;</div><div class="line">  &lt;tr&gt;</div><div class="line"></div><div class="line">    &lt;td&gt;&lt;%= link_to(job.title, job_path(job)) %&gt;&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">    &lt;td&gt;&lt;%= job.city %&gt;&lt;/td</span>&gt;</div><div class="line">    &lt;td&gt;&lt;%= job.company %&gt;&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">    &lt;td&gt;&lt;%= job.category %&gt;&lt;/td</span>&gt;</div><div class="line">    &lt;td&gt;&lt;%= job.created_at %&gt;&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">  &lt;/tr</span>&gt;</div><div class="line">  &lt;% <span class="keyword">end</span> %&gt;</div><div class="line">&lt;<span class="regexp">/table&gt;</span></div></pre></td></tr></table></figure></p>
+<p>相关阴影边框效果的样式代码</p>
+<figure class="highlight ruby"><figcaption><span>app/assets/stylesheets/application.scss</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">.custab&#123;</div><div class="line">  <span class="symbol">border:</span> <span class="number">1</span>px solid <span class="comment">#ccc;</span></div><div class="line">  <span class="symbol">padding:</span> <span class="number">5</span>px;</div><div class="line">  <span class="symbol">margin:</span> <span class="number">5</span>% <span class="number">0</span>;</div><div class="line">  box-<span class="symbol">shadow:</span> <span class="number">3</span>px <span class="number">3</span>px <span class="number">2</span>px <span class="comment">#ccc;</span></div><div class="line">  <span class="symbol">transition:</span> <span class="number">0</span>.<span class="number">5</span>s;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.<span class="symbol">custab:</span>hover&#123;</div><div class="line">  box-<span class="symbol">shadow:</span> <span class="number">3</span>px <span class="number">3</span>px 0px transparent;</div><div class="line">  <span class="symbol">transition:</span> <span class="number">0</span>.<span class="number">5</span>s;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="Step1：HTML文件修改，主要说明见注释内容。"><a href="#Step1：HTML文件修改，主要说明见注释内容。" class="headerlink" title="Step1：HTML文件修改，主要说明见注释内容。"></a>Step1：HTML文件修改，主要说明见注释内容。</h3><p>代码块：<br><figure class="highlight ruby"><figcaption><span>app/views/jobs/index.heml.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div></pre></td><td class="code"><pre><div class="line">&lt;div class="pull-right"&gt;</div><div class="line">  &lt;%= link_to(<span class="string">'&lt;span class="glyphicon glyphicon-gift"&gt;创建新项目'</span>.html_safe,</div><div class="line">            new_job_path, <span class="class"><span class="keyword">class</span>: "<span class="title">btn</span> <span class="title">btn</span>-<span class="title">success</span> <span class="title">btn</span>-<span class="title">lg</span> <span class="title">btn3d</span>")%&gt;</span></div><div class="line">&lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">&lt;p&gt;&lt;/p</span>&gt;</div><div class="line"></div><div class="line">&lt;div class="text-center"&gt;</div><div class="line">  &lt;h1&gt;&lt;strong&gt;项目列表&lt;<span class="regexp">/strong&gt;&lt;/h</span>1&gt;</div><div class="line">&lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">&lt;!-- 以下为修改内容，上面两块代码是根据我的网站需要保留的。 --&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">&lt;div class="row "&gt;</span></div><div class="line"><span class="regexp">    &lt;!-- 项目列表 --&gt;</span></div><div class="line"><span class="regexp">    &lt;div class="col-md-9 job-content"&gt;</span></div><div class="line"><span class="regexp">        &lt;% @jobs.each do |job| %&gt;</span></div><div class="line"><span class="regexp">          &lt;div class=" job-box"&gt;</span></div><div class="line"><span class="regexp">            &lt;!-- 有职位资料时 --&gt;</span></div><div class="line"><span class="regexp">            &lt;% if @jobs.length &gt; 0 %&gt;</span></div><div class="line"><span class="regexp">                &lt;div &gt;</span></div><div class="line"><span class="regexp">                    &lt;h4&gt;&lt;strong&gt;&lt;%= link_to(job.title, job_path(job)) %&gt;&lt;/strong</span>&gt;&lt;<span class="regexp">/h4&gt;</span></div><div class="line"><span class="regexp">                &lt;/div</span>&gt;</div><div class="line">                &lt;div &gt;</div><div class="line">                    &lt;p style=<span class="string">"width: 800px; overflow: hidden;white-space: nowrap;text-overflow: ellipsis;"</span>&gt;&lt;%= job.description %&gt;&lt;<span class="regexp">/p&gt;</span></div><div class="line"><span class="regexp">                    &lt;p&gt;&lt;%= link_to( "Read more", job_path(job)) %&gt;&lt;/p</span>&gt;</div><div class="line">                &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">                &lt;div&gt;</span></div><div class="line"><span class="regexp">                    &lt;p&gt;&lt;/p</span>&gt;</div><div class="line">                    &lt;p&gt;</div><div class="line">                      &lt;sapn class="fa fa-street-view"&gt;&lt;/sapn&gt; &lt;%= job.city %&gt;|</div><div class="line">                      &lt;sapn class="fa fa-calendar"&gt;&lt;/sapn&gt; &lt;%= job.created_at.strftime("%Y-%m-%d") %&gt;|</div><div class="line">                      &lt;sapn class="fa fa-weixin"&gt;&lt;/sapn&gt; &lt;%= job.posts.count %&gt;|</div><div class="line"></div><div class="line">                      &lt;sapn class="fa fa-tags"&gt;Tags : &lt;span class="label label-info"&gt;&lt;%= job.company %&gt;&lt;/span&gt;</div><div class="line">                      &lt;a href="#"&gt;&lt;span class="label label-success"&gt;&lt;%= job.category %&gt;&lt;/span&gt;&lt;/a&gt;</div><div class="line">                    &lt;<span class="regexp">/p&gt;</span></div><div class="line"><span class="regexp">                &lt;/div</span>&gt;</div><div class="line"></div><div class="line">            &lt;% <span class="keyword">else</span> %&gt;</div><div class="line">            &lt;!-- 没有职位资料 --&gt;</div><div class="line">                &lt;div &gt;</div><div class="line">                    &lt;h2&gt;此分类暂时没有招聘职位哦，请尝试其他选项。&lt;<span class="regexp">/h2&gt;</span></div><div class="line"><span class="regexp">                &lt;/div</span>&gt;</div><div class="line">            &lt;% <span class="keyword">end</span> %&gt;  &lt;!--结束判断 --&gt;</div><div class="line">          &lt;<span class="regexp">/div&gt; &lt;!--结束@jobs循环--&gt;</span></div><div class="line"><span class="regexp">        &lt;% end %&gt;</span></div><div class="line"><span class="regexp">    &lt;/div</span>&gt;</div><div class="line"></div><div class="line">    &lt;!-- 职位推荐 --&gt;</div><div class="line">    &lt;div class="col-md-3 side-box"&gt;</div><div class="line">      &lt;div class="row"&gt;</div><div class="line">          &lt;div class="col-md-12 suggest-title"&gt;</div><div class="line">            &lt;h3&gt;&lt;sapn class="fa fa-tags"&gt;&lt;/sapn&gt; &lt;strong&gt;职位推荐&lt;/strong&gt;&lt;/h3&gt;</div><div class="line">          &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">          &lt;div&gt;</span></div><div class="line"><span class="regexp">              &lt;% @suggests.each do |job| %&gt;</span></div><div class="line"><span class="regexp">                  &lt;div class="col-xs-10 col-xs-offset-1 suggest-content"&gt;</span></div><div class="line"><span class="regexp">                      &lt;div&gt;</span></div><div class="line"><span class="regexp">                        &lt;h4&gt;</span></div><div class="line"><span class="regexp">                          &lt;%= link_to job_path(job), target: "_blank" do %&gt;</span></div><div class="line"><span class="regexp">                              &lt;%= job.title %&gt; [&lt;%= job.city %&gt;]</span></div><div class="line"><span class="regexp">                          &lt;% end %&gt;</span></div><div class="line"><span class="regexp">                        &lt;/h</span>4&gt;</div><div class="line">                      &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">                      &lt;div&gt;</span></div><div class="line"><span class="regexp">                        &lt;p&gt;招募职位：&lt;%= job.category %&gt;&lt;/p</span>&gt;</div><div class="line">                      &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">                      &lt;div&gt;</span></div><div class="line"><span class="regexp">                        &lt;p&gt;团队名称：&lt;%= job.company %&gt;&lt;/p</span>&gt;</div><div class="line">                      &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">                  &lt;/div</span>&gt;</div><div class="line">              &lt;% <span class="keyword">end</span> %&gt; &lt;!-- 结束@suggests循环 --&gt;</div><div class="line">          &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">      &lt;/div</span>&gt;</div><div class="line">    &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">&lt;/div</span>&gt;</div><div class="line"></div><div class="line"></div><div class="line">&lt;!-- 分页区块 --&gt;</div><div class="line"></div><div class="line">  &lt;div class="text-center"&gt;</div><div class="line">    &lt;%= will_paginate @jobs %&gt;</div><div class="line">  &lt;<span class="regexp">/div&gt;</span></div></pre></td></tr></table></figure></p>
+<p>几点说明：</p>
+<ol>
+<li><p>参考<a href="https://fullstack.xinshengdaxue.com/posts/563" target="_blank" rel="external">8-2 （解答）招聘网站第五部分</a> step1，使用<figure class="highlight plain"><figcaption><span>class</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">2.  为部分&lt;div&gt;添加 ```job-content、job-box、side-box、suggest-title、suggest-content```等class类别，以便后续进行格式修改。</div><div class="line">3. 如果你想要自己定制效果，只需要将代码放在```&lt;% @jobs.each do |job| %&gt;```和```&lt;% end %&gt;```中间即可。</div><div class="line">4. 职位推荐区块，参考了[@Jimmy Wang](https://fullstack.xinshengdaxue.com/works/288)的代码。</div><div class="line">5. 这些图标&lt;sapn class=&quot;fa fa-street-view&quot;&gt;&lt;/sapn&gt;，可以在[这个网站](http://fontawesome.io/icons/)找，换成你喜欢的。</div><div class="line">6.  这段代码```&lt;p style=&quot;width: 800px; overflow: hidden;white-space: nowrap;text-overflow: ellipsis;&quot;&gt;&lt;%= job.description %&gt;&lt;/p&gt;``` 是为了设置说明文字的长度，超过这个长度以省略号显示。亦可以用```&lt;p&gt;&lt;%= (truncate((job.description), :length =&gt; 100, :omission =&gt; &apos;...&apos;)).html_safe %&gt;&lt;/p&gt;```这个代码完成省略显示的效果，我测试了下，有点不同哦，您可以亲自试试。</div><div class="line">7. 这段代码```&lt;%= job.created_at.strftime(&quot;%Y-%m-%d&quot;) %&gt;```是为了将创建日期，转换为年月日显示。</div><div class="line"></div><div class="line">### step2:实现推荐功能</div><div class="line">1. 在job的model中建立scope</div><div class="line"></div><div class="line">```ruby app/models/job.rb</div><div class="line">  # Scope #</div><div class="line">     scope :recent, -&gt; &#123; order(&quot;created_at DESC&quot;)&#125;</div><div class="line">     scope :published, -&gt; &#123; where(:is_hidden =&gt; false)&#125;</div><div class="line">  +  scope :random5, -&gt; &#123; limit(5).order(&quot;RANDOM()&quot;) &#125;</div></pre></td></tr></table></figure></p>
+</li>
+<li><p>在job的controller的index action中加入实例变量@suggests</p>
+</li>
+</ol>
+<figure class="highlight ruby"><figcaption><span>app/controllers/jobs_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">index</span></span></div><div class="line"></div><div class="line">    <span class="comment"># 随机推荐五个职位 #</span></div><div class="line">+   @suggests = Job.published.random5</div><div class="line">    @jobs = Job.published.recent.paginate(<span class="symbol">:page</span> =&gt; params[<span class="symbol">:page</span>], <span class="symbol">:per_page</span> =&gt; <span class="number">10</span>)</div><div class="line">  <span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h3 id="step3-加上相应的样式"><a href="#step3-加上相应的样式" class="headerlink" title="step3:加上相应的样式"></a>step3:加上相应的样式</h3><p>在SCSS文件中加上相应的样式，请根据需要自行修改。</p>
+<figure class="highlight ruby"><figcaption><span>app/assets/stylesheets/application.scss</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line">/*--- Job ---*<span class="regexp">/</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">.job-content&#123;</span></div><div class="line"><span class="regexp">  min-height: 725px;</span></div><div class="line"><span class="regexp">  margin-top: 100px;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">  a&#123;</span></div><div class="line"><span class="regexp">    text-decoration: none;</span></div><div class="line"><span class="regexp">  &#125;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">.side-box&#123;</span></div><div class="line"><span class="regexp"> display: inline-block;</span></div><div class="line"><span class="regexp"> position: absolute;</span></div><div class="line"><span class="regexp"> margin-top: 112px; /</span><span class="regexp">/这些根据你的页面显示自己调节数值</span></div><div class="line"><span class="regexp"> margin-left: 35px;</span></div><div class="line"><span class="regexp"> padding-bottom: 12.5px;</span></div><div class="line"><span class="regexp"> min-width: 260px;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp"> background-color: #1A6561;</span></div><div class="line"><span class="regexp"> color: #fff;</span></div><div class="line"><span class="regexp"> box-shadow: 2px 2px 3px #aaa;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">.job-box&#123;</span></div><div class="line"><span class="regexp"> border: 1.5px solid #ddd;</span></div><div class="line"><span class="regexp"> box-shadow: 1px 1px 5px #ccc;</span></div><div class="line"><span class="regexp"> margin-top: 12.5px;</span></div><div class="line"><span class="regexp"> padding: 15px 1px 1px 20px;</span></div><div class="line"><span class="regexp"> background-color: #fff;</span></div><div class="line"><span class="regexp"> color: #555;</span></div><div class="line"><span class="regexp"> font-size: 16px;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp"> div&#123;</span></div><div class="line"><span class="regexp"> margin-bottom: 5px;</span></div><div class="line"><span class="regexp"> &#125;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">  .suggest-title&#123;</span></div><div class="line"><span class="regexp">    padding: 12.5px;</span></div><div class="line"><span class="regexp">    text-align: center;</span></div><div class="line"><span class="regexp">    font-size: 20px;</span></div><div class="line"><span class="regexp">    letter-spacing: 0.5px;</span></div><div class="line"><span class="regexp">  &#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">  .suggest-content&#123;</span></div><div class="line"><span class="regexp">    background-color: #fff;</span></div><div class="line"><span class="regexp">    padding: 7.5px;</span></div><div class="line"><span class="regexp">    border: 0.5px dashed #eee;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">    h3&#123;</span></div><div class="line"><span class="regexp">      margin-top: 1px;</span></div><div class="line"><span class="regexp">      font-size: 16px;</span></div><div class="line"><span class="regexp">    &#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">    p&#123;</span></div><div class="line"><span class="regexp">      font-size: 16px;</span></div><div class="line"><span class="regexp">      color: #FF7D0A;</span></div><div class="line"><span class="regexp">      letter-spacing: -1px;</span></div><div class="line"><span class="regexp">    &#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">    span&#123;</span></div><div class="line"><span class="regexp">      color: #aaa;</span></div><div class="line"><span class="regexp">      font-size: 14px;</span></div><div class="line"><span class="regexp">      letter-spacing: 0.5px;</span></div><div class="line"><span class="regexp">    &#125;</span></div><div class="line"><span class="regexp">  &#125;</span></div></pre></td></tr></table></figure>
+<p>如果本篇分享对你有帮忙，请帮我的作品：<a href="https://fullstack.xinshengdaxue.com/works/361" target="_blank" rel="external">扬帆社区</a> 评论测试下。不需要投票。感觉我这个页面好冷清，都没人去看，哈哈。</p>
+<p><strong>用户故事：</strong><br>微博系统，用户间可以互相关注，发布微博（可带图片），朋友圈以动态流展示微博。<br>用户可以发布项目，其他用户可以申请加入项目、对项目发表评论。<br>项目管理员可以编辑、删除自己创建的项目。<br>网站管理员可以删除用户、隐藏或公开项目。</p>
+<h4 id="测试账号："><a href="#测试账号：" class="headerlink" title="测试账号："></a>测试账号：</h4><p>密码均为123456</p>
+<p><strong>网站管理员账号</strong></p>
+<ul>
+<li>admin@kerzzi.com</li>
+</ul>
+<p><strong>普通账号：</strong></p>
+<ul>
+<li>test1@kerzzi.com</li>
+<li>test2@kerzzi.com</li>
+<li>test3@kerzzi.com</li>
+<li>test4@kerzzi.com</li>
+<li>test5@kerzzi.com</li>
+<li>test6@kerzzi.com</li>
+<li>test7@kerzzi.com</li>
+</ul>
+<p>烦请测试管理员账号时，勿删除以上测试账号，非常感谢！</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://kerzzi.github.io/2017/04/23/2017-04-23-tutorial-paper-3-steps-to-make-your-taskbar-table-changed/" data-title="【教程文章】3步让你的工作列表大变样（可根据需求自己定制） | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/04/23/2017-04-23-1740807/" title="本周遇到的最大的坑 04/17-04/23">
+  <strong>上一篇：</strong><br/>
+  <span>
+  本周遇到的最大的坑 04/17-04/23</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/04/19/2017-04-19-orid/"  title="【错误记录】点击submit之后没有反应，运行日志：rollback transaction">
+ <strong>下一篇：</strong><br/> 
+ <span>【错误记录】点击submit之后没有反应，运行日志：rollback transaction
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#基于迷你教程的项目列表效果："><span class="toc-number">1.</span> <span class="toc-text">基于迷你教程的项目列表效果：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#修改后的效果（职位推荐参考了-Jimmy-Wang）："><span class="toc-number">2.</span> <span class="toc-text">修改后的效果（职位推荐参考了@Jimmy Wang）：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现教程"><span class="toc-number"></span> <span class="toc-text">实现教程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#step-0-原始代码"><span class="toc-number"></span> <span class="toc-text">step 0: 原始代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step1：HTML文件修改，主要说明见注释内容。"><span class="toc-number"></span> <span class="toc-text">Step1：HTML文件修改，主要说明见注释内容。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#step3-加上相应的样式"><span class="toc-number"></span> <span class="toc-text">step3:加上相应的样式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#测试账号："><span class="toc-number"></span> <span class="toc-text">测试账号：</span></a>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/全栈营/" title="全栈营">全栈营<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/千字文训练/" title="千字文训练">千字文训练<sup>12</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/通往财富自由之路/" title="通往财富自由之路">通往财富自由之路<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/公开写作/" title="公开写作">公开写作<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/财富自由/" title="财富自由">财富自由<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/区块链研习笔记/" title="区块链研习笔记">区块链研习笔记<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spenser自媒体写作强化营/" title="Spenser自媒体写作强化营">Spenser自媒体写作强化营<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/写作/" title="写作">写作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/生活/" title="生活">生活<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/如何写作/" title="如何写作">如何写作<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/我的原则/" title="我的原则">我的原则<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/3条铁律/" title="3条铁律">3条铁律<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/游记/" title="游记">游记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/千字文/" title="千字文">千字文<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/读书笔记/" title="读书笔记">读书笔记<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kerzzi">Kerzzi</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

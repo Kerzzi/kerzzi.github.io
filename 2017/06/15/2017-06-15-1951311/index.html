@@ -1,0 +1,550 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>「从零开始做购物网站」第33章 美化navbar、footer、商品首页 | 柯子的行思笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kerzzi">
+    
+
+    
+    <meta name="description" content="大家好，本系列文章主要是对我参加全栈营JDstore魔改大赛作品「季风 &amp;amp; MONSOON」的复盘。由于本人也是新手，文章中一定有很多幼稚的错误或代码，希望大家帮忙指出，可反馈至我的邮箱kerzzi@outlook.com，我会持续完善本系列。非常感谢。本系列是在全栈营JDstore教程基础之上进行魔改，本系列第1-11章节为全栈营JDstore教程，请在完成全栈营JDstore教程的基">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「从零开始做购物网站」第33章 美化navbar、footer、商品首页">
+<meta property="og:url" content="https://kerzzi.github.io/2017/06/15/2017-06-15-1951311/index.html">
+<meta property="og:site_name" content="柯子的行思笔记">
+<meta property="og:description" content="大家好，本系列文章主要是对我参加全栈营JDstore魔改大赛作品「季风 &amp;amp; MONSOON」的复盘。由于本人也是新手，文章中一定有很多幼稚的错误或代码，希望大家帮忙指出，可反馈至我的邮箱kerzzi@outlook.com，我会持续完善本系列。非常感谢。本系列是在全栈营JDstore教程基础之上进行魔改，本系列第1-11章节为全栈营JDstore教程，请在完成全栈营JDstore教程的基">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-30T14:18:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="「从零开始做购物网站」第33章 美化navbar、footer、商品首页">
+<meta name="twitter:description" content="大家好，本系列文章主要是对我参加全栈营JDstore魔改大赛作品「季风 &amp;amp; MONSOON」的复盘。由于本人也是新手，文章中一定有很多幼稚的错误或代码，希望大家帮忙指出，可反馈至我的邮箱kerzzi@outlook.com，我会持续完善本系列。非常感谢。本系列是在全栈营JDstore教程基础之上进行魔改，本系列第1-11章节为全栈营JDstore教程，请在完成全栈营JDstore教程的基">
+
+    
+    <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="柯子的行思笔记" title="柯子的行思笔记"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
+				<h2 class="blog-motto">叫我柯子就好</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/06/15/2017-06-15-1951311/" title="「从零开始做购物网站」第33章 美化navbar、footer、商品首页" itemprop="url">「从零开始做购物网站」第33章 美化navbar、footer、商品首页</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-14T16:11:00.000Z" itemprop="datePublished"> 发表于 2017-06-15</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目标"><span class="toc-number">1.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-number">2.</span> <span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-0-建立新分支"><span class="toc-number">2.1.</span> <span class="toc-text">Step 0:建立新分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-将变更-commit-进去-git-里面。"><span class="toc-number">2.2.</span> <span class="toc-text">Step 3:将变更 commit 进去 git 里面。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本章详解"><span class="toc-number">3.</span> <span class="toc-text">本章详解</span></a></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>大家好，本系列文章主要是对我参加全栈营JDstore魔改大赛作品<a href="http://kerzzi.logdown.com/posts/1903205-magic-change-contest-entries-monsoon" target="_blank" rel="external">「季风 &amp; MONSOON」</a>的复盘。由于本人也是新手，文章中一定有很多幼稚的错误或代码，希望大家帮忙指出，可反馈至我的邮箱kerzzi@outlook.com，我会持续完善本系列。非常感谢。<br>本系列是在全栈营JDstore教程基础之上进行魔改，本系列第1-11章节为全栈营JDstore教程，请在完成全栈营JDstore教程的基础上进行测试。</p>
+</blockquote>
+<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><blockquote>
+<p>美化navbar、footer、商品首页</p>
+</blockquote>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="Step-0-建立新分支"><a href="#Step-0-建立新分支" class="headerlink" title="Step 0:建立新分支"></a>Step 0:建立新分支</h3><p>执行<figure class="highlight plain"><figcaption><span>checkout -b story25```。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### Step 1:</div><div class="line"></div><div class="line">修改navbar内容，做如下替换</div><div class="line">```ruby app/views/common/_navbar.html.erb</div><div class="line">&lt;nav class=&quot;navbar navbar-default navbar-fixed-top&quot; role=&quot;navigation&quot;&gt;</div><div class="line">    &lt;div class=&quot;container-fluid&quot;&gt;</div><div class="line">        &lt;!-- Brand and toggle get grouped for better mobile display --&gt;</div><div class="line">        &lt;div class=&quot;navbar-header&quot;&gt;</div><div class="line">            &lt;a class=&quot;navbar-brand&quot; href=&quot;/&quot;&gt;&lt;strong&gt; MONSOON &lt;/strong&gt;&lt;/a&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line"></div><div class="line">        &lt;!-- Collect the nav links, forms, and other content for toggling --&gt;</div><div class="line">        &lt;div class=&quot;collapse navbar-collapse&quot; id=&quot;bs-example-navbar-collapse-1&quot;&gt;</div><div class="line">            &lt;ul class=&quot;nav navbar-nav&quot;&gt;</div><div class="line">             &lt;li&gt;</div><div class="line">               &lt;%= link_to(&quot;商品&quot;, products_path) %&gt;</div><div class="line">             &lt;/li&gt;</div><div class="line">             &lt;li class=&quot;dropdown&quot;&gt;</div><div class="line">               &lt;a class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; href=&quot;#&quot;&gt;分类浏览</div><div class="line">                 &lt;span class=&quot;caret&quot;&gt;&lt;/span&gt;</div><div class="line">               &lt;/a&gt;</div><div class="line">               &lt;ul class=&quot;dropdown-menu&quot;&gt;</div><div class="line">                 &lt;% @categories.each do |group| %&gt;</div><div class="line">                   &lt;% group.last.each do |sub_category| %&gt;</div><div class="line">                     &lt;li class=&quot;list-group-item&quot;&gt;&lt;a href=&quot;&lt;%= category_path(sub_category) %&gt;&quot;&gt;&lt;%= sub_category.title %&gt;&lt;/a&gt;&lt;/li&gt;</div><div class="line">                   &lt;% end %&gt;</div><div class="line">                 &lt;% end %&gt;</div><div class="line">               &lt;/ul&gt;</div><div class="line">             &lt;/li&gt;</div><div class="line">             &lt;li&gt;&lt;%= link_to &quot;服务&quot;, static_pages_help_path %&gt;&lt;/li&gt;</div><div class="line">             &lt;li&gt;&lt;%= link_to &quot;关于&quot;, static_pages_about_path %&gt;&lt;/li&gt;</div><div class="line">            &lt;/ul&gt;</div><div class="line">            &lt;!-- 搜索框 --&gt;</div><div class="line">            &lt;%= form_tag search_products_path, method: :get, class: &quot;navbar-form navbar-left&quot; do %&gt;</div><div class="line">              &lt;div class=&quot;form-group&quot;&gt;</div><div class="line">                &lt;% if @category %&gt;</div><div class="line">                  &lt;input type=&quot;hidden&quot; name=&quot;category_id&quot; value=&quot;&lt;%= @category.id %&gt;&quot; /&gt;</div><div class="line">               &lt;% end %&gt;</div><div class="line">               &lt;input type=&quot;text&quot; name=&quot;w&quot; value=&quot;&lt;%= params[:w] %&gt;&quot; class=&quot;form-control search-input&quot; placeholder=&quot;&lt;%= @category ? &quot;在 #&#123;@category.title&#125; 下搜索..&quot; : &apos;搜索整站商品..&apos; %&gt;&quot;&gt;</div><div class="line"></div><div class="line">              &lt;/div&gt;</div><div class="line">              &lt;button type=&quot;submit&quot; class=&quot;btn btn-default&quot;&gt;搜索&lt;/button&gt;</div><div class="line">            &lt;% end %&gt;</div><div class="line"></div><div class="line">            &lt;ul class=&quot;nav navbar-nav navbar-right&quot;&gt;</div><div class="line">               &lt;li&gt;</div><div class="line">                   &lt;%= link_to carts_path do  %&gt;</div><div class="line">                      购物车 &lt;i class=&quot;fa fa-shopping-cart&quot;&gt; &lt;/i&gt; ( &lt;%= current_cart.products.count %&gt; )</div><div class="line">                   &lt;% end %&gt;</div><div class="line">               &lt;/li&gt;</div><div class="line">                &lt;% if !current_user %&gt;</div><div class="line">                  &lt;li&gt;&lt;a href=&quot;#&quot; data-toggle=&quot;modal&quot; data-target=&quot;#signup-modal&quot;&gt;注册&lt;/a&gt;&lt;/li&gt;</div><div class="line">                  &lt;li&gt;&lt;a href=&quot;#&quot; data-toggle=&quot;modal&quot; data-target=&quot;#login-modal&quot;&gt;登入&lt;/a&gt;&lt;/li&gt;</div><div class="line">                &lt;% else %&gt;</div><div class="line">                  &lt;li class=&quot;dropdown&quot;&gt;</div><div class="line">                    &lt;a href=&quot;#&quot; class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot;&gt;</div><div class="line">                        Hi!, &lt;%= current_user.email %&gt;</div><div class="line">                        &lt;b class=&quot;caret&quot;&gt;&lt;/b&gt;</div><div class="line">                    &lt;/a&gt;</div><div class="line">                    &lt;ul class=&quot;dropdown-menu&quot;&gt;</div><div class="line">                         &lt;% if current_user.admin? %&gt;</div><div class="line">                           &lt;li&gt;</div><div class="line">                              &lt;%= link_to(&apos;后台管理&lt;span class=&quot;glyphicon glyphicon-stats pull-right&quot;&gt;&apos;.html_safe,</div><div class="line">                                         admin_root_path) %&gt;</div><div class="line">                           &lt;/li&gt;</div><div class="line">                           &lt;li role=&quot;separator&quot; class=&quot;divider&quot;&gt;&lt;/li&gt;</div><div class="line">                           &lt;li&gt; &lt;%= link_to(&apos;我的订单 &lt;span class=&quot;glyphicon glyphicon-envelope pull-right&quot;&gt;&lt;/span&gt;&apos;.html_safe, account_orders_path) %&gt; &lt;/li&gt;</div><div class="line">                           &lt;li&gt; &lt;%= link_to(&apos;我的收货地址&lt;span class=&quot;glyphicon glyphicon-home pull-right&quot;&gt;&lt;/span&gt;&apos;.html_safe,&quot;#&quot;) %&gt; &lt;/li&gt;</div><div class="line">                           &lt;li&gt; &lt;%= link_to(&apos;我收藏的商品&lt;span class=&quot;glyphicon glyphicon-heart pull-right&quot;&gt;&lt;/span&gt;&apos;.html_safe, &quot;#&quot;) %&gt; &lt;/li&gt;</div><div class="line">                           &lt;li role=&quot;separator&quot; class=&quot;divider&quot;&gt;&lt;/li&gt;</div><div class="line">                           &lt;li&gt;&lt;%= link_to(&apos;用户中心 &lt;span class=&quot;glyphicon glyphicon-cog pull-right&quot;&gt;&lt;/span&gt;&apos;.html_safe, edit_account_user_path(current_user)) %&gt;&lt;/li&gt;</div><div class="line">                           &lt;li role=&quot;separator&quot; class=&quot;divider&quot;&gt;&lt;/li&gt;</div><div class="line">                         &lt;% end %&gt;</div><div class="line">                        &lt;li&gt; &lt;%= link_to(content_tag(:i, &apos;登出&apos;, class: &apos;fa fa-sign-out&apos;), destroy_user_session_path, method: :delete) %&gt; &lt;/li&gt;</div><div class="line">                    &lt;/ul&gt;</div><div class="line">                  &lt;/li&gt;</div><div class="line">                &lt;% end %&gt;</div><div class="line">            &lt;/ul&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;!-- /.navbar-collapse --&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">    &lt;!-- /.container-fluid --&gt;</div><div class="line">&lt;/nav&gt;</div><div class="line"></div><div class="line">&lt;!-- 以下代码实现登入登出的弹窗效果 --&gt;</div><div class="line">&lt;div class=&quot;modal fade&quot; id=&quot;login-modal&quot; tabindex=&quot;-1&quot; role=&quot;dialog&quot; aria-labelledby=&quot;myModalLabel&quot; aria-hidden=&quot;true&quot; style=&quot;display: none;&quot;&gt;</div><div class="line">  &lt;div class=&quot;modal-dialog&quot; role=&quot;document&quot;&gt;</div><div class="line">    &lt;div class=&quot;loginmodal-container&quot;&gt;</div><div class="line">       &lt;h2&gt;Log in&lt;/h2&gt;</div><div class="line">       &lt;%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %&gt;</div><div class="line">         &lt;div class=&quot;form-inputs&quot;&gt;</div><div class="line">           &lt;%= f.input :email, required: false, autofocus: true %&gt;</div><div class="line">           &lt;%= f.input :password, required: false %&gt;</div><div class="line">           &lt;%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %&gt;</div><div class="line">         &lt;/div&gt;</div><div class="line">         &lt;div class=&quot;form-actions&quot;&gt;</div><div class="line">           &lt;%= f.button :submit, &quot;Log in&quot; %&gt;</div><div class="line">         &lt;/div&gt;</div><div class="line">       &lt;% end %&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;div class=&quot;modal fade&quot; id=&quot;signup-modal&quot; tabindex=&quot;-1&quot; role=&quot;dialog&quot; aria-labelledby=&quot;myModalLabel&quot; aria-hidden=&quot;true&quot; style=&quot;display: none;&quot;&gt;</div><div class="line">  &lt;div class=&quot;modal-dialog&quot;&gt;</div><div class="line">    &lt;div class=&quot;loginmodal-container&quot;&gt;</div><div class="line">      &lt;h2&gt;Sign up&lt;/h2&gt;</div><div class="line">        &lt;%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %&gt;</div><div class="line">        &lt;%= f.error_notification %&gt;</div><div class="line">        &lt;div class=&quot;form-inputs&quot;&gt;</div><div class="line">          &lt;%= f.input :email, required: true, autofocus: true %&gt;</div><div class="line">          &lt;%= f.input :password, required: true, hint: (&quot;#&#123;@minimum_password_length&#125; characters minimum&quot; if @minimum_password_length) %&gt;</div><div class="line">          &lt;%= f.input :password_confirmation, required: true %&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">        &lt;div class=&quot;form-actions&quot;&gt;</div><div class="line">            &lt;%= f.button :submit, &quot;Sign up&quot; %&gt;</div><div class="line">        &lt;/div&gt;</div><div class="line">      &lt;% end %&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>修改navbar样式,加入如下内容<br><figure class="highlight ruby"><figcaption><span>app/assets/stylesheets/application.scss</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line">/*===== navbar ====*<span class="regexp">/</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp"> .navbar-default &#123;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">   margin-bottom: 0;</span></div><div class="line"><span class="regexp">   border-radius: 0;</span></div><div class="line"><span class="regexp">   background: #000;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">     color: #000 !important;</span></div><div class="line"><span class="regexp">     font-size: 1.2em;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">     a:focus &#123;</span></div><div class="line"><span class="regexp">       color: #eb5424 !important;</span></div><div class="line"><span class="regexp">     &#125;</span></div><div class="line"><span class="regexp">     &amp;.show_bgcolor &#123;</span></div><div class="line"><span class="regexp">       background-color: #02061A;</span></div><div class="line"><span class="regexp">     &#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">     .navbar-header &#123;</span></div><div class="line"><span class="regexp">       a &#123;</span></div><div class="line"><span class="regexp">         font-size: 20px;</span></div><div class="line"><span class="regexp">         color: #fff;</span></div><div class="line"><span class="regexp">         transition: 0.35s;</span></div><div class="line"><span class="regexp">       &#125;</span></div><div class="line"><span class="regexp">       a:hover &#123;</span></div><div class="line"><span class="regexp">         color: #D0CFCE;</span></div><div class="line"><span class="regexp">       &#125;</span></div><div class="line"><span class="regexp">     &#125;</span></div><div class="line"><span class="regexp">     .navbar-nav li a &#123;</span></div><div class="line"><span class="regexp">       color: #fff;</span></div><div class="line"><span class="regexp">       font-size: 16px;</span></div><div class="line"><span class="regexp">       transition: 0.35s;</span></div><div class="line"><span class="regexp">     &#125;</span></div><div class="line"><span class="regexp">     .navbar-nav li a:hover &#123;</span></div><div class="line"><span class="regexp">       color: #D0CFCE;</span></div><div class="line"><span class="regexp">       text-decoration: none</span></div><div class="line"><span class="regexp">     &#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">     .navbar-nav .dropdown-menu &#123;</span></div><div class="line"><span class="regexp">       padding-bottom: 0;</span></div><div class="line"><span class="regexp">       padding-top: 0;</span></div><div class="line"><span class="regexp">       a &#123;</span></div><div class="line"><span class="regexp">         text-align: center;</span></div><div class="line"><span class="regexp">         color: #000;</span></div><div class="line"><span class="regexp">       &#125;</span></div><div class="line"><span class="regexp">       li.divider:last-child &#123;</span></div><div class="line"><span class="regexp">         display: none;</span></div><div class="line"><span class="regexp">       &#125;</span></div><div class="line"><span class="regexp">     &#125;</span></div><div class="line"><span class="regexp">     .login &#123;</span></div><div class="line"><span class="regexp">       border: 1px solid #fff;</span></div><div class="line"><span class="regexp">       margin-top: 12px;</span></div><div class="line"><span class="regexp">       padding: 3px 17px 3px 17px;</span></div><div class="line"><span class="regexp">       margin-right: 130px;</span></div><div class="line"><span class="regexp">       border-radius: 15px;</span></div><div class="line"><span class="regexp">     &#125;</span></div><div class="line"><span class="regexp">     .search-nav&#123;</span></div><div class="line"><span class="regexp">       width: 280px;</span></div><div class="line"><span class="regexp">     &#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">  &#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">  .navbar-brand &#123;</span></div><div class="line"><span class="regexp">    letter-spacing: 0.1em;       /</span><span class="regexp">/拉开一点点字间距</span></div><div class="line"><span class="regexp">    font-weight:lighter;         /</span><span class="regexp">/字体粗细比默认样式缩小100磅值，让logo显得精致高级</span></div><div class="line"><span class="regexp">  &#125;</span></div><div class="line"><span class="regexp"> /</span>*===== <span class="keyword">end</span> of navbar ====*<span class="regexp">/</span></div></pre></td></tr></table></figure></p>
+<p>修改footer内容，做如下替换<br><figure class="highlight ruby"><figcaption><span>app/views/common/_footer.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&lt;footer class="footer"&gt;</div><div class="line">	&lt;p&gt;&lt;a href=<span class="string">"&lt;%= static_pages_help_path %&gt;"</span> target=<span class="string">"_blank"</span>&gt;关于我们 &lt;<span class="regexp">/a&gt; &lt;span&gt;|</span></div><div class="line"><span class="regexp">  &lt;/span</span>&gt; &lt;a href=<span class="string">"&lt;%= static_pages_help_path %&gt;"</span> target=<span class="string">"_blank"</span>&gt;服务中心&lt;<span class="regexp">/a&gt; &lt;span&gt;|</span></div><div class="line"><span class="regexp">  &lt;/span</span>&gt; &lt;a href=<span class="string">"http://kerzzi.logdown.com/posts/1903205-magic-change-contest-entries-monsoon"</span> target=<span class="string">"_blank"</span>&gt;功能展示&lt;<span class="regexp">/a&gt; &lt;span&gt;|</span></div><div class="line"><span class="regexp">  &lt;/span</span>&gt; &lt;a href=<span class="string">"http://kerzzi.logdown.com/posts/1890176"</span> target=<span class="string">"_blank"</span>&gt;制作教程&lt;<span class="regexp">/a&gt; &lt;span&gt;|</span></div><div class="line"><span class="regexp">  &lt;/span</span>&gt; &lt;a href=<span class="string">"http://kerzzi.logdown.com/posts/1903205-magic-change-contest-entries-monsoon"</span> target=<span class="string">"_blank"</span>&gt;联系我们&lt;<span class="regexp">/a&gt; &lt;span&gt;|</span></div><div class="line"><span class="regexp">  &lt;/span</span>&gt; &lt;a href=<span class="string">"https://fullstack.xinshengdaxue.com/works/604"</span> target=<span class="string">"_blank"</span>&gt;支持我们&lt;<span class="regexp">/a&gt; &lt;span&gt;&lt;/p</span>&gt;</div><div class="line">	&lt;p&gt;</div><div class="line">    &lt;span class="logo-text"&gt;Copyright ©2017 Monsoon&lt;/span&gt;</div><div class="line">    &lt;span class="icp-center"&gt;Designed By &lt;a href="http://kerzzi.logdown.com/" target="_blank"&gt;Kerzzi&lt;/a&gt; &amp; &lt;a href="http://lll96-blog.logdown.com/" target="_blank"&gt;胡颖&lt;/a&gt; &lt;/span&gt;</div><div class="line">	&lt;<span class="regexp">/p&gt;</span></div><div class="line"><span class="regexp">&lt;/footer</span>&gt;</div></pre></td></tr></table></figure></p>
+<p>修改navbar样式,加入如下内容<br><figure class="highlight ruby"><figcaption><span>app/assets/stylesheets/application.scss</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">/<span class="regexp">/---- footer ------</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">.footer&#123;</span></div><div class="line"><span class="regexp">    text-align: center;</span></div><div class="line"><span class="regexp">    min-height: 50px;</span></div><div class="line"><span class="regexp">    background-color:  #000;</span></div><div class="line"><span class="regexp">    /</span><span class="regexp">/ margin-bottom: -50px;</span></div><div class="line"><span class="regexp">    padding: 20px 0;</span></div><div class="line"><span class="regexp">    color: #fff;</span></div><div class="line"><span class="regexp">    p&#123;</span></div><div class="line"><span class="regexp">      font-size: 14px;</span></div><div class="line"><span class="regexp">      a&#123;</span></div><div class="line"><span class="regexp">        /</span><span class="regexp">/ color: #4A6BB5;</span></div><div class="line"><span class="regexp">        text-decoration:none;</span></div><div class="line"><span class="regexp">        color: #fff;</span></div><div class="line"><span class="regexp">      &#125;</span></div><div class="line"><span class="regexp">      a:hover&#123;</span></div><div class="line"><span class="regexp">        color: #35CCC6;</span></div><div class="line"><span class="regexp">      &#125;</span></div><div class="line"><span class="regexp">      a:focus&#123;</span></div><div class="line"><span class="regexp">        color: #4A6BB5;</span></div><div class="line"><span class="regexp">      &#125;</span></div><div class="line"><span class="regexp">    &#125;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">/</span>*===== <span class="keyword">end</span> of footer ====*<span class="regexp">/</span></div></pre></td></tr></table></figure></p>
+<p>由于我们目前商品较少，所以footer目前跑在了屏幕中间，看起来很丑。我们需要将footer置底。</p>
+<p>将footer置底</p>
+<p>打开app/views/layouts/application.html.erb<br><figure class="highlight ruby"><figcaption><span>app/views/layouts/application.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;title&gt;Monsoon &lt;<span class="regexp">/title&gt;</span></div><div class="line"><span class="regexp">        &lt;%= csrf_meta_tags %&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">        &lt;%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %&gt;</span></div><div class="line"><span class="regexp">        &lt;%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %&gt;</span></div><div class="line"><span class="regexp">    &lt;/head</span>&gt;</div><div class="line"></div><div class="line">    &lt;body&gt;</div><div class="line">      &lt;div id=<span class="string">"id_wrapper"</span>&gt;</div><div class="line">        &lt;div id=<span class="string">"id_header"</span>&gt;</div><div class="line">          &lt;%= render <span class="string">"common/navbar"</span> %&gt;</div><div class="line">        &lt;<span class="regexp">/div&gt; &lt;!-- /id</span>_header --&gt;</div><div class="line">        &lt;div class="row" id="id_content"&gt;</div><div class="line">            &lt;div class="container"&gt;</div><div class="line">              &lt;%= render <span class="string">"common/flashes"</span> %&gt;</div><div class="line">            &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">            &lt;%= yield %&gt;</span></div><div class="line"><span class="regexp">        &lt;/div</span>&gt;&lt;!-- <span class="regexp">/id_content --&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">      &lt;/div</span>&gt; &lt;!-- <span class="regexp">/id_wrapper --&gt;</span></div><div class="line"><span class="regexp">        &lt;div id="id_footer"&gt;</span></div><div class="line"><span class="regexp">          &lt;%= render "common/footer</span><span class="string">" %&gt;</span></div><div class="line"><span class="string">        &lt;/div&gt; &lt;!-- /id_footer --&gt;</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    &lt;/body&gt;</span></div><div class="line"><span class="string">&lt;/html&gt;</span></div></pre></td></tr></table></figure></p>
+<p>打开app/assets/stylesheets/application.scss，增加footer置底的样式。<br><figure class="highlight ruby"><figcaption><span>app/assets/stylesheets/application.scss</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"> @import url(<span class="string">'https://fonts.googleapis.com/earlyaccess/notosanssc.css'</span>);   <span class="regexp">//</span>引入google思源黑简在线字体 需要使用VPN才可生效</div><div class="line"></div><div class="line"></div><div class="line"> /<span class="regexp">/ 界面基础设置</span></div><div class="line"><span class="regexp">html, body &#123;</span></div><div class="line"><span class="regexp">    /</span>* 設定body高度為<span class="number">100</span>% 拉到視窗可視的大小 *<span class="regexp">/</span></div><div class="line"><span class="regexp">    height: 100%;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">body &#123;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">    background: #EBEBEB;</span></div><div class="line"><span class="regexp">    /</span><span class="regexp">/ background-image: url(https:/</span><span class="regexp">/ww1.sinaimg.cn/large</span><span class="regexp">/006tKfTcgy1fg7w2lnv7lj30ud0g8mxo.jpg);</span></div><div class="line"><span class="regexp">    font-family: 'Noto Sans SC', sans-serif;            /</span><span class="regexp">/ google思源黑简作为主字体</span></div><div class="line"><span class="regexp">    color: #666;                                        /</span><span class="regexp">/ 修改全站的 字体主色</span></div><div class="line"><span class="regexp">    /</span><span class="regexp">/ font-size: 1.2em;                                   /</span><span class="regexp">/ 网站所有字体缩小比例</span></div><div class="line"><span class="regexp">    .breadcrumb&#123;</span></div><div class="line"><span class="regexp">    background: #fff;</span></div><div class="line"><span class="regexp">    height: 50px;</span></div><div class="line"><span class="regexp">    li&#123;</span></div><div class="line"><span class="regexp">      padding-top: 7px;</span></div><div class="line"><span class="regexp">    &#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">    &#125;</span></div><div class="line"><span class="regexp">   a &#123;                                                 /</span><span class="regexp">/ 所有a标签统一样式</span></div><div class="line"><span class="regexp">     color: #666;                                      /</span><span class="regexp">/ 链接反转的样式</span></div><div class="line"><span class="regexp">     transition: 0.5s;                                 /</span><span class="regexp">/ 鼠标移开时 0.5秒渐变</span></div><div class="line"><span class="regexp">   &#125;</span></div><div class="line"><span class="regexp">   a:hover &#123;</span></div><div class="line"><span class="regexp">     color: #7f8c8d;</span></div><div class="line"><span class="regexp">     transition: 0.5s;                                 /</span><span class="regexp">/ 鼠标指向时 0.5面渐变</span></div><div class="line"><span class="regexp">     text-decoration: none;                            /</span><span class="regexp">/ 移除下划线</span></div><div class="line"><span class="regexp">   &#125;</span></div><div class="line"><span class="regexp"> &#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">#id_wrapper &#123;</span></div><div class="line"><span class="regexp">    /</span>* 設定高度最小為<span class="number">100</span>%, 如果內容區塊很多, 可以長大 *<span class="regexp">/</span></div><div class="line"><span class="regexp">    min-height: 100%;</span></div><div class="line"><span class="regexp">    /</span>* 位置設為relative, 作為footer區塊位置的參考 *<span class="regexp">/</span></div><div class="line"><span class="regexp">    /</span><span class="regexp">/ position: relative;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">#id_header &#123;</span></div><div class="line"><span class="regexp">    /</span>* 設定header的高度 *<span class="regexp">/</span></div><div class="line"><span class="regexp">    height: 40px;</span></div><div class="line"><span class="regexp">    box-sizing: border-box;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">#id_content &#123;</span></div><div class="line"><span class="regexp">    /</span>* 留出header及footer區塊的空間 *<span class="regexp">/</span></div><div class="line"><span class="regexp">    padding-top: 25px;</span></div><div class="line"><span class="regexp">    /</span><span class="regexp">/ padding-bottom: 60px;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">#id_footer &#123;</span></div><div class="line"><span class="regexp">    /</span>* 設定footer的高度 *<span class="regexp">/</span></div><div class="line"><span class="regexp">    height: 40px;</span></div><div class="line"><span class="regexp">    box-sizing: border-box;</span></div><div class="line"><span class="regexp">    /</span>* 設定footer絕對位置在底部 *<span class="regexp">/</span></div><div class="line"><span class="regexp">    /</span><span class="regexp">/ position: absolute;</span></div><div class="line"><span class="regexp">    bottom: 0;</span></div><div class="line"><span class="regexp">    /</span>* 展開footer寬度 *<span class="regexp">/</span></div><div class="line"><span class="regexp">    width: 100%;</span></div><div class="line"><span class="regexp">&#125;</span></div></pre></td></tr></table></figure></p>
+<p>rails s</p>
+<p>###Step 2:<br>打开app/views/products/index.html.erb，全部代码修改如下<br><figure class="highlight ruby"><figcaption><span>app/views/products/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line">&lt;div class="product-box"&gt;</div><div class="line"></div><div class="line">  &lt;div class="container "&gt;</div><div class="line">    &lt;!--=== 轮播图 ===--&gt;</div><div class="line">    &lt;div id="carousel-example-generic" class="carousel slide" data-ride="carousel"&gt;</div><div class="line">      &lt;ol class="carousel-indicators"&gt;</div><div class="line">        &lt;li data-target="#carousel-example-generic" data-slide-to="0" class="active"&gt;&lt;/li&gt;</div><div class="line">        &lt;li data-target=<span class="string">"#carousel-example-generic"</span> data-slide-to=<span class="string">"1"</span>&gt;&lt;<span class="regexp">/li&gt;</span></div><div class="line"><span class="regexp">        &lt;li data-target="#carousel-example-generic" data-slide-to="2"&gt;&lt;/li</span>&gt;</div><div class="line">      &lt;<span class="regexp">/ol&gt;</span></div><div class="line"><span class="regexp">      &lt;div id="hover" class="carousel-inner" role="listbox"&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">        &lt;div class="item active" data-slide-to="0"&gt;</span></div><div class="line"><span class="regexp">          &lt;div class="carousel-BC1"&gt;</span></div><div class="line"><span class="regexp">            &lt;div class="container"&gt;</span></div><div class="line"><span class="regexp">              &lt;img src="https:/</span><span class="regexp">/ww3.sinaimg.cn/large</span><span class="regexp">/006tKfTcgy1fg7v5k07bij31kw0w0774.jpg" width="1140" alt="..."&gt;</span></div><div class="line"><span class="regexp">              &lt;div class="carousel-caption"&gt;</span></div><div class="line"><span class="regexp">                &lt;p&gt;&lt;/p</span>&gt;</div><div class="line">              &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">            &lt;/div</span>&gt;</div><div class="line">          &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">        &lt;/div</span>&gt;</div><div class="line">        &lt;div class="item" data-slide-to="1"&gt;</div><div class="line">          &lt;div class="carousel-BC2"&gt;</div><div class="line">            &lt;div class="container"&gt;</div><div class="line">              &lt;img src=<span class="string">"https://ww3.sinaimg.cn/large/006tKfTcgy1fg7v6t9ga3j31kw0re1ip.jpg"</span> width=<span class="string">"1140"</span> alt=<span class="string">"..."</span>&gt;</div><div class="line">              &lt;div class="carousel-caption"&gt;</div><div class="line">                &lt;p&gt;&lt;<span class="regexp">/p&gt;</span></div><div class="line"><span class="regexp">              &lt;/div</span>&gt;</div><div class="line">            &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">          &lt;/div</span>&gt;</div><div class="line">        &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">        &lt;div class="item" data-slide-to="2"&gt;</span></div><div class="line"><span class="regexp">          &lt;div class="carousel-BC3"&gt;</span></div><div class="line"><span class="regexp">            &lt;div class="container"&gt;</span></div><div class="line"><span class="regexp">              &lt;img src="https:/</span><span class="regexp">/ww4.sinaimg.cn/large</span><span class="regexp">/006tKfTcgy1fg7vtssvrlj31kw0w0wkq.jpg" width="1140" alt="..."&gt;</span></div><div class="line"><span class="regexp">              &lt;div class="carousel-caption"&gt;</span></div><div class="line"><span class="regexp">                &lt;p&gt;&lt;/p</span>&gt;</div><div class="line">              &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">            &lt;/div</span>&gt;</div><div class="line">          &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">        &lt;/div</span>&gt;</div><div class="line"></div><div class="line">      &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">    &lt;/div</span>&gt;</div><div class="line"></div><div class="line"></div><div class="line">      &lt;ol class="breadcrumb"&gt;</div><div class="line">        &lt;li class="active"&gt;所有商品&lt;/li&gt;</div><div class="line">      &lt;<span class="regexp">/ol&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">      &lt;%= render 'common/products</span><span class="string">' %&gt;</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    &lt;/div&gt;</span></div><div class="line"><span class="string">    &lt;div  align="center"&gt;</span></div><div class="line"><span class="string">      &lt;%= will_paginate @products %&gt;</span></div><div class="line"><span class="string">    &lt;/div&gt;</span></div><div class="line"><span class="string">  &lt;/div&gt;</span></div><div class="line"><span class="string">&lt;/div&gt;</span></div></pre></td></tr></table></figure></p>
+<p>打开app/assets/stylesheets/products.scss，增加相应样式<br><figure class="highlight ruby"><figcaption><span>app/assets/stylesheets/products.scss</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">-<span class="regexp">/****** 商品列表简单样式 ******/</span></div><div class="line"></div><div class="line"> /*  products index page *<span class="regexp">/</span></div><div class="line"><span class="regexp"> .product-box .carousel img &#123;</span></div><div class="line"><span class="regexp">     width: 100%;</span></div><div class="line"><span class="regexp">     height: 500px;</span></div><div class="line"><span class="regexp">     margin: 0px 0px 15px -15px;</span></div><div class="line"><span class="regexp">     border-radius: 10px;</span></div><div class="line"><span class="regexp"> &#125;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp"> .product-list-style &#123;                                 /</span><span class="regexp">/图片+文字 块样式整形</span></div><div class="line"><span class="regexp">  margin: 3em auto 2em;</span></div><div class="line"><span class="regexp">  img&#123;</span></div><div class="line"><span class="regexp">    width: 100%;</span></div><div class="line"><span class="regexp">    height: 200px;</span></div><div class="line"><span class="regexp">    border-radius: 10px;</span></div><div class="line"><span class="regexp">  &#125;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp">.product-list-style-img &#123;                             /</span><span class="regexp">/文字 块样式整形</span></div><div class="line"><span class="regexp">  margin-bottom: 1.2em;</span></div><div class="line"><span class="regexp">&#125;</span></div><div class="line"><span class="regexp">.all-product-box &#123;</span></div><div class="line"><span class="regexp">  background-color: #fff;</span></div><div class="line"><span class="regexp">  margin-bottom: 3em;</span></div><div class="line"><span class="regexp">&#125;</span></div></pre></td></tr></table></figure></p>
+<h3 id="Step-3-将变更-commit-进去-git-里面。"><a href="#Step-3-将变更-commit-进去-git-里面。" class="headerlink" title="Step 3:将变更 commit 进去 git 里面。"></a>Step 3:将变更 commit 进去 git 里面。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m &quot;美化navbar、footer、商品首页&quot;</div><div class="line">git push origin story25</div><div class="line">git checkout master</div><div class="line">git merge story25</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
+<h2 id="本章详解"><a href="#本章详解" class="headerlink" title="本章详解"></a>本章详解</h2><blockquote>
+<p> 努力更新中，上班族请理解。。。。。</p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://kerzzi.github.io/2017/06/15/2017-06-15-1951311/" data-title="「从零开始做购物网站」第33章 美化navbar、footer、商品首页 | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/06/15/2017-06-15-1951313/" title="「从零开始做购物网站」第34章 实作landingpage页面">
+  <strong>上一篇：</strong><br/>
+  <span>
+  「从零开始做购物网站」第34章 实作landingpage页面</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/06/15/2017-06-15-starting-from-scratch-do-shopping-sites-chapter-32nd-landscaping-services-page/"  title="「从零开始做购物网站」第32章 美化服务页面">
+ <strong>下一篇：</strong><br/> 
+ <span>「从零开始做购物网站」第32章 美化服务页面
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目标"><span class="toc-number">1.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#步骤"><span class="toc-number">2.</span> <span class="toc-text">步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-0-建立新分支"><span class="toc-number">2.1.</span> <span class="toc-text">Step 0:建立新分支</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-将变更-commit-进去-git-里面。"><span class="toc-number">2.2.</span> <span class="toc-text">Step 3:将变更 commit 进去 git 里面。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本章详解"><span class="toc-number">3.</span> <span class="toc-text">本章详解</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/全栈营/" title="全栈营">全栈营<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/千字文训练/" title="千字文训练">千字文训练<sup>12</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/通往财富自由之路/" title="通往财富自由之路">通往财富自由之路<sup>5</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/公开写作/" title="公开写作">公开写作<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/财富自由/" title="财富自由">财富自由<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/区块链研习笔记/" title="区块链研习笔记">区块链研习笔记<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spenser自媒体写作强化营/" title="Spenser自媒体写作强化营">Spenser自媒体写作强化营<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/写作/" title="写作">写作<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/生活/" title="生活">生活<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/如何写作/" title="如何写作">如何写作<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/我的原则/" title="我的原则">我的原则<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/3条铁律/" title="3条铁律">3条铁律<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/游记/" title="游记">游记<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/github/" title="github">github<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/千字文/" title="千字文">千字文<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/读书笔记/" title="读书笔记">读书笔记<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kerzzi">Kerzzi</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
