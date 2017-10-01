@@ -200,7 +200,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/区块链研习笔记/">区块链研习笔记</a><a href="/tags/公开写作/">公开写作</a><a href="/tags/我的原则/">我的原则</a>
+  <span></span> <a href="/tags/公开写作/">公开写作</a><a href="/tags/区块链研习笔记/">区块链研习笔记</a><a href="/tags/我的原则/">我的原则</a>
   </div>
 
 </div>
@@ -831,7 +831,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/区块链研习笔记/">区块链研习笔记</a><a href="/tags/公开写作/">公开写作</a><a href="/tags/读书笔记/">读书笔记</a>
+  <span></span> <a href="/tags/公开写作/">公开写作</a><a href="/tags/区块链研习笔记/">区块链研习笔记</a><a href="/tags/读书笔记/">读书笔记</a>
   </div>
 
 </div>
@@ -1137,7 +1137,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/千字文训练/">千字文训练</a><a href="/tags/公开写作/">公开写作</a><a href="/tags/如何写作/">如何写作</a>
+  <span></span> <a href="/tags/千字文训练/">千字文训练</a><a href="/tags/如何写作/">如何写作</a><a href="/tags/公开写作/">公开写作</a>
   </div>
 
 </div>
@@ -1291,8 +1291,65 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/千字文训练/">千字文训练</a><a href="/tags/区块链研习笔记/">区块链研习笔记</a><a href="/tags/公开写作/">公开写作</a>
+  <span></span> <a href="/tags/千字文训练/">千字文训练</a><a href="/tags/公开写作/">公开写作</a><a href="/tags/区块链研习笔记/">区块链研习笔记</a>
   </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/07/03/2017-07-03-bean-knowledge-rails-rails-g-does-not-let-rails-generate-the-corresponding-assets-such-as-helper-files/" title="【豆知识】Rails: 使用rails g方法时不让rails生成对应的assets, helper等文件" itemprop="url">【豆知识】Rails: 使用rails g方法时不让rails生成对应的assets, helper等文件</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-07-03T14:06:00.000Z" itemprop="datePublished"> 发表于 2017-07-03</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="目标"><a href="#目标" class="headerlink" title="目标:"></a>目标:</h2><blockquote>
+<p>很多时候我们想自己来手工创建对应的asset，helper和test文件，但是默认情况下Rails会自动帮我们创建，怎样阻止它？</p>
+</blockquote>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤:"></a>步骤:</h2><h3 id="Step-01"><a href="#Step-01" class="headerlink" title="Step 01:"></a>Step 01:</h3><p>修改<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
+<p>config.generators do |generator|<br>    generator.helper false<br>    generator.assets false<br>    generator.view_specs false<br>    generator.test_framework false<br>    generator.skip_routes true # 同时跳过路由的自动设置<br>  end<br>end<br>```</p>
+<h2 id="更多ROR【豆知识】"><a href="#更多ROR【豆知识】" class="headerlink" title="更多ROR【豆知识】:"></a>更多ROR【豆知识】:</h2><blockquote>
+<p>更多ROR【豆知识】请前往：<a href="https://github.com/Kerzzi/ruby_notes/tree/master/04_ROR_beans" target="_blank" rel="external">https://github.com/Kerzzi/ruby_notes/tree/master/04_ROR_beans</a></p>
+</blockquote>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
 
 </div>
 
@@ -1344,63 +1401,6 @@
 <li>不使用turbolink</li>
 <li>不使用puma</li>
 </ul>
-<h2 id="更多ROR【豆知识】"><a href="#更多ROR【豆知识】" class="headerlink" title="更多ROR【豆知识】:"></a>更多ROR【豆知识】:</h2><blockquote>
-<p>更多ROR【豆知识】请前往：<a href="https://github.com/Kerzzi/ruby_notes/tree/master/04_ROR_beans" target="_blank" rel="external">https://github.com/Kerzzi/ruby_notes/tree/master/04_ROR_beans</a></p>
-</blockquote>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/07/03/2017-07-03-bean-knowledge-rails-rails-g-does-not-let-rails-generate-the-corresponding-assets-such-as-helper-files/" title="【豆知识】Rails: 使用rails g方法时不让rails生成对应的assets, helper等文件" itemprop="url">【豆知识】Rails: 使用rails g方法时不让rails生成对应的assets, helper等文件</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
-		
-  <p class="article-time">
-    <time datetime="2017-07-03T14:06:00.000Z" itemprop="datePublished"> 发表于 2017-07-03</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="目标"><a href="#目标" class="headerlink" title="目标:"></a>目标:</h2><blockquote>
-<p>很多时候我们想自己来手工创建对应的asset，helper和test文件，但是默认情况下Rails会自动帮我们创建，怎样阻止它？</p>
-</blockquote>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤:"></a>步骤:</h2><h3 id="Step-01"><a href="#Step-01" class="headerlink" title="Step 01:"></a>Step 01:</h3><p>修改<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
-<p>config.generators do |generator|<br>    generator.helper false<br>    generator.assets false<br>    generator.view_specs false<br>    generator.test_framework false<br>    generator.skip_routes true # 同时跳过路由的自动设置<br>  end<br>end<br>```</p>
 <h2 id="更多ROR【豆知识】"><a href="#更多ROR【豆知识】" class="headerlink" title="更多ROR【豆知识】:"></a>更多ROR【豆知识】:</h2><blockquote>
 <p>更多ROR【豆知识】请前往：<a href="https://github.com/Kerzzi/ruby_notes/tree/master/04_ROR_beans" target="_blank" rel="external">https://github.com/Kerzzi/ruby_notes/tree/master/04_ROR_beans</a></p>
 </blockquote>
@@ -1612,7 +1612,7 @@
 			
 		
 			
-				<li><a href="/tags/如何写作/" title="如何写作">如何写作<sup>1</sup></a></li>
+				<li><a href="/tags/千字文/" title="千字文">千字文<sup>1</sup></a></li>
 			
 		
 			
@@ -1628,7 +1628,7 @@
 			
 		
 			
-				<li><a href="/tags/游记/" title="游记">游记<sup>1</sup></a></li>
+				<li><a href="/tags/如何写作/" title="如何写作">如何写作<sup>1</sup></a></li>
 			
 		
 			
@@ -1636,7 +1636,7 @@
 			
 		
 			
-				<li><a href="/tags/千字文/" title="千字文">千字文<sup>1</sup></a></li>
+				<li><a href="/tags/游记/" title="游记">游记<sup>1</sup></a></li>
 			
 		
 			
