@@ -14,7 +14,7 @@
     <meta name="description" content="柯子的行思笔记">
 <meta property="og:type" content="website">
 <meta property="og:title" content="柯子的行思笔记">
-<meta property="og:url" content="http://yoursite.com/page/8/index.html">
+<meta property="og:url" content="https://kerzzi.github.io/page/8/index.html">
 <meta property="og:site_name" content="柯子的行思笔记">
 <meta property="og:description" content="柯子的行思笔记">
 <meta property="og:locale" content="zh-CN">
@@ -29,9 +29,6 @@
     <link rel="icon" href="/img/favicon.ico">
     
     
-    <link rel="apple-touch-icon" href="/img/jacman.jpg">
-    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
-    
     <link rel="stylesheet" href="/css/style.css">
 </head>
 
@@ -40,10 +37,6 @@
       
 <div>
 		
-			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="柯子的行思笔记" title="柯子的行思笔记"/></a>
-			</div>
-			
 			<div id="textlogo">
 				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
 				<h2 class="blog-motto">叫我柯子就好</h2>
@@ -54,18 +47,18 @@
 				<ul>
 					<ul>
 					 
-						<li><a href="/">Home</a></li>
+						<li><a href="/">首页</a></li>
 					
-						<li><a href="/archives">Archives</a></li>
+						<li><a href="/archives">归档</a></li>
 					
-						<li><a href="/about">About</a></li>
+						<li><a href="/about">关于</a></li>
 					
 					<li>
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
 						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
-						<input type="hidden" name="q" value="site:yoursite.com">
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
 					</form>
 					
 					</li>
@@ -76,756 +69,250 @@
     <div id="container">
       <div id="main">
 
-   
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/05/14/2017-05-14-1835625/" title="【豆知识】 routes.rb中: resources 、namespace、member 和 collection的使用区别" itemprop="url">
+  
+    <h1 itemprop="name">【豆知识】 routes.rb中: resources 、namespace、member 和 collection的使用区别</h1>
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+     
+           <p itemprop="description" >目标:
+掌握resources 、namespace、member 和 collection的使用区别。
+
+步骤:Step 01:关于resourcesRESTful风格的路由动词默认有7个(分别为：index, show, create, new, edit, update, </p>
+        
     
-      <a href="/2017/05/14/2017-05-14-1835625/" title="【豆知识】 routes.rb中: resources 、namespace、member 和 collection的使用区别" itemprop="url">【豆知识】 routes.rb中: resources 、namespace、member 和 collection的使用区别</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
-		
-  <p class="article-time">
-    <time datetime="2017-05-14T11:03:00.000Z" itemprop="datePublished"> 发表于 2017-05-14</time>
+    <time datetime="2017-05-14T11:03:00.000Z" itemprop="datePublished">2017-05-14</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/05/14/2017-05-14-1835622/" title="【豆知识】Controller中: render :layout的用法" itemprop="url">
+  
+    <h1 itemprop="name">【豆知识】Controller中: render :layout的用法</h1>
     
-  </p>
-</header>
-    <div class="article-content">
+     
+           <p itemprop="description" >目标:
+掌握 Controller中: render :layout的用法
+
+步骤:Step 01: 基础用法Rails预设的布局是app/view/layouts/application.html.erb这个文件。但是有时我们会希望不同页面采用不同的布局，比如后台（admin）</p>
         
-        <h2 id="目标"><a href="#目标" class="headerlink" title="目标:"></a>目标:</h2><blockquote>
-<p>掌握resources 、namespace、member 和 collection的使用区别。</p>
-</blockquote>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤:"></a>步骤:</h2><h3 id="Step-01-关于resources"><a href="#Step-01-关于resources" class="headerlink" title="Step 01:关于resources"></a>Step 01:关于resources</h3><p>RESTful风格的路由动词默认有7个(分别为：index, show, create, new, edit, update, destroy)。</p>
-<p><strong>复数型资源</strong><br>例如：rails101中<br><figure class="highlight ruby"><figcaption><span>routes.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">resources <span class="symbol">:groups</span></div><div class="line">resources <span class="symbol">:posts</span></div></pre></td></tr></table></figure></p>
-<p>这里使用resources :groups一行代码，这是复数资源，即可产生同名controller即groups_controller.rb中7个action对应的路由(分别为：index, show, create, new, edit, update, destroy)。</p>
-<p>此外还有<strong>单数型资源</strong>，如下所示<br><figure class="highlight ruby"><figcaption><span>routes.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">resource <span class="symbol">:post</span></div></pre></td></tr></table></figure></p>
-<p>与复数资源相比，特别之处在于没有index action了，所有的URL Helper也皆为单数形式，显示出来的网址也是单数。但是Singular resource的文件命名仍为复数，例如posts_controller.rb</p>
-<p><strong>指定Controller</strong><br>虽然resource默认采用同名的controller，但是我们也可以修改，例如<br><figure class="highlight ruby"><figcaption><span>routes.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">resources <span class="symbol">:projects</span> <span class="keyword">do</span></div><div class="line">  resources <span class="symbol">:tasks</span>, <span class="symbol">:controller</span> =&gt; <span class="string">"project_tasks"</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<h3 id="Step-02-关于namespace"><a href="#Step-02-关于namespace" class="headerlink" title="Step 02:关于namespace"></a>Step 02:关于namespace</h3><p>例如：rails101中<br><figure class="highlight ruby"><figcaption><span>routes.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">namespace <span class="symbol">:account</span> <span class="keyword">do</span></div><div class="line">     resources <span class="symbol">:groups</span></div><div class="line">     resources <span class="symbol">:posts</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<p>这里使用的是<figure class="highlight plain"><figcaption><span>:account```，是因为account只是一个命名文件夹，里面是没有数据的，用来区分匿名group资源和用户group资源。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">如此controller会是```Account::GroupsController```,网址如```/account/groups```，而URL Helper如```account_groups_path```这样的形式。</div><div class="line"></div><div class="line">在Namespace下也可以设定它的首页，例如：</div><div class="line">```ruby routes.rb</div><div class="line">namespace :admin do</div><div class="line">	root &quot;projects#index&quot;</div><div class="line">end</div></pre></td></tr></table></figure></p>
-<p>就样连<a href="http://localhost:3000/admin/就会使用ProjectsController" target="_blank" rel="external">http://localhost:3000/admin/就会使用ProjectsController</a> index action了。</p>
-<p>实例参考：<a href="https://github.com/Kerzzi/jfshop/blob/master/config/routes.rb" target="_blank" rel="external">https://github.com/Kerzzi/jfshop/blob/master/config/routes.rb</a></p>
-<h3 id="Step-03-关于collection"><a href="#Step-03-关于collection" class="headerlink" title="Step 03:关于collection"></a>Step 03:关于collection</h3><p>除了惯例中的七个Actions外，如果你需要自定群集的Action，可以这样设定：<br><figure class="highlight ruby"><figcaption><span>routes.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">resources <span class="symbol">:products</span> <span class="keyword">do</span></div><div class="line">  collection <span class="keyword">do</span></div><div class="line">    get  <span class="symbol">:sold</span></div><div class="line">    post <span class="symbol">:on_offer</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="comment"># 或</span></div><div class="line">  get  <span class="symbol">:sold</span>, <span class="symbol">:on</span> =&gt; <span class="symbol">:collection</span></div><div class="line">  post <span class="symbol">:on_offer</span>, <span class="symbol">:on</span> =&gt; <span class="symbol">:collection</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
-<p>如此便会有<figure class="highlight plain"><figcaption><span>Helper，产生出如```products/sold```和```products/on_offer```这样的网址。可以看到生成的网址不带id，且collection（即products）是复数，加s。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### Step 04:关于member</div><div class="line">如果需要自定对特定元素的Action，例：job-listing中：</div><div class="line">```ruby routes.rb</div><div class="line">namespace :admin do</div><div class="line">  resources :jobs do</div><div class="line">    member do</div><div class="line">      post :publish   </div><div class="line">      post :hide</div><div class="line">    end</div><div class="line">    # 或 </div><div class="line">    post :publish, :on =&gt; :member</div><div class="line">    post :hide, :on =&gt; :member</div><div class="line">    </div><div class="line">    resources :resumes</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure></p>
-<p>post送出的join、publish它生成的网址上都是带有id的，且member（即job）是单数，不加s的。<br>如此会有<code>publish_job_path(@job)</code>这个URL Helper，产生出如<code>jobs/1/publish</code>这样的网址。</p>
-<h3 id="Step-05-总结"><a href="#Step-05-总结" class="headerlink" title="Step 05:总结"></a>Step 05:总结</h3><ul>
-<li>member 是对<strong>单个实体</strong>进行操作，创建路由格式是： <code>/:controller/:id/:your_method</code>，命名的路由是用id生成且是单数。</li>
-<li>collection 是对<strong>实体集合</strong>进行操作，创建路由格式是： <code>/:controller/:your_method</code> ，网址不带id，是复数。</li>
-<li>resource是直接生成一组资源所需要的7个action。</li>
-</ul>
-<h2 id="更多ROR【豆知识】"><a href="#更多ROR【豆知识】" class="headerlink" title="更多ROR【豆知识】:"></a>更多ROR【豆知识】:</h2><blockquote>
-<p>更多ROR【豆知识】请前往：<a href="https://github.com/Kerzzi/ruby_notes/tree/master/04_ROR_beans" target="_blank" rel="external">https://github.com/Kerzzi/ruby_notes/tree/master/04_ROR_beans</a></p>
-</blockquote>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+    <time datetime="2017-05-14T11:02:00.000Z" itemprop="datePublished">2017-05-14</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/05/12/2017-05-12-1825579/" title="【豆知识】如何在Atom中显示.gitignore列表中的文件" itemprop="url">
+  
+    <h1 itemprop="name">【豆知识】如何在Atom中显示.gitignore列表中的文件</h1>
     
-      <a href="/2017/05/14/2017-05-14-1835622/" title="【豆知识】Controller中: render :layout的用法" itemprop="url">【豆知识】Controller中: render :layout的用法</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
-		
-  <p class="article-time">
-    <time datetime="2017-05-14T11:02:00.000Z" itemprop="datePublished"> 发表于 2017-05-14</time>
+     
+           <p itemprop="description" >目标:
+在Atom中显示.gitignore列表中的文件
+
+操作:Step 01:打开Atom，然使用快捷键command + ，来打开设置。
+Step 02:Settings -&amp;gt; Packages -&amp;gt;在Installed Packagesk中输入tree，找到t</p>
+        
     
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="目标"><a href="#目标" class="headerlink" title="目标:"></a>目标:</h2><blockquote>
-<p>掌握 Controller中: render :layout的用法</p>
-</blockquote>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤:"></a>步骤:</h2><h3 id="Step-01-基础用法"><a href="#Step-01-基础用法" class="headerlink" title="Step 01: 基础用法"></a>Step 01: 基础用法</h3><p>Rails预设的布局是app/view/layouts/application.html.erb这个文件。<br>但是有时我们会希望不同页面采用不同的布局，比如后台（admin）和前台(user)使用不同的页面。<br>这时候我们就可以建立一个新的布局app/view/layouts/admin.html.erb</p>
-<p>只要在Controller中指定使用admin布局即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">class AdminsController &lt; ApplicationController</div><div class="line">  layout &quot;admin&quot;</div><div class="line">end</div></pre></td></tr></table></figure></p>
-<h3 id="Step-02-稍微进阶一点的做法："><a href="#Step-02-稍微进阶一点的做法：" class="headerlink" title="Step 02: 稍微进阶一点的做法："></a>Step 02: 稍微进阶一点的做法：</h3><p>我们也可以指定某个action要使用admin布局:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">class AdminsController &lt; ApplicationController</div><div class="line">   layout &quot;admin&quot;, :only =&gt; :new</div><div class="line">   </div><div class="line">   # 另外也可以在render的時候就指定要使用哪一個layout</div><div class="line">   def show</div><div class="line">      render :layout =&gt; &quot;admin&quot;</div><div class="line">   end</div><div class="line"></div><div class="line">   # 甚至可以指定模板再指定layout</div><div class="line">   def index</div><div class="line">    render :template =&gt; &quot;others/weired_topics&quot;, layout: &quot;admin&quot;</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure>
-<h3 id="Step-03-其他技巧"><a href="#Step-03-其他技巧" class="headerlink" title="Step 03: 其他技巧"></a>Step 03: 其他技巧</h3><p>此外为了减少代码的重复，如果后台涉及的controller很多，可以专门在BaseController做完后台所以Controller的父controller，然后仅在BaseController中指定使用admin布局即可。比如：</p>
-<p>参考代码：<a href="https://github.com/Kerzzi/jfshop/tree/master/app/controllers/admin" target="_blank" rel="external">https://github.com/Kerzzi/jfshop/tree/master/app/controllers/admin</a><br><img src="https://ww4.sinaimg.cn/large/006tNc79gy1fgqqwi402xj31ki0pm406.jpg" alt=""></p>
-<figure class="highlight ruby"><figcaption><span>app/controllers/admin/base_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Admin::BaseController</span> &lt; ActionController::Base</span></div><div class="line"></div><div class="line">  <span class="comment"># 布局的位置根据实际修改</span></div><div class="line">  layout <span class="string">'layouts/admin'</span></div><div class="line">  before_action <span class="symbol">:authenticate_user!</span></div><div class="line">  before_action <span class="symbol">:admin_required</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<p>其他Controller的父controller 都是Admin::BaseController</p>
-<figure class="highlight ruby"><figcaption><span>app/controllers/admin/categories_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Admin::CategoriesController</span> &lt; Admin::BaseController</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<figure class="highlight ruby"><figcaption><span>app/controllers/admin/orders_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Admin::OrdersController</span> &lt; Admin::BaseController</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<figure class="highlight ruby"><figcaption><span>app/controllers/admin/product_images_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Admin::ProductImagesController</span> &lt; Admin::BaseController</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<figure class="highlight ruby"><figcaption><span>app/controllers/admin/product_images_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Admin::ProductsController</span> &lt; Admin::BaseController</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
-<h2 id="更多ROR【豆知识】"><a href="#更多ROR【豆知识】" class="headerlink" title="更多ROR【豆知识】:"></a>更多ROR【豆知识】:</h2><blockquote>
-<p>更多ROR【豆知识】请前往：<a href="https://github.com/Kerzzi/ruby_notes/tree/master/04_ROR_beans" target="_blank" rel="external">https://github.com/Kerzzi/ruby_notes/tree/master/04_ROR_beans</a></p>
-</blockquote>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
+    <time datetime="2017-05-12T15:53:00.000Z" itemprop="datePublished">2017-05-12</time>
+  </a>
+</section>
 
 
 
 
 
 
-   
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/05/11/2017-05-11-1819202/" title="【豆知识】mac 4个最常用按键对于的符号" itemprop="url">
+  
+    <h1 itemprop="name">【豆知识】mac 4个最常用按键对于的符号</h1>
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+     
+           <p itemprop="description" >control ⌃option 机械键盘对应的Alt ⌥shift ⇧command ⌘
+使用Alt(option) + 字母键 可以打出特殊符号，如 Alt + G 可以打出 © 。
+
+更多ROR【豆知识】请前往：https://github.com/Kerzzi/ruby_n</p>
+        
     
-      <a href="/2017/05/12/2017-05-12-1825579/" title="【豆知识】如何在Atom中显示.gitignore列表中的文件" itemprop="url">【豆知识】如何在Atom中显示.gitignore列表中的文件</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
-		
-  <p class="article-time">
-    <time datetime="2017-05-12T15:53:00.000Z" itemprop="datePublished"> 发表于 2017-05-12</time>
+    <time datetime="2017-05-11T15:24:00.000Z" itemprop="datePublished">2017-05-11</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/05/09/2017-05-09-extraction-practice-online-meetup-summary-20170509/" title="【提取练习】线上Meetup总结|20170509" itemprop="url">
+  
+    <h1 itemprop="name">【提取练习】线上Meetup总结|20170509</h1>
     
-  </p>
-</header>
-    <div class="article-content">
+     
+           <p itemprop="description" >两最一坑1. Atom中如何让使用竖线辅助代码对齐在Atom中，+ ,```进入设置，点击```Editor```，找到```show indent guide```勾选。1234![](https://ww1.sinaimg.cn/large/006tNbRwgy1fffh0o</p>
         
-        <h2 id="目标"><a href="#目标" class="headerlink" title="目标:"></a>目标:</h2><blockquote>
-<p>在Atom中显示.gitignore列表中的文件</p>
-</blockquote>
-<h2 id="操作"><a href="#操作" class="headerlink" title="操作:"></a>操作:</h2><h3 id="Step-01"><a href="#Step-01" class="headerlink" title="Step 01:"></a>Step 01:</h3><p>打开Atom，然使用快捷键<code>command + ，</code>来打开设置。</p>
-<h3 id="Step-02"><a href="#Step-02" class="headerlink" title="Step 02:"></a>Step 02:</h3><p>Settings -&gt; Packages -&gt;在Installed Packagesk中输入tree，找到tree-view<br><img src="https://ww1.sinaimg.cn/large/006tNc79gy1fgqq6jir5rj317y0tw76g.jpg" alt=""></p>
-<h3 id="Step-03"><a href="#Step-03" class="headerlink" title="Step 03:"></a>Step 03:</h3><p>在tree-view 中找到Settings -&gt; Hide VCS Ignored Files 去掉勾选，大功告成！<br><img src="https://ww1.sinaimg.cn/large/006tNc79gy1fgqq6hz6mdj31820uw78j.jpg" alt=""></p>
-<h2 id="更多ROR【豆知识】"><a href="#更多ROR【豆知识】" class="headerlink" title="更多ROR【豆知识】:"></a>更多ROR【豆知识】:</h2><blockquote>
-<p>更多ROR【豆知识】请前往：<a href="https://github.com/Kerzzi/ruby_notes/tree/master/04_ROR_beans" target="_blank" rel="external">https://github.com/Kerzzi/ruby_notes/tree/master/04_ROR_beans</a></p>
-</blockquote>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+    <time datetime="2017-05-09T14:26:00.000Z" itemprop="datePublished">2017-05-09</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/05/08/2017-05-08-1808017/" title="【提取练习】Git 入门篇（主讲：Nic）" itemprop="url">
+  
+    <h1 itemprop="name">【提取练习】Git 入门篇（主讲：Nic）</h1>
     
-      <a href="/2017/05/11/2017-05-11-1819202/" title="【豆知识】mac 4个最常用按键对于的符号" itemprop="url">【豆知识】mac 4个最常用按键对于的符号</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
-		
-  <p class="article-time">
-    <time datetime="2017-05-11T15:24:00.000Z" itemprop="datePublished"> 发表于 2017-05-11</time>
+     
+           <p itemprop="description" >直播资讯主讲人：Nic老师时间：5月1日20:00时长：本次直播总时长预计37分钟。概要：Nic 老师会在这次直播让你对模糊不清的Git与 Github做一个详细的说明，同时也会学到开发流程与小技巧哦
+
+Git 与 Github 的差异
+Fork &amp;amp; Clone 区别
+P</p>
+        
     
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><img src="https://ww2.sinaimg.cn/large/006tNc79gy1fgqprxz273j30g203oaa3.jpg" alt=""></p>
-<p>control ⌃<br>option 机械键盘对应的Alt ⌥<br>shift ⇧<br>command ⌘</p>
-<p>使用Alt(option) + 字母键 可以打出特殊符号，如 Alt + G 可以打出 © 。</p>
-<blockquote>
-<p>更多ROR【豆知识】请前往：<a href="https://github.com/Kerzzi/ruby_notes/tree/master/04_ROR_beans" target="_blank" rel="external">https://github.com/Kerzzi/ruby_notes/tree/master/04_ROR_beans</a></p>
-</blockquote>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
+    <time datetime="2017-05-08T14:34:00.000Z" itemprop="datePublished">2017-05-08</time>
+  </a>
+</section>
 
 
 
 
 
 
-   
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/05/07/2017-05-07-1805024/" title="【提取练习】学一遍就能把知识焊入大脑的技法（主讲：Xdite）" itemprop="url">
+  
+    <h1 itemprop="name">【提取练习】学一遍就能把知识焊入大脑的技法（主讲：Xdite）</h1>
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+     
+           <p itemprop="description" >Anndo同学的格式非常好，拿来就用！以下基本是摘自Anndo同学的总结，总结写的非常棒！
+直播资讯
+主讲人：Xdite老师时间：5月4日20:00时长：本次直播总时长预计30分钟。概要：Xdite 学一遍就能把知识焊入大脑的技法
+
+直播笔记「如何学一遍就能促成永久记忆？」
+诀窍</p>
+        
     
-      <a href="/2017/05/09/2017-05-09-extraction-practice-online-meetup-summary-20170509/" title="【提取练习】线上Meetup总结|20170509" itemprop="url">【提取练习】线上Meetup总结|20170509</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
-		
-  <p class="article-time">
-    <time datetime="2017-05-09T14:26:00.000Z" itemprop="datePublished"> 发表于 2017-05-09</time>
+    <time datetime="2017-05-07T13:38:00.000Z" itemprop="datePublished">2017-05-07</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/05/07/2017-05-07-1804989/" title="【提取练习】项目管理初步" itemprop="url">
+  
+    <h1 itemprop="name">【提取练习】项目管理初步</h1>
     
-  </p>
-</header>
-    <div class="article-content">
+     
+           <p itemprop="description" >这是Xdite老师的分享，项目管理基础篇，提取如下。
+1-如何打赢 Hackathon （全）1-1 赢得冠军的关键是什么
+投影片牛逼！（有一定的PS技巧）
+
+以前认为赢得冠军的关键。
+代码完美
+IDEA牛逼。
+
+折中做法
+牛逼PPT优先
+点子要好
+代码还行
+
+1-2 Hacka</p>
         
-        <h2 id="两最一坑"><a href="#两最一坑" class="headerlink" title="两最一坑"></a>两最一坑</h2><h3 id="1-Atom中如何让使用竖线辅助代码对齐"><a href="#1-Atom中如何让使用竖线辅助代码对齐" class="headerlink" title="1. Atom中如何让使用竖线辅助代码对齐"></a>1. Atom中如何让使用竖线辅助代码对齐</h3><p>在Atom中，<figure class="highlight plain"><figcaption><span>+ ,```进入设置，点击```Editor```，找到```show indent guide```勾选。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">![](https://ww1.sinaimg.cn/large/006tNbRwgy1fffh0o8ucbg30yx0k4dle.gif)</div><div class="line"></div><div class="line">### 2. 在终端让commit从前往后排练（逆序排序）</div><div class="line">输入这条代码  ```git log --reverse</div></pre></td></tr></table></figure></p>
-<p><a href="http://stackoverflow.com/questions/5188914/how-to-show-first-commit-by-git-log" target="_blank" rel="external">http://stackoverflow.com/questions/5188914/how-to-show-first-commit-by-git-log</a></p>
-<h3 id="3-如何抓取github上的分支"><a href="#3-如何抓取github上的分支" class="headerlink" title="3. 如何抓取github上的分支"></a>3. 如何抓取github上的分支</h3><p>如何抓取github上的分支<code>Git fetch origin + 最新分支的名稱</code>。</p>
-<h3 id="4-几个全栈营常用的Chrome插件"><a href="#4-几个全栈营常用的Chrome插件" class="headerlink" title="4. 几个全栈营常用的Chrome插件"></a>4. 几个全栈营常用的Chrome插件</h3><p><a href="http://kerzzi.logdown.com/posts/1803586" target="_blank" rel="external">几个全栈营常用的Chrome插件</a>：<a href="http://kerzzi.logdown.com/posts/1803586。" target="_blank" rel="external">http://kerzzi.logdown.com/posts/1803586。</a></p>
-<h3 id="5-两个Atom快捷键"><a href="#5-两个Atom快捷键" class="headerlink" title="5. 两个Atom快捷键"></a>5. 两个Atom快捷键</h3><p>在Atom中，<code>Command + shift + enter</code> 向上插入一行； <code>command + enter</code> 向下插入一行；无视光标的位置。</p>
-<h3 id="6-一个可以更清晰显示错误讯息的gem套件"><a href="#6-一个可以更清晰显示错误讯息的gem套件" class="headerlink" title="6. 一个可以更清晰显示错误讯息的gem套件"></a>6. 一个可以更清晰显示错误讯息的gem套件</h3><p><code>gem ‘better_errors’</code>一个可以更清晰显示错误讯息的套件<br> <code>bundle install</code> 后，重新rails s 就可以看到效果啦!</p>
-<h3 id="7-《程序员的思维修炼》"><a href="#7-《程序员的思维修炼》" class="headerlink" title="7.《程序员的思维修炼》"></a>7.《程序员的思维修炼》</h3><p>推荐一本书，《程序员的思维修炼》。</p>
-<h3 id="8-保持好奇心，不懂的地方多Google。"><a href="#8-保持好奇心，不懂的地方多Google。" class="headerlink" title="8.保持好奇心，不懂的地方多Google。"></a>8.保持好奇心，不懂的地方多Google。</h3><p>###9 .学会营销自己，世界很大，人很多，你不告诉我，我就很难认识你。</p>
-<h2 id="Q-amp-A环节"><a href="#Q-amp-A环节" class="headerlink" title="Q&amp;A环节"></a>Q&amp;A环节</h2><ol>
-<li>下图终端partial为什么不能简写为 <code>&lt;%= render ”resume“ %&gt;</code>。以及 <code>:as =&gt; :resume</code>的含义。<br><img src="https://ww1.sinaimg.cn/large/006tNbRwgy1fffgxmdnx6j31kw13had9.jpg" alt=""><br><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1fffgxtl0zfj31kw13cae9.jpg" alt=""></li>
-</ol>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+    <time datetime="2017-05-07T12:59:00.000Z" itemprop="datePublished">2017-05-07</time>
+  </a>
+</section>
+
+
+
+
+
+
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/05/07/2017-05-07-1803586/" title="本周最棒的概念或工具 05/01-05/07" itemprop="url">
+  
+    <h1 itemprop="name">本周最棒的概念或工具 05/01-05/07</h1>
     
-      <a href="/2017/05/08/2017-05-08-1808017/" title="【提取练习】Git 入门篇（主讲：Nic）" itemprop="url">【提取练习】Git 入门篇（主讲：Nic）</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
-		
-  <p class="article-time">
-    <time datetime="2017-05-08T14:34:00.000Z" itemprop="datePublished"> 发表于 2017-05-08</time>
+     
+           <p itemprop="description" >最棒的概念如何改变自己的成长速度？
+总结
+
+把时间耗在重要的事情与人身上.
+工作与生活不可能平衡。所以需要的方向是把自己的时间「投资」出「美丽人生」。
+检视身边的朋友与亲戚与工作伙伴。谁是「消费者」，谁是「投资的对象」。
+
+消费者 = 只消费你的能量。也许可以得到快感。但是无法学</p>
+        
     
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="直播资讯"><a href="#直播资讯" class="headerlink" title="直播资讯"></a>直播资讯</h2><p>主讲人：Nic老师<br>时间：5月1日20:00<br>时长：本次直播总时长预计37分钟。<br>概要：Nic 老师会在这次直播让你对模糊不清的Git与 Github做一个详细的说明，同时也会学到开发流程与小技巧哦</p>
-<ul>
-<li>Git 与 Github 的差异</li>
-<li>Fork &amp; Clone 区别</li>
-<li>Pull Request 用法</li>
-<li>工具 Source Tree</li>
-<li>观摩 Nic 的开发流程</li>
-</ul>
-<h2 id="直播笔记"><a href="#直播笔记" class="headerlink" title="直播笔记"></a>直播笔记</h2><h3 id="Git-与-Github-的差异"><a href="#Git-与-Github-的差异" class="headerlink" title="Git 与 Github 的差异"></a>Git 与 Github 的差异</h3><ul>
-<li>Git是一种工具（时光机）。</li>
-<li>Github是一个代码托管仓库。</li>
-</ul>
-<h3 id="Fork-amp-Clone-区别"><a href="#Fork-amp-Clone-区别" class="headerlink" title="Fork &amp; Clone 区别"></a>Fork &amp; Clone 区别</h3><ul>
-<li><p>Fork，直接建立一个一样的Project在仓库上，管理者是你，但是进度不会与原作者同步，需要自行更新，用意是共同协作开源代码。</p>
-</li>
-<li><p>Clone，只是单纯复制代码到机器上，并会把仓库地址复制下来。</p>
-</li>
-</ul>
-<h3 id="Pull-Request-用法"><a href="#Pull-Request-用法" class="headerlink" title="Pull Request 用法"></a>Pull Request 用法</h3><ul>
-<li>Pull Request发送代码合并请求给原作者，用意是可以开发开源项目。</li>
-</ul>
-<p>几个git命令：</p>
-<p>git remote -v 查看远程库<br>git checkout . 将互动删掉</p>
-<h3 id="工具-Source-Tree"><a href="#工具-Source-Tree" class="headerlink" title="工具 Source Tree"></a>工具 Source Tree</h3><p>还是蛮好用的！图形化git的工具。</p>
-<p><img src="https://ww4.sinaimg.cn/large/006tNbRwgy1fffdvbyx2tj31kw11udo6.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/全栈营/">全栈营</a>
-</div>
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
+    <time datetime="2017-05-07T03:35:00.000Z" itemprop="datePublished">2017-05-07</time>
+  </a>
+</section>
 
 
 
 
 
 
-   
+  
+<section class="post" itemscope itemprop="blogitem">
+  
+    <a href="/2017/05/07/2017-05-07-1803229/" title="本周遇到的最大的坑 05/01-05/07" itemprop="url">
+  
+    <h1 itemprop="name">本周遇到的最大的坑 05/01-05/07</h1>
     
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
+     
+           <p itemprop="description" >没有保护好自己的注意力这周我工作上与我关系不大的一个问题，我却花费了大量的时间在其上面，从周二到周五都是在围绕这件是忙碌，导致我职责之内的工作项目，本周基本没有进展，而下2周会陆续有5个小项目到期！没有做好项目管理（Xdite老师的项目管理基础到现在还没有看！）。本周不仅工作中忙</p>
+        
     
-      <a href="/2017/05/07/2017-05-07-1805024/" title="【提取练习】学一遍就能把知识焊入大脑的技法（主讲：Xdite）" itemprop="url">【提取练习】学一遍就能把知识焊入大脑的技法（主讲：Xdite）</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
-		
-  <p class="article-time">
-    <time datetime="2017-05-07T13:38:00.000Z" itemprop="datePublished"> 发表于 2017-05-07</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p><a href="http://anndo-blog.logdown.com/" target="_blank" rel="external">Anndo同学的格式非常好，拿来就用！</a><br>以下基本是摘自<a href="http://anndo-blog.logdown.com/posts/1790227" target="_blank" rel="external">Anndo同学的总结</a>，总结写的非常棒！</p>
-<h2 id="直播资讯"><a href="#直播资讯" class="headerlink" title="直播资讯"></a>直播资讯</h2><blockquote>
-<p>主讲人：Xdite老师<br>时间：5月4日20:00<br>时长：本次直播总时长预计30分钟。<br>概要：Xdite 学一遍就能把知识焊入大脑的技法</p>
-</blockquote>
-<h2 id="直播笔记"><a href="#直播笔记" class="headerlink" title="直播笔记"></a>直播笔记</h2><h3 id="「如何学一遍就能促成永久记忆？」"><a href="#「如何学一遍就能促成永久记忆？」" class="headerlink" title="「如何学一遍就能促成永久记忆？」"></a>「如何学一遍就能促成永久记忆？」</h3><blockquote>
-<p><strong>诀窍：</strong>「提取练习」，学到一件事就马上（<strong>用手！</strong>）写下要点，并复述给别人听（我的小黄鸭也可以）。</p>
-<p><strong>原理：</strong><br>不能只有「输入」，这是一般人的通病。如果只有输入，知识进了大脑就会挥发。<br>要能有效记忆，必须以「输出」为前提。以「输出」为目标去学习，找资料，才能有结构地找资料。<br>“输出=输出+输入”（因为听到自己复述的声音，等同于再输入一遍），而为为要讲讲别人听，大脑会形成「链接」，起码可以记3天。讲越多遍，记忆越深刻。<br>写文章，教别人。别人会忘记，但你会记得！</p>
-</blockquote>
-<h3 id="「要如何开始？」"><a href="#「要如何开始？」" class="headerlink" title="「要如何开始？」"></a>「要如何开始？」</h3><blockquote>
-<p>Xdite老师提供的新ORID写法：利用16格笔记，O，R，I，D各写4列。<br>人类面对电脑时，思绪容易飘散;如果是面对有格子的白纸，有利于让思绪集中，清晰。</p>
-</blockquote>
-<h3 id="「如何达成目标？方法是什么？」"><a href="#「如何达成目标？方法是什么？」" class="headerlink" title="「如何达成目标？方法是什么？」"></a>「如何达成目标？方法是什么？」</h3><blockquote>
-<ul>
-<li><p>针对大项目拟定计划：<br>短期目标，再一一写步骤。写的过程中会发现需要做，不需要的事。<br>拖延症：因为恐惧未知，心里会形成负担但当「未知」变成「已知」时，会比较有把握（知道自己怎么作，花的时间，优先度）。</p>
-</li>
-<li><p>「三大要点，五个小点」：先要写一个大要点，三到五个小点，让大脑暖机（例如。老师的讲稿，看标题提取记忆，内容在写下讲稿时就已经逐渐连成记忆了。）<br>先写文字稿再作幻灯片，不然容易绊倒。<br>人是可以控制自己的意识流的，关键在让大脑降速：打草稿，写笔记。</p>
-</li>
-</ul>
-</blockquote>
-<h3 id="「面对很多项目怎么办？」"><a href="#「面对很多项目怎么办？」" class="headerlink" title="「面对很多项目怎么办？」"></a>「面对很多项目怎么办？」</h3><blockquote>
-<ul>
-<li>一口气在纸上列下To-do List，分为：近期，远期，先作小项目。</li>
-<li>用手跟用笔！用手跟用笔！用手跟用笔！（再次强调）</li>
-</ul>
-</blockquote>
-<h3 id="「大家都是刚学，零基础，为什么有些人冲很前面？」"><a href="#「大家都是刚学，零基础，为什么有些人冲很前面？」" class="headerlink" title="「大家都是刚学，零基础，为什么有些人冲很前面？」"></a>「大家都是刚学，零基础，为什么有些人冲很前面？」</h3><blockquote>
-<ul>
-<li>这些人可能每天作一，两件事，如果你慌张，或做不到，可能是你没有计划。请在直播后马上行动！<br>（例如。陈慧娟学术，只字不差地践行Xdite老师的话。）</li>
-</ul>
-</blockquote>
-<h3 id="“关于创业，Xdite老师一开始是怎么起步的？”"><a href="#“关于创业，Xdite老师一开始是怎么起步的？”" class="headerlink" title="“关于创业，Xdite老师一开始是怎么起步的？”"></a>“关于创业，Xdite老师一开始是怎么起步的？”</h3><blockquote>
-<ul>
-<li><p>「资金，团队」是一个错误的假设，所谓「创业成功，初期存活」的定义是：<strong>你要赚到钱，而不是作出产品因为你不一定要产品才能赚到钱。</strong></p>
-</li>
-<li><p><strong>产品市场适合很重要。你做出的产品，市场愿意付你钱，然后再用这笔钱投资自己。</strong></p>
-</li>
-<li><p><strong>毛利要高！</strong><br>毛利率（$ 100）/售价（$ 100）= 70（70美元）/售价（$ 100）= 70 ％毛利率。<br>毛利率最好要大于50％，这样不用有必要销出很多的压力，或者是因为争取渠道而被迫降低售价。<br>不应该让售价接近成本价，会入不敷出，养不起人，挫败感很大。</p>
-</li>
-<li><p><strong>做产品三个大条件</strong></p>
-</li>
-<li>专家：你必须要是该领域的专家。</li>
-<li>或 市场稀缺，在本地市场尚未被满足，这样即使不是专家，也还是有机会。</li>
-<li><p>察觉市场变动：观察到即将出现的需求。</p>
-</li>
-<li><p>靠创投是不靠谱的。为了得到投资而硬挤出假数据，报告，无助于真正的产品生长，也不可能养出好的团队。</p>
-</li>
-<li><p><strong>创投倾向投资A轮公司</strong>，种子轮项目不吃香，因为没有项目指标（符合市场的产品）。</p>
-</li>
-<li><p><strong>文化很重要</strong>：有理念的产品才能吸引相同理念的人加入。全栈营团队的使命感。虽然大家不是资深工程师，但靠着使命感还是能互相帮助，尽全力打造好产品。）没理念，会导致各种坑（内斗，只在乎福利等等），企业无法延续生命。</p>
-</li>
-<li><p>Landing Page：：开宗明义说要卖产品，收钱，如果没人理你，表示不是一个坚实的主意，没戏。说明要求开班授课。得到回响，借此找到市场需求。</p>
-</li>
-<li>如果Landing Page失败，至少不会浪费宝贵的生命和时间。</li>
-</ul>
-</blockquote>
-<h3 id="问答笔"><a href="#问答笔" class="headerlink" title="问答笔"></a>问答笔</h3><blockquote>
-<ul>
-<li><p>Q：Xdite老师，在做魔改大赛中发现自己的基础还是不扎实，是不是应该多做几遍rails101呢？<br>A：不要回去练Rails101！重新写会掉入一个陷阱：直接放弃，你要做的事情是：写下你“差的地方”，写10个。接着去找对应的教材，一个个学，一个个划掉。不要一直「重练基础」，重来不会比较好，你要作的是改正缺点！（珍惜生命）<strong>我的英语学习就是这样！不要一直练习基础！</strong></p>
-</li>
-<li><p>Q：网页部署在Heroku网速很慢。<br>A：之后会教青云，阿里云的部署，目前请先将就Heroku。不要浪费时间折腾别的，只会增加挫折感，教材的编排是有道理的。</p>
-</li>
-<li><p>Q：如何显示PPT？<br>A：拆解思路：<br>把原档放上去（X），将PDF拆成图片（O）<br>找Gem帮你拆图<br>再找有没有外挂可以轮播图</p>
-</li>
-<li><p>Q：有没有学好CSS的捷径？<br>A：CSS没有捷径，最快的方式就是改你自己想要的功能。千万不要回去看书，你会崩溃！请直接抄别人的，然后微调观察类属性在干麻.Box（Padding，Margin ）是必学。</p>
-</li>
-<li><p>Q：怎么样作移动端的自适应？<br>A：用关键字“Bootstrap RWD”搜寻，可以找到移动端自适应的资源。</p>
-</li>
-</ul>
-</blockquote>
-<h2 id="本次直播延伸阅读："><a href="#本次直播延伸阅读：" class="headerlink" title="本次直播延伸阅读："></a>本次直播延伸阅读：</h2><ul>
-<li><a href="http://www.books.com.tw/products/0010446161" target="_blank" rel="external">&lt;脑能量整理术 - 提高你的创意力、行动力、解决力&gt;</a></li>
-<li><a href="http://www.books.com.tw/products/0010651050" target="_blank" rel="external">&lt;从0到1：打开世界运作的未知秘密，在意想不到之处发现价值&gt;</a>（零到一）：如何从小市场开始垄断。</li>
-<li><a href="http://open.163.com/special/opencourse/startup.html" target="_blank" rel="external">&lt;斯坦福创业课&gt;</a>：建议看原版影片和讲稿「闪电式扩张（Blitzscaling）」的概念。</li>
-<li>MJ老师课程推荐：教你看财报，对数字有概念。</li>
-</ul>
+    <time datetime="2017-05-07T02:08:00.000Z" itemprop="datePublished">2017-05-07</time>
+  </a>
+</section>
 
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
 
 
-</div>
 
 
 
 
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/05/07/2017-05-07-1804989/" title="【提取练习】项目管理初步" itemprop="url">【提取练习】项目管理初步</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
-		
-  <p class="article-time">
-    <time datetime="2017-05-07T12:59:00.000Z" itemprop="datePublished"> 发表于 2017-05-07</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>这是<a href="https://fullstack.xinshengdaxue.com/courses/32/syllabus" target="_blank" rel="external">Xdite老师的分享</a>，项目管理基础篇，提取如下。</p>
-<h2 id="1-如何打赢-Hackathon-（全）"><a href="#1-如何打赢-Hackathon-（全）" class="headerlink" title="1-如何打赢 Hackathon （全）"></a>1-如何打赢 Hackathon （全）</h2><h3 id="1-1-赢得冠军的关键是什么"><a href="#1-1-赢得冠军的关键是什么" class="headerlink" title="1-1 赢得冠军的关键是什么"></a>1-1 赢得冠军的关键是什么</h3><ul>
-<li>投影片牛逼！（有一定的PS技巧）</li>
-</ul>
-<h4 id="以前认为赢得冠军的关键。"><a href="#以前认为赢得冠军的关键。" class="headerlink" title="以前认为赢得冠军的关键。"></a>以前认为赢得冠军的关键。</h4><ul>
-<li>代码完美</li>
-<li>IDEA牛逼。</li>
-</ul>
-<h4 id="折中做法"><a href="#折中做法" class="headerlink" title="折中做法"></a>折中做法</h4><ul>
-<li>牛逼PPT优先</li>
-<li>点子要好</li>
-<li>代码还行</li>
-</ul>
-<h3 id="1-2-Hackathon和好产品有什么共同之处"><a href="#1-2-Hackathon和好产品有什么共同之处" class="headerlink" title="1-2 Hackathon和好产品有什么共同之处"></a>1-2 Hackathon和好产品有什么共同之处</h3><p><img src="https://ww2.sinaimg.cn/large/006tNbRwgy1ffd2jz3h2gj31260imgo3.jpg" alt=""></p>
-<p><img src="https://ww4.sinaimg.cn/large/006tNbRwgy1ffd2l7x7x1j30xq0aqmxz.jpg" alt=""></p>
-<h3 id="1-3-为什么要进行时间管理"><a href="#1-3-为什么要进行时间管理" class="headerlink" title="1-3 为什么要进行时间管理"></a>1-3 为什么要进行时间管理</h3><p>Hackathon比赛的关键：<br><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1ffd2n5zngnj30o40eudh0.jpg" alt=""></p>
-<p>过去输了的原因：<br><img src="https://ww4.sinaimg.cn/large/006tNbRwgy1ffd2oi2pguj30ta0eojsb.jpg" alt=""></p>
-<p>时间管理：<br><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1ffd2pv2355j312a0rwwhv.jpg" alt=""></p>
-<p><strong>7个小时我只写了1个功能！</strong></p>
-<p>因为 <strong>莫非定律：时间不够会导致3倍出错率。</strong></p>
-<h3 id="1-4-如何进行时间管理"><a href="#1-4-如何进行时间管理" class="headerlink" title="1-4 如何进行时间管理"></a>1-4 如何进行时间管理</h3><p>只找了一个比较菜的队友，以便可以主导比赛，太多优秀的人容易有产生意见不一致。<br><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1ffd2tdt6akj30w00bgab1.jpg" alt=""><br><img src="https://ww2.sinaimg.cn/large/006tNbRwgy1ffd2tt7tnqj30pi07awey.jpg" alt=""><br><strong>12点做完后，有个战略意义，打击他人的自信心。</strong><br><img src="https://ww4.sinaimg.cn/large/006tNbRwgy1ffd2u03yt6j30rk0bu3zj.jpg" alt=""></p>
-<p>找多个人实际测试！尽快发现少数人发现不了的BUG。<br><img src="https://ww1.sinaimg.cn/large/006tNbRwgy1ffd2wcv1kej30uy0fqjs5.jpg" alt=""></p>
-<p><strong>用Landing Page是因为别人可能并不知道你在做什么</strong>。<br><strong>投影片排练多遍，这很重要。</strong></p>
-<h3 id="1-5-其他人如何搞砸"><a href="#1-5-其他人如何搞砸" class="headerlink" title="1-5 其他人如何搞砸"></a>1-5 其他人如何搞砸</h3><p>我们获胜的关键：<br><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1ffd2yyxdzqj311i0s4q5w.jpg" alt=""></p>
-<p>其他人是如何搞砸的：<br><img src="https://ww2.sinaimg.cn/large/006tNbRwgy1ffd3094ke3j312o0swq65.jpg" alt=""></p>
-<p>牛逼队友想法太多！功能没有做完！</p>
-<p><img src="https://ww1.sinaimg.cn/large/006tNbRwgy1ffd31ne8s9j311u0sk0vf.jpg" alt=""></p>
-<p>12点前完成！留2个小时做彩排！</p>
-<p><strong>Xdite的项目管理习惯：</strong><br>以一个项目给定3个月时限为例：<br><img src="https://ww4.sinaimg.cn/large/006tNbRwgy1ffd33wueyhj30s20dgmxy.jpg" alt=""><br><img src="https://ww1.sinaimg.cn/large/006tNbRwgy1ffd35snvk1j30ig0huabb.jpg" alt=""><br><img src="https://ww2.sinaimg.cn/large/006tNbRwgy1ffd36701sej30xi0jmtao.jpg" alt=""></p>
-<p>其实我现在的很多工作都可以这样管理！砍掉1/3的时间！</p>
-<h3 id="1-6-定义什么是成功"><a href="#1-6-定义什么是成功" class="headerlink" title="1-6 定义什么是成功"></a>1-6 定义什么是成功</h3><p><img src="https://ww2.sinaimg.cn/large/006tNbRwgy1ffd387xw3tj30j40jewfp.jpg" alt=""><br>成功不是你做的产品多么牛逼！</p>
-<p><strong>项目是活的！你能抓住的只是你定义的 “成功” ！然后尽可能的去逼近 “成功”。</strong></p>
-<h3 id="1-7-管理项目的worst-practice和best-practice"><a href="#1-7-管理项目的worst-practice和best-practice" class="headerlink" title="1-7 管理项目的worst practice和best practice"></a>1-7 管理项目的worst practice和best practice</h3><p>普通人的项目管理：<br><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1ffd3dbs3t8j30g00ig0tf.jpg" alt=""></p>
-<p>好的项目管理人员，要套路深！<br>接到1一个项目，告诉团队成员时，先砍掉1/3的时间！<br><img src="https://ww4.sinaimg.cn/large/006tNbRwgy1ffd3ezvx2uj312k056wfe.jpg" alt=""><br>把时间用在有意义的事情上，而不是不停的失火和救火！</p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/05/07/2017-05-07-1803586/" title="本周最棒的概念或工具 05/01-05/07" itemprop="url">本周最棒的概念或工具 05/01-05/07</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
-		
-  <p class="article-time">
-    <time datetime="2017-05-07T03:35:00.000Z" itemprop="datePublished"> 发表于 2017-05-07</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="最棒的概念"><a href="#最棒的概念" class="headerlink" title="最棒的概念"></a>最棒的概念</h2><p>如何改变自己的成长速度？</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
-<ol>
-<li>把时间耗在重要的事情与人身上.</li>
-<li>工作与生活不可能平衡。<strong>所以需要的方向是把自己的时间「投资」出「美丽人生」</strong>。</li>
-<li>检视身边的朋友与亲戚与工作伙伴。谁是「消费者」，谁是「投资的对象」。</li>
-</ol>
-<p>消费者 = 只消费你的能量。也许可以得到快感。但是无法学到新东西，也无法得到新反馈。<br>投资的对象 =  能不停的学到新东西，可以得到对自己成长的新反馈。</p>
-<ol>
-<li>思考谁只是消费者，谁是值得投资的对象。</li>
-<li><strong>放弃「讨人喜欢」的念头，你没那么多精力</strong>。<br><img src="https://ww2.sinaimg.cn/large/006tNbRwgy1ffckzku9l2j31400u0wk4.jpg" alt=""></li>
-</ol>
-</blockquote>
-<h2 id="最棒的工具"><a href="#最棒的工具" class="headerlink" title="最棒的工具"></a>最棒的工具</h2><h3 id="几个全栈营常用的Chrome插件"><a href="#几个全栈营常用的Chrome插件" class="headerlink" title="几个全栈营常用的Chrome插件"></a>几个全栈营常用的Chrome插件</h3><h4 id="1-RSS-Feed-Reader"><a href="#1-RSS-Feed-Reader" class="headerlink" title="1. RSS Feed Reader"></a>1. <a href="https://chrome.google.com/webstore/detail/rss-feed-reader/pnjaodmkngahhkoihejjehlcdlnohgmp" target="_blank" rel="external">RSS Feed Reader</a></h4><p>非常好用的订阅器，可以订阅你喜欢的博客或者网站。<br><img src="https://ww1.sinaimg.cn/large/006tNbRwgy1ffcm1mh6fgj31ao13uqbi.jpg" alt=""><br>使用feedly桌面版和网页版也有同样效果，不过RSS Feed Reader更为方便。<br><img src="https://ww1.sinaimg.cn/large/006tNbRwgy1ffcm0po69jj31kw1hd7bn.jpg" alt=""></p>
-<h4 id="2-Page-Ruler"><a href="#2-Page-Ruler" class="headerlink" title="2. Page Ruler"></a>2. <a href="https://chrome.google.com/webstore/detail/page-ruler/jlpkojjdgbllmedoapgfodplfhcbnbpn" target="_blank" rel="external">Page Ruler</a></h4><p>前端设计必备的插件之一，可以直观显示页面某区块尺寸、相对位置等。<br><img src="https://ww1.sinaimg.cn/large/006tNbRwgy1ffcmfls0yvj31kw1pf1kx.jpg" alt=""></p>
-<h4 id="3-Wappalyzer"><a href="#3-Wappalyzer" class="headerlink" title="3. Wappalyzer"></a>3. <a href="https://chrome.google.com/webstore/detail/wappalyzer/gppongmhjkpfnbhagpmjfkannfbllamg" target="_blank" rel="external">Wappalyzer</a></h4><p>用来分析网站上用了哪些语言和接口。如我的小网站：<br><img src="https://ww2.sinaimg.cn/large/006tNbRwgy1ffcmje97lgg30z10mptpc.gif" alt=""></p>
-<h4 id="4-Web-Developer"><a href="#4-Web-Developer" class="headerlink" title="4. Web Developer"></a>4. <a href="https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm" target="_blank" rel="external">Web Developer</a></h4><p>功能强大，不太会用，但是很多人推荐。<br><img src="https://ww2.sinaimg.cn/large/006tNbRwgy1ffcmnak6epg30hh0amamv.gif" alt=""></p>
-<h4 id="5-Pesticide-for-Chrome"><a href="#5-Pesticide-for-Chrome" class="headerlink" title="5. Pesticide for Chrome"></a>5. <a href="https://chrome.google.com/webstore/detail/pesticide-for-chrome/bblbgcheenepgnnajgfpiicnbbdmmooh" target="_blank" rel="external">Pesticide for Chrome</a></h4><p>同样是前端设计必备的插件之一，显示所有元素的区块。<br><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1ffcmrjkl8ng30hr0ak44b.gif" alt=""></p>
-<h4 id="6-SimilarWeb-网站流量来源和排名"><a href="#6-SimilarWeb-网站流量来源和排名" class="headerlink" title="6. SimilarWeb - 网站流量来源和排名"></a>6. <a href="https://chrome.google.com/webstore/detail/similarweb-site-traffic-s/hoklmmgfnpapgjgcpechhaamimifchmp" target="_blank" rel="external">SimilarWeb - 网站流量来源和排名</a></h4><p>通过SimilarWeb扩展程序查看真实的深入网站参与、流量来源和网站排名信息。比如查看自己的logdown有多少人访问。<br><img src="https://ww1.sinaimg.cn/large/006tNbRwgy1ffckyvnpcqj311o0wwwfk.jpg" alt=""></p>
-<h4 id="7-Site-Spider"><a href="#7-Site-Spider" class="headerlink" title="7. Site Spider"></a>7. <a href="https://chrome.google.com/webstore/detail/site-spider-mark-ii/gedjofgioahckekhpgknhchelbpdogok" target="_blank" rel="external">Site Spider</a></h4><p>如果你需要找到你的网站的失效链接，想限制搜索一个特定的目录，你需要Site Spider。<br>以我的<a href="https://hidden-ridge-66720.herokuapp.com/" target="_blank" rel="external">小网站</a>为例。<br><img src="https://ww2.sinaimg.cn/large/006tNbRwgy1ffcn08fhx8j31kw1q0h5g.jpg" alt=""></p>
-<h4 id="8-Stylebot"><a href="#8-Stylebot" class="headerlink" title="8. Stylebot"></a>8. <a href="https://chrome.google.com/webstore/detail/stylebot/oiaejidbmkiecgbjeifoejpgmdaleoha" target="_blank" rel="external">Stylebot</a></h4><p>一个CSS查看和更改插件，后面还有个类似的。<br><img src="https://ww1.sinaimg.cn/large/006tNbRwgy1ffcmwervysg30hr0ak47i.gif" alt=""></p>
-<h4 id="9-印象笔记·剪藏"><a href="#9-印象笔记·剪藏" class="headerlink" title="9. 印象笔记·剪藏"></a>9. <a href="https://chrome.google.com/webstore/detail/evernote-web-clipper/pioclpoplcdbaefihamjohnefbikjilc" target="_blank" rel="external">印象笔记·剪藏</a></h4><p>一键保存网页，搜集资料快 5 倍。一键保存网页到印象笔记，即时同步到你的手机和电脑，不用复制粘贴编辑再整理。<br><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1ffcl1k56kzj30zm0m4ad4.jpg" alt=""></p>
-<h4 id="10-Save-to-Pocket"><a href="#10-Save-to-Pocket" class="headerlink" title="10. Save to Pocket"></a>10. <a href="https://chrome.google.com/webstore/detail/save-to-pocket/niloccemoadcdkdjlinkgdfekeahmflj" target="_blank" rel="external">Save to Pocket</a></h4><p>在手机和Mac上安装了Pocket之后，就可以将想看的网页收集起来，然后零散时间阅读。<br><img src="https://ww2.sinaimg.cn/large/006tNbRwgy1ffcl3w0l1yj30zc0lw44d.jpg" alt=""></p>
-<h4 id="11-Markdown-Here"><a href="#11-Markdown-Here" class="headerlink" title="11. Markdown Here"></a>11. <a href="https://chrome.google.com/webstore/detail/markdown-here/elifhakcjgalahccnjkneoccemfahfoa" target="_blank" rel="external">Markdown Here</a></h4><p>这个好多同学都在用，Markdown Here允许你在发送电子邮件之前用Markdown语法编辑并转换它(让它看起来漂亮极了!)。之前李笑来老师也有推荐过，它特别适合那些要在电子邮件中插入代码的程序员们。<br><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1ffcl88sh9hj30yk0lwaic.jpg" alt=""></p>
-<h4 id="12-Vimium"><a href="#12-Vimium" class="headerlink" title="12. Vimium"></a>12. <a href="https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb" target="_blank" rel="external">Vimium</a></h4><p>Vimium安装完成后，按shift + F 可以查看该网页的快捷键，喜欢快捷键的朋友的福音！<br><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1ffclc4hbutj31kw1eitcc.jpg" alt=""></p>
-<h4 id="13-Full-Page-Screen-Capture"><a href="#13-Full-Page-Screen-Capture" class="headerlink" title="13. Full Page Screen Capture"></a>13. <a href="https://chrome.google.com/webstore/detail/full-page-screen-capture/fdpohaocaechififmbbbbbknoalclacl" target="_blank" rel="external">Full Page Screen Capture</a></h4><p>与snip的滚动截屏类似，这也是个滚动截屏插件。<br><img src="https://ww4.sinaimg.cn/large/006tNbRwgy1ffclec1to9j30ng0h83yx.jpg" alt=""></p>
-<h4 id="14-Octotree"><a href="#14-Octotree" class="headerlink" title="14. Octotree"></a>14. <a href="https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc" target="_blank" rel="external">Octotree</a></h4><p>这个基本程序员必备了，没啥好说的，可以树状图显示git上的项目。如下：<br><img src="https://ww4.sinaimg.cn/large/006tNbRwgy1ffclgqpxk7j31kw1luwj5.jpg" alt=""></p>
-<h4 id="15-CSSViewer"><a href="#15-CSSViewer" class="headerlink" title="15. CSSViewer"></a>15. <a href="https://chrome.google.com/webstore/detail/cssviewer/ggfgijbpiheegefliciemofobhmofgce" target="_blank" rel="external">CSSViewer</a></h4><p>也算是前端必备，可以快速显示页面上某个元素的CSS样式。<br><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1ffclji4f1bj31kw19jhcg.jpg" alt=""></p>
-<h4 id="16-Responsive-Web-Design-Tester"><a href="#16-Responsive-Web-Design-Tester" class="headerlink" title="16. Responsive Web Design Tester"></a>16. <a href="https://chrome.google.com/webstore/detail/responsive-web-design-tes/objclahbaimlfnbjdeobicmmlnbhamkg" target="_blank" rel="external">Responsive Web Design Tester</a></h4><p>可以显示你的网站在不同尺寸设备上的效果，非常方便，全栈营必备了。<br>安装后在网页上点击右键即可选择不同设备。<br><img src="https://ww4.sinaimg.cn/large/006tNbRwgy1ffcm8ain7aj31kw1ivtob.jpg" alt=""></p>
-<h4 id="17-ColorPick-Eyedropper"><a href="#17-ColorPick-Eyedropper" class="headerlink" title="17. ColorPick Eyedropper"></a>17. <a href="https://chrome.google.com/webstore/detail/colorpick-eyedropper/ohcpnigalekghcmgcdcenkpelffpdolg" target="_blank" rel="external">ColorPick Eyedropper</a></h4><p>前端设计时经常用到的一个取色器插件，比系统自带的方便点，<br><img src="https://ww3.sinaimg.cn/large/006tNbRwgy1ffcmalhahvg30z10epgu9.gif" alt=""></p>
-<h4 id="18-Firebug-Lite-for-Google-Chrome™"><a href="#18-Firebug-Lite-for-Google-Chrome™" class="headerlink" title="18. Firebug Lite for Google Chrome™"></a>18. <a href="https://chrome.google.com/webstore/detail/firebug-lite-for-google-c/bmagokdooijbeehmkpknfglimnifench" target="_blank" rel="external">Firebug Lite for Google Chrome™</a></h4><p>类似谷歌开发者工具的一个插件。<br><img src="https://ww1.sinaimg.cn/large/006tNbRwgy1ffcn2lntdpg30hn0ardnz.gif" alt=""></p>
-<h4 id="19-SelectorGadget"><a href="#19-SelectorGadget" class="headerlink" title="19. SelectorGadget"></a>19. <a href="https://chrome.google.com/webstore/detail/selectorgadget/mhjhnkcfbdhnjickkkdbjoemdmbfginb?hl=zh-CN" target="_blank" rel="external">SelectorGadget</a></h4><p><a href="http://selectorgadget.com/" target="_blank" rel="external">官方的介绍</a>：SelectorGadget可以在复杂的网站上生成和发现CSS选择器。只需安装Chrome扩展或拖动书签到您的书签栏，然后转到任何页面并启动它。网站右下角会打开一个框。点击您希望选择器匹配的页面元素（将变为绿色）。SelectorGadget将为该元素生成一个最小的CSS选择器，并将突出显示（黄色）选择器匹配的所有内容。现在单击突出显示的元素将其从选择器（红色）中删除，或单击不高亮的元素将其添加到选择器。通过这个选择和拒绝的过程，SelectorGadget可以帮助您找到完美的CSS选择器，满足您的需求。</p>
-<h3 id="其他好用的插件"><a href="#其他好用的插件" class="headerlink" title="其他好用的插件"></a>其他好用的插件</h3><h4 id="1-Office-Online"><a href="#1-Office-Online" class="headerlink" title="1. Office Online"></a>1. <a href="https://chrome.google.com/webstore/detail/office-online/ndjpnladcallmjemlbaebfadecfhkepb" target="_blank" rel="external">Office Online</a></h4><p>为 Chrome 打造 - 无需安装 Office，即可使用 Word、Excel、PowerPoint、OneNote 和 Sway Online。<br>类似的还有：<a href="https://chrome.google.com/webstore/detail/office-editing-for-docs-s/gbkeegbaiigmenfmjfclcdgdpimamgkj" target="_blank" rel="external">Google文档、表格及幻灯片的Office编辑扩展</a></p>
-<h4 id="2-关灯看视频"><a href="#2-关灯看视频" class="headerlink" title="2. 关灯看视频"></a>2. <a href="https://chrome.google.com/webstore/detail/turn-off-the-lights/bfbmjmiodbnnpllbbbfblcplfjjepjdn" target="_blank" rel="external">关灯看视频</a></h4><p>整个页面将变成黑夜模式，以便您在电影院等昏暗场所观看视频。适合 YouTube™ 和 Beyond。</p>
-<h4 id="3-Note-Anywhere"><a href="#3-Note-Anywhere" class="headerlink" title="3. Note Anywhere"></a>3. <a href="https://chrome.google.com/webstore/detail/note-anywhere/bohahkiiknkelflnjjlipnaeapefmjbh" target="_blank" rel="external">Note Anywhere</a></h4><p>可以在网页添加便签。<br><img src="https://ww2.sinaimg.cn/large/006tNbRwgy1ffclogu8xxj30y40m442b.jpg" alt=""></p>
-<h4 id="4-OneTab"><a href="#4-OneTab" class="headerlink" title="4. OneTab"></a>4. <a href="https://chrome.google.com/webstore/detail/onetab/chphlpgkkbolifaimnlloiipkdnihall" target="_blank" rel="external">OneTab</a></h4><p>当您发现自己有太多的标签页时，单击OneTab图标，将所有标签页转换成一个列表。当您需要再次访问这些标签页时，可以单独或全部恢复它们。节省高达95％的内存，并减轻标签页混乱现象。<br><img src="https://ww1.sinaimg.cn/large/006tNbRwgy1ffcm3bfw3qj30zk0m4442.jpg" alt=""></p>
-<h4 id="5-Google学术搜索按钮"><a href="#5-Google学术搜索按钮" class="headerlink" title="5. Google学术搜索按钮"></a>5. <a href="https://chrome.google.com/webstore/detail/google-scholar-button/ldipcbpaocekfooobnbcddclnhejkcpn" target="_blank" rel="external">Google学术搜索按钮</a></h4><p>需要评工程师和写论文的注意了，此扩展程序会添加一个浏览器按钮，以便用户可以从任意网页轻松使用 Google 学术搜索。</p>
-<h4 id="6-Google-环聊"><a href="#6-Google-环聊" class="headerlink" title="6. Google 环聊"></a>6. <a href="https://chrome.google.com/webstore/detail/google-hangouts/nckgahadagoaajjgafhacjanaoiihapd" target="_blank" rel="external">Google 环聊</a></h4><p>这个全栈营的小伙伴，尤其是早前参加线上Meetup的小伙伴应该都知道了。可以建立10人的聊天室。<br><img src="https://ww1.sinaimg.cn/large/006tNbRwgy1ffckzbmbqnj30z80lwwhd.jpg" alt=""></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/05/07/2017-05-07-1803229/" title="本周遇到的最大的坑 05/01-05/07" itemprop="url">本周遇到的最大的坑 05/01-05/07</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
-		
-  <p class="article-time">
-    <time datetime="2017-05-07T02:08:00.000Z" itemprop="datePublished"> 发表于 2017-05-07</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h2 id="没有保护好自己的注意力"><a href="#没有保护好自己的注意力" class="headerlink" title="没有保护好自己的注意力"></a>没有保护好自己的注意力</h2><p>这周我工作上与我关系不大的一个问题，我却花费了大量的时间在其上面，从周二到周五都是在围绕这件是忙碌，导致我职责之内的工作项目，本周基本没有进展，而下2周会陆续有5个小项目到期！没有做好项目管理（Xdite老师的项目管理基础到现在还没有看！）。本周不仅工作中忙这些，而且还加班到10点多，造成回到宿舍后，基本没有精力去学习全栈营课程，仅仅给我的job-listing作品上线了搜索和客服功能而已。</p>
-<p>昨天晚上又花了一晚上玩《剑网3》，又花费了一晚上的注意力。其实我已经很久不玩网游了，玩这个的时候，并不是特别愉悦，好在我这个是点卡收费，偶尔累了玩玩即可，切不可多玩！</p>
-<p>几点经验反馈：<br>Xdite老师的分享，正好是我的金玉良言！</p>
-<ol>
-<li>把时间耗在重要的事情与人身上.</li>
-<li>工作与生活不可能平衡。所以需要的方向是把自己的时间「投资」出「美丽人生」。</li>
-<li>检视身边的朋友与亲戚与工作伙伴。谁是「消费者」，谁是「投资的对象」。</li>
-</ol>
-<p>消费者 = 只消费你的能量。也许可以得到快感。但是无法学到新东西，也无法得到新反馈。<br>投资的对象 =  能不停的学到新东西，可以得到对自己成长的新反馈。</p>
-<h2 id="我的行动："><a href="#我的行动：" class="headerlink" title="我的行动："></a>我的行动：</h2><ol>
-<li>思考谁只是消费者，谁是值得投资的对象。</li>
-<li>放弃「讨人喜欢」的念头，你没那么多精力。</li>
-</ol>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix">
+  <nav id="page-nav" class="clearfix unexpand">
     <a class="extend prev" rel="prev" href="/page/7/"><span></span>Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/9/">Next<span></span></a>
   </nav>
 
@@ -941,7 +428,7 @@
         
           <li>
             
-            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            	<a href="https://steemit.com/@seeyoo" target="_blank" title="Kerzzi&#39;s Steem">Kerzzi&#39;s Steem</a>
             
           </li>
         
@@ -955,31 +442,13 @@
 	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
 </div>
 
-  <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
-    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
-</div>
-
-
 </aside>
 </div>
     </div>
     <footer><div id="footer" >
 	
-	<div class="line">
-		<span></span>
-		<div class="author"></div>
-	</div>
 	
-	
-	<section class="info">
-		<p> Hello ,I&#39;m Larry Page in Google. <br/>
-			This is my blog,believe it or not.</p>
-	</section>
-	 
 	<div class="social-font" class="clearfix">
-		
-		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
 		
 		
 		
@@ -1088,16 +557,6 @@ $(document).ready(function(){
 <!-- Analytics Begin -->
 
 
-
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
 
 
 
