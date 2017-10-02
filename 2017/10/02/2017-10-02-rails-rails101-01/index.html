@@ -1,0 +1,550 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>课程复盘 | Rails 第三课：Rails 101（1） | 柯子的行思笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kerzzi">
+    
+
+    
+    <meta name="description" content="课程目标接下来会以一个“讨论版”为主题，实际让同学了解如何“从零打造”手写出一个网站。 这个讨论版会有：  使用者注册以及登录功能 开新讨论区、留言功能 加入讨论区、退出讨论区功能 权限管理功能 热门文章排序功能 了解什么是 RESTful  当你把这次应用程序实作完成，并上线后，你会学会：  怎么把需求变成会动的 Rails 应用程序 如何在 Rails 套版 如何制作使用者登录功能 重要 Ra">
+<meta name="keywords" content="新生大学全栈营,全栈营课程复盘,Ruby on Rails">
+<meta property="og:type" content="article">
+<meta property="og:title" content="课程复盘 | Rails 第三课：Rails 101（1）">
+<meta property="og:url" content="https://kerzzi.github.io/2017/10/02/2017-10-02-rails-rails101-01/index.html">
+<meta property="og:site_name" content="柯子的行思笔记">
+<meta property="og:description" content="课程目标接下来会以一个“讨论版”为主题，实际让同学了解如何“从零打造”手写出一个网站。 这个讨论版会有：  使用者注册以及登录功能 开新讨论区、留言功能 加入讨论区、退出讨论区功能 权限管理功能 热门文章排序功能 了解什么是 RESTful  当你把这次应用程序实作完成，并上线后，你会学会：  怎么把需求变成会动的 Rails 应用程序 如何在 Rails 套版 如何制作使用者登录功能 重要 Ra">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006tKfTcgy1fk3xi19ieyj31ds09qglo.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tKfTcgy1fk3xwnur9mj30jw0gft8z.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tKfTcgy1fk3y4nsqx7j30rk0chdft.jpg">
+<meta property="og:updated_time" content="2017-10-02T13:23:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="课程复盘 | Rails 第三课：Rails 101（1）">
+<meta name="twitter:description" content="课程目标接下来会以一个“讨论版”为主题，实际让同学了解如何“从零打造”手写出一个网站。 这个讨论版会有：  使用者注册以及登录功能 开新讨论区、留言功能 加入讨论区、退出讨论区功能 权限管理功能 热门文章排序功能 了解什么是 RESTful  当你把这次应用程序实作完成，并上线后，你会学会：  怎么把需求变成会动的 Rails 应用程序 如何在 Rails 套版 如何制作使用者登录功能 重要 Ra">
+<meta name="twitter:image" content="https://ww3.sinaimg.cn/large/006tKfTcgy1fk3xi19ieyj31ds09qglo.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
+				<h2 class="blog-motto">叫我柯子就好</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/02/2017-10-02-rails-rails101-01/" title="课程复盘 | Rails 第三课：Rails 101（1）" itemprop="url">课程复盘 | Rails 第三课：Rails 101（1）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-01T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-10-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程目标"><span class="toc-number">1.</span> <span class="toc-text">课程目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#课程复盘"><span class="toc-number">2.</span> <span class="toc-text">课程复盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-建立一个新-Rails-项目，并建立-git-做版本控制"><span class="toc-number">2.1.</span> <span class="toc-text">1. 建立一个新 Rails 项目，并建立 git 做版本控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-帮-Rails-项目穿上衣服“Bootstrap”"><span class="toc-number">2.2.</span> <span class="toc-text">2. 帮 Rails 项目穿上衣服“Bootstrap”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-套用-Bootstrap-的-html-样式"><span class="toc-number">2.3.</span> <span class="toc-text">3. 套用 Bootstrap 的 html 样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-制作漂亮的“提示信息”-（以下内容无需记忆）"><span class="toc-number">2.4.</span> <span class="toc-text">4. 制作漂亮的“提示信息” （以下内容无需记忆）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-经典四部曲：model-controller-action-view-routes"><span class="toc-number">2.5.</span> <span class="toc-text">5. 经典四部曲：model-controller-action-view-routes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-输入框与栅格系统"><span class="toc-number">2.6.</span> <span class="toc-text">6. 输入框与栅格系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Group-CRUD"><span class="toc-number">2.7.</span> <span class="toc-text">7. Group CRUD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-在-Group-model-加入“标题限制”"><span class="toc-number">2.8.</span> <span class="toc-text">8. 在 Group model 加入“标题限制”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-错误提示消息"><span class="toc-number">2.9.</span> <span class="toc-text">9. 错误提示消息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-共用“表单”"><span class="toc-number">2.10.</span> <span class="toc-text">10. 共用“表单”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-将表单换为-Bootstrap-提供的版型-使用-SimpleForm-简化"><span class="toc-number">2.11.</span> <span class="toc-text">11. 将表单换为 Bootstrap 提供的版型,使用 SimpleForm 简化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-符号的用法"><span class="toc-number">2.12.</span> <span class="toc-text">12. 符号的用法</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="课程目标"><a href="#课程目标" class="headerlink" title="课程目标"></a>课程目标</h2><p>接下来会以一个“讨论版”为主题，实际让同学了解如何“从零打造”手写出一个网站。</p>
+<p>这个讨论版会有：</p>
+<ul>
+<li>使用者注册以及登录功能</li>
+<li>开新讨论区、留言功能</li>
+<li>加入讨论区、退出讨论区功能</li>
+<li>权限管理功能</li>
+<li>热门文章排序功能</li>
+<li>了解什么是 RESTful</li>
+</ul>
+<p>当你把这次应用程序实作完成，并上线后，你会学会：</p>
+<ul>
+<li>怎么把需求变成会动的 Rails 应用程序</li>
+<li>如何在 Rails 套版</li>
+<li>如何制作使用者登录功能</li>
+<li>重要 Rails 观念以及 API<ul>
+<li>CRUD</li>
+<li>RESTful</li>
+<li>member, collection</li>
+<li>helper</li>
+<li>partial</li>
+<li>scope</li>
+</ul>
+</li>
+<li>找到 Rails 第三方 gem 的技巧</li>
+<li>要怎么把你的应用程序放到网络上</li>
+</ul>
+<p>这几乎是一个 Rails 新手应该学的一切了，有了这些基础技巧之后，你再学更难的技巧，或者是要自己做出复杂的东西，就不会那么容易失败了。</p>
+<h2 id="课程复盘"><a href="#课程复盘" class="headerlink" title="课程复盘"></a>课程复盘</h2><h3 id="1-建立一个新-Rails-项目，并建立-git-做版本控制"><a href="#1-建立一个新-Rails-项目，并建立-git-做版本控制" class="headerlink" title="1. 建立一个新 Rails 项目，并建立 git 做版本控制"></a>1. 建立一个新 Rails 项目，并建立 git 做版本控制</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">rails new rails101</div><div class="line">cd rails101</div><div class="line">git init</div><div class="line">git add .</div><div class="line">git commit -m &quot;Initial Commit&quot;</div></pre></td></tr></table></figure>
+<h3 id="2-帮-Rails-项目穿上衣服“Bootstrap”"><a href="#2-帮-Rails-项目穿上衣服“Bootstrap”" class="headerlink" title="2. 帮 Rails 项目穿上衣服“Bootstrap”"></a>2. 帮 Rails 项目穿上衣服“Bootstrap”</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">gem &apos;bootstrap-sass&apos;  #Gemfile</div><div class="line">bundle install #每次修改完 Gemfile 都记得要command + s 保存 ，然后执行 bundle install</div><div class="line"></div><div class="line">mv app/assets/stylesheets/application.css app/assets/stylesheets/application.scss</div><div class="line"></div><div class="line">@import &quot;bootstrap-sprockets&quot;;</div><div class="line">@import &quot;bootstrap&quot;;</div><div class="line"></div><div class="line">git add .</div><div class="line">git commit -m &quot;add bootstrap to project&quot;</div></pre></td></tr></table></figure>
+<h3 id="3-套用-Bootstrap-的-html-样式"><a href="#3-套用-Bootstrap-的-html-样式" class="headerlink" title="3. 套用 Bootstrap 的 html 样式"></a>3. 套用 Bootstrap 的 html 样式</h3><p>（1）新增 navbar<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir app/views/common</div><div class="line">touch app/views/common/_navbar.html.erb</div></pre></td></tr></table></figure></p>
+<p>填入</p>
+<figure class="highlight ruby"><figcaption><span>app/views/common/_navbar.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;nav class="navbar navbar-default" role="navigation"&gt;</div><div class="line">    &lt;div class="container-fluid"&gt;</div><div class="line">        &lt;div class="navbar-header"&gt;</div><div class="line">            &lt;a class="navbar-brand" href="/"&gt;Rails 101&lt;/a&gt;</div><div class="line">        &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">        &lt;div class="collapse navbar-collapse"&gt;</span></div><div class="line"><span class="regexp">            &lt;ul class="nav navbar-nav navbar-right"&gt;</span></div><div class="line"><span class="regexp">                &lt;li&gt;</span></div><div class="line"><span class="regexp">                    &lt;%= link_to("登录", '#') %&gt;</span></div><div class="line"><span class="regexp">                &lt;/li</span>&gt;</div><div class="line">            &lt;<span class="regexp">/ul&gt;</span></div><div class="line"><span class="regexp">        &lt;/div</span>&gt;</div><div class="line">    &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">&lt;/nav</span>&gt;</div><div class="line">&lt;!-- 以上部分，不需要记忆 --&gt;</div></pre></td></tr></table></figure>
+<p>PS:<br><figure class="highlight plain"><figcaption><span>class</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">前者是 100% 宽度布局，后者是 固定宽度 布局。</div><div class="line"></div><div class="line">```&lt;div class=&quot;collapse navbar-collapse&quot;&gt;```中 collapse的用法：</div><div class="line">这是Bootstrap 折叠（Collapse）插件，为了给导航栏添加响应式特性，要折叠的内容必须包裹在带有 class .collapse、.navbar-collapse 的 &lt;nav&gt; 中。</div><div class="line"></div><div class="line">参考：[Collapse](http://v3.bootcss.com/javascript/#collapse)。</div><div class="line"></div><div class="line">对应导航栏务必使用 &lt;nav&gt; 元素，或者，如果使用的是通用的 &lt;div&gt; 元素的话，务必为导航条设置 role=&quot;navigation&quot; 属性，这样能够让使用辅助设备的用户明确知道这是一个导航区域。</div><div class="line"></div><div class="line">（2）新增 footer</div><div class="line">新增 footer</div></pre></td></tr></table></figure></p>
+<p>touch app/views/common/_footer.html.erb<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">填入</div><div class="line"></div><div class="line">```ruby app/views/common/_footer.html.erb</div><div class="line">&lt;footer class=&quot;container&quot; style=&quot;margin-top: 100px;&quot;&gt;</div><div class="line">    &lt;p class=&quot;text-center&quot;&gt;Copyright ©2017 Rails101</div><div class="line">        &lt;br&gt;Design by</div><div class="line">        &lt;a href=&quot;http://courses.growthschool.com/courses/rails-101/&quot; target=_new&gt;xdite&lt;/a&gt;</div><div class="line">    &lt;/p&gt;</div><div class="line">&lt;/footer&gt;</div><div class="line">&lt;!-- 以上部分，不需要记忆 --&gt;</div></pre></td></tr></table></figure></p>
+<p>以上部分，不需要记忆</p>
+<p>（3）修改全域 HTML 样式 application.html.erb</p>
+<figure class="highlight ruby"><figcaption><span>app/views/layouts/application.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;title&gt;Rails101&lt;<span class="regexp">/title&gt;</span></div><div class="line"><span class="regexp">        &lt;%= csrf_meta_tags %&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">        &lt;%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %&gt;</span></div><div class="line"><span class="regexp">        &lt;%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %&gt;</span></div><div class="line"><span class="regexp">    &lt;/head</span>&gt;</div><div class="line"></div><div class="line">    &lt;body&gt;</div><div class="line"></div><div class="line">        &lt;div class="container-fluid"&gt;</div><div class="line">            &lt;%= render <span class="string">"common/navbar"</span> %&gt;</div><div class="line">            &lt;%= <span class="keyword">yield</span> %&gt;</div><div class="line">        &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">        &lt;%= render "common/footer</span><span class="string">" %&gt;</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    &lt;/body&gt;</span></div><div class="line"><span class="string">&lt;/html&gt;</span></div></pre></td></tr></table></figure>
+<p>PS:上述代码<head>部分，如下命令的用途：</head></p>
+<p>&lt;%= csrf_meta_tags %&gt;</p>
+<p>&lt;%= stylesheet_link_tag    ‘application’, media: ‘all’, ‘data-turbolinks-track’: ‘reload’ %&gt;</p>
+<p>&lt;%= javascript_include_tag ‘application’, ‘data-turbolinks-track’: ‘reload’ %&gt;</p>
+<p>（4）产生一个新的空 Hello World 页面 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rails g controller welcome</div><div class="line">touch app/views/welcome/index.html.erb</div></pre></td></tr></table></figure>
+<p>填入</p>
+<figure class="highlight ruby"><figcaption><span>app/views/welcome/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1&gt; Hello World! &lt;<span class="regexp">/h1&gt;</span></div></pre></td></tr></table></figure>
+<p>修改 config/routes.rb，改成以下内容</p>
+<figure class="highlight ruby"><figcaption><span>config/routes.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Rails.application.routes.draw <span class="keyword">do</span></div><div class="line">  root <span class="string">'welcome#index'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>(5) git 进度存档</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m &quot;add bootstrap html&quot;</div></pre></td></tr></table></figure>
+<h3 id="4-制作漂亮的“提示信息”-（以下内容无需记忆）"><a href="#4-制作漂亮的“提示信息”-（以下内容无需记忆）" class="headerlink" title="4. 制作漂亮的“提示信息” （以下内容无需记忆）"></a>4. 制作漂亮的“提示信息” （以下内容无需记忆）</h3><p>（1）在 require_tree 上加入 //= require bootstrap/alert</p>
+<figure class="highlight ruby"><figcaption><span>app/assets/javascripts/application.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">... (一堆注解)</div><div class="line">/<span class="regexp">/= require jquery</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/= require jquery_ujs</span></div><div class="line"><span class="regexp">/</span><span class="regexp">/= require turbolinks</span></div><div class="line"><span class="regexp">+/</span><span class="regexp">/= require bootstrap/alert</span></div><div class="line">/<span class="regexp">/= require_tree .</span></div></pre></td></tr></table></figure>
+<p>(2)新增 app/views/common/_flashes.html.erb</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch app/views/common/_flashes.html.erb</div></pre></td></tr></table></figure>
+<p>填入</p>
+<figure class="highlight ruby"><figcaption><span>app/views/common/_flashes.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;% <span class="keyword">if</span> flash.any? %&gt;</div><div class="line">  &lt;% user_facing_flashes.each <span class="keyword">do</span> <span class="params">|key, value|</span> %&gt;</div><div class="line">    &lt;div class="alert alert-dismissable alert-&lt;%= flash_class(key) %&gt;"&gt;</div><div class="line">      &lt;button class="close" data-dismiss="alert"&gt;×&lt;/button&gt;</div><div class="line">      &lt;%= value %&gt;</div><div class="line">    &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">  &lt;% end %&gt;</span></div><div class="line"><span class="regexp">&lt;% end %&gt;</span></div></pre></td></tr></table></figure>
+<p>这里的user_facing_flashes和flash_class(key) 会在相应的flashes.helper.rb中定义。</p>
+<p>(3)加入 app/helpers/flashes_helper.rb</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch app/helpers/flashes_helper.rb</div></pre></td></tr></table></figure>
+<p>加入以下内容：</p>
+<figure class="highlight ruby"><figcaption><span>app/helpers/flashes_helper.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">module</span> <span class="title">FlashesHelper</span></span></div><div class="line"></div><div class="line">  <span class="comment"># 定义常量</span></div><div class="line">  FLASH_CLASSES = &#123; <span class="symbol">alert:</span> <span class="string">"danger"</span>, <span class="symbol">notice:</span> <span class="string">"success"</span>, <span class="symbol">warning:</span> <span class="string">"warning"</span>&#125;.freeze</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">flash_class</span><span class="params">(key)</span></span></div><div class="line">    FLASH_CLASSES.fetch key.to_sym, key</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">user_facing_flashes</span></span></div><div class="line">    flash.to_hash.slice <span class="string">"alert"</span>, <span class="string">"notice"</span>, <span class="string">"warning"</span> </div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p><strong>上述代码每一行具体是什么意思？</strong></p>
+<p>PS:这里的<figure class="highlight plain"><figcaption><span>"alert", "notice", "warning" ```的用法：</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">(4)在 application.html.erb 内加入 flash 这个 partial</div><div class="line"></div><div class="line">在 &lt;%= yield %&gt; 前加入 &lt;%= render &quot;common/flashes&quot; %&gt;</div><div class="line"></div><div class="line">```ruby app/views/layouts/application.html.erb</div><div class="line">  &lt;%= render &quot;common/flashes&quot; %&gt;</div><div class="line">  &lt;%= yield %&gt;</div></pre></td></tr></table></figure></p>
+<p>(5)git 存档</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m &quot;add bootstrap flash function&quot;</div></pre></td></tr></table></figure>
+<h3 id="5-经典四部曲：model-controller-action-view-routes"><a href="#5-经典四部曲：model-controller-action-view-routes" class="headerlink" title="5. 经典四部曲：model-controller-action-view-routes"></a>5. 经典四部曲：model-controller-action-view-routes</h3><p>以建立讨论群的架构为例。</p>
+<p>（1）建立model和相应的数据库</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">rails g model group title:string description:text</div><div class="line">rake db:migrate</div></pre></td></tr></table></figure>
+<p>提示：model的名称一般为单数（group），每次产生 migration 之后都要运行 rake db:migrate，然后生成的数据表名称一般为复数。</p>
+<p>（2）产生 groups controller</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rails g controller groups</div></pre></td></tr></table></figure>
+<p>提示：controller的名称一般为复数（groups）</p>
+<p>(3)建立 index action</p>
+<figure class="highlight ruby"><figcaption><span>app/controllers/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GroupsController</span> &lt; ApplicationController</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">index</span></span></div><div class="line">    @groups = Group.all</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>(4)建立 index 的 view</p>
+<figure class="highlight plain"><figcaption><span>app/views/groups/index.html.erb```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">加入如下内容：</div><div class="line"></div><div class="line">```ruby app/views/groups/index.html.erb</div><div class="line">&lt;div class=&quot;col-md-12&quot;&gt;</div><div class="line">  &lt;div class=&quot;group&quot;&gt;</div><div class="line">    &lt;%= link_to(&quot;New group&quot;, new_group_path, class: &quot;btn btn-primary pull-right&quot;) %&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">  &lt;table class=&quot;table table-hover&quot;&gt;</div><div class="line">    &lt;thead&gt;</div><div class="line">      &lt;tr&gt;</div><div class="line">        &lt;td&gt;#&lt;/td&gt;</div><div class="line">        &lt;td&gt;Title&lt;/td&gt;</div><div class="line">        &lt;td&gt;Description&lt;/td&gt;</div><div class="line">      &lt;/tr&gt;</div><div class="line">    &lt;/thead&gt;</div><div class="line">    &lt;tbody&gt;</div><div class="line">      &lt;% @groups.each do |group| %&gt;</div><div class="line">        &lt;tr&gt;</div><div class="line">          &lt;td&gt;#&lt;/td&gt;</div><div class="line">          &lt;td&gt;&lt;%= link_to(group.title, group_path(group)) %&gt;&lt;/td&gt;</div><div class="line">          &lt;td&gt;&lt;%= group.description %&gt;&lt;/td&gt;</div><div class="line">          &lt;td&gt;</div><div class="line">              &lt;%= link_to(&quot;Edit&quot;, edit_group_path(group), class: &quot;btn btn-sm btn-default&quot;)%&gt;</div><div class="line">              &lt;%= link_to(&quot;Delete&quot;, group_path(group),    class: &quot;btn btn-sm btn-default&quot;, </div><div class="line">                          method: :delete, data: &#123; confirm: &quot;Are you sure?&quot; &#125; )%&gt;</div><div class="line">          &lt;/td&gt;</div><div class="line">        &lt;/tr&gt;</div><div class="line">      &lt;% end %&gt;</div><div class="line">    &lt;/tbody&gt;</div><div class="line">  &lt;/table&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>这里的<figure class="highlight plain"><figcaption><span>@groups.each do |group| %>```中@groups也可以看出从@groups数据表名称为复数。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">（5）在 routing 上挂上 groups</div><div class="line"></div><div class="line">```ruby config/routes.rb</div><div class="line">Rails.application.routes.draw do</div><div class="line">+   resources :groups</div><div class="line">    root &apos;welcome#index&apos;</div><div class="line">end</div></pre></td></tr></table></figure></p>
+<p>这个网站讲解Bootstrap更为透彻：<a href="http://www.runoob.com/" target="_blank" rel="external">http://www.runoob.com/</a></p>
+<h3 id="6-输入框与栅格系统"><a href="#6-输入框与栅格系统" class="headerlink" title="6. 输入框与栅格系统"></a>6. 输入框与栅格系统</h3><figure class="highlight ruby"><figcaption><span>app/views/groups/new.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;div class="col-md-4 col-md-offset-4"&gt;</div><div class="line">    &lt;h2&gt;新增讨论版&lt;<span class="regexp">/h2&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">    &lt;hr&gt;</span></div><div class="line"><span class="regexp">    &lt;%= form_for @group do |f| %&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">    标题</span></div><div class="line"><span class="regexp">    &lt;%= f.text_field :title %&gt;</span></div><div class="line"><span class="regexp">    &lt;br&gt;</span></div><div class="line"><span class="regexp">    叙述</span></div><div class="line"><span class="regexp">    &lt;br&gt;</span></div><div class="line"><span class="regexp">    &lt;%= f.text_area :description %&gt;</span></div><div class="line"><span class="regexp">    &lt;br&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">    &lt;%= f.submit "Submit", :disable_with =&gt; 'Submitting...' %&gt;</span></div><div class="line"><span class="regexp">    &lt;% end %&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">&lt;/div</span>&gt;</div></pre></td></tr></table></figure>
+<p>上述代码中，col-md-4和col-md-offset-4是Bootstrap<a href="http://v3.bootcss.com/css/" target="_blank" rel="external">响应式格栅系统</a>。col-md-offset-*是 列偏移。</p>
+<p>使用 .col-md-offset-<em> 类可以将列向右侧偏移。这些类实际是通过使用 </em> 选择器为当前元素增加了左侧的边距（margin）。例如，.col-md-offset-4 类将 .col-md-4 元素向右侧偏移了4个列（column）的宽度。</p>
+<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;row&quot;&gt;</div><div class="line">  &lt;div class=&quot;col-md-4&quot;&gt;.col-md-4&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;col-md-4 col-md-offset-4&quot;&gt;.col-md-4 .col-md-offset-4&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div class=&quot;row&quot;&gt;</div><div class="line">  &lt;div class=&quot;col-md-3 col-md-offset-3&quot;&gt;.col-md-3 .col-md-offset-3&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;col-md-3 col-md-offset-3&quot;&gt;.col-md-3 .col-md-offset-3&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line">&lt;div class=&quot;row&quot;&gt;</div><div class="line">  &lt;div class=&quot;col-md-6 col-md-offset-3&quot;&gt;.col-md-6 .col-md-offset-3&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p><img src="https://ww3.sinaimg.cn/large/006tKfTcgy1fk3xi19ieyj31ds09qglo.jpg" alt=""></p>
+<h3 id="7-Group-CRUD"><a href="#7-Group-CRUD" class="headerlink" title="7. Group CRUD"></a>7. Group CRUD</h3><figure class="highlight ruby"><figcaption><span>groups_controller.rb </span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GroupsController</span> &lt; ApplicationController</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">index</span></span></div><div class="line">    @groups = Group.all</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">new</span></span></div><div class="line">    @group = Group.new</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">show</span></span></div><div class="line">    @group = Group.find(params[<span class="symbol">:id</span>])</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">edit</span></span></div><div class="line">    @group = Group.find(params[<span class="symbol">:id</span>])</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">create</span></span></div><div class="line">    @group = Group.new(group_params)</div><div class="line"></div><div class="line">    <span class="keyword">if</span> @group.save</div><div class="line">      redirect_to groups_path</div><div class="line">    <span class="keyword">else</span></div><div class="line">      render <span class="symbol">:new</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">update</span></span></div><div class="line">    @group = Group.find(params[<span class="symbol">:id</span>])</div><div class="line">    <span class="keyword">if</span> @group.update(group_params)</div><div class="line">      redirect_to groups_path, <span class="symbol">notice:</span> <span class="string">'Update Success'</span></div><div class="line">    <span class="keyword">else</span></div><div class="line">      render <span class="symbol">:edit</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">destroy</span></span></div><div class="line">    @group = Group.find(params[<span class="symbol">:id</span>])</div><div class="line"></div><div class="line">    @group.destroy</div><div class="line">    redirect_to groups_path, <span class="symbol">alert:</span> <span class="string">'Group deleted'</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  private</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">group_params</span></span></div><div class="line">    params.<span class="keyword">require</span>(<span class="symbol">:group</span>).permit(<span class="symbol">:title</span>, <span class="symbol">:description</span>)</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h3 id="8-在-Group-model-加入“标题限制”"><a href="#8-在-Group-model-加入“标题限制”" class="headerlink" title="8. 在 Group model 加入“标题限制”"></a>8. 在 Group model 加入“标题限制”</h3><figure class="highlight ruby"><figcaption><span>app/models/group.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Group</span> &lt; ApplicationRecord</span></div><div class="line"> validates <span class="symbol">:title</span>, <span class="symbol">presence:</span> <span class="literal">true</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h3 id="9-错误提示消息"><a href="#9-错误提示消息" class="headerlink" title="9. 错误提示消息"></a>9. 错误提示消息</h3><figure class="highlight ruby"><figcaption><span>app/views/groups/edit.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;% <span class="keyword">if</span> @group.errors.any? %&gt;</div><div class="line">&lt;ul&gt;</div><div class="line">  &lt;% @group.errors.full_messages.each <span class="keyword">do</span> <span class="params">|msg|</span> %&gt;</div><div class="line">    &lt;li&gt;&lt;%= msg %&gt;&lt;<span class="regexp">/li&gt;</span></div><div class="line"><span class="regexp">  &lt;% end %&gt;</span></div><div class="line"><span class="regexp">&lt;/ul</span>&gt;</div><div class="line">&lt;% <span class="keyword">end</span> %&gt;</div></pre></td></tr></table></figure>
+<p><img src="https://ww1.sinaimg.cn/large/006tKfTcgy1fk3xwnur9mj30jw0gft8z.jpg" alt=""></p>
+<h3 id="10-共用“表单”"><a href="#10-共用“表单”" class="headerlink" title="10. 共用“表单”"></a>10. 共用“表单”</h3><figure class="highlight ruby"><figcaption><span>app/views/groups/edit.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;div class="col-md-4 col-md-offset-4"&gt;</div><div class="line">    &lt;h2&gt;编辑讨论版&lt;<span class="regexp">/h2&gt;</span></div><div class="line"><span class="regexp">    &lt;hr&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">    &lt;%= render "form" %&gt;</span></div><div class="line"><span class="regexp">&lt;/div</span>&gt;</div></pre></td></tr></table></figure>
+<h3 id="11-将表单换为-Bootstrap-提供的版型-使用-SimpleForm-简化"><a href="#11-将表单换为-Bootstrap-提供的版型-使用-SimpleForm-简化" class="headerlink" title="11. 将表单换为 Bootstrap 提供的版型,使用 SimpleForm 简化"></a>11. 将表单换为 Bootstrap 提供的版型,使用 SimpleForm 简化</h3><p>打开 Gemfile，然后新增一行 gem ‘simple_form’</p>
+<figure class="highlight ruby"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gem <span class="string">'bootstrap-sass'</span></div><div class="line">+ gem <span class="string">'simple_form'</span></div></pre></td></tr></table></figure>
+<p>然后执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bundle install</div></pre></td></tr></table></figure>
+<p>安装 gem。</p>
+<p>安装 simple_form for bootstrap 的设定</p>
+<p>执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rails generate simple_form:install --bootstrap</div></pre></td></tr></table></figure>
+<p>这个指令会产生两个文件</p>
+<ul>
+<li>config/initializers/simple_form.rb</li>
+<li>config/initializers/simple_form_bootstrap.rb （这个是 Bootstrap 表单的“布景”)</li>
+</ul>
+<p>把内容改成</p>
+<figure class="highlight ruby"><figcaption><span>app/views/groups/_form.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;%= simple_form_for @group <span class="keyword">do</span> <span class="params">|f|</span> %&gt;</div><div class="line">  &lt;div class="form-group"&gt;</div><div class="line">    &lt;%= f.input <span class="symbol">:title</span>, <span class="symbol">input_html:</span> &#123; <span class="class"><span class="keyword">class</span>: "<span class="title">form</span>-<span class="title">control</span>"&#125; %&gt;</span></div><div class="line">    &lt;%= f.input <span class="symbol">:description</span>, <span class="symbol">input_html:</span> &#123; <span class="class"><span class="keyword">class</span>: "<span class="title">form</span>-<span class="title">control</span>"&#125; %&gt;</span></div><div class="line">  &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">  &lt;%= f.submit "Submit", class: "btn btn-primary", data: &#123; disable_with: "Submiting..." &#125; %&gt;</span></div><div class="line"><span class="regexp">&lt;% end %&gt;</span></div></pre></td></tr></table></figure>
+<p>simple_form 提供的错误信息，直接是在栏位旁边的。更明显更直观。<br><img src="https://ww4.sinaimg.cn/large/006tKfTcgy1fk3y4nsqx7j30rk0chdft.jpg" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -m &quot;replace form with simple_form bootstrap template&quot;</div></pre></td></tr></table></figure>
+<h3 id="12-符号的用法"><a href="#12-符号的用法" class="headerlink" title="12. 符号的用法"></a>12. 符号的用法</h3><p>下面2个代码效果相同</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;%= f.label &quot;title&quot;, :class =&gt; &quot;string optional control-label&quot; %&gt;</div><div class="line">&lt;%= f.label &quot;title&quot;, class: &quot;string optional control-label&quot; %&gt;</div><div class="line"># 注意冒号与双引号直接的空格，:key =&gt; value == key: value 只是语法糖而已</div></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Ruby-on-Rails/">Ruby on Rails</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/新生大学全栈营/">新生大学全栈营</a><a href="/tags/全栈营课程复盘/">全栈营课程复盘</a><a href="/tags/Ruby-on-Rails/">Ruby on Rails</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://kerzzi.github.io/2017/10/02/2017-10-02-rails-rails101-01/" data-title="课程复盘 | Rails 第三课：Rails 101（1） | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/10/02/2017-10-02-rails-rails101-03/" title="课程复盘 | Rails 第三课：Rails 101（3）">
+  <strong>上一篇：</strong><br/>
+  <span>
+  课程复盘 | Rails 第三课：Rails 101（3）</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/10/02/2017-10-02-rails-primary-exercise-01/"  title="课程复盘 | Rails 第二课：初级练习">
+ <strong>下一篇：</strong><br/> 
+ <span>课程复盘 | Rails 第二课：初级练习
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程目标"><span class="toc-number">1.</span> <span class="toc-text">课程目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#课程复盘"><span class="toc-number">2.</span> <span class="toc-text">课程复盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-建立一个新-Rails-项目，并建立-git-做版本控制"><span class="toc-number">2.1.</span> <span class="toc-text">1. 建立一个新 Rails 项目，并建立 git 做版本控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-帮-Rails-项目穿上衣服“Bootstrap”"><span class="toc-number">2.2.</span> <span class="toc-text">2. 帮 Rails 项目穿上衣服“Bootstrap”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-套用-Bootstrap-的-html-样式"><span class="toc-number">2.3.</span> <span class="toc-text">3. 套用 Bootstrap 的 html 样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-制作漂亮的“提示信息”-（以下内容无需记忆）"><span class="toc-number">2.4.</span> <span class="toc-text">4. 制作漂亮的“提示信息” （以下内容无需记忆）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-经典四部曲：model-controller-action-view-routes"><span class="toc-number">2.5.</span> <span class="toc-text">5. 经典四部曲：model-controller-action-view-routes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-输入框与栅格系统"><span class="toc-number">2.6.</span> <span class="toc-text">6. 输入框与栅格系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Group-CRUD"><span class="toc-number">2.7.</span> <span class="toc-text">7. Group CRUD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-在-Group-model-加入“标题限制”"><span class="toc-number">2.8.</span> <span class="toc-text">8. 在 Group model 加入“标题限制”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-错误提示消息"><span class="toc-number">2.9.</span> <span class="toc-text">9. 错误提示消息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-共用“表单”"><span class="toc-number">2.10.</span> <span class="toc-text">10. 共用“表单”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-将表单换为-Bootstrap-提供的版型-使用-SimpleForm-简化"><span class="toc-number">2.11.</span> <span class="toc-text">11. 将表单换为 Bootstrap 提供的版型,使用 SimpleForm 简化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-符号的用法"><span class="toc-number">2.12.</span> <span class="toc-text">12. 符号的用法</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="sponsor">
+  <br />
+  <p class="asidetitle">赞助商</p>
+  <a href="/sponsor">
+  <br />
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2zsxnnmpj30b405iq2t.jpg" width="235px" />
+  </a>
+
+  <!--
+  <br /><a href="/sponsor"><font color='#2ca6cb'>购买广告位</font></a>
+  -->
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Photo/" title="Photo">Photo</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ruby-on-Rails/" title="Ruby on Rails">Ruby on Rails</a></li>
+		  
+		
+		  
+			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp</a></li>
+		  
+		
+		  
+			<li><a href="/categories/全栈营/" title="全栈营">全栈营</a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://steemit.com/@seeyoo" target="_blank" title="Kerzzi&#39;s Steem">Kerzzi&#39;s Steem</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weixin">
+  <br />
+  <p class="asidetitle">微信公众号</p>
+  <p>关注我的公众号「叫我柯子就好」，与你分享关于实践的高频小套路：</p>
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2yv4g9d3j3076076wel.jpg" width="220px" />
+ </div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kerzzi">Kerzzi</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?61e2f14c0f84a3ab81a328239a38b6d8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
