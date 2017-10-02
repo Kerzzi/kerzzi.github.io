@@ -94,15 +94,16 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/07/03/2017-07-03-bean-knowledge-rails-when-creating-a-rails-project-does-not-let-the-rails-created-turbolink-puma-sets/" title="【豆知识】Rails: 创建Rails项目时不让Rails自动创建Turbolink，Puma等设置" itemprop="url">
+    <a href="/2017/07/03/2017-07-03-bean-knowledge-rails-rails-g-does-not-let-rails-generate-the-corresponding-assets-such-as-helper-files/" title="【豆知识】Rails: 使用rails g方法时不让rails生成对应的assets, helper等文件" itemprop="url">
   
-    <h1 itemprop="name">【豆知识】Rails: 创建Rails项目时不让Rails自动创建Turbolink，Puma等设置</h1>
+    <h1 itemprop="name">【豆知识】Rails: 使用rails g方法时不让rails生成对应的assets, helper等文件</h1>
     
      
            <p itemprop="description" >目标:
-在创建新的Rails项目时，不想使用Turbolink，Puma等框架，怎样阻止它?
+很多时候我们想自己来手工创建对应的asset，helper和test文件，但是默认情况下Rails会自动帮我们创建，怎样阻止它？
 
-步骤:Step 01:$ rails new new_project --skip-test-unit --skip-bundle --database=postgresql --sk</p>
+步骤:Step 01:修改12
+config.generators do |generator|    generator.helper f</p>
         
     
     <time datetime="2017-07-03T14:06:00.000Z" itemprop="datePublished">2017-07-03</time>
@@ -117,16 +118,15 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/07/03/2017-07-03-bean-knowledge-rails-rails-g-does-not-let-rails-generate-the-corresponding-assets-such-as-helper-files/" title="【豆知识】Rails: 使用rails g方法时不让rails生成对应的assets, helper等文件" itemprop="url">
+    <a href="/2017/07/03/2017-07-03-bean-knowledge-rails-when-creating-a-rails-project-does-not-let-the-rails-created-turbolink-puma-sets/" title="【豆知识】Rails: 创建Rails项目时不让Rails自动创建Turbolink，Puma等设置" itemprop="url">
   
-    <h1 itemprop="name">【豆知识】Rails: 使用rails g方法时不让rails生成对应的assets, helper等文件</h1>
+    <h1 itemprop="name">【豆知识】Rails: 创建Rails项目时不让Rails自动创建Turbolink，Puma等设置</h1>
     
      
            <p itemprop="description" >目标:
-很多时候我们想自己来手工创建对应的asset，helper和test文件，但是默认情况下Rails会自动帮我们创建，怎样阻止它？
+在创建新的Rails项目时，不想使用Turbolink，Puma等框架，怎样阻止它?
 
-步骤:Step 01:修改12
-config.generators do |generator|    generator.helper f</p>
+步骤:Step 01:$ rails new new_project --skip-test-unit --skip-bundle --database=postgresql --sk</p>
         
     
     <time datetime="2017-07-03T14:06:00.000Z" itemprop="datePublished">2017-07-03</time>
@@ -395,9 +395,9 @@ class Admin::BaseCo</p>
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/06/16/2017-06-16-1954893/" title="「从零开始做购物网站」第40章 超强彩蛋来袭！" itemprop="url">
+    <a href="/2017/06/16/2017-06-16-1954892/" title="「从零开始做购物网站」第39章 正式上传Heroku" itemprop="url">
   
-    <h1 itemprop="name">「从零开始做购物网站」第40章 超强彩蛋来袭！</h1>
+    <h1 itemprop="name">「从零开始做购物网站」第39章 正式上传Heroku</h1>
     
      
            <p itemprop="description" >大家好，本系列文章主要是对我参加全栈营JDstore魔改大赛作品「季风 &amp;amp; MONSOON」的复盘。由于本人也是新手，文章中一定有很多幼稚的错误或代码，希望大家帮忙指出，可反馈至我的邮箱kerzzi@outlook.com，我会持续完善本系列。非常感谢。本系列是在全栈营J</p>
@@ -441,6 +441,10 @@ class Admin::BaseCo</p>
 <div class="categorieslist">
 	<p class="asidetitle">分类</p>
 		<ul>
+		
+		  
+			<li><a href="/categories/Photo/" title="Photo">Photo</a></li>
+		  
 		
 		  
 			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp</a></li>
