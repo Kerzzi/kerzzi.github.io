@@ -114,16 +114,15 @@
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/07/03/2017-07-03-bean-knowledge-rails-rails-g-does-not-let-rails-generate-the-corresponding-assets-such-as-helper-files/" title="【豆知识】Rails: 使用rails g方法时不让rails生成对应的assets, helper等文件" itemprop="url">
+    <a href="/2017/07/03/2017-07-03-bean-knowledge-rails-when-creating-a-rails-project-does-not-let-the-rails-created-turbolink-puma-sets/" title="【豆知识】Rails: 创建Rails项目时不让Rails自动创建Turbolink，Puma等设置" itemprop="url">
   
-    <h1 itemprop="name">【豆知识】Rails: 使用rails g方法时不让rails生成对应的assets, helper等文件</h1>
+    <h1 itemprop="name">【豆知识】Rails: 创建Rails项目时不让Rails自动创建Turbolink，Puma等设置</h1>
     
      
            <p itemprop="description" >目标:
-很多时候我们想自己来手工创建对应的asset，helper和test文件，但是默认情况下Rails会自动帮我们创建，怎样阻止它？
+在创建新的Rails项目时，不想使用Turbolink，Puma等框架，怎样阻止它?
 
-步骤:Step 01:修改12
-config.generators do |generator|    generator.helper f</p>
+步骤:Step 01:$ rails new new_project --skip-test-unit --skip-bundle --database=postgresql --sk</p>
         
     
     <time datetime="2017-07-03T14:06:00.000Z" itemprop="datePublished">2017-07-03</time>
@@ -138,15 +137,16 @@ config.generators do |generator|    generator.helper f</p>
   
 <section class="post" itemscope itemprop="blogitem">
   
-    <a href="/2017/07/03/2017-07-03-bean-knowledge-rails-when-creating-a-rails-project-does-not-let-the-rails-created-turbolink-puma-sets/" title="【豆知识】Rails: 创建Rails项目时不让Rails自动创建Turbolink，Puma等设置" itemprop="url">
+    <a href="/2017/07/03/2017-07-03-bean-knowledge-rails-rails-g-does-not-let-rails-generate-the-corresponding-assets-such-as-helper-files/" title="【豆知识】Rails: 使用rails g方法时不让rails生成对应的assets, helper等文件" itemprop="url">
   
-    <h1 itemprop="name">【豆知识】Rails: 创建Rails项目时不让Rails自动创建Turbolink，Puma等设置</h1>
+    <h1 itemprop="name">【豆知识】Rails: 使用rails g方法时不让rails生成对应的assets, helper等文件</h1>
     
      
            <p itemprop="description" >目标:
-在创建新的Rails项目时，不想使用Turbolink，Puma等框架，怎样阻止它?
+很多时候我们想自己来手工创建对应的asset，helper和test文件，但是默认情况下Rails会自动帮我们创建，怎样阻止它？
 
-步骤:Step 01:$ rails new new_project --skip-test-unit --skip-bundle --database=postgresql --sk</p>
+步骤:Step 01:修改12
+config.generators do |generator|    generator.helper f</p>
         
     
     <time datetime="2017-07-03T14:06:00.000Z" itemprop="datePublished">2017-07-03</time>
