@@ -1,0 +1,557 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>课程复盘 | Rails 第三课：Rails 101（4） | 柯子的行思笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kerzzi">
+    
+
+    
+    <meta name="description" content="课程目标接下来会以一个“讨论版”为主题，实际让同学了解如何“从零打造”手写出一个网站。 这个讨论版会有：  使用者注册以及登录功能 开新讨论区、留言功能 加入讨论区、退出讨论区功能 权限管理功能 热门文章排序功能 了解什么是 RESTful  当你把这次应用程序实作完成，并上线后，你会学会：  怎么把需求变成会动的 Rails 应用程序 如何在 Rails 套版 如何制作使用者登录功能 重要 Ra">
+<meta name="keywords" content="新生大学全栈营,全栈营课程复盘,Ruby on Rails">
+<meta property="og:type" content="article">
+<meta property="og:title" content="课程复盘 | Rails 第三课：Rails 101（4）">
+<meta property="og:url" content="https://kerzzi.github.io/2017/10/02/2017-10-02-rails-primary-exercise-04/index.html">
+<meta property="og:site_name" content="柯子的行思笔记">
+<meta property="og:description" content="课程目标接下来会以一个“讨论版”为主题，实际让同学了解如何“从零打造”手写出一个网站。 这个讨论版会有：  使用者注册以及登录功能 开新讨论区、留言功能 加入讨论区、退出讨论区功能 权限管理功能 热门文章排序功能 了解什么是 RESTful  当你把这次应用程序实作完成，并上线后，你会学会：  怎么把需求变成会动的 Rails 应用程序 如何在 Rails 套版 如何制作使用者登录功能 重要 Ra">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tKfTcgy1fk43zmuk7ej30m80c00vl.jpg">
+<meta property="og:updated_time" content="2017-10-02T13:10:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="课程复盘 | Rails 第三课：Rails 101（4）">
+<meta name="twitter:description" content="课程目标接下来会以一个“讨论版”为主题，实际让同学了解如何“从零打造”手写出一个网站。 这个讨论版会有：  使用者注册以及登录功能 开新讨论区、留言功能 加入讨论区、退出讨论区功能 权限管理功能 热门文章排序功能 了解什么是 RESTful  当你把这次应用程序实作完成，并上线后，你会学会：  怎么把需求变成会动的 Rails 应用程序 如何在 Rails 套版 如何制作使用者登录功能 重要 Ra">
+<meta name="twitter:image" content="https://ww1.sinaimg.cn/large/006tKfTcgy1fk43zmuk7ej30m80c00vl.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
+				<h2 class="blog-motto">叫我柯子就好</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/02/2017-10-02-rails-primary-exercise-04/" title="课程复盘 | Rails 第三课：Rails 101（4）" itemprop="url">课程复盘 | Rails 第三课：Rails 101（4）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-01T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-10-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程目标"><span class="toc-number">1.</span> <span class="toc-text">课程目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#课程复盘"><span class="toc-number">2.</span> <span class="toc-text">课程复盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-建立“群成员”数据表"><span class="toc-number">2.1.</span> <span class="toc-text">1. 建立“群成员”数据表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-“加入群组”或“退出群组”"><span class="toc-number">2.2.</span> <span class="toc-text">3. “加入群组”或“退出群组”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-实际操作“加入群组”或“退出群组”"><span class="toc-number">2.3.</span> <span class="toc-text">4. 实际操作“加入群组”或“退出群组”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-User-在建立-group-后自动成为-group-的一员"><span class="toc-number">2.4.</span> <span class="toc-text">5. User 在建立 group 后自动成为 group 的一员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-产生-account-的-namespace-下的-groups-controller"><span class="toc-number">2.5.</span> <span class="toc-text">6. 产生 account 的 namespace 下的 groups_controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-关于link-to"><span class="toc-number">2.6.</span> <span class="toc-text">7. 关于link_to</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-可以看到自己发表的所有文章"><span class="toc-number">2.7.</span> <span class="toc-text">8.可以看到自己发表的所有文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-partial-还可以用在循环上"><span class="toc-number">2.8.</span> <span class="toc-text">10. partial 还可以用在循环上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-上传到-Github"><span class="toc-number">2.9.</span> <span class="toc-text">11. 上传到 Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-其他分支上传到-heroku"><span class="toc-number">2.10.</span> <span class="toc-text">12. 其他分支上传到 heroku</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="课程目标"><a href="#课程目标" class="headerlink" title="课程目标"></a>课程目标</h2><p>接下来会以一个“讨论版”为主题，实际让同学了解如何“从零打造”手写出一个网站。</p>
+<p>这个讨论版会有：</p>
+<ul>
+<li>使用者注册以及登录功能</li>
+<li>开新讨论区、留言功能</li>
+<li>加入讨论区、退出讨论区功能</li>
+<li>权限管理功能</li>
+<li>热门文章排序功能</li>
+<li>了解什么是 RESTful</li>
+</ul>
+<p>当你把这次应用程序实作完成，并上线后，你会学会：</p>
+<ul>
+<li>怎么把需求变成会动的 Rails 应用程序</li>
+<li>如何在 Rails 套版</li>
+<li>如何制作使用者登录功能</li>
+<li>重要 Rails 观念以及 API<ul>
+<li>CRUD</li>
+<li>RESTful</li>
+<li>member, collection</li>
+<li>helper</li>
+<li>partial</li>
+<li>scope</li>
+</ul>
+</li>
+<li>找到 Rails 第三方 gem 的技巧</li>
+<li>要怎么把你的应用程序放到网络上</li>
+</ul>
+<p>这几乎是一个 Rails 新手应该学的一切了，有了这些基础技巧之后，你再学更难的技巧，或者是要自己做出复杂的东西，就不会那么容易失败了。</p>
+<h2 id="课程复盘"><a href="#课程复盘" class="headerlink" title="课程复盘"></a>课程复盘</h2><h3 id="1-建立“群成员”数据表"><a href="#1-建立“群成员”数据表" class="headerlink" title="1. 建立“群成员”数据表"></a>1. 建立“群成员”数据表</h3><p>(1)建立 GroupRelationship</p>
+<p>我们在这里要建立一个新的 model 叫 GroupRelationship。这个数据表里面只有两个栏位：</p>
+<ul>
+<li>group_id ( integer )</li>
+<li>user_id ( integer)</li>
+</ul>
+<p>记录了“谁”参加了“哪个群组”。</p>
+<p>输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rails g model group_relationship group_id:integer user_id:integer</div></pre></td></tr></table></figure>
+<p>执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rake db:migrate</div></pre></td></tr></table></figure>
+<p>(2)设定 Group 与 User 之间的关系 ( 使用者参与的所有群）</p>
+<p>在这之前，在 User model 已经有一行：has_many :groups</p>
+<figure class="highlight ruby"><figcaption><span>app/models/user.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> &lt; ApplicationRecord</span></div><div class="line"></div><div class="line"><span class="comment"># .. 略</span></div><div class="line"></div><div class="line">  has_many <span class="symbol">:groups</span></div><div class="line"><span class="comment"># .. 略</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>user.groups 会捞出这个使用者“创造过的所有群”。那我们要如何撰写 “参与的所有群”呢？</p>
+<p>首先，修改 app/models/user.rb 加入以下两行</p>
+<figure class="highlight ruby"><figcaption><span>app/models/user.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> &lt; ApplicationRecord</span></div><div class="line"></div><div class="line"><span class="comment"># .. 略</span></div><div class="line"></div><div class="line"></div><div class="line">+  has_many <span class="symbol">:group_relationships</span></div><div class="line">+  has_many <span class="symbol">:participated_groups</span>, <span class="symbol">:through</span> =&gt; <span class="symbol">:group_relationships</span>, <span class="symbol">:source</span> =&gt; <span class="symbol">:group</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>这里使用 :participated_groups代表用户参与的所有群, 数据源是 :group，单数，因为model名都是单数。<br>注意到这个语法糖：:source =&gt; :group 和 source: :group 效果相同，不一样的表单而已。</p>
+<p>然后修改 app/models/group_relationship.rb，加入这两行</p>
+<figure class="highlight ruby"><figcaption><span>app/models/group_relationship.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GroupRelationship</span> &lt; ApplicationRecord</span></div><div class="line">+  belongs_to <span class="symbol">:group</span></div><div class="line">+  belongs_to <span class="symbol">:user</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>这样当捞 user.participated_groups 时，就会捞出“参与的所有群”。</p>
+<p>（3）设定 Group 与 User 之间的关系 ( 群组内的所有会员 ）</p>
+<p>修改 app/models/group.rb，加入这两行</p>
+<figure class="highlight ruby"><figcaption><span>app/models/group.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Group</span> &lt; ApplicationRecord</span></div><div class="line"></div><div class="line">    <span class="comment"># ... 略</span></div><div class="line"></div><div class="line">  </div><div class="line">+  has_many <span class="symbol">:group_relationships</span></div><div class="line">+  has_many <span class="symbol">:members</span>, <span class="symbol">through:</span> <span class="symbol">:group_relationships</span>, <span class="symbol">source:</span> <span class="symbol">:user</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>这里使用 :members 代表该群组的所有成员, 数据源是 :user，单数，因为model名都是单数。</p>
+<p>（4）动手测看看</p>
+<p>打开 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rails console</div></pre></td></tr></table></figure>
+<p>输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">u = User.first</div><div class="line">g = Group.first</div><div class="line">g.members &lt;&lt; u</div><div class="line">g.members</div><div class="line">u.participated_groups</div></pre></td></tr></table></figure></p>
+<p>这条语句 g.members &lt;&lt; u 来让群组g的成员包含用户u，这样u参与了g群组。即向数据中insert插入一笔新的资料。可以看console中：<br><img src="https://ww1.sinaimg.cn/large/006tKfTcgy1fk43zmuk7ej30m80c00vl.jpg" alt=""></p>
+<p>后面我们可以在user.rb中定义<figure class="highlight plain"><figcaption><span>join!(group)``` ，然后就可以使用``` u.join!(g)```，效果和上面一样。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 2. 在群组里面判断“是否群组成员”实作</div><div class="line"></div><div class="line">在 user model 内实作判断式“是否为群组的一分子”</div><div class="line"></div><div class="line">```ruby app/models/user.rb</div><div class="line">class User &lt; ApplicationRecord</div><div class="line">  # 略 ...</div><div class="line"></div><div class="line">  </div><div class="line">+    def is_member_of?(group)</div><div class="line">+      participated_groups.include?(group)</div><div class="line">+    end</div><div class="line">  end</div></pre></td></tr></table></figure></p>
+<p>判断该用户所参与的群组是否包含该群组。</p>
+<p><strong>“?”问号在这里有任何意义吗？</strong></p>
+<p>你可以暂时把它视为 “method 名字的一部分”，“暂时”没有意义。对于返回值是布尔型的方法，方法名最好加上？。<br>.include?是rails中内建的方法，它的返回值也是布尔型。<br>整个方法是传入参数group，并判断participated_groups是否包含group，如果包含，则返回true，否则返回false。</p>
+<p>然后“重开”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rails console</div></pre></td></tr></table></figure></p>
+<p>输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">u = User.first</div><div class="line">g = Group.first</div><div class="line">u.is_member_of?(g)</div></pre></td></tr></table></figure></p>
+<p>在 app/views/groups/show.html.erb 加入这一段</p>
+<figure class="highlight ruby"><figcaption><span>app/views/groups/show.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;span class="pull-right"&gt;</div><div class="line">  &lt;% <span class="keyword">if</span> current_user &amp;&amp; current_user.is_member_of?(@group) %&gt;</div><div class="line">    &lt;label class="label label-success"&gt; 群组成员 &lt;/label&gt;</div><div class="line">  &lt;% <span class="keyword">else</span> %&gt;</div><div class="line">    &lt;label class="label label-warning"&gt; 不是群组成员 &lt;/label&gt;</div><div class="line">  &lt;% <span class="keyword">end</span> %&gt;</div><div class="line">&lt;<span class="regexp">/span&gt;</span></div></pre></td></tr></table></figure>
+<p>因为这里是特指这个群组，所以用@group这个变量。</p>
+<h3 id="3-“加入群组”或“退出群组”"><a href="#3-“加入群组”或“退出群组”" class="headerlink" title="3. “加入群组”或“退出群组”"></a>3. “加入群组”或“退出群组”</h3><figure class="highlight ruby"><figcaption><span>app/models/user.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">join!</span><span class="params">(group)</span></span></div><div class="line">  participated_groups &lt;&lt; group</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">quit!</span><span class="params">(group)</span></span></div><div class="line">  participated_groups.delete(group)</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>打开<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rails console</div></pre></td></tr></table></figure></p>
+<p>输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">u = User.first</div><div class="line">g = Group.first</div><div class="line">u.join!(g)</div><div class="line">u.is_member_of?(g)</div><div class="line">u.quit!(g)</div><div class="line">u.is_member_of?(g)</div><div class="line">exit</div></pre></td></tr></table></figure>
+<h3 id="4-实际操作“加入群组”或“退出群组”"><a href="#4-实际操作“加入群组”或“退出群组”" class="headerlink" title="4. 实际操作“加入群组”或“退出群组”"></a>4. 实际操作“加入群组”或“退出群组”</h3><p>model-controller-routes-views</p>
+<p>(1)修改controller</p>
+<figure class="highlight ruby"><figcaption><span>app/controllers/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">+  <span class="function"><span class="keyword">def</span> <span class="title">join</span></span></div><div class="line">+   @group = Group.find(params[<span class="symbol">:id</span>])</div><div class="line">+  </div><div class="line">+    <span class="keyword">if</span> !current_user.is_member_of?(@group)</div><div class="line">+      current_user.join!(@group)</div><div class="line">+      flash[<span class="symbol">:notice</span>] = <span class="string">"加入本讨论版成功！"</span></div><div class="line">+    <span class="keyword">else</span></div><div class="line">+      flash[<span class="symbol">:warning</span>] = <span class="string">"你已经是本讨论版成员了！"</span></div><div class="line">+    <span class="keyword">end</span></div><div class="line">+  </div><div class="line">+    redirect_to group_path(@group)</div><div class="line">+  <span class="keyword">end</span></div><div class="line">+  </div><div class="line">+  <span class="function"><span class="keyword">def</span> <span class="title">quit</span></span></div><div class="line">+    @group = Group.find(params[<span class="symbol">:id</span>])</div><div class="line">+  </div><div class="line">+    <span class="keyword">if</span> current_user.is_member_of?(@group)</div><div class="line">+      current_user.quit!(@group)</div><div class="line">+      flash[<span class="symbol">:alert</span>] = <span class="string">"已退出本讨论版！"</span></div><div class="line">+    <span class="keyword">else</span></div><div class="line">+      flash[<span class="symbol">:warning</span>] = <span class="string">"你不是本讨论版成员，怎么退出 XD"</span></div><div class="line">+    <span class="keyword">end</span></div><div class="line">+  </div><div class="line">+    redirect_to group_path(@group)</div><div class="line">+  <span class="keyword">end</span></div><div class="line"></div><div class="line">    private</div></pre></td></tr></table></figure>
+<p>加入与退出群组必须要是登入状态下才行，修改位於第二行的 before_action ，加入 join 和 quit 也需要验证</p>
+<figure class="highlight ruby"><figcaption><span>app/controllers/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">GroupsController</span> &lt; ApplicationController</span></div><div class="line">-  before_action <span class="symbol">:authenticate_user!</span> , <span class="symbol">only:</span> [<span class="symbol">:new</span>, <span class="symbol">:create</span>, <span class="symbol">:edit</span>, <span class="symbol">:update</span>, <span class="symbol">:destroy</span>]</div><div class="line">+  before_action <span class="symbol">:authenticate_user!</span> , <span class="symbol">only:</span> [<span class="symbol">:new</span>, <span class="symbol">:create</span>, <span class="symbol">:edit</span>, <span class="symbol">:update</span>, <span class="symbol">:destroy</span>, <span class="symbol">:join</span>, <span class="symbol">:quit</span>]</div><div class="line"></div><div class="line">...</div><div class="line">...</div></pre></td></tr></table></figure>
+<p>(2)修改routes.rb</p>
+<figure class="highlight ruby"><figcaption><span>config/routes.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">resources <span class="symbol">:groups</span> <span class="keyword">do</span></div><div class="line">+    member <span class="keyword">do</span></div><div class="line">+      post <span class="symbol">:join</span></div><div class="line">+      post <span class="symbol">:quit</span></div><div class="line">+    <span class="keyword">end</span></div><div class="line"></div><div class="line">    resources <span class="symbol">:posts</span></div><div class="line">  <span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>(3)修改view文件</p>
+<p>加入两行代码，将这个文件修改成这样：</p>
+<figure class="highlight ruby"><figcaption><span>app/views/groups/show.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;span class="pull-right"&gt;</div><div class="line">  &lt;% <span class="keyword">if</span> current_user &amp;&amp; current_user.is_member_of?(@group) %&gt;</div><div class="line">    &lt;label class="label label-success"&gt; 群组成员 &lt;/label&gt;</div><div class="line">+        &lt;%= link_to(<span class="string">"Quit Group"</span>, quit_group_path(@group), <span class="symbol">method:</span> <span class="symbol">:post</span>, <span class="class"><span class="keyword">class</span>: "<span class="title">btn</span> <span class="title">btn</span>-<span class="title">default</span>") %&gt;</span></div><div class="line">  &lt;% <span class="keyword">else</span> %&gt;</div><div class="line">    &lt;label class="label label-warning"&gt; 不是群组成员 &lt;/label&gt;</div><div class="line">+        &lt;%= link_to(<span class="string">"Join Group"</span>, join_group_path(@group), <span class="symbol">method:</span> <span class="symbol">:post</span>, <span class="class"><span class="keyword">class</span>: "<span class="title">btn</span> <span class="title">btn</span>-<span class="title">default</span>") %&gt;</span></div><div class="line">  &lt;% <span class="keyword">end</span> %&gt;</div><div class="line">&lt;<span class="regexp">/span&gt;</span></div></pre></td></tr></table></figure>
+<p>除了默认的method: :get可以省略外，其他的 :method 都必须指定相应的http动作。</p>
+<h3 id="5-User-在建立-group-后自动成为-group-的一员"><a href="#5-User-在建立-group-后自动成为-group-的一员" class="headerlink" title="5. User 在建立 group 后自动成为 group 的一员"></a>5. User 在建立 group 后自动成为 group 的一员</h3><figure class="highlight ruby"><figcaption><span>app/controllers/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">create</span></span></div><div class="line">    @group = Group.new(group_params)</div><div class="line">    @group.user = current_user</div><div class="line">    <span class="keyword">if</span> @group.save</div><div class="line">+     current_user.join!(@group)</div><div class="line">      redirect_to groups_path</div><div class="line">    <span class="keyword">else</span></div><div class="line">      render <span class="symbol">:new</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h3 id="6-产生-account-的-namespace-下的-groups-controller"><a href="#6-产生-account-的-namespace-下的-groups-controller" class="headerlink" title="6. 产生 account 的 namespace 下的 groups_controller"></a>6. 产生 account 的 namespace 下的 groups_controller</h3><p>这里因为已经有group这个model了，这个为共有的。所以，后续只需要controller-action-views-routes三步。</p>
+<p>(1)执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rails g controller account/groups</div></pre></td></tr></table></figure></p>
+<p>(2)修改 config/routes.rb 加入：</p>
+<figure class="highlight ruby"><figcaption><span>config/routes.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">namespace <span class="symbol">:account</span> <span class="keyword">do</span></div><div class="line">  resources <span class="symbol">:groups</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>(3)建立 account/groups_controller.rb 下的 index action</p>
+<p>记得要加入： before_action :authenticate_user!，限制必须要得登录使用者，才能看。</p>
+<figure class="highlight ruby"><figcaption><span>app/controllers/account/groups_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Account::GroupsController</span> &lt; ApplicationController</span></div><div class="line">  before_action <span class="symbol">:authenticate_user!</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">index</span></span></div><div class="line">    @groups = current_user.participated_groups</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>(4) 新增 “参与群组一览表”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch app/views/account/groups/index.html.erb</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><figcaption><span>app/views/account/groups/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">&lt;div class="col-md-12"&gt;</div><div class="line"></div><div class="line">  &lt;h2 class="text-center"&gt; 我加入的讨论版 &lt;/h2&gt;</div><div class="line"></div><div class="line">  &lt;table class="table"&gt;</div><div class="line">    &lt;thead&gt;</div><div class="line">      &lt;tr&gt;</div><div class="line">        &lt;th&gt; <span class="comment"># &lt;/th&gt;</span></div><div class="line">        &lt;th&gt; Title &lt;<span class="regexp">/th&gt;</span></div><div class="line"><span class="regexp">        &lt;th&gt; Description &lt;/th</span>&gt;</div><div class="line">        &lt;th&gt; Post Count &lt;<span class="regexp">/th&gt;</span></div><div class="line"><span class="regexp">        &lt;th&gt; Last Update &lt;/th</span>&gt;</div><div class="line">      &lt;<span class="regexp">/tr&gt;</span></div><div class="line"><span class="regexp">    &lt;/thead</span>&gt;</div><div class="line"></div><div class="line">    &lt;tbody&gt;</div><div class="line">      &lt;% @groups.each <span class="keyword">do</span> <span class="params">|group|</span> %&gt;</div><div class="line">        &lt;tr&gt;</div><div class="line">          &lt;td&gt; <span class="comment"># &lt;/td&gt;</span></div><div class="line">          &lt;td&gt; &lt;%= link_to(group.title, group_path(group)) %&gt; &lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">          &lt;td&gt; &lt;%= group.description %&gt; &lt;/td</span>&gt;</div><div class="line">          &lt;td&gt; &lt;%= group.posts.count %&gt; &lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">          &lt;td&gt; &lt;%= group.updated_at %&gt; &lt;/td</span>&gt;</div><div class="line">        &lt;<span class="regexp">/tr&gt;</span></div><div class="line"><span class="regexp">      &lt;% end %&gt;</span></div><div class="line"><span class="regexp">    &lt;/tbody</span>&gt;</div><div class="line">  &lt;<span class="regexp">/table&gt;</span></div><div class="line"><span class="regexp">&lt;/div</span>&gt;</div></pre></td></tr></table></figure>
+<h3 id="7-关于link-to"><a href="#7-关于link-to" class="headerlink" title="7. 关于link_to"></a>7. 关于link_to</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;%= link_to(&quot;My Groups&quot;, account_groups_path) %&gt;</div><div class="line">&lt;%= link_to(group.title, group_path(group)) %&gt;</div></pre></td></tr></table></figure>
+<p>上面2句中，link_to与（之间不能有空格。此外因为group.title默认返回的就是字符串，所以没有必要加双引号。</p>
+<h3 id="8-可以看到自己发表的所有文章"><a href="#8-可以看到自己发表的所有文章" class="headerlink" title="8.可以看到自己发表的所有文章"></a>8.可以看到自己发表的所有文章</h3><p>这里因为已经有post这个model了，这个为共有的。所以，后续只需要controller-action-views-routes三步。</p>
+<p>(1)产生 account 的 namespace 下的 posts_controller</p>
+<p>执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rails g controller account/posts</div></pre></td></tr></table></figure></p>
+<p>(2)建立 account/posts_controller.rb 下的 index action</p>
+<p>加入：<figure class="highlight plain"><figcaption><span>:authenticate_user!```  ，限制必须要得登入使用者，才能看。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">```ruby app/controllers/account/posts_controller.rb</div><div class="line">class Account::PostsController &lt; ApplicationController</div><div class="line">  before_action :authenticate_user!</div><div class="line">  def index</div><div class="line">    @posts = current_user.posts</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure></p>
+<p>(3) 修改 routing</p>
+<p>修改 config/routes.rb 加入 resources :posts</p>
+<figure class="highlight ruby"><figcaption><span>config/routes.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">  namespace <span class="symbol">:account</span> <span class="keyword">do</span></div><div class="line">     resources <span class="symbol">:groups</span></div><div class="line">+    resources <span class="symbol">:posts</span></div><div class="line">  <span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>(4)修改下拉选项</p>
+<p>然后修改 app/views/common/_navbar.html.erb</p>
+<p>加入多一个“下拉选单选项”：</p>
+<figure class="highlight ruby"><figcaption><span>app/views/common/_navbar.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">                &lt;ul class="dropdown-menu"&gt;</div><div class="line">                     &lt;li&gt; &lt;%= link_to(<span class="string">"My Groups"</span>, account_groups_path) %&gt;&lt;<span class="regexp">/li&gt;</span></div><div class="line"><span class="regexp">+                    &lt;li&gt; &lt;%= link_to("My Posts", account_posts_path) %&gt;&lt;/li</span>&gt; </div><div class="line">                     &lt;li class="divider"&gt; &lt;/li&gt;</div><div class="line">                     &lt;li&gt; &lt;%= link_to(<span class="string">"退出"</span>, destroy_user_session_path, <span class="symbol">method:</span> <span class="symbol">:delete</span>) %&gt; &lt;<span class="regexp">/li&gt;</span></div><div class="line"><span class="regexp">                &lt;/ul</span>&gt;</div></pre></td></tr></table></figure>
+<p>（5） 新增 “发表文章一览表”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch app/views/account/posts/index.html.erb</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><figcaption><span>app/views/account/posts/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">&lt;div class="col-md-12"&gt;</div><div class="line"></div><div class="line">  &lt;h2 class="text-center"&gt; 我发表过的文章 &lt;/h2&gt;</div><div class="line"></div><div class="line">  &lt;table class="table"&gt;</div><div class="line">    &lt;thead&gt;</div><div class="line">      &lt;tr&gt;</div><div class="line">        &lt;th&gt; Content &lt;<span class="regexp">/th&gt;</span></div><div class="line"><span class="regexp">        &lt;th&gt; Group Name &lt;/th</span>&gt;</div><div class="line">        &lt;th&gt; Last Update &lt;<span class="regexp">/th&gt;</span></div><div class="line"><span class="regexp">        &lt;th colspan="2"&gt;&lt;/th</span>&gt;</div><div class="line">      &lt;<span class="regexp">/tr&gt;</span></div><div class="line"><span class="regexp">    &lt;/thead</span>&gt;</div><div class="line"></div><div class="line">    &lt;tbody&gt;</div><div class="line">      &lt;% @posts.each <span class="keyword">do</span> <span class="params">|post|</span> %&gt;</div><div class="line">        &lt;tr&gt;</div><div class="line">          &lt;td&gt; &lt;%= post.content %&gt; &lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">          &lt;td&gt; &lt;%= post.group.title %&gt; &lt;/td</span>&gt;</div><div class="line">          &lt;td&gt; &lt;%= post.updated_at %&gt; &lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">          &lt;td&gt; &lt;%= link_to('Edit', edit_group_post_path(post.group, post), class: "btn btn-default btn-xs") %&gt;&lt;/td</span>&gt;</div><div class="line">          &lt;td&gt; &lt;%= link_to(<span class="string">'Delete'</span>, group_post_path(post.group, post), <span class="symbol">method:</span> <span class="symbol">:delete</span>, <span class="symbol">data:</span> &#123; <span class="symbol">confirm:</span> <span class="string">"Are you sure?"</span> &#125;, <span class="class"><span class="keyword">class</span>: "<span class="title">btn</span> <span class="title">btn</span>-<span class="title">default</span> <span class="title">btn</span>-<span class="title">xs</span>") %&gt;&lt;/<span class="title">td</span>&gt;</span></div><div class="line">        &lt;<span class="regexp">/tr&gt;</span></div><div class="line"><span class="regexp">      &lt;% end %&gt;</span></div><div class="line"><span class="regexp">    &lt;/tbody</span>&gt;</div><div class="line">  &lt;<span class="regexp">/table&gt;</span></div><div class="line"><span class="regexp">&lt;/div</span>&gt;</div></pre></td></tr></table></figure>
+<p>代码中<figure class="highlight plain"><figcaption><span>colspan</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 9. 系统内建 Helper “simple_format”的使用</div><div class="line"></div><div class="line">将 group.description 改成 simple_format(group.description)，“simple_format”具备断行的功能。</div><div class="line"></div><div class="line">```ruby app/views/groups/index.html.erb</div><div class="line">      &lt;td&gt;&lt;%= link_to(group.title, group_path(group)) %&gt;&lt;/td&gt;</div><div class="line">-     &lt;td&gt;&lt;%= group.description %&gt;&lt;/td&gt;</div><div class="line">+     &lt;td&gt;&lt;%= simple_format(group.description) %&gt;&lt;/td&gt;</div><div class="line">      &lt;td&gt; &lt;%= group.user.email %&gt; &lt;/td&gt;</div></pre></td></tr></table></figure></p>
+<p>用到 group.description 的地方很多，老是直接写<figure class="highlight plain"><figcaption><span>不是很好，万一以后产品经理想要加个什么特效，我们可能会改死。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">因此发明“自己的 Helper” render_group_description(group)。</div><div class="line"></div><div class="line">修改 app/helpers/groups_helper.rb</div><div class="line"></div><div class="line">加入：</div><div class="line"></div><div class="line">```ruby app/helpers/groups_helper.rb</div><div class="line">module GroupsHelper</div><div class="line">  def render_group_description(group)</div><div class="line">    simple_format(group.description)</div><div class="line">  end</div><div class="line">end</div></pre></td></tr></table></figure></p>
+<p>然后修改 app/views/groups/index.html.erb 与 app/views/account/groups/index.html.erb 里关于 group.description 的部分（最终代码如下）：</p>
+<figure class="highlight ruby"><figcaption><span>app/views/groups/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;td&gt;&lt;%= link_to(group.title, group_path(group)) %&gt;&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">&lt;td&gt;&lt;%= render_group_description(group) %&gt;&lt;/td</span>&gt;</div><div class="line">&lt;td&gt; &lt;%= group.user.email %&gt; &lt;<span class="regexp">/td&gt;</span></div></pre></td></tr></table></figure>
+<p>这样的写法更优良，与数据库相关的操作最好不要放在views中。</p>
+<figure class="highlight ruby"><figcaption><span>app/views/account/groups/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;td&gt;&lt;%= link_to(group.title, group_path(group)) %&gt;&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">&lt;td&gt;&lt;%= render_group_description(group) %&gt;&lt;/td</span>&gt;</div><div class="line">&lt;td&gt; &lt;%= group.posts.count %&gt; &lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">&lt;td&gt; &lt;%= group.updated_at %&gt; &lt;/td</span>&gt;</div></pre></td></tr></table></figure>
+<h3 id="10-partial-还可以用在循环上"><a href="#10-partial-还可以用在循环上" class="headerlink" title="10. partial 还可以用在循环上"></a>10. partial 还可以用在循环上</h3><p>form 可以放入 partial。</p>
+<figure class="highlight ruby"><figcaption><span>app/views/groups/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">&lt;div class="col-md-12"&gt;</div><div class="line">  &lt;div class="group"&gt;</div><div class="line">    &lt;%= link_to(<span class="string">"New group"</span>, new_group_path, <span class="class"><span class="keyword">class</span>: "<span class="title">btn</span> <span class="title">btn</span>-<span class="title">primary</span> <span class="title">pull</span>-<span class="title">right</span>") %&gt;</span></div><div class="line">  &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">  &lt;table class="table table-hover"&gt;</span></div><div class="line"><span class="regexp">    &lt;thead&gt;</span></div><div class="line"><span class="regexp">      &lt;tr&gt;</span></div><div class="line"><span class="regexp">        &lt;td&gt;#&lt;/td</span>&gt;</div><div class="line">        &lt;td&gt;Title&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">        &lt;td&gt;Description&lt;/td</span>&gt;</div><div class="line">        &lt;td&gt;Creator &lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">      &lt;/tr</span>&gt;</div><div class="line">    &lt;<span class="regexp">/thead&gt;</span></div><div class="line"><span class="regexp">    &lt;tbody&gt;</span></div><div class="line"><span class="regexp">-     &lt;% @groups.each do |group| %&gt;</span></div><div class="line"><span class="regexp">-       &lt;tr&gt;</span></div><div class="line"><span class="regexp">-         &lt;td&gt;#&lt;/td</span>&gt;</div><div class="line">-         &lt;td&gt;&lt;%= link_to(group.title, group_path(group)) %&gt;&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">-         &lt;td&gt;&lt;%= render_group_description(group) %&gt;&lt;/td</span>&gt;</div><div class="line">-         &lt;td&gt; &lt;%= group.user.email %&gt; &lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">-         &lt;td&gt;</span></div><div class="line"><span class="regexp">-           &lt;% if current_user &amp;&amp; current_user == group.user %&gt;</span></div><div class="line"><span class="regexp">-             &lt;%= link_to("Edit", edit_group_path(group), class: "btn btn-sm btn-default")%&gt;</span></div><div class="line"><span class="regexp">-             &lt;%= link_to("Delete", group_path(group),    class: "btn btn-sm btn-default",</span></div><div class="line"><span class="regexp">-                         method: :delete, data: &#123; confirm: "Are you sure?" &#125; )%&gt;</span></div><div class="line"><span class="regexp">-           &lt;% end %&gt;</span></div><div class="line"><span class="regexp">-         &lt;/td</span>&gt;</div><div class="line">-       &lt;<span class="regexp">/tr&gt;</span></div><div class="line"><span class="regexp">-     &lt;% end %&gt;</span></div><div class="line"><span class="regexp">+     &lt;%= render :partial =&gt; "group_item", :collection =&gt; @groups, :as =&gt; :group %&gt;</span></div><div class="line"><span class="regexp">    &lt;/tbody</span>&gt;</div><div class="line">  &lt;<span class="regexp">/table&gt;</span></div><div class="line"><span class="regexp">&lt;/div</span>&gt;</div></pre></td></tr></table></figure>
+<p>这里<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">然后执行</div></pre></td></tr></table></figure></p>
+<p>touch app/views/groups/_group_item.html.erb<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">加入如下内容：</div><div class="line">```ruby app/views/groups/_group_item.html.erb</div><div class="line">&lt;tr&gt;</div><div class="line">  &lt;td&gt;#&lt;/td&gt;</div><div class="line">  &lt;td&gt;&lt;%= link_to(group.title, group_path(group)) %&gt;&lt;/td&gt;</div><div class="line">  &lt;td&gt;&lt;%= render_group_description(group) %&gt;&lt;/td&gt;</div><div class="line">  &lt;td&gt;&lt;%= group.user.email %&gt;&lt;/td&gt;</div><div class="line">  &lt;td&gt;</div><div class="line">    &lt;% if current_user &amp;&amp; current_user == group.user %&gt;</div><div class="line">      &lt;%= link_to(&quot;Edit&quot;, edit_group_path(group), class: &quot;btn btn-sm btn-default&quot;)%&gt;</div><div class="line">      &lt;%= link_to(&quot;Delete&quot;, group_path(group),    class: &quot;btn btn-sm btn-default&quot;,</div><div class="line">                  method: :delete, data: &#123; confirm: &quot;Are you sure?&quot; &#125; )%&gt;</div><div class="line">    &lt;% end %&gt;</div><div class="line">  &lt;/td&gt;</div><div class="line"></div><div class="line">&lt;/tr&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="11-上传到-Github"><a href="#11-上传到-Github" class="headerlink" title="11. 上传到 Github"></a>11. 上传到 Github</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git remote add origin git@github.com:你的github名字/rails101-1.git</div><div class="line">git push -u origin master</div></pre></td></tr></table></figure>
+<p>上传“所有进度branch”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push --all origin</div></pre></td></tr></table></figure>
+<h3 id="12-其他分支上传到-heroku"><a href="#12-其他分支上传到-heroku" class="headerlink" title="12. 其他分支上传到 heroku"></a>12. 其他分支上传到 heroku</h3><p>在终端输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git push heroku ch08:master</div></pre></td></tr></table></figure></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Ruby-on-Rails/">Ruby on Rails</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/新生大学全栈营/">新生大学全栈营</a><a href="/tags/全栈营课程复盘/">全栈营课程复盘</a><a href="/tags/Ruby-on-Rails/">Ruby on Rails</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://kerzzi.github.io/2017/10/02/2017-10-02-rails-primary-exercise-04/" data-title="课程复盘 | Rails 第三课：Rails 101（4） | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/10/02/2017-10-02-rails-primary-exercise-02/"  title="课程复盘 | Rails 第三课：Rails 101（2）">
+ <strong>下一篇：</strong><br/> 
+ <span>课程复盘 | Rails 第三课：Rails 101（2）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程目标"><span class="toc-number">1.</span> <span class="toc-text">课程目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#课程复盘"><span class="toc-number">2.</span> <span class="toc-text">课程复盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-建立“群成员”数据表"><span class="toc-number">2.1.</span> <span class="toc-text">1. 建立“群成员”数据表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-“加入群组”或“退出群组”"><span class="toc-number">2.2.</span> <span class="toc-text">3. “加入群组”或“退出群组”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-实际操作“加入群组”或“退出群组”"><span class="toc-number">2.3.</span> <span class="toc-text">4. 实际操作“加入群组”或“退出群组”</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-User-在建立-group-后自动成为-group-的一员"><span class="toc-number">2.4.</span> <span class="toc-text">5. User 在建立 group 后自动成为 group 的一员</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-产生-account-的-namespace-下的-groups-controller"><span class="toc-number">2.5.</span> <span class="toc-text">6. 产生 account 的 namespace 下的 groups_controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-关于link-to"><span class="toc-number">2.6.</span> <span class="toc-text">7. 关于link_to</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-可以看到自己发表的所有文章"><span class="toc-number">2.7.</span> <span class="toc-text">8.可以看到自己发表的所有文章</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-partial-还可以用在循环上"><span class="toc-number">2.8.</span> <span class="toc-text">10. partial 还可以用在循环上</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-上传到-Github"><span class="toc-number">2.9.</span> <span class="toc-text">11. 上传到 Github</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-其他分支上传到-heroku"><span class="toc-number">2.10.</span> <span class="toc-text">12. 其他分支上传到 heroku</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="sponsor">
+  <br />
+  <p class="asidetitle">赞助商</p>
+  <a href="/sponsor">
+  <br />
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2zsxnnmpj30b405iq2t.jpg" width="235px" />
+  </a>
+
+  <!--
+  <br /><a href="/sponsor"><font color='#2ca6cb'>购买广告位</font></a>
+  -->
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Photo/" title="Photo">Photo</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ruby-on-Rails/" title="Ruby on Rails">Ruby on Rails</a></li>
+		  
+		
+		  
+			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp</a></li>
+		  
+		
+		  
+			<li><a href="/categories/全栈营/" title="全栈营">全栈营</a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://steemit.com/@seeyoo" target="_blank" title="Kerzzi&#39;s Steem">Kerzzi&#39;s Steem</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weixin">
+  <br />
+  <p class="asidetitle">微信公众号</p>
+  <p>关注我的公众号「叫我柯子就好」，与你分享关于实践的高频小套路：</p>
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2yv4g9d3j3076076wel.jpg" width="220px" />
+ </div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kerzzi">Kerzzi</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?61e2f14c0f84a3ab81a328239a38b6d8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

@@ -1,0 +1,524 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>课程复盘 | Rails 第三课：Rails 101（2） | 柯子的行思笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kerzzi">
+    
+
+    
+    <meta name="description" content="课程目标接下来会以一个“讨论版”为主题，实际让同学了解如何“从零打造”手写出一个网站。 这个讨论版会有：  使用者注册以及登录功能 开新讨论区、留言功能 加入讨论区、退出讨论区功能 权限管理功能 热门文章排序功能 了解什么是 RESTful  当你把这次应用程序实作完成，并上线后，你会学会：  怎么把需求变成会动的 Rails 应用程序 如何在 Rails 套版 如何制作使用者登录功能 重要 Ra">
+<meta name="keywords" content="新生大学全栈营,全栈营课程复盘,Ruby on Rails">
+<meta property="og:type" content="article">
+<meta property="og:title" content="课程复盘 | Rails 第三课：Rails 101（2）">
+<meta property="og:url" content="https://kerzzi.github.io/2017/10/02/2017-10-02-rails-primary-exercise-02/index.html">
+<meta property="og:site_name" content="柯子的行思笔记">
+<meta property="og:description" content="课程目标接下来会以一个“讨论版”为主题，实际让同学了解如何“从零打造”手写出一个网站。 这个讨论版会有：  使用者注册以及登录功能 开新讨论区、留言功能 加入讨论区、退出讨论区功能 权限管理功能 热门文章排序功能 了解什么是 RESTful  当你把这次应用程序实作完成，并上线后，你会学会：  怎么把需求变成会动的 Rails 应用程序 如何在 Rails 套版 如何制作使用者登录功能 重要 Ra">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ww2.sinaimg.cn/large/006tKfTcgy1fk3yvkj8lwj30el03a74b.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tKfTcgy1fk3yvpbux7j30jg0jgdh1.jpg">
+<meta property="og:updated_time" content="2017-10-02T13:08:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="课程复盘 | Rails 第三课：Rails 101（2）">
+<meta name="twitter:description" content="课程目标接下来会以一个“讨论版”为主题，实际让同学了解如何“从零打造”手写出一个网站。 这个讨论版会有：  使用者注册以及登录功能 开新讨论区、留言功能 加入讨论区、退出讨论区功能 权限管理功能 热门文章排序功能 了解什么是 RESTful  当你把这次应用程序实作完成，并上线后，你会学会：  怎么把需求变成会动的 Rails 应用程序 如何在 Rails 套版 如何制作使用者登录功能 重要 Ra">
+<meta name="twitter:image" content="https://ww2.sinaimg.cn/large/006tKfTcgy1fk3yvkj8lwj30el03a74b.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
+				<h2 class="blog-motto">叫我柯子就好</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/02/2017-10-02-rails-primary-exercise-02/" title="课程复盘 | Rails 第三课：Rails 101（2）" itemprop="url">课程复盘 | Rails 第三课：Rails 101（2）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-01T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-10-02</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程目标"><span class="toc-number">1.</span> <span class="toc-text">课程目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#课程复盘"><span class="toc-number">2.</span> <span class="toc-text">课程复盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Rails-的-CRUD-与-RESTful"><span class="toc-number">2.1.</span> <span class="toc-text">Rails 的 CRUD 与 RESTful</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-请求-Request）与-HTTP-动作-Verb）"><span class="toc-number">2.1.1.</span> <span class="toc-text">HTTP 请求( Request）与 HTTP 动作 ( Verb）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RESTful-的基础概念"><span class="toc-number">2.1.2.</span> <span class="toc-text">RESTful 的基础概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Rails-的基础-RESTful概念"><span class="toc-number">2.1.3.</span> <span class="toc-text">Rails 的基础 RESTful概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#以下例子以-第三章，-做出-CRUD-功能的讨论版来解释："><span class="toc-number">2.1.4.</span> <span class="toc-text">以下例子以 第三章， 做出 CRUD 功能的讨论版来解释：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网址对应关系"><span class="toc-number">2.1.5.</span> <span class="toc-text">网址对应关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">2.1.6.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="课程目标"><a href="#课程目标" class="headerlink" title="课程目标"></a>课程目标</h2><p>接下来会以一个“讨论版”为主题，实际让同学了解如何“从零打造”手写出一个网站。</p>
+<p>这个讨论版会有：</p>
+<ul>
+<li>使用者注册以及登录功能</li>
+<li>开新讨论区、留言功能</li>
+<li>加入讨论区、退出讨论区功能</li>
+<li>权限管理功能</li>
+<li>热门文章排序功能</li>
+<li>了解什么是 RESTful</li>
+</ul>
+<p>当你把这次应用程序实作完成，并上线后，你会学会：</p>
+<ul>
+<li>怎么把需求变成会动的 Rails 应用程序</li>
+<li>如何在 Rails 套版</li>
+<li>如何制作使用者登录功能</li>
+<li>重要 Rails 观念以及 API<ul>
+<li>CRUD</li>
+<li>RESTful</li>
+<li>member, collection</li>
+<li>helper</li>
+<li>partial</li>
+<li>scope</li>
+</ul>
+</li>
+<li>找到 Rails 第三方 gem 的技巧</li>
+<li>要怎么把你的应用程序放到网络上</li>
+</ul>
+<p>这几乎是一个 Rails 新手应该学的一切了，有了这些基础技巧之后，你再学更难的技巧，或者是要自己做出复杂的东西，就不会那么容易失败了。</p>
+<h2 id="课程复盘"><a href="#课程复盘" class="headerlink" title="课程复盘"></a>课程复盘</h2><h3 id="Rails-的-CRUD-与-RESTful"><a href="#Rails-的-CRUD-与-RESTful" class="headerlink" title="Rails 的 CRUD 与 RESTful"></a>Rails 的 CRUD 与 RESTful</h3><h4 id="HTTP-请求-Request）与-HTTP-动作-Verb）"><a href="#HTTP-请求-Request）与-HTTP-动作-Verb）" class="headerlink" title="HTTP 请求( Request）与 HTTP 动作 ( Verb）"></a>HTTP 请求( Request）与 HTTP 动作 ( Verb）</h4><p>一般网页的运作原理是这样的：</p>
+<ul>
+<li>使用者在浏览器输入了某个网址，点击了某个连结。这都叫发出 HTTP 请求 ( Request）。</li>
+<li>而浏览器回应之后：产生页面，或者是重新导向。这都叫 HTTP 回应（ Response）。</li>
+</ul>
+<p>一般来说，使用者最常使用的是两种类型 / 动作 ( Verb )的请求： GET 与 POST。</p>
+<ul>
+<li>GET ：输入网址，点击某些网址。这都是 GET。</li>
+<li>POST：送出表单。这叫做 POST</li>
+</ul>
+<h4 id="RESTful-的基础概念"><a href="#RESTful-的基础概念" class="headerlink" title="RESTful 的基础概念"></a>RESTful 的基础概念</h4><p>因为 CRUD 是常见的操作行为，但是大家实作的方式、与网址设计方式不一样。造成很多维护上的困扰。</p>
+<p>后来就有人发明 RESTful 这个概念，希望用 HTTP 的动作 ( Verb）一起去封装 CRUD 的行为。所以又多加了两个动作：</p>
+<ul>
+<li>PUT : 更新 ( update )</li>
+<li>DELETE : 删除 ( delete）</li>
+</ul>
+<p>而 Rails 的 Routing 也是依循这样的理念去设计。</p>
+<p><img src="https://ww2.sinaimg.cn/large/006tKfTcgy1fk3yvkj8lwj30el03a74b.jpg" alt=""></p>
+<h4 id="Rails-的基础-RESTful概念"><a href="#Rails-的基础-RESTful概念" class="headerlink" title="Rails 的基础 RESTful概念"></a>Rails 的基础 RESTful概念</h4><p>由于RESTful是个新手不容易一下子理解的概念，号称学 Ruby on Rails 初期最大障碍。</p>
+<p>在本篇尽量用浅显易懂的方式解释。如果看不懂也没关系，用背的！！</p>
+<p>一定要背起来！</p>
+<p><img src="https://ww1.sinaimg.cn/large/006tKfTcgy1fk3yvpbux7j30jg0jgdh1.jpg" alt=""></p>
+<h4 id="以下例子以-第三章，-做出-CRUD-功能的讨论版来解释："><a href="#以下例子以-第三章，-做出-CRUD-功能的讨论版来解释：" class="headerlink" title="以下例子以 第三章， 做出 CRUD 功能的讨论版来解释："></a>以下例子以 第三章， 做出 CRUD 功能的讨论版来解释：</h4><ul>
+<li>讨论版有个群组叫： groups。在 Restful 的概念里把这个 groups 叫做 resources，“一组资源”的意思。<br>为了要控制它的运作，我们会创建一个新的 Controller文件 叫做 groups_controller.rb</li>
+</ul>
+<p>HTTP Verb 有四种：</p>
+<ul>
+<li>新增 (create，使用 POST )</li>
+<li>读取 (read，使用 GET )</li>
+<li>更新 (update，使用 PUT )</li>
+<li>删除 (destroy，使用 DELETE)</li>
+</ul>
+<p>在这组 controller 当中，我们会实作 7 个 Action ，4 张页面。</p>
+<ul>
+<li>首页( index )：用来列出所有的讨论版，可以选择各个单版 （使用 GET )</li>
+<li>各个讨论版专属页面(show)：显示讨论版版名跟简介 (使用 GET )</li>
+<li>新增页面(new)：里面会有表单，填完以后可以送出 (使用 GET )</li>
+<li>产生数据（create) ：new 送出来的表单到 create 这个 action，新增一笔数据 ( 使用 POST )</li>
+<li>编辑页面(edit)：里面会有表单呈现现有数据来，填完数据后可以送出 (使用 GET )</li>
+<li>更新数据（update)：edit 送出来的表单可以到 update 这个 action，更新该笔数据 (使用 PUT )</li>
+<li>删除数据：送出删除请求，删除该笔数据（使用 DELETE）</li>
+</ul>
+<p>这七个 action ，是每个CRUD功能里最基本的动作。只要我们在 controller.rb 里定义 (def) 好这七个方法当作动作 (action)。其他的部分 Rails 就会帮我们处理了。</p>
+<p>像是设定 Routing (路由) 只需要简单一行:</p>
+<figure class="highlight ruby"><figcaption><span>config/routes.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">resources <span class="symbol">:groups</span></div></pre></td></tr></table></figure>
+<p>这样不管浏览器端跑来什么样的请求 (request) ，Routing都会聪明地帮我们导向正确的 action 去运作后续流程。</p>
+<h4 id="网址对应关系"><a href="#网址对应关系" class="headerlink" title="网址对应关系"></a>网址对应关系</h4><p>对于网址跟对应的Action与页面来说</p>
+<ul>
+<li>/groups/ 一定就是 index，首页，对应Routes路径： groups_path</li>
+<li>/groups/123 一定就是 show，名字为123的讨论版个版页面，对应Routes路径： group_path(123)</li>
+<li>/groups/123/edit 一定就是 edit，编辑讨论版123的表单页面，对应Routes路径：edit_group_path(123)</li>
+<li>/groups/new 一定就是 new，新增讨论版的表单页面，对应Routes路径(或称为helper)：new_group_path</li>
+</ul>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>所以制作一个 RESTful 风格的讨论版，我们仅需在Routes设定一行代码即可</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Ruby-on-Rails/">Ruby on Rails</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/新生大学全栈营/">新生大学全栈营</a><a href="/tags/全栈营课程复盘/">全栈营课程复盘</a><a href="/tags/Ruby-on-Rails/">Ruby on Rails</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://kerzzi.github.io/2017/10/02/2017-10-02-rails-primary-exercise-02/" data-title="课程复盘 | Rails 第三课：Rails 101（2） | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/10/02/2017-10-02-rails-primary-exercise-04/" title="课程复盘 | Rails 第三课：Rails 101（4）">
+  <strong>上一篇：</strong><br/>
+  <span>
+  课程复盘 | Rails 第三课：Rails 101（4）</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/10/02/2017-10-02-rails-primary-exercise-03/"  title="课程复盘 | Rails 第三课：Rails 101（3）">
+ <strong>下一篇：</strong><br/> 
+ <span>课程复盘 | Rails 第三课：Rails 101（3）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程目标"><span class="toc-number">1.</span> <span class="toc-text">课程目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#课程复盘"><span class="toc-number">2.</span> <span class="toc-text">课程复盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Rails-的-CRUD-与-RESTful"><span class="toc-number">2.1.</span> <span class="toc-text">Rails 的 CRUD 与 RESTful</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-请求-Request）与-HTTP-动作-Verb）"><span class="toc-number">2.1.1.</span> <span class="toc-text">HTTP 请求( Request）与 HTTP 动作 ( Verb）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RESTful-的基础概念"><span class="toc-number">2.1.2.</span> <span class="toc-text">RESTful 的基础概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Rails-的基础-RESTful概念"><span class="toc-number">2.1.3.</span> <span class="toc-text">Rails 的基础 RESTful概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#以下例子以-第三章，-做出-CRUD-功能的讨论版来解释："><span class="toc-number">2.1.4.</span> <span class="toc-text">以下例子以 第三章， 做出 CRUD 功能的讨论版来解释：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网址对应关系"><span class="toc-number">2.1.5.</span> <span class="toc-text">网址对应关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-number">2.1.6.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="sponsor">
+  <br />
+  <p class="asidetitle">赞助商</p>
+  <a href="/sponsor">
+  <br />
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2zsxnnmpj30b405iq2t.jpg" width="235px" />
+  </a>
+
+  <!--
+  <br /><a href="/sponsor"><font color='#2ca6cb'>购买广告位</font></a>
+  -->
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Photo/" title="Photo">Photo</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ruby-on-Rails/" title="Ruby on Rails">Ruby on Rails</a></li>
+		  
+		
+		  
+			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp</a></li>
+		  
+		
+		  
+			<li><a href="/categories/全栈营/" title="全栈营">全栈营</a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://steemit.com/@seeyoo" target="_blank" title="Kerzzi&#39;s Steem">Kerzzi&#39;s Steem</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weixin">
+  <br />
+  <p class="asidetitle">微信公众号</p>
+  <p>关注我的公众号「叫我柯子就好」，与你分享关于实践的高频小套路：</p>
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2yv4g9d3j3076076wel.jpg" width="220px" />
+ </div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kerzzi">Kerzzi</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?61e2f14c0f84a3ab81a328239a38b6d8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
