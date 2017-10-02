@@ -11,17 +11,17 @@
     
 
     
-    <meta name="description" content="目标: 你正在一个分支上写几个新需求，这时有人（还能有谁）过来跟你说某个已经写好的功能能不能先上线；但是你还有一些功能只做一半，这个分支还不能提交上线，怎么办？  步骤:Step 01:你心里默默问候了一下上面那个谁的亲人，然后飞速的敲下了以下命令：1$ git log --grep=&amp;quot;feature name&amp;quot; 首先通过上面的命令过滤出你哪些commit是关于这个功能的，你需">
+    <meta name="description" content="目标: 你正在一个分支上写几个新需求，这时有人（还能有谁）过来跟你说某个已经写好的功能能不能先上线；但是你还有一些功能只做一半，这个分支还不能提交上线，怎么办？  步骤:Step 01:你心里默默问候了一下上面那个谁的亲人，然后飞速的敲下了以下命令：1$ git log --grep=&quot;feature name&quot; 首先通过上面的命令过滤出你哪些commit是关于这个功能的，你需要把上面grep后面">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【豆知识】git小技巧：怎样把一个commit提交的内容应用到另外一个分支上">
 <meta property="og:url" content="https://kerzzi.github.io/2017/07/03/2017-07-03-bean-knowledge-git-tips-how-to-make-a-commit-to-submit-content-to-another-branch/index.html">
 <meta property="og:site_name" content="柯子的行思笔记">
-<meta property="og:description" content="目标: 你正在一个分支上写几个新需求，这时有人（还能有谁）过来跟你说某个已经写好的功能能不能先上线；但是你还有一些功能只做一半，这个分支还不能提交上线，怎么办？  步骤:Step 01:你心里默默问候了一下上面那个谁的亲人，然后飞速的敲下了以下命令：1$ git log --grep=&amp;quot;feature name&amp;quot; 首先通过上面的命令过滤出你哪些commit是关于这个功能的，你需">
+<meta property="og:description" content="目标: 你正在一个分支上写几个新需求，这时有人（还能有谁）过来跟你说某个已经写好的功能能不能先上线；但是你还有一些功能只做一半，这个分支还不能提交上线，怎么办？  步骤:Step 01:你心里默默问候了一下上面那个谁的亲人，然后飞速的敲下了以下命令：1$ git log --grep=&quot;feature name&quot; 首先通过上面的命令过滤出你哪些commit是关于这个功能的，你需要把上面grep后面">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-09-30T14:18:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【豆知识】git小技巧：怎样把一个commit提交的内容应用到另外一个分支上">
-<meta name="twitter:description" content="目标: 你正在一个分支上写几个新需求，这时有人（还能有谁）过来跟你说某个已经写好的功能能不能先上线；但是你还有一些功能只做一半，这个分支还不能提交上线，怎么办？  步骤:Step 01:你心里默默问候了一下上面那个谁的亲人，然后飞速的敲下了以下命令：1$ git log --grep=&amp;quot;feature name&amp;quot; 首先通过上面的命令过滤出你哪些commit是关于这个功能的，你需">
+<meta name="twitter:description" content="目标: 你正在一个分支上写几个新需求，这时有人（还能有谁）过来跟你说某个已经写好的功能能不能先上线；但是你还有一些功能只做一半，这个分支还不能提交上线，怎么办？  步骤:Step 01:你心里默默问候了一下上面那个谁的亲人，然后飞速的敲下了以下命令：1$ git log --grep=&quot;feature name&quot; 首先通过上面的命令过滤出你哪些commit是关于这个功能的，你需要把上面grep后面">
 
     
     <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
@@ -99,7 +99,7 @@
 		<h2 id="目标"><a href="#目标" class="headerlink" title="目标:"></a>目标:</h2><blockquote>
 <p>你正在一个分支上写几个新需求，这时有人（还能有谁）过来跟你说某个已经写好的功能能不能先上线；<br>但是你还有一些功能只做一半，这个分支还不能提交上线，怎么办？</p>
 </blockquote>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤:"></a>步骤:</h2><h3 id="Step-01"><a href="#Step-01" class="headerlink" title="Step 01:"></a>Step 01:</h3><p>你心里默默问候了一下上面那个谁的亲人，然后飞速的敲下了以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git log --grep=&quot;feature name&quot;</div></pre></td></tr></table></figure></p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤:"></a>步骤:</h2><h3 id="Step-01"><a href="#Step-01" class="headerlink" title="Step 01:"></a>Step 01:</h3><p>你心里默默问候了一下上面那个谁的亲人，然后飞速的敲下了以下命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">log</span> --grep=<span class="string">"feature name"</span></span></div></pre></td></tr></table></figure></p>
 <p>首先通过上面的命令过滤出你哪些commit是关于这个功能的，你需要把上面grep后面的参数换成你提交时的commit信息，当然你也可以直接通过<figure class="highlight plain"><figcaption><span>log```不加任何参数找到你的这些commit</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### Step 02:</div><div class="line"></div><div class="line">然后切换到你需要上线的分支比如master，当然切换之前可能你需要先通过```git stash```或者```commit```你当前的修改，然后：</div></pre></td></tr></table></figure></p>
 <p>$ git cherry-pick 373996b<br>$ git cherry-pick 1ff2abx<br>…<br><code>上面依次使用</code>cherry-pick<code>命令把对应的</code>commit hash<code>所对应的修改应用到当前分支，</code>commit hash<code>为你上面通过</code>git log<code>查找出来的</code>commit hash```。</p>
 <blockquote>

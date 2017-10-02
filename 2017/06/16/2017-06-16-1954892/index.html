@@ -106,12 +106,12 @@
 <li>如果你已经做了该章节部分内容，请自行跳过。</li>
 </ul>
 <h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><h3 id="Step-0"><a href="#Step-0" class="headerlink" title="Step 0:"></a>Step 0:</h3><p>执行<figure class="highlight plain"><figcaption><span>checkout -b story31```。</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### Step 1: 修改 Gemfile 档案</div><div class="line">把 sqlite3 从第7行搬到 ```group :development, :test do ```中间</div><div class="line">![](https://ww3.sinaimg.cn/large/006tNc79gy1fgrxlrlwq4j30dc03y747.jpg)</div><div class="line">在末尾新增一个 production group，加上 pg 这个 gem</div></pre></td></tr></table></figure></p>
-<p>group :production do<br>  gem ‘pg’<br>end<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![](https://ww1.sinaimg.cn/large/006tNc79gy1fgrxm2nzg3j30ft03z3yg.jpg)</div></pre></td></tr></table></figure></p>
-<p>command+s<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">存档</div><div class="line"></div><div class="line">修改 Gemfile 后要 ```bundle install```。</div></pre></td></tr></table></figure></p>
-<p>git add .<br>git commit -m “move sqlite3 to dev group &amp; add pg to production group”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### Step 2: 创建heroku app并将设定好的机密资讯同步到这个app</div></pre></td></tr></table></figure></p>
-<p>heroku create<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">先创建一个heroku app (**如果已经创建过，请自行跳过**)</div></pre></td></tr></table></figure></p>
+<p>group :production do<br>  gem ‘pg’<br>end<br><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">!<span class="selector-attr">[]</span>(<span class="attribute">https</span>:<span class="comment">//ww1.sinaimg.cn/large/006tNc79gy1fgrxm2nzg3j30ft03z3yg.jpg)</span></div></pre></td></tr></table></figure></p>
+<p>command+s<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">存档</div><div class="line"></div><div class="line">修改 Gemfile 后要 ```bundle install```。</div></pre></td></tr></table></figure></p>
+<p>git add .<br>git commit -m “move sqlite3 to dev group &amp; add pg to production group”<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### Step <span class="number">2</span>: 创建heroku app并将设定好的机密资讯同步到这个app</div></pre></td></tr></table></figure></p>
+<p>heroku create<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">先创建一个heroku app <span class="comment">(**如果已经创建过，请自行跳过**)</span></div></pre></td></tr></table></figure></p>
 <p>figaro heroku:set -e production<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure></p>
-<p>heroku config<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">可以列出目前所有的设定</div><div class="line"></div><div class="line">### Step 3: 上传到github和heroku</div></pre></td></tr></table></figure></p>
+<p>heroku config<br><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">可以列出目前所有的设定</div><div class="line"></div><div class="line">### Step <span class="number">3</span>: 上传到github和heroku</div></pre></td></tr></table></figure></p>
 <p>git push origin story31<br>git checkout master<br>git merge story31<br>git push origin master<br>git push heroku<br>heroku pg:reset DATABASE<br>heroku run rails db:migrate<br>heroku run rails db:seed<br>```</p>
 <h3 id="Step-4-开始上线商品图片吧"><a href="#Step-4-开始上线商品图片吧" class="headerlink" title="Step 4: 开始上线商品图片吧"></a>Step 4: 开始上线商品图片吧</h3><p>目前为止，购物网站的开发基本完成了。可以开始上线商品。<br><a href="https://github.com/Kerzzi/ruby_notes/tree/master/03_make_shopping_websites" target="_blank" rel="external">该系列文章最新版地址</a>：<a href="https://github.com/Kerzzi/ruby_notes/tree/master/03_make_shopping_websites" target="_blank" rel="external">https://github.com/Kerzzi/ruby_notes/tree/master/03_make_shopping_websites</a><br>网站最终效果：<a href="https://jfshop.herokuapp.com/" target="_blank" rel="external">https://jfshop.herokuapp.com/</a><br>网站model之间的关系：<br><img src="https://ww1.sinaimg.cn/large/006tNc79gy1fgry3vwkzkj31kw115n19.jpg" alt=""></p>
 <h2 id="本章详解"><a href="#本章详解" class="headerlink" title="本章详解"></a>本章详解</h2><blockquote>
@@ -143,18 +143,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/06/16/2017-06-16-1954893/" title="「从零开始做购物网站」第40章 超强彩蛋来袭！">
+ <a href="/2017/06/17/2017-06-17-orid-jdstore-magic-competitions-modified-secondary-drive/" title="【ORID】JDstore魔改大赛复盘">
   <strong>上一篇：</strong><br/>
   <span>
-  「从零开始做购物网站」第40章 超强彩蛋来袭！</span>
+  【ORID】JDstore魔改大赛复盘</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2017/06/16/2017-06-16-starting-from-scratch-do-shopping-site-the-37th-chapter-implementing-micro-payment-function/"  title="「从零开始做购物网站」第37章 实作支付宝、微信真实支付功能">
+<a href="/2017/06/16/2017-06-16-1954893/"  title="「从零开始做购物网站」第40章 超强彩蛋来袭！">
  <strong>下一篇：</strong><br/> 
- <span>「从零开始做购物网站」第37章 实作支付宝、微信真实支付功能
+ <span>「从零开始做购物网站」第40章 超强彩蛋来袭！
 </span>
 </a>
 </div>
