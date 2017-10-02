@@ -20,7 +20,7 @@
 <meta property="og:description" content="课程目标接下来会以一个“讨论版”为主题，实际让同学了解如何“从零打造”手写出一个网站。 这个讨论版会有：  使用者注册以及登录功能 开新讨论区、留言功能 加入讨论区、退出讨论区功能 权限管理功能 热门文章排序功能 了解什么是 RESTful  当你把这次应用程序实作完成，并上线后，你会学会：  怎么把需求变成会动的 Rails 应用程序 如何在 Rails 套版 如何制作使用者登录功能 重要 Ra">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ww1.sinaimg.cn/large/006tKfTcgy1fk43zmuk7ej30m80c00vl.jpg">
-<meta property="og:updated_time" content="2017-10-02T13:36:02.000Z">
+<meta property="og:updated_time" content="2017-10-02T14:05:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="课程复盘 | Rails 第三课：Rails 101（4）">
 <meta name="twitter:description" content="课程目标接下来会以一个“讨论版”为主题，实际让同学了解如何“从零打造”手写出一个网站。 这个讨论版会有：  使用者注册以及登录功能 开新讨论区、留言功能 加入讨论区、退出讨论区功能 权限管理功能 热门文章排序功能 了解什么是 RESTful  当你把这次应用程序实作完成，并上线后，你会学会：  怎么把需求变成会动的 Rails 应用程序 如何在 Rails 套版 如何制作使用者登录功能 重要 Ra">
@@ -157,7 +157,7 @@
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rails <span class="built_in">console</span></div></pre></td></tr></table></figure>
 <p>输入<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">u = User.first</div><div class="line">g = Group.first</div><div class="line">g<span class="selector-class">.members</span> &lt;&lt; u</div><div class="line">g.members</div><div class="line">u.participated_groups</div></pre></td></tr></table></figure></p>
 <p>这条语句 g.members &lt;&lt; u 来让群组g的成员包含用户u，这样u参与了g群组。即向数据中insert插入一笔新的资料。可以看console中：<br><img src="https://ww1.sinaimg.cn/large/006tKfTcgy1fk43zmuk7ej30m80c00vl.jpg" alt=""></p>
-<p>后面我们可以在user.rb中定义def join!(group) ，然后就可以使用 u.join!(g)，效果和上面一样。</p>
+<p>后面我们可以在user.rb中定义 def join!(group) ，然后就可以使用 u.join!(g)，效果和上面一样。</p>
 <h3 id="2-在群组里面判断“是否群组成员”实作"><a href="#2-在群组里面判断“是否群组成员”实作" class="headerlink" title="2. 在群组里面判断“是否群组成员”实作"></a>2. 在群组里面判断“是否群组成员”实作</h3><p>在 user model 内实作判断式“是否为群组的一分子”</p>
 <figure class="highlight ruby"><figcaption><span>app/models/user.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span> &lt; ApplicationRecord</span></div><div class="line">  <span class="comment"># 略 ...</span></div><div class="line"></div><div class="line">  </div><div class="line">+    <span class="function"><span class="keyword">def</span> <span class="title">is_member_of?</span><span class="params">(group)</span></span></div><div class="line">+      participated_groups.<span class="keyword">include</span>?(group)</div><div class="line">+    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div></pre></td></tr></table></figure>
 <p>判断该用户所参与的群组是否包含该群组。</p>
@@ -264,10 +264,10 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/10/02/2017-10-02-rails-rails101-03/" title="课程复盘 | Rails 第三课：Rails 101（3）">
+ <a href="/2017/10/02/2017-10-02-rails-primary-exercise-01/" title="课程复盘 | Rails 第二课：初级练习">
   <strong>上一篇：</strong><br/>
   <span>
-  课程复盘 | Rails 第三课：Rails 101（3）</span>
+  课程复盘 | Rails 第二课：初级练习</span>
 </a>
 </div>
 
