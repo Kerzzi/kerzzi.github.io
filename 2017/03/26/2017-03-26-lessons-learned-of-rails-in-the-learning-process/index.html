@@ -4,24 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>【经验汇编】Rails学习过程中遇到的坑 | 柯子的行思笔记</title>
+    <title>经验汇编 | Rails学习过程中遇到的坑 | 柯子的行思笔记</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Kerzzi">
     
 
     
-    <meta name="description" content="查理·芒格是我非常敬佩的一位长者，他的反向思考非常值得我学习。为了实践这一点，我收集整理Rails开发学习过程中他人和我遇到的一些坑，做成了这份经验反馈汇编，防止自己重复掉进坑里。1如果我知道我将在哪里死亡，我就永远不到那里去。 心态篇（持续更新……）">
+    <meta name="description" content="如果我知道我将在哪里死亡，我就永远不到那里去。 ——查理·芒格  我收集整理Rails开发学习过程中他人和我遇到的一些坑，做成了这份经验反馈汇编，防止自己重复掉进坑里。 心态篇（持续更新……）">
+<meta name="keywords" content="Ruby on Rails,经验汇编">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【经验汇编】Rails学习过程中遇到的坑">
+<meta property="og:title" content="经验汇编 | Rails学习过程中遇到的坑">
 <meta property="og:url" content="https://kerzzi.github.io/2017/03/26/2017-03-26-lessons-learned-of-rails-in-the-learning-process/index.html">
 <meta property="og:site_name" content="柯子的行思笔记">
-<meta property="og:description" content="查理·芒格是我非常敬佩的一位长者，他的反向思考非常值得我学习。为了实践这一点，我收集整理Rails开发学习过程中他人和我遇到的一些坑，做成了这份经验反馈汇编，防止自己重复掉进坑里。1如果我知道我将在哪里死亡，我就永远不到那里去。 心态篇（持续更新……）">
+<meta property="og:description" content="如果我知道我将在哪里死亡，我就永远不到那里去。 ——查理·芒格  我收集整理Rails开发学习过程中他人和我遇到的一些坑，做成了这份经验反馈汇编，防止自己重复掉进坑里。 心态篇（持续更新……）">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-30T14:18:49.000Z">
+<meta property="og:updated_time" content="2017-10-05T14:03:35.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【经验汇编】Rails学习过程中遇到的坑">
-<meta name="twitter:description" content="查理·芒格是我非常敬佩的一位长者，他的反向思考非常值得我学习。为了实践这一点，我收集整理Rails开发学习过程中他人和我遇到的一些坑，做成了这份经验反馈汇编，防止自己重复掉进坑里。1如果我知道我将在哪里死亡，我就永远不到那里去。 心态篇（持续更新……）">
+<meta name="twitter:title" content="经验汇编 | Rails学习过程中遇到的坑">
+<meta name="twitter:description" content="如果我知道我将在哪里死亡，我就永远不到那里去。 ——查理·芒格  我收集整理Rails开发学习过程中他人和我遇到的一些坑，做成了这份经验反馈汇编，防止自己重复掉进坑里。 心态篇（持续更新……）">
 
     
     <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
@@ -76,14 +77,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/03/26/2017-03-26-lessons-learned-of-rails-in-the-learning-process/" title="【经验汇编】Rails学习过程中遇到的坑" itemprop="url">【经验汇编】Rails学习过程中遇到的坑</a>
+      <a href="/2017/03/26/2017-03-26-lessons-learned-of-rails-in-the-learning-process/" title="经验汇编 | Rails学习过程中遇到的坑" itemprop="url">经验汇编 | Rails学习过程中遇到的坑</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
 		
   <p class="article-time">
-    <time datetime="2017-03-25T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-03-26</time>
+    <time datetime="2017-03-25T16:14:00.000Z" itemprop="datePublished"> 发表于 2017-03-26</time>
     
   </p>
 </header>
@@ -96,13 +97,26 @@
 		
 		</div>
 		
-		<p>查理·芒格是我非常敬佩的一位长者，他的反向思考非常值得我学习。为了实践这一点，我收集整理Rails开发学习过程中他人和我遇到的一些坑，做成了这份经验反馈汇编，防止自己重复掉进坑里。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">如果我知道我将在哪里死亡，我就永远不到那里去。</div></pre></td></tr></table></figure></p>
+		<blockquote>
+<p>如果我知道我将在哪里死亡，我就永远不到那里去。 ——查理·芒格</p>
+</blockquote>
+<p>我收集整理Rails开发学习过程中他人和我遇到的一些坑，做成了这份经验反馈汇编，防止自己重复掉进坑里。</p>
 <h2 id="心态篇"><a href="#心态篇" class="headerlink" title="心态篇"></a>心态篇</h2><p>（持续更新……）</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Ruby-on-Rails/">Ruby on Rails</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Ruby-on-Rails/">Ruby on Rails</a><a href="/tags/经验汇编/">经验汇编</a>
+  </div>
 
 </div>
 
@@ -110,7 +124,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://kerzzi.github.io/2017/03/26/2017-03-26-lessons-learned-of-rails-in-the-learning-process/" data-title="【经验汇编】Rails学习过程中遇到的坑 | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  <div data-url="https://kerzzi.github.io/2017/03/26/2017-03-26-lessons-learned-of-rails-in-the-learning-process/" data-title="经验汇编 | Rails学习过程中遇到的坑 | 柯子的行思笔记" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -124,18 +138,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/03/26/2017-03-26-orid-hangzhou-first-meetup-summary-20170325/" title="【ORID】杭州首次Meetup总结 | 20170325">
+ <a href="/2017/03/26/2017-03-26-orid-hangzhou-first-meetup-summary-20170325/" title="ORID | 杭州首次Meetup总结 20170325">
   <strong>上一篇：</strong><br/>
   <span>
-  【ORID】杭州首次Meetup总结 | 20170325</span>
+  ORID | 杭州首次Meetup总结 20170325</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2017/03/24/2017-03-24-this-week-the-best-concepts-and-tools-03-19-03-25/"  title="2017 | 本周最棒的概念和工具 03/19-03/25">
+<a href="/2017/03/26/2017-03-26-1641187/"  title="Mac 常用快捷键">
  <strong>下一篇：</strong><br/> 
- <span>2017 | 本周最棒的概念和工具 03/19-03/25
+ <span>Mac 常用快捷键
 </span>
 </a>
 </div>
