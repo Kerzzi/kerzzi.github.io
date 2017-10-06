@@ -1,0 +1,669 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>课程复盘 | Rails 网站效能（1） | 柯子的行思笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kerzzi">
+    
+
+    
+    <meta name="description" content="课程目标 Part 1: 前言 网站效能基础概念   Part 2: 前端效能 前端效能分析 减少 Requests 数量和大小 HTTP 最佳化 关键渲染路径 CDN   Part 3: 后端效能 项目准备 后端效能分析 避免 N+1 SQL 查询 ActiveRecord 优化技巧 数据库 SQL 优化 计数缓存 (Counter Cache) 改进 Render Partial 的效能 数据">
+<meta name="keywords" content="新生大学全栈营,全栈营课程复盘,Ruby on Rails">
+<meta property="og:type" content="article">
+<meta property="og:title" content="课程复盘 | Rails 网站效能（1）">
+<meta property="og:url" content="https://kerzzi.github.io/2017/10/04/2017-10-06-rails-website-performance/index.html">
+<meta property="og:site_name" content="柯子的行思笔记">
+<meta property="og:description" content="课程目标 Part 1: 前言 网站效能基础概念   Part 2: 前端效能 前端效能分析 减少 Requests 数量和大小 HTTP 最佳化 关键渲染路径 CDN   Part 3: 后端效能 项目准备 后端效能分析 避免 N+1 SQL 查询 ActiveRecord 优化技巧 数据库 SQL 优化 计数缓存 (Counter Cache) 改进 Render Partial 的效能 数据">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006tNc79gy1fk6g6sioznj30yc0retaj.jpg">
+<meta property="og:image" content="https://ww2.sinaimg.cn/large/006tNc79gy1fk6g79k1ltj30yc0re0tr.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79ly1fk6g7vc0ynj30uu0ofdgz.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNc79ly1fk6g9d9yqvj31eq14o0tz.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79ly1fk6g8xag3ij30tn0qcmy8.jpg">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006tNc79gy1fk6g5jliuuj30wk0lp0te.jpg">
+<meta property="og:image" content="https://ww2.sinaimg.cn/large/006tNc79ly1fk8dw0qriej30ou0rbadg.jpg">
+<meta property="og:image" content="https://ww2.sinaimg.cn/large/006tNc79ly1fk8dw1rexdj30oq074dg5.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fk8e7q3su2j315u0wkn08.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNc79gy1fk8e83utkmj315u0sitar.jpg">
+<meta property="og:image" content="https://ww2.sinaimg.cn/large/006tNc79ly1fk8e9rvpbmj315k0srtbl.jpg">
+<meta property="og:image" content="https://ww2.sinaimg.cn/large/006tNc79ly1fk8ea98mbnj311d0qhwga.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNc79gy1fk8eu2wnpaj30gz08cdft.jpg">
+<meta property="og:image" content="https://ww2.sinaimg.cn/large/006tNc79gy1fk8ew2v4c6j30wk0lp0te.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNc79gy1fk8exib098j30t80l9myl.jpg">
+<meta property="og:updated_time" content="2017-10-06T04:44:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="课程复盘 | Rails 网站效能（1）">
+<meta name="twitter:description" content="课程目标 Part 1: 前言 网站效能基础概念   Part 2: 前端效能 前端效能分析 减少 Requests 数量和大小 HTTP 最佳化 关键渲染路径 CDN   Part 3: 后端效能 项目准备 后端效能分析 避免 N+1 SQL 查询 ActiveRecord 优化技巧 数据库 SQL 优化 计数缓存 (Counter Cache) 改进 Render Partial 的效能 数据">
+<meta name="twitter:image" content="https://ww3.sinaimg.cn/large/006tNc79gy1fk6g6sioznj30yc0retaj.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
+				<h2 class="blog-motto">叫我柯子就好</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/04/2017-10-06-rails-website-performance/" title="课程复盘 | Rails 网站效能（1）" itemprop="url">课程复盘 | Rails 网站效能（1）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-03T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-10-04</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程目标"><span class="toc-number">1.</span> <span class="toc-text">课程目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#课程复盘"><span class="toc-number">2.</span> <span class="toc-text">课程复盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-网站效能基础概念"><span class="toc-number">2.1.</span> <span class="toc-text">1. 网站效能基础概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-前端效能分析"><span class="toc-number">2.2.</span> <span class="toc-text">2. 前端效能分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-减少-Requests-数量和大小"><span class="toc-number">2.3.</span> <span class="toc-text">3. 减少 Requests 数量和大小</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#本机如何跑-production-模式？"><span class="toc-number">2.3.1.</span> <span class="toc-text">本机如何跑 production 模式？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-HTTP-最佳化"><span class="toc-number">2.4.</span> <span class="toc-text">4. HTTP 最佳化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-压缩"><span class="toc-number">2.4.1.</span> <span class="toc-text">HTTP 压缩</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-缓存"><span class="toc-number">2.4.2.</span> <span class="toc-text">HTTP 缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-2"><span class="toc-number">2.4.3.</span> <span class="toc-text">HTTP/2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-关键渲染路径"><span class="toc-number">2.5.</span> <span class="toc-text">5. 关键渲染路径</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#如何量测？"><span class="toc-number">2.5.1.</span> <span class="toc-text">如何量测？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JavaScript-加载最佳化"><span class="toc-number">2.5.2.</span> <span class="toc-text">JavaScript 加载最佳化</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="课程目标"><a href="#课程目标" class="headerlink" title="课程目标"></a>课程目标</h2><ul>
+<li>Part 1: 前言<ul>
+<li>网站效能基础概念</li>
+</ul>
+</li>
+<li>Part 2: 前端效能<ul>
+<li>前端效能分析</li>
+<li>减少 Requests 数量和大小</li>
+<li>HTTP 最佳化</li>
+<li>关键渲染路径</li>
+<li>CDN</li>
+</ul>
+</li>
+<li>Part 3: 后端效能<ul>
+<li>项目准备</li>
+<li>后端效能分析</li>
+<li>避免 N+1 SQL 查询</li>
+<li>ActiveRecord 优化技巧</li>
+<li>数据库 SQL 优化</li>
+<li>计数缓存 (Counter Cache)</li>
+<li>改进 Render Partial 的效能</li>
+<li>数据库索引</li>
+<li>后端缓存和延展性(Scalability)</li>
+</ul>
+</li>
+</ul>
+<h2 id="课程复盘"><a href="#课程复盘" class="headerlink" title="课程复盘"></a>课程复盘</h2><h3 id="1-网站效能基础概念"><a href="#1-网站效能基础概念" class="headerlink" title="1. 网站效能基础概念"></a>1. 网站效能基础概念</h3><ul>
+<li>KISSmetric 研究指出，网页的加载时间超过4秒，网页的跳出率就会增加 25%。</li>
+<li>网站效能也会影响 SEO，搜寻引擎 Google 会针对慢速的网站降低权重。</li>
+<li>顺道一提，<strong>没加密的 HTTP 网站也会降低 SEO 权重</strong>，正式上线的网站建议要上 HTTPS 安全连线</li>
+</ul>
+<p>网站效能可以分成3个部分来看：</p>
+<ul>
+<li>后端效能，也就是网站服务器运行代码(Ruby/Rails/数据库)所需的时间</li>
+<li>前端效能，包括网络传输的时间，以及浏览器运行代码(HTML/CSS/Javascript)渲染出画面所需的时间</li>
+<li>网络传输，网络传输时间取决用户距离服务器的距离（光速和光纤的物理限制），以及用户上网的品质。</li>
+</ul>
+<blockquote>
+<p>本机开发时，Rails 是 development 模式，效能会比较差。部署在服务器上会用 production 模式，效能才会好的。这是因为本机开发时会一直改代码，所以每次 Request 都会重新编译过修改的代码。</p>
+</blockquote>
+<ul>
+<li><p>前端效能的优化，就是希望用户尽量只下载必要的资源、尽量提早让用户看到画面，而不需要等待全部的资源都下载执行完成才能看到画面。</p>
+</li>
+<li><p>后端效能的 Response Time 通常是毫秒等级来看的，基本上如果不犯错，就算不做什么优化，也可以在 250ms 左右完成，如果真的数据量或计算量很大，需要到几秒以上，这时候也应该用异步处理</p>
+</li>
+<li><p>因此在后端效能还OK的情况下，我们会更着重要前端效能的改进。前端效能的 Page Load Time 的是几秒等级</p>
+</li>
+</ul>
+<h3 id="2-前端效能分析"><a href="#2-前端效能分析" class="headerlink" title="2. 前端效能分析"></a>2. 前端效能分析</h3><p>科学化量测前端效能的工具：</p>
+<ul>
+<li><p>Chrome 除错器提供了详尽的报表，最基本我们可以观察 Network，其中的 Load 就是 Page Load Time 页面加载时间。<br><img src="https://ww3.sinaimg.cn/large/006tNc79gy1fk6g6sioznj30yc0retaj.jpg" alt=""></p>
+</li>
+<li><p>Chrome 也提供了进阶的 Performance 详细报告，包括解析 HTML、CSS、JavaScript 各花了多少时间<br><img src="https://ww2.sinaimg.cn/large/006tNc79gy1fk6g79k1ltj30yc0re0tr.jpg" alt=""></p>
+</li>
+<li><p>Google 也提供了一些分析工具，并提供分数报告——线上分析工具 <a href="https://developers.google.com/speed/pagespeed/insights/" target="_blank" rel="external">PageSpeed Insights</a><br><img src="https://ww4.sinaimg.cn/large/006tNc79ly1fk6g7vc0ynj30uu0ofdgz.jpg" alt=""></p>
+</li>
+<li><p><a href="https://developers.google.com/speed/docs/insights/rules" target="_blank" rel="external">PageSpeed Insights 的评分标准</a>，可以作为前端性能优化的参考。<br><img src="https://ww1.sinaimg.cn/large/006tNc79ly1fk6g9d9yqvj31eq14o0tz.jpg" alt=""></p>
+</li>
+<li><p>Chrome 外挂 <a href="https://developers.google.com/web/tools/lighthouse/" target="_blank" rel="external">Lighthouse</a><br><img src="https://ww4.sinaimg.cn/large/006tNc79ly1fk6g8xag3ij30tn0qcmy8.jpg" alt=""></p>
+</li>
+<li><p>由于开发者的网络线速度通常蛮快的，不能反应实际用户的连线情况，特别是用手机行动上网的情境，因此 Chrome 有提供模拟限速的功能。在截图中的 No throttling 的地方，我们可以将速度模拟成行动 3G 网络。另外在测试的时候，也需要把浏览器的缓存功能关闭。<br><img src="https://ww3.sinaimg.cn/large/006tNc79gy1fk6g5jliuuj30wk0lp0te.jpg" alt=""></p>
+</li>
+</ul>
+<h3 id="3-减少-Requests-数量和大小"><a href="#3-减少-Requests-数量和大小" class="headerlink" title="3. 减少 Requests 数量和大小"></a>3. 减少 Requests 数量和大小</h3><p>要完整加载一个网页，除了 HTML 之外，还会需要加载 CSS、JavaScript 和图片等资源。每一次的 HTTP Request 都需要耗费时间，因此减少 Requests 的请求数量，以及减少这些档案的大小，就是一个最佳化的方向。</p>
+<p>Rails 在本机开发时，CSS 和 JavaScript 是分开加载的：<br><img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk8dw0qriej30ou0rbadg.jpg" alt=""></p>
+<p>在部署上 Production 环境时，Asset Pipeline 会执行 rake assets:precompile 将 CSS 和 Javascript 进行合并压缩，变成这个样子：<br><img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk8dw1rexdj30oq074dg5.jpg" alt=""></p>
+<blockquote>
+<p>CSS 压缩是透过 sass-rails gem，而 JavaScript 压缩是透过 uglifier gem</p>
+</blockquote>
+<h4 id="本机如何跑-production-模式？"><a href="#本机如何跑-production-模式？" class="headerlink" title="本机如何跑 production 模式？"></a>本机如何跑 production 模式？</h4><p>也因为这个原因，在本机用 development 模式进行前端效能测试是不准的。如果想<strong>在本机跑 production 模式</strong>的话，可以这样做：</p>
+<ol>
+<li>修改 config/database.yml 设定 production 模式要用哪一个数据库，例如把 production 改成用 development 模式的数据库，例如</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="attr">   development:</span></div><div class="line">    <span class="string">&lt;&lt;:</span> <span class="meta">*default</span></div><div class="line"><span class="attr">    database:</span> <span class="string">db/development.sqlite3</span></div><div class="line"></div><div class="line"><span class="attr">  production:</span></div><div class="line">    <span class="string">&lt;&lt;:</span> <span class="meta">*default</span></div><div class="line"><span class="attr">-    database:</span> <span class="string">db/production.sqlite3</span></div><div class="line"><span class="string">+</span>    <span class="attr">database:</span> <span class="string">db/development.sqlite3</span></div></pre></td></tr></table></figure>
+<ol>
+<li>执行 bundle exec rake assets:precompile，这会在本机执行 Asset Pipleline 的编译</li>
+<li>暂时修改 config/environments/production.rb 打开 public_file_server，这会允许 Rails 服务器可以回传静态档案(在正式部署的服务器上，静态档案会由 Nginx 处理，所以默认是关闭的)</li>
+</ol>
+<figure class="highlight ruby"><figcaption><span>config/environments/production.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-  config.public_file_server.enabled = ENV[<span class="string">'RAILS_SERVE_STATIC_FILES'</span>].present?</div><div class="line">+  config.public_file_server.enabled = <span class="literal">true</span></div></pre></td></tr></table></figure>
+<ol>
+<li>改用 rails s -e production 来启动 Rails，就会是用 production 模式</li>
+<li>Asset Pipleline 的编译出来的档案放在 public/assets 下，这些档案是不需要 commit 的，实验完之后需要砍掉。执行 bundle exec rake assets:clobber 或 rm -rf public/assets 可以砍掉这个目录。</li>
+</ol>
+<p>不过在 production 模式下，修改任何 Ruby 代码，都需要重启 Rails。修改任何前端代码，都需要重新编译 Asset Pipleline，是很麻烦的。</p>
+<h3 id="4-HTTP-最佳化"><a href="#4-HTTP-最佳化" class="headerlink" title="4. HTTP 最佳化"></a>4. HTTP 最佳化</h3><p>HTTP 通讯协议本身，也有一些可以提速的功能：</p>
+<h4 id="HTTP-压缩"><a href="#HTTP-压缩" class="headerlink" title="HTTP 压缩"></a>HTTP 压缩</h4><p>网站服务器和浏览器之间，支援了 gzip 压缩，在部署教程中，就有设定 Nginx 打开这个功能：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">gzip <span class="keyword">on</span>;</div><div class="line">gzip_disable <span class="string">"msie6"</span>;</div><div class="line"></div><div class="line">gzip_comp_level    <span class="number">5</span>;</div><div class="line">gzip_min_length    <span class="number">256</span>;</div><div class="line">gzip_proxied       any;</div><div class="line">gzip_vary          <span class="keyword">on</span>;</div><div class="line">gzip_types <span class="built_in">application</span>/atom+xml <span class="built_in">application</span>/javascript <span class="built_in">application</span>/x-javascript <span class="built_in">application</span>/json <span class="built_in">application</span>/rss+xml <span class="built_in">application</span>/vnd.ms-fontobject <span class="built_in">application</span>/x-font-ttf <span class="built_in">application</span>/x-web-app-manifest+json <span class="built_in">application</span>/xhtml+xml <span class="built_in">application</span>/xml font/opentype image/svg+xml image/x-icon <span class="built_in">text</span>/css <span class="built_in">text</span>/xml <span class="built_in">text</span>/plain <span class="built_in">text</span>/javascript <span class="built_in">text</span>/x-component;</div></pre></td></tr></table></figure>
+<p>一旦启用这个功能，Nginx 就会针对这些纯文字的档案，进行 gzip 压缩之后再传给浏览器，在 HTTP <strong>Response 标头</strong>上会标明这个有 gzip 压缩，那么浏览器就会知道要进行解压缩</p>
+<p><img src="https://ww4.sinaimg.cn/large/006tNc79gy1fk8e7q3su2j315u0wkn08.jpg" alt=""><br><img src="https://ww1.sinaimg.cn/large/006tNc79gy1fk8e83utkmj315u0sitar.jpg" alt=""></p>
+<p>档案有没有压缩差别很大，截图中 JavaScript 压缩前是 1.1 MB，压缩后是 322KB，CSS 压缩前是 142KB，压缩后是 22.7KB。所以这个功能务必在服务器上要开启。</p>
+<blockquote>
+<p>图片不需要 gzip 压缩，因为图片本身已经是压缩过后的格式(PNG或JPG)</p>
+</blockquote>
+<h4 id="HTTP-缓存"><a href="#HTTP-缓存" class="headerlink" title="HTTP 缓存"></a>HTTP 缓存</h4><p>在 HTTP 标头中，也有定义一些缓存功能。我们之前在部署教程中，在 Nginx 服务器有这样的设定：<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">location</span> ~ ^/assets/ &#123;</div><div class="line">  expires <span class="number">1</span>y<span class="comment">;</span></div><div class="line">  <span class="keyword">add_header </span>Cache-Control public<span class="comment">;</span></div><div class="line">  <span class="keyword">add_header </span>ETag <span class="string">""</span><span class="comment">;</span></div><div class="line">  <span class="keyword">break;</span></div><div class="line"><span class="keyword"> </span>&#125;</div></pre></td></tr></table></figure></p>
+<p>这会针对 /assets/ 目录下的静态档案，在 HTTP Response 加入以下的 Headers：<br><img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk8e9rvpbmj315k0srtbl.jpg" alt=""></p>
+<ul>
+<li>cache-control: public 指定这个资源是可以被浏览器缓存</li>
+<li>cache-control: max-age=31536000 和 expire 告诉浏览器这个资源可以被缓存多久</li>
+</ul>
+<p>于是浏览器就知道这些资源可以被缓存，当你重新整理页面，或是浏览下一页的时候：<br><img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk8ea98mbnj311d0qhwga.jpg" alt=""></p>
+<p>这些资源就从浏览器的缓存拿出来，而不需要发出 HTTP Requests 到服务器。</p>
+<p>为什么可以将缓存时间拉到一年这么久呢? 这是因为 Rails asset pipleline 的 digest 功能会修改档名加上编码。每次部署上线进行 rake assets:precompile 编译时，如果 CSS/JS/图片 内容有变动的话，那这个档名就会变，浏览器就会下载新的档案。因此我们可以放心告诉浏览器这些资源可以被缓存，而不用担心用户继续使用旧的档案。</p>
+<h4 id="HTTP-2"><a href="#HTTP-2" class="headerlink" title="HTTP/2"></a>HTTP/2</h4><p>HTTP/2 是 2015 年制定的最新 HTTP 标准，语意和功能都与 HTTP 1.1 是相容的，主要是改善加载网页的效能，详细请参考ihower老师之前写的一篇文章 <a href="https://ihower.tw/blog/archives/8489" target="_blank" rel="external">更快更安全: 每个网站都应该升级到 HTTP/2</a>。</p>
+<p>HTTP/2 在图片很多的场景，使用 HTTP/2 会改善非常多。不过 HTTP/2 要求 HTTPS，这是部署上会比较麻烦的地方。</p>
+<blockquote>
+<p>HTTPS 安全宣导：自 2017 年 10 月起，如果用户使用 Chrome (62版) 时，在使用 HTTP 的网页表单中输入文字，Chrome 将显示「不安全」警告</p>
+</blockquote>
+<h3 id="5-关键渲染路径"><a href="#5-关键渲染路径" class="headerlink" title="5. 关键渲染路径"></a>5. 关键渲染路径</h3><p>除了<strong>网页加载时间(Page Load Time)</strong>之外，另一个前端效能注重的数据是<strong>首次渲染页面的时间</strong>。</p>
+<p>浏览器渲染画面(Browser Rendering)的过程：</p>
+<ul>
+<li>浏览器下载 HTML</li>
+<li>浏览器针对 HTML 上的外部资源(CSS/JavaScript/图片)发送 HTTP Requests 去获取，在 HTTP 1.1 时代只能同时抓取六个资源、在 HTTP/2 之后则可以同时平行抓取。</li>
+<li>同一时间浏览器也从 HTML 源码上到下开始解析进行渲染：<ul>
+<li>用 HTML 建立 Document Object Model (DOM)</li>
+<li>用 CSS 建立 CSS Object Model (CSSOM)，如果 CSS 还没下载完成，会等待</li>
+<li>执行 JavaScript 来操作 DOM 和 CSSOM，如果 JavaScript 还没下载完成，会等待</li>
+<li>建立 Render Tree</li>
+<li>计算每个元素在画面上的位置 Layout</li>
+<li>实际画上(Paint)每一画素(pixels)</li>
+</ul>
+</li>
+</ul>
+<p>这个过程其实可以是一个渐进的过程，我们希望尽快让用户看到有个画面，也就是去缩短首次渲染页面的时间，而不是完全的空白画面。因此希望找出所谓的关键渲染路径(Critical Rendering Path)：<br><img src="https://ww1.sinaimg.cn/large/006tNc79gy1fk8eu2wnpaj30gz08cdft.jpg" alt=""></p>
+<p>这张图出自 <a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/" target="_blank" rel="external">Google 文档</a>，上图是经过关键渲染路径优化的版本、下图是没有经过优化的版本。你可以看到经过优化的版本，用户可以更早就看到画面，在感受上可以更早就开始阅读和操作网页。</p>
+<p>这要怎么办到呢? 关键就在思考<strong>首次渲染页面时，只加载必要的 CSS，以及延后 JavaScript 加载。这是因为显示画面只需要 HTML/CSS，暂时不需要 JavaScript</strong>。</p>
+<h4 id="如何量测？"><a href="#如何量测？" class="headerlink" title="如何量测？"></a>如何量测？</h4><p>用 Chrome 除错器的 Performance 功能，可以观察加载的看时间轴：</p>
+<p>首先限速一下，这样比较好观察效果：<br><img src="https://ww2.sinaimg.cn/large/006tNc79gy1fk8ew2v4c6j30wk0lp0te.jpg" alt=""></p>
+<p>点到 Performance tab，打开 Screenshots，按下重新整理就会开始量测：<br><img src="https://ww1.sinaimg.cn/large/006tNc79gy1fk8exib098j30t80l9myl.jpg" alt=""></p>
+<ul>
+<li>测试一个没有优化的版本 <a href="https://www.rails-recipes.win，要" target="_blank" rel="external">https://www.rails-recipes.win，要</a> 3.5 秒</li>
+<li>测试一个优化之后的版本 <a href="https://www.rails-recipes.win/?js=async，约" target="_blank" rel="external">https://www.rails-recipes.win/?js=async，约</a> 1.6 秒时，第一个画面就出来了。</li>
+</ul>
+<p>这是怎么办到的，最重要的技巧是<strong>延后 JavaScript 的加载</strong>。</p>
+<h4 id="JavaScript-加载最佳化"><a href="#JavaScript-加载最佳化" class="headerlink" title="JavaScript 加载最佳化"></a>JavaScript 加载最佳化</h4><p>JavaScript 的加载对浏览器来说是 rendering blocking 的，当浏览器在 <head> 里面看到 <script> 标籤时，浏览器会等待下载完成，并执行这个 JavasSript 后，才会继续 rendering HTML 画面。</p>
+<p><img src="https://ww1.sinaimg.cn/large/006tNc79ly1fk8f08laksj30xh04r0sh.jpg" alt=""></p>
+<p>图例中绿色是 HTML 渲染、紫色是 JavaScript 下载、红色是 JavaScript 执行。<strong>浏览器看到 <script> 会暂停 HTML 渲染，来下载和执行 JavaScript</strong>。</p>
+<p>在 Rails 的 layout/application.html.erb 中，JavaScript 就被放在 <head> 里面，优化的办法有几种：</p>
+<h4 id="传统做法：将-script-移到底部"><a href="#传统做法：将-script-移到底部" class="headerlink" title="传统做法：将 script 移到底部"></a>传统做法：将 script 移到底部</h4><p>传统做法是将 <script> 加载移出 <head>，放在 HTML 底部，</body> 上一行。</p>
+<p>这个做法的<strong>优点是所有浏览器都支援</strong>，但是缺点是与 Rails 的 Turbolinks 功能是冲突不相容的(请复习 “Ajax 交互式网页应用” 教程 “3-1 Turbolinks 坑”)，因为 <strong>Turbolinks 的作用就是保留 <head> 用 Ajax 替换 <body> 区块</strong>，如果把 JavaScript 移出 <head> 那 Turbolinks 就会不正常运作。</p>
+<h4 id="新标准做法：async-和-defer-属性"><a href="#新标准做法：async-和-defer-属性" class="headerlink" title="新标准做法：async 和 defer 属性"></a>新标准做法：async 和 defer 属性</h4><p>新的浏览器标准可以透过 async 或 defer 属性，告诉浏览器这个 <strong>JavaScript 加载可以是异步的</strong>，不要阻挡 HTML 的 rendering。</p>
+<p>修改 app/views/layout/application.html.erb</p>
+<figure class="highlight ruby"><figcaption><span>app/views/layout/application.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-  &lt;%= javascript_include_tag <span class="string">'application'</span>, <span class="string">'data-turbolinks-track'</span>: <span class="string">'reload'</span> %&gt;</div><div class="line">+  &lt;%= javascript_include_tag <span class="string">'application'</span>, <span class="string">'data-turbolinks-track'</span>: <span class="string">'reload'</span>, <span class="symbol">:async</span> =&gt; <span class="literal">true</span> %&gt;</div></pre></td></tr></table></figure>
+<p>或是</p>
+<figure class="highlight ruby"><figcaption><span>app/views/layout/application.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-  &lt;%= javascript_include_tag <span class="string">'application'</span>, <span class="string">'data-turbolinks-track'</span>: <span class="string">'reload'</span> %&gt;</div><div class="line">+  &lt;%= javascript_include_tag <span class="string">'application'</span>, <span class="string">'data-turbolinks-track'</span>: <span class="string">'reload'</span>, <span class="symbol">:defer</span> =&gt; <span class="literal">true</span> %&gt;</div></pre></td></tr></table></figure>
+<p>async 和 defer 的差别是：</p>
+<p><img src="https://ww1.sinaimg.cn/large/006tNc79ly1fk8f08laksj30xh04r0sh.jpg" alt=""><br>async 的话，<strong>浏览器不会阻挡 HTML 的渲染，当 JavaScript 下载完成时就会直接执行 JavaScript，不会等 HTML DOM 加载</strong>。</p>
+<p><img src="https://ww3.sinaimg.cn/large/006tNc79ly1fk8f4w0yc6j30wq03u0nu.jpg" alt=""><br>defer 的话，浏览器也不会阻挡 HTML 的渲染，但是当 JavaScript 下载完成后，<strong>会等 HTML 加载完成，才会执行 JavaScript</strong>。如果 JavaScript 里面有依赖 DOM 的话，适合用这个方式。</p>
+<p>async 和 defer 是浏览器的新标准，优点是可以比传统做法效果更好。但是缺点是旧的浏览器支援不好，IE&lt;=9 的版本不支援。</p>
+<h4 id="Inline-型式的-JavaScript-问题"><a href="#Inline-型式的-JavaScript-问题" class="headerlink" title="Inline 型式的 JavaScript 问题"></a>Inline 型式的 JavaScript 问题</h4><p>无论是底部或 async/defer 做法，JavaScript 执行的顺序都需要注意不然会出错。之前在百宝箱教程中都假设 JavaScript 是放在 head，因此放在 HTML 内的 JavaScript 会出错。例如在 app/views/events/_form.html.erb 中，我们在 HTML 写了：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></div><div class="line"><span class="javascript">  $(<span class="string">"#event_category_id"</span>).select2( &#123; <span class="attr">theme</span>: <span class="string">"bootstrap"</span>&#125; );</span></div><div class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>这段代码无论是把 JavaSript 改放在下方，或是用 async/defer，会因为找不到 jQuery 的 而出错，<strong>因为它的执行顺序跑在 jQuery 加载之前</strong>了 :(</p>
+<p>那要怎么调整呢？</p>
+<h4 id="JavaScript-放底部的调整方式："><a href="#JavaScript-放底部的调整方式：" class="headerlink" title="JavaScript 放底部的调整方式："></a>JavaScript 放底部的调整方式：</h4><p>解决方式是我们在 javascript_include_tag 下再多加一行 </p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">yield</span> <span class="symbol">:handwrite_javascript</span></div></pre></td></tr></table></figure>
+<p>（多一个区块）</p>
+<p><img src="https://ww2.sinaimg.cn/large/006tNc79gy1fk8f7rtogfj30m80d1mxg.jpg" alt=""><br>然后再将原先写的 JavaScript 代码，用 content_for 把原先的网页包起来。那么这一段 JavaScript 就会在javascript_include_tag 以下执行了。</p>
+<p><img src="https://ww3.sinaimg.cn/large/006tNc79gy1fk8f8ovxpyj30io0bdmxj.jpg" alt=""></p>
+<h4 id="defer-的调整方式："><a href="#defer-的调整方式：" class="headerlink" title="defer 的调整方式："></a>defer 的调整方式：</h4><p>将原本写的 JavaScript 代码，延后到 DOMContentLoaded 事件后才触发：</p>
+<p>例如百宝箱的 app/views/admin/events/_form.html.erb 本来有一段使用 select2 的代码：</p>
+<figure class="highlight ruby"><figcaption><span>app/views/admin/events/_form.html.er</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">  &lt;script&gt;</div><div class="line">+   window.addEventListener(<span class="string">'DOMContentLoaded'</span>, function() &#123;</div><div class="line">      $(<span class="string">"#event_category_id"</span>).select2( &#123; <span class="symbol">theme:</span> <span class="string">"bootstrap"</span>&#125; );</div><div class="line">+   &#125;)</div><div class="line">&lt;<span class="regexp">/script&gt;</span></div></pre></td></tr></table></figure>
+<h4 id="async-的调整方式："><a href="#async-的调整方式：" class="headerlink" title="async 的调整方式："></a>async 的调整方式：</h4><p>HTML 中不能有 inline 形式的 JavaScript 了，因为我们不知道那些 async 的 JavaScript 到底什么时候会被加载，因此所有代码都必须放在打包后的 application.js 中。请将把 layout 的 <body> 改成 <body id="<%= "#{controller_name}-#{action_name}"%>">，这样就可以在全局载入的 application.js 中<strong>指定只有这一页才执行的js code</strong>，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="keyword">if</span> ( $(<span class="string">"#events-edit"</span>).length &gt; <span class="number">0</span> ) &#123;</div><div class="line">    $(<span class="string">"#event_category_id"</span>).select2( &#123; <span class="attr">theme</span>: <span class="string">"bootstrap"</span>&#125; );</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="实地测试"><a href="#实地测试" class="headerlink" title="实地测试"></a>实地测试</h4><p>以下网址提供了不同做法，你可以用 Chrome 除错器的 Performacne 功能测试看看：</p>
+<ul>
+<li><a href="https://www.rails-recipes.win/">https://www.rails-recipes.win/</a> JS 放 head</li>
+<li><a href="https://www.rails-recipes.win/?js=bottom">https://www.rails-recipes.win/?js=bottom</a> JS 放底部</li>
+<li><a href="https://www.rails-recipes.win/?js=async">https://www.rails-recipes.win/?js=async</a> 用 async 加载</li>
+<li><a href="https://www.rails-recipes.win/?js=defer">https://www.rails-recipes.win/?js=defer</a> 用 defer 加载</li>
+</ul>
+<h4 id="CSS-加载最佳化"><a href="#CSS-加载最佳化" class="headerlink" title="CSS 加载最佳化"></a>CSS 加载最佳化</h4><p>CSS 也被浏览器视为一种 render blocking 的资源，当浏览器解析 HTML 看到<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;link <span class="attribute">href</span>=<span class="string">"style.css"</span> <span class="attribute">rel</span>=<span class="string">"stylesheet"</span>&gt;</div></pre></td></tr></table></figure></p>
+<p>时，就会等待完整解析这个 CSS 后，才会继续渲染画面。</p>
+<p>要渲染 HTML 画面，加载 CSS 是必要的，但是 Rails 默认的 application.css 是将全部的 CSS 打包，我们可以拆出一些关键的 CSS 包成一个档案，这个档案比较小，因此可以加速首次渲染页面的时间。然后将其他没这个重要的 CSS 包在另一个档案，透过<strong>异步加载的方式</strong>。详细可以参考这篇的做法 <a href="https://icook.engineering/optimize-css-delivery-in-rails-app-16a7727cc984">Optimize CSS delivery in Rails app</a>。</p>
+<h4 id="进阶阅读："><a href="#进阶阅读：" class="headerlink" title="进阶阅读："></a>进阶阅读：</h4><ul>
+<li>请阅读 Google 的<a href="https://developers.google.com/web/fundamentals/performance/">效能指南</a>以及<a href="https://developers.google.com/speed/docs/insights/rules">PageSpeed Insights 的评分标准</a>，有中文翻译，但内容比本教程深，看懂多少是多少</li>
+<li>请安装 Chrome 外挂<a href="https://developers.google.com/web/tools/lighthouse/"> Lighthouse</a>。</li>
+</ul>
+</script></head></p>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Ruby-on-Rails/">Ruby on Rails</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/新生大学全栈营/">新生大学全栈营</a><a href="/tags/全栈营课程复盘/">全栈营课程复盘</a><a href="/tags/Ruby-on-Rails/">Ruby on Rails</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://kerzzi.github.io/2017/10/04/2017-10-06-rails-website-performance/" data-title="课程复盘 | Rails 网站效能（1） | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/10/03/2017-10-03-rails-job-listing-05/"  title="课程复盘 | Rails 第三课：Rails 实战：招聘网站（5）">
+ <strong>下一篇：</strong><br/> 
+ <span>课程复盘 | Rails 第三课：Rails 实战：招聘网站（5）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程目标"><span class="toc-number">1.</span> <span class="toc-text">课程目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#课程复盘"><span class="toc-number">2.</span> <span class="toc-text">课程复盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-网站效能基础概念"><span class="toc-number">2.1.</span> <span class="toc-text">1. 网站效能基础概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-前端效能分析"><span class="toc-number">2.2.</span> <span class="toc-text">2. 前端效能分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-减少-Requests-数量和大小"><span class="toc-number">2.3.</span> <span class="toc-text">3. 减少 Requests 数量和大小</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#本机如何跑-production-模式？"><span class="toc-number">2.3.1.</span> <span class="toc-text">本机如何跑 production 模式？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-HTTP-最佳化"><span class="toc-number">2.4.</span> <span class="toc-text">4. HTTP 最佳化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-压缩"><span class="toc-number">2.4.1.</span> <span class="toc-text">HTTP 压缩</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-缓存"><span class="toc-number">2.4.2.</span> <span class="toc-text">HTTP 缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP-2"><span class="toc-number">2.4.3.</span> <span class="toc-text">HTTP/2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-关键渲染路径"><span class="toc-number">2.5.</span> <span class="toc-text">5. 关键渲染路径</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#如何量测？"><span class="toc-number">2.5.1.</span> <span class="toc-text">如何量测？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JavaScript-加载最佳化"><span class="toc-number">2.5.2.</span> <span class="toc-text">JavaScript 加载最佳化</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="sponsor">
+  <br />
+  <p class="asidetitle">赞助商</p>
+  <a href="/sponsor">
+  <br />
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2zsxnnmpj30b405iq2t.jpg" width="235px" />
+  </a>
+
+  <!--
+  <br /><a href="/sponsor"><font color='#2ca6cb'>购买广告位</font></a>
+  -->
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Mac/" title="Mac">Mac</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Markdown/" title="Markdown">Markdown</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Photo/" title="Photo">Photo</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ruby-on-Rails/" title="Ruby on Rails">Ruby on Rails</a></li>
+		  
+		
+		  
+			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp</a></li>
+		  
+		
+		  
+			<li><a href="/categories/两最一坑/" title="两最一坑">两最一坑</a></li>
+		  
+		
+		  
+			<li><a href="/categories/全栈营/" title="全栈营">全栈营</a></li>
+		  
+		
+		  
+			<li><a href="/categories/通往财富自由之路/" title="通往财富自由之路">通往财富自由之路</a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://steemit.com/@seeyoo" target="_blank" title="Kerzzi&#39;s Steem">Kerzzi&#39;s Steem</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://kerzzi.logdown.com/" target="_blank" title="Old Blog">Old Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/Kerzzi" target="_blank" title="Kerzzi&#39;s Github">Kerzzi&#39;s Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://mindhacks.cn/" target="_blank" title="刘未鹏">刘未鹏</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://coolshell.cn/" target="_blank" title="酷壳">酷壳</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ruanyifeng.com/" target="_blank" title="阮一峰">阮一峰</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weixin">
+  <br />
+  <p class="asidetitle">微信公众号</p>
+  <p>关注我的公众号「叫我柯子就好」，与你分享关于实践的高频小套路：</p>
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2yv4g9d3j3076076wel.jpg" width="220px" />
+ </div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kerzzi">Kerzzi</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?61e2f14c0f84a3ab81a328239a38b6d8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
