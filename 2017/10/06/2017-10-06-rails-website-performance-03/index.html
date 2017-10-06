@@ -1,0 +1,622 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>课程复盘 | Rails 网站效能（3） | 柯子的行思笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kerzzi">
+    
+
+    
+    <meta name="description" content="课程目标 Part 1: 前言 网站效能基础概念   Part 2: 前端效能 前端效能分析 减少 Requests 数量和大小 HTTP 最佳化 关键渲染路径 CDN   Part 3: 后端效能 项目准备 后端效能分析 避免 N+1 SQL 查询 ActiveRecord 优化技巧 数据库 SQL 优化 计数缓存 (Counter Cache) 改进 Render Partial 的效能 数据">
+<meta name="keywords" content="新生大学全栈营,Ruby on Rails,全栈营课程复盘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="课程复盘 | Rails 网站效能（3）">
+<meta property="og:url" content="https://kerzzi.github.io/2017/10/06/2017-10-06-rails-website-performance-03/index.html">
+<meta property="og:site_name" content="柯子的行思笔记">
+<meta property="og:description" content="课程目标 Part 1: 前言 网站效能基础概念   Part 2: 前端效能 前端效能分析 减少 Requests 数量和大小 HTTP 最佳化 关键渲染路径 CDN   Part 3: 后端效能 项目准备 后端效能分析 避免 N+1 SQL 查询 ActiveRecord 优化技巧 数据库 SQL 优化 计数缓存 (Counter Cache) 改进 Render Partial 的效能 数据">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006tNc79gy1fk8q5ntcfdj30wz0tadgs.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNc79gy1fk8q6eyzyaj30wg110759.jpg">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006tNc79ly1fk8q7fyuf5j30w706nt90.jpg">
+<meta property="og:image" content="https://ww2.sinaimg.cn/large/006tNc79gy1fk8qh82up2j30wz0tajsg.jpg">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006tNc79gy1fk8qhp2olej30wb0qx3zq.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79ly1fk8qltkggnj30w70d6t9r.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fk8qtcat0rj30wa0qhab5.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fk8qtgcae0j30wc0cg3ze.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79ly1fk8rg9fdm4j30w40cm3z8.jpg">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006tNc79gy1fk8rchwo27j308w056wev.jpg">
+<meta property="og:image" content="https://ww2.sinaimg.cn/large/006tNc79gy1fk8rctxremj308j054dfq.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNc79gy1fk8rd423iwj30dq05cdfu.jpg">
+<meta property="og:image" content="https://ww1.sinaimg.cn/large/006tNc79gy1fk8rdern5mj30i007mjrf.jpg">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006tNc79gy1fk8rdui9vxj30j305zdfv.jpg">
+<meta property="og:image" content="https://ww3.sinaimg.cn/large/006tNc79gy1fk8re94najj30hg07maa6.jpg">
+<meta property="og:updated_time" content="2017-10-06T11:43:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="课程复盘 | Rails 网站效能（3）">
+<meta name="twitter:description" content="课程目标 Part 1: 前言 网站效能基础概念   Part 2: 前端效能 前端效能分析 减少 Requests 数量和大小 HTTP 最佳化 关键渲染路径 CDN   Part 3: 后端效能 项目准备 后端效能分析 避免 N+1 SQL 查询 ActiveRecord 优化技巧 数据库 SQL 优化 计数缓存 (Counter Cache) 改进 Render Partial 的效能 数据">
+<meta name="twitter:image" content="https://ww3.sinaimg.cn/large/006tNc79gy1fk8q5ntcfdj30wz0tadgs.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
+				<h2 class="blog-motto">叫我柯子就好</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/06/2017-10-06-rails-website-performance-03/" title="课程复盘 | Rails 网站效能（3）" itemprop="url">课程复盘 | Rails 网站效能（3）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-05T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-10-06</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程目标"><span class="toc-number">1.</span> <span class="toc-text">课程目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#课程复盘"><span class="toc-number">2.</span> <span class="toc-text">课程复盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-数据库-SQL-优化"><span class="toc-number">2.1.</span> <span class="toc-text">1. 数据库 SQL 优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-计数缓存-Counter-Cache"><span class="toc-number">2.2.</span> <span class="toc-text">2. 计数缓存 (Counter Cache)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#计数缓存-Counter-Cache"><span class="toc-number">2.2.1.</span> <span class="toc-text">计数缓存 (Counter Cache)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#再一个逆规范化的例子"><span class="toc-number">2.2.2.</span> <span class="toc-text">再一个逆规范化的例子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小结论：什么时候用逆规范化做优化？"><span class="toc-number">2.2.3.</span> <span class="toc-text">小结论：什么时候用逆规范化做优化？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-改进-Render-Partial-的效能"><span class="toc-number">2.3.</span> <span class="toc-text">3. 改进 Render Partial 的效能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-数据库索引"><span class="toc-number">2.4.</span> <span class="toc-text">4. 数据库索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常见的效能错误"><span class="toc-number">2.4.1.</span> <span class="toc-text">常见的效能错误</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SQL-explain-机制"><span class="toc-number">2.4.2.</span> <span class="toc-text">SQL explain 机制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-后端缓存和延展性-Scalability"><span class="toc-number">2.5.</span> <span class="toc-text">5. 后端缓存和延展性(Scalability)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内存缓存"><span class="toc-number">2.5.1.</span> <span class="toc-text">内存缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网站延展性"><span class="toc-number">2.5.2.</span> <span class="toc-text">网站延展性</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="课程目标"><a href="#课程目标" class="headerlink" title="课程目标"></a>课程目标</h2><ul>
+<li>Part 1: 前言<ul>
+<li>网站效能基础概念</li>
+</ul>
+</li>
+<li>Part 2: 前端效能<ul>
+<li>前端效能分析</li>
+<li>减少 Requests 数量和大小</li>
+<li>HTTP 最佳化</li>
+<li>关键渲染路径</li>
+<li>CDN</li>
+</ul>
+</li>
+<li>Part 3: 后端效能<ul>
+<li>项目准备</li>
+<li>后端效能分析</li>
+<li>避免 N+1 SQL 查询</li>
+<li>ActiveRecord 优化技巧</li>
+<li>数据库 SQL 优化</li>
+<li>计数缓存 (Counter Cache)</li>
+<li>改进 Render Partial 的效能</li>
+<li>数据库索引</li>
+<li>后端缓存和延展性(Scalability)</li>
+</ul>
+</li>
+</ul>
+<h2 id="课程复盘"><a href="#课程复盘" class="headerlink" title="课程复盘"></a>课程复盘</h2><h3 id="1-数据库-SQL-优化"><a href="#1-数据库-SQL-优化" class="headerlink" title="1. 数据库 SQL 优化"></a>1. 数据库 SQL 优化</h3><p>越了解 SQL，使用 ActiveRecord 就越得心应手。浏览 <a href="http://localhost:3000/posts/report" target="_blank" rel="external">http://localhost:3000/posts/report</a> 这一页：<br><img src="https://ww3.sinaimg.cn/large/006tNc79gy1fk8q5ntcfdj30wz0tadgs.jpg" alt=""></p>
+<p>这一页会显示哪些 Post 的订阅数(Subscription)最多，依照留言数排序：</p>
+<p>看一下 log，不太妙：<br><img src="https://ww1.sinaimg.cn/large/006tNc79gy1fk8q6eyzyaj30wg110759.jpg" alt=""></p>
+<p>本来的实作有什么问题呢？打开 <code>app/controllers/posts_controller.rb</code> 这个档案进行优化：</p>
+<figure class="highlight ruby"><figcaption><span>app/controllers/posts_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">report</span></span></div><div class="line">-  @posts = Post.all.<span class="keyword">include</span>(<span class="symbol">:user</span>).sort_by&#123; <span class="params">|post|</span> post.subscriptions.size &#125;.reverse[<span class="number">0</span>,<span class="number">10</span>]</div><div class="line">+  @posts = Post.includes(<span class="symbol">:user</span>).joins(<span class="symbol">:subscriptions</span>).group(<span class="string">"posts.id"</span>).select(<span class="string">"posts.*, COUNT(subscriptions.id) as subscriptions_count"</span>).order(<span class="string">"subscriptions_count DESC"</span>).limit(<span class="number">10</span>)</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>接着修改 <code>app/views/posts/report.html.erb</code></p>
+<figure class="highlight ruby"><figcaption><span>app/views/posts/report.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-  &lt;td&gt;&lt;%= post.subscriptions.size %&gt;&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">+  &lt;td&gt;&lt;%= post.subscriptions_count %&gt;&lt;/td</span>&gt;</div></pre></td></tr></table></figure>
+<p>优化之后的结果：<br><img src="https://ww3.sinaimg.cn/large/006tNc79ly1fk8q7fyuf5j30w706nt90.jpg" alt=""></p>
+<p>解说：因为订阅数并不是 Post 的一个字段，我们不能直接写 Post.order(“subscriptions_count DESC”).limit(10)，需要想办法去计算订阅数：</p>
+<ul>
+<li>本来的做法需要捞出所有的 Post 贴文到内存中，每篇贴文计算订阅数，然后数组排序之后，取出前十名</li>
+<li>新的做法是 SQL 的 group 语法，交由数据库的引擎来计算，最后刚刚好取出 10 笔数据成为 Ruby 对象放入内存</li>
+</ul>
+<blockquote>
+<p>在购物网站中，这个其实就是购物车分析的功能：你可以分析哪些商品最常被加入购物车但是没有结帐。<br>像这种计算报表类型的应用，如果你把数据从数据库都取出用 Ruby 来计算的话，效能会非常差。你需要利用 SQL 来让数据库引擎来做内部运算，效能才会快。</p>
+</blockquote>
+<h3 id="2-计数缓存-Counter-Cache"><a href="#2-计数缓存-Counter-Cache" class="headerlink" title="2. 计数缓存 (Counter Cache)"></a>2. 计数缓存 (Counter Cache)</h3><p>在数据库教程中，我们提过逆规范化(Denormalized)的概念，这一章让我们来实际实作看看。</p>
+<p>想要做的情境是 posts index 页面上，我们想要显示订阅数(Subscriptions)。首先编辑 <code>app/views/posts/index.html.erb</code> 加上订阅数：</p>
+<figure class="highlight ruby"><figcaption><span>app/views/posts/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;th&gt;留言数&lt;<span class="regexp">/th&gt;</span></div><div class="line"><span class="regexp">+   &lt;th&gt;订阅数&lt;/th</span>&gt;</div><div class="line"></div><div class="line"><span class="comment"># 略</span></div><div class="line"></div><div class="line">&lt;td&gt;&lt;%= post.visible_comments.size %&gt;&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">+   &lt;td&gt;&lt;%= post.subscriptions.size %&gt;&lt;/td</span>&gt;</div></pre></td></tr></table></figure>
+<p><img src="https://ww2.sinaimg.cn/large/006tNc79gy1fk8qh82up2j30wz0tajsg.jpg" alt=""><br>不意外的，这样写造成了很多 SQL 查询：</p>
+<p><img src="https://ww3.sinaimg.cn/large/006tNc79gy1fk8qhp2olej30wb0qx3zq.jpg" alt=""><br>跟显示 <code>visible_comments</code> 留言数不同，订阅的数据并没有被预先加载，所以需要一笔一笔去 COUNT。要怎么改善呢？</p>
+<p>如果你熟悉 SQL 的话，可以用 SQL 解决，编辑 <code>app/controllers/posts_controller.rb</code>：</p>
+<figure class="highlight ruby"><figcaption><span>app/controllers/posts_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">index</span></span></div><div class="line">    @posts = Post.includes(<span class="symbol">:user</span>, <span class="symbol">:liked_users</span>, &#123; <span class="symbol">:visible_comments</span> =&gt; <span class="symbol">:user</span> &#125; ).page(params[<span class="symbol">:page</span>])</div><div class="line"></div><div class="line">+   post_ids = @posts.map&#123; <span class="params">|p|</span> p.id &#125;</div><div class="line">+   @subscriptions_count = Post.where( <span class="symbol">:id</span> =&gt; post_ids).joins(<span class="symbol">:subscriptions</span>).group(<span class="string">"posts.id"</span>).count</div><div class="line">  <span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>编辑 <code>app/views/posts/index.html.erb</code></p>
+<figure class="highlight ruby"><figcaption><span>app/views/posts/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-   &lt;td&gt;&lt;%= post.subscriptions.size %&gt;&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">+   &lt;td&gt;&lt;%= @subscriptions_count[post.id] %&gt;&lt;/td</span>&gt;</div></pre></td></tr></table></figure>
+<p>观察一下 log，我们只用一条 SQL 就可以计算这一页贴文的所有订阅数:<br><img src="https://ww4.sinaimg.cn/large/006tNc79ly1fk8qltkggnj30w70d6t9r.jpg" alt=""></p>
+<p><code>@subscriptions_count</code> 这个变量是个 Hash，键是 post ID，值是订阅数，例如 <code>{403=&gt;59, 404=&gt;89, 405=&gt;10, 406=&gt;93, 407=&gt;10, 408=&gt;47, 409=&gt;90, 410=&gt;78, 411=&gt;79, 412=&gt;43, 413=&gt;58, 414=&gt;13, 415=&gt;61, 416=&gt;76, 417=&gt;97, 418=&gt;59, 419=&gt;41, 420=&gt;68, 421=&gt;44, 422=&gt;44, 423=&gt;85, 424=&gt;95, 425=&gt;12, 426=&gt;54, 427=&gt;78}</code><br>不过，这一页是流量最高的首页，有没有办法可以更快更简单？</p>
+<h4 id="计数缓存-Counter-Cache"><a href="#计数缓存-Counter-Cache" class="headerlink" title="计数缓存 (Counter Cache)"></a>计数缓存 (Counter Cache)</h4><p>像这种 <code>Post has_many subscriptions</code> 的一对多关系，如果经常要显示有多少笔数据，与其每次都用 SQL 计算，我们可以用逆规范化的概念，直接新增一个 posts 的字段把订阅的数字存下来，这样显示的时候直接就可以显示了，不需要再计算。然后每次新增或删除 Subscription 时，需要记得去更新这个值即可。</p>
+<p>Rails 内建就有计数缓存 (Counter Cache) 的功能：</p>
+<p>执行 <code>rails g migration add_subscriptions_to_posts</code></p>
+<p>编辑 <code>db/migrate/2017XXXXXXXXXX_add_subscriptions_to_posts.rb</code>，新增一个字段 <code>subscriptions_count</code> 到 posts 上，表示这篇贴文有多少订阅数：</p>
+<figure class="highlight ruby"><figcaption><span>db/migrate/2017XXXXXXXXXX_add_subscriptions_to_posts.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">AddSubscriptionsToPosts</span> &lt; ActiveRecord::Migration[5.1]</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">change</span></span></div><div class="line"></div><div class="line">+    add_column <span class="symbol">:posts</span>, <span class="symbol">:subscriptions_count</span>, <span class="symbol">:integer</span>, <span class="symbol">:default</span> =&gt; <span class="number">0</span></div><div class="line"></div><div class="line">+    Post.pluck(<span class="symbol">:id</span>).each <span class="keyword">do</span> <span class="params">|i|</span></div><div class="line">+      Post.reset_counters(i, <span class="symbol">:subscriptions</span>) <span class="comment"># 刚新增的字段都是 0，需要将计数全部重算一次</span></div><div class="line">+    <span class="keyword">end</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>编辑 <code>app/models/subscription.rb</code>，加上 <code>counter_cache</code>，这会告诉 Rails 如果有新增或删除 Subscription 时，自动去更新 Post 的 <code>subscriptions_count</code> 数字：</p>
+<figure class="highlight ruby"><figcaption><span>app/models/subscription.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">-   belongs_to <span class="symbol">:post</span></div><div class="line">+   belongs_to <span class="symbol">:post</span>, <span class="symbol">:counter_cache</span> =&gt; <span class="literal">true</span></div><div class="line"></div><div class="line">    <span class="comment"># 或 belongs_to :post, :counter_cache =&gt; "subscriptions_count"</span></div></pre></td></tr></table></figure>
+<p>执行 <code>rake db:migrate</code></p>
+<p>修改 <code>app/views/posts/index.html.erb</code>，直接显示这个数字：</p>
+<figure class="highlight ruby"><figcaption><span>app/views/posts/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">-  &lt;td&gt;&lt;%= @subscriptions_count[post.id] %&gt;&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">+  &lt;td&gt;&lt;%= post.subscriptions_count %&gt;&lt;/td</span>&gt;</div></pre></td></tr></table></figure>
+<p>修改 <code>app/controllers/posts_controller.rb</code>，不需要再计算订阅数了：</p>
+<figure class="highlight ruby"><figcaption><span>app/controllers/posts_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">index</span></span></div><div class="line">    @posts = Post.includes(<span class="symbol">:user</span>, <span class="symbol">:liked_users</span>, &#123; <span class="symbol">:visible_comments</span> =&gt; <span class="symbol">:user</span> &#125; ).page(params[<span class="symbol">:page</span>])</div><div class="line"></div><div class="line">-   post_ids = @posts.map&#123; <span class="params">|p|</span> p.id &#125;</div><div class="line">-   @subscriptions_count = Post.where( <span class="symbol">:id</span> =&gt; post_ids).joins(<span class="symbol">:subscriptions</span>).group(<span class="string">"posts.id"</span>).count</div><div class="line">  <span class="keyword">end</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>Rails 内建的 Counter Cache 功能比较简单，如果你需要更多功能，请参考 <a href="https://github.com/magnusvk/counter_culture" target="_blank" rel="external">https://github.com/magnusvk/counter_culture</a> 这个 gem。</p>
+</blockquote>
+<h4 id="再一个逆规范化的例子"><a href="#再一个逆规范化的例子" class="headerlink" title="再一个逆规范化的例子"></a>再一个逆规范化的例子</h4><p>需求情境：在 posts index 页面上，显示每篇贴文的最后订阅的时间</p>
+<p>逆规范化解法：</p>
+<ol>
+<li>在 posts table 上新增一个一个 last_subscribed_at 时间字段</li>
+<li>在有人订阅时，例如 subscriptions controller 的 create action 中，去更新该篇 post 的 last_subscribed_at 值</li>
+<li>在有人取消订阅时，例如 subscriptions controller 的 destroy action 中，去更新该篇 post 的 last_subscribed_at 值</li>
+</ol>
+<p>跟 Counter Cache 概念一样，只是实作麻烦一点，我们需要手动在正确的时机去维护 <code>last_subscribed_at</code> 的值</p>
+<h4 id="小结论：什么时候用逆规范化做优化？"><a href="#小结论：什么时候用逆规范化做优化？" class="headerlink" title="小结论：什么时候用逆规范化做优化？"></a>小结论：什么时候用逆规范化做优化？</h4><p>如果不常显示该数据，而且你会写 SQL 做计算的话，我们可以用纯 SQL 的方式来解决。但是如果需要经常显示该数据，就可以考虑用逆规范化的方式，将数据缓存下来。这样效能可以更好。但是缺点就是需要维护该数据的正确性，要写的 Ruby 代码也比较多。</p>
+<p>考量：<strong>读取的频率 v.s. 更新缓存数据的成本</strong></p>
+<h3 id="3-改进-Render-Partial-的效能"><a href="#3-改进-Render-Partial-的效能" class="headerlink" title="3. 改进 Render Partial 的效能"></a>3. 改进 Render Partial 的效能</h3><p>这个是常用的技巧。<br>这一章让我们看一个 Rails View 的效能改善，情境是当同一个 partial 需要不断 render 时，可以改用<strong> collection 的写法</strong>，效能会更好。</p>
+<p>例如我们将 index 页面中每一笔 post 改成用 partial 处理：</p>
+<p>修改 <code>app/views/posts/index.html.erb</code></p>
+<figure class="highlight ruby"><figcaption><span>app/views/posts/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">  &lt;% @posts.each <span class="keyword">do</span> <span class="params">|post|</span> %&gt;</div><div class="line">-    &lt;tr&gt;</div><div class="line">-      &lt;td&gt;</div><div class="line">-        &lt;% <span class="keyword">if</span> current_user &amp;&amp; current_user.like_post?(post) %&gt;</div><div class="line">-          👍👍👍</div><div class="line">-        &lt;% <span class="keyword">end</span> %&gt;</div><div class="line">-        &lt;%= link_to post.title, post_path(post) %&gt;</div><div class="line">-      &lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">-      &lt;td&gt;&lt;%= post.user.display_name %&gt;&lt;/td</span>&gt;</div><div class="line">-      &lt;td&gt;&lt;%= post.visible_comments.size %&gt;&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">-      &lt;td&gt;&lt;%= post.subscriptions_count %&gt;&lt;/td</span>&gt;</div><div class="line">-      &lt;td&gt;&lt;%= post.visible_comments.map&#123; <span class="params">|c|</span> c.user.display_name &#125;.join(<span class="string">","</span>) %&gt;&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">-      &lt;td&gt;&lt;%= post.liked_users.map&#123; |u| u.display_name &#125;.join(",") %&gt;&lt;/td</span>&gt;</div><div class="line">-    &lt;<span class="regexp">/tr&gt;</span></div><div class="line"><span class="regexp">+    &lt;%= render :partial =&gt; "post", :locals =&gt; &#123; :post =&gt; post &#125; %&gt;</span></div><div class="line"><span class="regexp">  &lt;% end %&gt;</span></div></pre></td></tr></table></figure>
+<p>新增 <code>app/views/posts/_post.html.erb</code></p>
+<figure class="highlight ruby"><figcaption><span>app/views/posts/_post.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;tr&gt;</div><div class="line">  &lt;td&gt;</div><div class="line">    &lt;% <span class="keyword">if</span> current_user &amp;&amp; current_user.like_post?(post) %&gt;</div><div class="line">      👍👍👍</div><div class="line">    &lt;% <span class="keyword">end</span> %&gt;</div><div class="line">    &lt;%= link_to post.title, post_path(post) %&gt;</div><div class="line">  &lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">  &lt;td&gt;&lt;%= post.user.display_name %&gt;&lt;/td</span>&gt;</div><div class="line">  &lt;td&gt;&lt;%= post.visible_comments.size %&gt;&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">  &lt;td&gt;&lt;%= post.subscriptions_count %&gt;&lt;/td</span>&gt;</div><div class="line">  &lt;td&gt;&lt;%= post.visible_comments.map&#123; <span class="params">|c|</span> c.user.display_name &#125;.join(<span class="string">","</span>) %&gt;&lt;<span class="regexp">/td&gt;</span></div><div class="line"><span class="regexp">  &lt;td&gt;&lt;%= post.liked_users.map&#123; |u| u.display_name &#125;.join(",") %&gt;&lt;/td</span>&gt;</div><div class="line">&lt;<span class="regexp">/tr&gt;</span></div></pre></td></tr></table></figure>
+<p>看一下 log，其中不断调用 <code>Rendered posts/_post.html.erb</code> 这个 partial 样板：<br><img src="https://ww4.sinaimg.cn/large/006tNc79gy1fk8qtcat0rj30wa0qhab5.jpg" alt=""></p>
+<p>怎么改进呢？Rails 针对这种情况，有提供一个优化的写法，再次编辑 <code>app/views/posts/index.html.erb</code>：</p>
+<figure class="highlight ruby"><figcaption><span>app/views/posts/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">-  &lt;% @posts.each <span class="keyword">do</span> <span class="params">|post|</span> %&gt;</div><div class="line">-    &lt;%= render <span class="symbol">:partial</span> =&gt; <span class="string">"post"</span>, <span class="symbol">:locals</span> =&gt; &#123; <span class="symbol">:post</span> =&gt; post &#125; %&gt;</div><div class="line">-  &lt;% <span class="keyword">end</span> %&gt;</div><div class="line"></div><div class="line">+  &lt;%= render <span class="symbol">:partial</span> =&gt; <span class="string">"post"</span>, <span class="symbol">:collection</span> =&gt; @posts, <span class="symbol">:as</span> =&gt;</div><div class="line">  <span class="symbol">:post</span> %&gt;</div></pre></td></tr></table></figure>
+<p>整个 <code>@posts.each</code> 循环都拿掉了，新的 <code>:collection</code> 参数就会帮你做循环。</p>
+<p><img src="https://ww4.sinaimg.cn/large/006tNc79gy1fk8qtgcae0j30wc0cg3ze.jpg" alt=""><br>为什么这种用法会比较快呢？本来的写法 Rails 需要针对每个 partial 都做一次编译处理，新的写法 Rails 知道这些 partial 原来是同一个 partial，因此只需要编译处理一次。</p>
+<h3 id="4-数据库索引"><a href="#4-数据库索引" class="headerlink" title="4. 数据库索引"></a>4. 数据库索引</h3><p>在数据库教程中(在 SQL 语言: DML 这一章最后一节)，我们有提到加上 Indexes 索引的重要，<strong>忘记帮数据库加上索引也是常见的效能杀手</strong>，作为搜寻条件的字段如果没有加索引，SQL 查询的时候就会一笔笔检查资料表中的所有资料，当资料一多的时候相差的效能就十分巨大，没索引是 O(N)，有索引是 O(logN)。</p>
+<p>一般来说，以下的字段都必须记得加上索引：</p>
+<ul>
+<li>外部键(Foreign key)</li>
+<li>会被排序的字段(被放在order方法中)</li>
+<li>会被查询的字段(被放在where方法中)</li>
+<li>会被group的字段(被放在group方法中)</li>
+</ul>
+<p>让我们补上忘记的索引：</p>
+<p>执行 <code>rails g migration add_indexes</code></p>
+<p>编辑 <code>db/migrate/20170XXXXXXXXX_add_indexes.rb</code></p>
+<figure class="highlight ruby"><figcaption><span>db/migrate/20170XXXXXXXXX_add_indexes.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">  <span class="class"><span class="keyword">class</span> <span class="title">AddIndexes</span> &lt; ActiveRecord::Migration[5.1]</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">change</span></span></div><div class="line">+     add_index <span class="symbol">:comments</span>, <span class="symbol">:status</span></div><div class="line">+     add_index <span class="symbol">:comments</span>, <span class="symbol">:post_id</span></div><div class="line">+     add_index <span class="symbol">:likes</span>, <span class="symbol">:post_id</span></div><div class="line">+     add_index <span class="symbol">:likes</span>, <span class="symbol">:user_id</span></div><div class="line">+</div><div class="line">+     add_index <span class="symbol">:subscriptions</span>, <span class="symbol">:post_id</span></div><div class="line">+     add_index <span class="symbol">:subscriptions</span>, <span class="symbol">:user_id</span></div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>执行 <code>rake db:migrate</code></p>
+<h4 id="常见的效能错误"><a href="#常见的效能错误" class="headerlink" title="常见的效能错误"></a>常见的效能错误</h4><p>一个常犯的错误是用 <code>created_at</code> 来进行排序，例如想要依照新建时间排序，让新的贴文在上面：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@posts = Post.order(<span class="string">"created_at DESC"</span>).page(params[<span class="symbol">:page</span>])</div></pre></td></tr></table></figure>
+<p>由于 <code>created_at</code> 这个字段我们并没有加上索引，如果你只是想要排序，应该改用 id 字串：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@posts = Post.order(<span class="string">"id DESC"</span>).page(params[<span class="symbol">:page</span>])</div></pre></td></tr></table></figure>
+<p>因为<code>id</code>是主键本身就有索引，而且它是自动递增的数字。所以根据 <code>id</code> 来排序和根据 <code>created_at</code> 来排序结果是一样的。</p>
+<h4 id="SQL-explain-机制"><a href="#SQL-explain-机制" class="headerlink" title="SQL explain 机制"></a>SQL explain 机制</h4><p>对一个复杂的 SQL 查询来说，有没有索引到底有没有派上用场？SQL 在数据库中到底是如何运行的？需要实际用数据库进行分析才会知道。</p>
+<p><code>explain</code> 这个方法可以调用数据库的分析报告：</p>
+<p><img src="https://ww4.sinaimg.cn/large/006tNc79ly1fk8rg9fdm4j30w40cm3z8.jpg" alt=""><br>不同种的数据库(SQLite、PostgreSQL、MySQL)的报告格式不一样，这里就不细说了。</p>
+<h3 id="5-后端缓存和延展性-Scalability"><a href="#5-后端缓存和延展性-Scalability" class="headerlink" title="5. 后端缓存和延展性(Scalability)"></a>5. 后端缓存和延展性(Scalability)</h3><h4 id="内存缓存"><a href="#内存缓存" class="headerlink" title="内存缓存"></a>内存缓存</h4><p>超高流量的网站会需要用到缓存来进一步提升后端效能。<br>ihower老师的<a href="https://ihower.tw/rails/caching-cn.html" target="_blank" rel="external">Rails 实战圣经:缓存</a>。</p>
+<blockquote>
+<p>No code is faster than no code. - Merb core tenet</p>
+</blockquote>
+<h4 id="网站延展性"><a href="#网站延展性" class="headerlink" title="网站延展性"></a>网站延展性</h4><p>另一个跟「网站效能(Performance)」常一起听到的名词是「网站延展性(Scalability)」。当网站的用户越来越多，流量越来越大的时候，需要想办法扩展网站的承载能力。</p>
+<p>扩展的有两种方式：</p>
+<ol>
+<li>垂直扩展：升级服务器，例如用更快的 CPU、用大的硬盘、用多的内存</li>
+<li>水平扩展：增加(租用)更多服务器</li>
+</ol>
+<p><img src="https://ww3.sinaimg.cn/large/006tNc79gy1fk8rchwo27j308w056wev.jpg" alt=""><br>垂直扩展在初期比较简单，因为网站代码不需要变更，只需要原地硬件升级即可。但是硬件升级是有上限的，越高等级的服务器越贵。CPU 再怎么快，总不可能我们去租一台超级电脑吧。</p>
+<p>水平扩展则比较合乎成本，因为一百台平价的电脑，比起一台超级电脑还便宜。但是水平扩展会需要网站架构的运维能力，对技术的要求比较高。</p>
+<p>常见的网站架构演进，请参考 <a href="https://www.digitalocean.com/community/tutorials/5-common-server-setups-for-your-web-application" target="_blank" rel="external">5 Common Server Setups For Your Web Application</a> 这篇文章的图例：<br><img src="https://ww2.sinaimg.cn/large/006tNc79gy1fk8rctxremj308j054dfq.jpg" alt=""></p>
+<p>一开始只需要一台服务器<br><img src="https://ww1.sinaimg.cn/large/006tNc79gy1fk8rd423iwj30dq05cdfu.jpg" alt=""></p>
+<p>接下来将数据库独立成一台服务器<br><img src="https://ww1.sinaimg.cn/large/006tNc79gy1fk8rdern5mj30i007mjrf.jpg" alt=""></p>
+<p>前面放一台 Load Balancer 服务器分散流量，这样增加更多台应用服务器(Application server，也就是我们的 Rails server)<br><img src="https://ww3.sinaimg.cn/large/006tNc79gy1fk8rdui9vxj30j305zdfv.jpg" alt=""></p>
+<p>前面再放 HTTP 缓存服务器</p>
+<p><img src="https://ww3.sinaimg.cn/large/006tNc79gy1fk8re94najj30hg07maa6.jpg" alt=""><br>数据库也需要拆分，可以分成 Master 和 Slave 数据库，读写分离。</p>
+<p>以上是还算是入门等级的架构，要继续延展的话，就是另一门深似海的学问了。网站的延展性，就是去研究如何在合理的硬件成本下，透过水平扩展持续增加系统容量。这件事情跟 Rails 技术就比较没有关系了。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Ruby-on-Rails/">Ruby on Rails</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/新生大学全栈营/">新生大学全栈营</a><a href="/tags/Ruby-on-Rails/">Ruby on Rails</a><a href="/tags/全栈营课程复盘/">全栈营课程复盘</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://kerzzi.github.io/2017/10/06/2017-10-06-rails-website-performance-03/" data-title="课程复盘 | Rails 网站效能（3） | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/10/06/2017-10-06-rails-website-performance-02/"  title="课程复盘 | Rails 网站效能（2）">
+ <strong>下一篇：</strong><br/> 
+ <span>课程复盘 | Rails 网站效能（2）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程目标"><span class="toc-number">1.</span> <span class="toc-text">课程目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#课程复盘"><span class="toc-number">2.</span> <span class="toc-text">课程复盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-数据库-SQL-优化"><span class="toc-number">2.1.</span> <span class="toc-text">1. 数据库 SQL 优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-计数缓存-Counter-Cache"><span class="toc-number">2.2.</span> <span class="toc-text">2. 计数缓存 (Counter Cache)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#计数缓存-Counter-Cache"><span class="toc-number">2.2.1.</span> <span class="toc-text">计数缓存 (Counter Cache)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#再一个逆规范化的例子"><span class="toc-number">2.2.2.</span> <span class="toc-text">再一个逆规范化的例子</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小结论：什么时候用逆规范化做优化？"><span class="toc-number">2.2.3.</span> <span class="toc-text">小结论：什么时候用逆规范化做优化？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-改进-Render-Partial-的效能"><span class="toc-number">2.3.</span> <span class="toc-text">3. 改进 Render Partial 的效能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-数据库索引"><span class="toc-number">2.4.</span> <span class="toc-text">4. 数据库索引</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#常见的效能错误"><span class="toc-number">2.4.1.</span> <span class="toc-text">常见的效能错误</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SQL-explain-机制"><span class="toc-number">2.4.2.</span> <span class="toc-text">SQL explain 机制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-后端缓存和延展性-Scalability"><span class="toc-number">2.5.</span> <span class="toc-text">5. 后端缓存和延展性(Scalability)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#内存缓存"><span class="toc-number">2.5.1.</span> <span class="toc-text">内存缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网站延展性"><span class="toc-number">2.5.2.</span> <span class="toc-text">网站延展性</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="sponsor">
+  <br />
+  <p class="asidetitle">赞助商</p>
+  <a href="/sponsor">
+  <br />
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2zsxnnmpj30b405iq2t.jpg" width="235px" />
+  </a>
+
+  <!--
+  <br /><a href="/sponsor"><font color='#2ca6cb'>购买广告位</font></a>
+  -->
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Mac/" title="Mac">Mac</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Markdown/" title="Markdown">Markdown</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Photo/" title="Photo">Photo</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ruby-on-Rails/" title="Ruby on Rails">Ruby on Rails</a></li>
+		  
+		
+		  
+			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp</a></li>
+		  
+		
+		  
+			<li><a href="/categories/两最一坑/" title="两最一坑">两最一坑</a></li>
+		  
+		
+		  
+			<li><a href="/categories/全栈营/" title="全栈营">全栈营</a></li>
+		  
+		
+		  
+			<li><a href="/categories/通往财富自由之路/" title="通往财富自由之路">通往财富自由之路</a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://steemit.com/@seeyoo" target="_blank" title="Kerzzi&#39;s Steem">Kerzzi&#39;s Steem</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://kerzzi.logdown.com/" target="_blank" title="Old Blog">Old Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/Kerzzi" target="_blank" title="Kerzzi&#39;s Github">Kerzzi&#39;s Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://mindhacks.cn/" target="_blank" title="刘未鹏">刘未鹏</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://coolshell.cn/" target="_blank" title="酷壳">酷壳</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ruanyifeng.com/" target="_blank" title="阮一峰">阮一峰</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weixin">
+  <br />
+  <p class="asidetitle">微信公众号</p>
+  <p>关注我的公众号「叫我柯子就好」，与你分享关于实践的高频小套路：</p>
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2yv4g9d3j3076076wel.jpg" width="220px" />
+ </div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kerzzi">Kerzzi</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?61e2f14c0f84a3ab81a328239a38b6d8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
