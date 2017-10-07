@@ -1,0 +1,658 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>课程复盘 | Rails 实战：购物网站（1） | 柯子的行思笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kerzzi">
+    
+
+    
+    <meta name="description" content="课程目标这一课商店网站，你将会学到至少以下的主题：  购物车设计 结帐订单 第三方整合 代码重构熟练掌握这个课程的主题后，能够让你在未来写出绝大多数的网站功能。  技术议题包含：  Model 设计原则 自定义 before_action 自定义 Routing validation session 操作 find_by 操作 where / order 巢状表单 State Machine Ac">
+<meta name="keywords" content="新生大学全栈营,Ruby on Rails,全栈营课程复盘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="课程复盘 | Rails 实战：购物网站（1）">
+<meta property="og:url" content="https://kerzzi.github.io/2017/10/07/2017-10-07-rails-jdstore-01/index.html">
+<meta property="og:site_name" content="柯子的行思笔记">
+<meta property="og:description" content="课程目标这一课商店网站，你将会学到至少以下的主题：  购物车设计 结帐订单 第三方整合 代码重构熟练掌握这个课程的主题后，能够让你在未来写出绝大多数的网站功能。  技术议题包含：  Model 设计原则 自定义 before_action 自定义 Routing validation session 操作 find_by 操作 where / order 巢状表单 State Machine Ac">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fk9j7wmm7gj30zk0qo0ua.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fk9j8300nrj30zk0qojt6.jpg">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fk9jbdhn6rj30zk0qowgl.jpg">
+<meta property="og:updated_time" content="2017-10-07T04:53:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="课程复盘 | Rails 实战：购物网站（1）">
+<meta name="twitter:description" content="课程目标这一课商店网站，你将会学到至少以下的主题：  购物车设计 结帐订单 第三方整合 代码重构熟练掌握这个课程的主题后，能够让你在未来写出绝大多数的网站功能。  技术议题包含：  Model 设计原则 自定义 before_action 自定义 Routing validation session 操作 find_by 操作 where / order 巢状表单 State Machine Ac">
+<meta name="twitter:image" content="https://ww4.sinaimg.cn/large/006tNc79gy1fk9j7wmm7gj30zk0qo0ua.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
+				<h2 class="blog-motto">叫我柯子就好</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/07/2017-10-07-rails-jdstore-01/" title="课程复盘 | Rails 实战：购物网站（1）" itemprop="url">课程复盘 | Rails 实战：购物网站（1）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-06T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-10-07</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程目标"><span class="toc-number">1.</span> <span class="toc-text">课程目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#课程复盘"><span class="toc-number">2.</span> <span class="toc-text">课程复盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-找出系统核心组件与角色"><span class="toc-number">2.1.</span> <span class="toc-text">1. 找出系统核心组件与角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-User-Story"><span class="toc-number">2.2.</span> <span class="toc-text">2. User Story</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#商家"><span class="toc-number">2.2.1.</span> <span class="toc-text">商家</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#消费者"><span class="toc-number">2.2.2.</span> <span class="toc-text">消费者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#订单部分"><span class="toc-number">2.2.3.</span> <span class="toc-text">订单部分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-常用网站基础建设"><span class="toc-number">2.3.</span> <span class="toc-text">3. 常用网站基础建设</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Part-1-安装-Bootstrap"><span class="toc-number">2.3.1.</span> <span class="toc-text">Part 1: 安装 Bootstrap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Part-2-修改样式"><span class="toc-number">2.3.2.</span> <span class="toc-text">Part 2:修改样式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Part-3-增加-flash-功能"><span class="toc-number">2.3.3.</span> <span class="toc-text">Part 3:增加 flash 功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Part-4-安装-Devise"><span class="toc-number">2.3.4.</span> <span class="toc-text">Part 4:安装 Devise</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Part-5-安装-SimpleForm"><span class="toc-number">2.3.5.</span> <span class="toc-text">Part 5: 安装 SimpleForm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Part-6-安装-font-awesome-rails"><span class="toc-number">2.3.6.</span> <span class="toc-text">Part 6: 安装 font-awesome-rails</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Part-7-安装debug套件"><span class="toc-number">2.3.7.</span> <span class="toc-text">Part 7: 安装debug套件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Part-8-安装展示model关系的gem套件"><span class="toc-number">2.3.8.</span> <span class="toc-text">Part 8: 安装展示model关系的gem套件</span></a></li></ol></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="课程目标"><a href="#课程目标" class="headerlink" title="课程目标"></a>课程目标</h2><p>这一课商店网站，你将会学到至少以下的主题：</p>
+<ul>
+<li>购物车设计</li>
+<li>结帐订单</li>
+<li>第三方整合</li>
+<li>代码重构<br>熟练掌握这个课程的主题后，能够让你在未来写出绝大多数的网站功能。</li>
+</ul>
+<p>技术议题包含：</p>
+<ul>
+<li>Model 设计原则</li>
+<li>自定义 before_action</li>
+<li>自定义 Routing</li>
+<li>validation</li>
+<li>session 操作</li>
+<li>find_by 操作</li>
+<li>where / order</li>
+<li>巢状表单</li>
+<li>State Machine</li>
+<li>ActiveJob</li>
+<li>Mailer</li>
+<li>Partial / Helper</li>
+</ul>
+<h2 id="课程复盘"><a href="#课程复盘" class="headerlink" title="课程复盘"></a>课程复盘</h2><h3 id="1-找出系统核心组件与角色"><a href="#1-找出系统核心组件与角色" class="headerlink" title="1. 找出系统核心组件与角色"></a>1. 找出系统核心组件与角色</h3><p>Must Have / Should Have / Could Have / Nice to Have</p>
+<p>当书写过一轮功能之后，会发现最后留下的 Must Have / Should Have 中，最核心的功能应该会剩下以下几部分：</p>
+<ul>
+<li>购买机制 - 消费者购买商品，放入购物车</li>
+<li>结帐机制 - 消费者将购物车中的商品，结帐生成订单</li>
+<li>上架机制 - 商家上架物品，设定开卖</li>
+<li>配送机制 - 商家针对订单配送</li>
+</ul>
+<p>整个系统有两个核心角色：</p>
+<ul>
+<li>消费者</li>
+<li>商家</li>
+</ul>
+<h3 id="2-User-Story"><a href="#2-User-Story" class="headerlink" title="2. User Story"></a>2. User Story</h3><h4 id="商家"><a href="#商家" class="headerlink" title="商家"></a>商家</h4><p><img src="https://ww4.sinaimg.cn/large/006tNc79gy1fk9j7wmm7gj30zk0qo0ua.jpg" alt=""></p>
+<p>身为商家（管理者），我要能够在后台上架我的商品，并设定能够贩卖</p>
+<ul>
+<li>身为商家，我要能够登入后台<ul>
+<li>整个商店网站分为两种权限：admin (商家=管理者) / user （消费者）</li>
+<li>商家可以登入 /admin 后台</li>
+</ul>
+</li>
+<li>身为商家，我要能够登入后台上架商品<ul>
+<li>后台上架网址必须要是 /admin/products</li>
+<li>商品的内容分为商品名称、描述、价格、库存</li>
+<li>商品要能够设定是否能上架贩卖</li>
+<li>商品必须要有商品图片</li>
+</ul>
+</li>
+</ul>
+<h4 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h4><p><img src="https://ww4.sinaimg.cn/large/006tNc79gy1fk9j8300nrj30zk0qojt6.jpg" alt=""></p>
+<h4 id="订单部分"><a href="#订单部分" class="headerlink" title="订单部分"></a>订单部分</h4><p><img src="https://ww4.sinaimg.cn/large/006tNc79gy1fk9jbdhn6rj30zk0qowgl.jpg" alt=""></p>
+<h3 id="3-常用网站基础建设"><a href="#3-常用网站基础建设" class="headerlink" title="3. 常用网站基础建设"></a>3. 常用网站基础建设</h3><ul>
+<li>Fork或 rails new 新项目</li>
+</ul>
+<h4 id="Part-1-安装-Bootstrap"><a href="#Part-1-安装-Bootstrap" class="headerlink" title="Part 1: 安装 Bootstrap"></a>Part 1: 安装 Bootstrap</h4><p>Step 1. 挂上 bootstrap-sass 这个 gem</p>
+<figure class="highlight ruby"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">gem <span class="string">'bootstrap-sass'</span></div><div class="line"><span class="string">``</span></div><div class="line"></div><div class="line">Step <span class="number">2</span>. bundle install</div><div class="line"></div><div class="line">执行 <span class="string">`bundle install`</span></div><div class="line"></div><div class="line">Step <span class="number">3</span>. 将 Bootstrap 的 CSS 套件装进专案里面</div><div class="line"></div><div class="line">在终端输入</div><div class="line"></div><div class="line"><span class="string">`mv app/assets/stylesheets/application.css app/assets/stylesheets/application.scss`</span></div><div class="line"></div><div class="line">然后修改 <span class="string">`app/assets/stylesheets/application.scss`</span> 档案，在最后加入以下两行</div><div class="line"></div><div class="line"><span class="string">``</span><span class="string">`ruby app/assets/stylesheets/application.scss</span></div><div class="line"><span class="string">/*</span></div><div class="line"><span class="string"> * ...(一堆注解)</span></div><div class="line"><span class="string"> *= require_tree .</span></div><div class="line"><span class="string"> *= require_self</span></div><div class="line"><span class="string"> */</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">+ @import "bootstrap-sprockets";</span></div><div class="line"><span class="string">+ @import "bootstrap";</span></div></pre></td></tr></table></figure>
+<p>Step 4. 将变更 commit 进 git 里面<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git <span class="keyword">add</span><span class="bash"> .</span></div><div class="line"><span class="bash">git commit -m <span class="string">"add bootstrap to project"</span></span></div></pre></td></tr></table></figure></p>
+<h4 id="Part-2-修改样式"><a href="#Part-2-修改样式" class="headerlink" title="Part 2:修改样式"></a>Part 2:修改样式</h4><p><strong>Step 1. 新增 app/views/common 资料夹</strong><br><code>mkdir app/views/common</code></p>
+<p><strong>Step 2. 新增 navbar</strong></p>
+<p><code>touch app/views/common/_navbar.html.erb</code></p>
+<p>填入</p>
+<figure class="highlight ruby"><figcaption><span>app/views/common/_navbar.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&lt;nav class="navbar navbar-default" role="navigation"&gt;</div><div class="line">    &lt;div class="container-fluid"&gt;</div><div class="line">        &lt;!-- Brand <span class="keyword">and</span> toggle get grouped <span class="keyword">for</span> better mobile display --&gt;</div><div class="line">        &lt;div class="navbar-header"&gt;</div><div class="line">            &lt;a class="navbar-brand" href="/"&gt;JDStore &lt;/a&gt;</div><div class="line">        &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">        &lt;!-- Collect the nav links, forms, and other content for toggling --&gt;</span></div><div class="line"><span class="regexp">        &lt;div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"&gt;</span></div><div class="line"><span class="regexp">            &lt;ul class="nav navbar-nav navbar-right"&gt;</span></div><div class="line"><span class="regexp">                &lt;li&gt;&lt;%= link_to("登入", '#') %&gt;&lt;/li</span>&gt;</div><div class="line">            &lt;<span class="regexp">/ul&gt;</span></div><div class="line"><span class="regexp">        &lt;/div</span>&gt;</div><div class="line">        &lt;!-- <span class="regexp">/.navbar-collapse --&gt;</span></div><div class="line"><span class="regexp">    &lt;/div</span>&gt;</div><div class="line">    &lt;!-- <span class="regexp">/.container-fluid --&gt;</span></div><div class="line"><span class="regexp">&lt;/nav</span>&gt;</div></pre></td></tr></table></figure>
+<p><strong>Step 3. 新增 footer</strong></p>
+<p><code>touch app/views/common/_footer.html.erb</code></p>
+<p>填入</p>
+<figure class="highlight ruby"><figcaption><span>app/views/common/_footer.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;footer class="container" style="margin-top: 100px;"&gt;</div><div class="line">    &lt;p class="text-center"&gt;Copyright ©2017 JDStore</div><div class="line">        &lt;br&gt;Design by yourname</div><div class="line">        </div><div class="line">    &lt;<span class="regexp">/p&gt;</span></div><div class="line"><span class="regexp">&lt;/footer</span>&gt;</div></pre></td></tr></table></figure>
+<p><strong>Step 4. 修改全域 HTML 样式 application.html.erb</strong></p>
+<figure class="highlight ruby"><figcaption><span>app/views/layouts/application.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">    &lt;head&gt;</div><div class="line">        &lt;title&gt;JDStore &lt;<span class="regexp">/title&gt;</span></div><div class="line"><span class="regexp">        &lt;%= csrf_meta_tags %&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">        &lt;%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %&gt;</span></div><div class="line"><span class="regexp">        &lt;%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %&gt;</span></div><div class="line"><span class="regexp">    &lt;/head</span>&gt;</div><div class="line"></div><div class="line">    &lt;body&gt;</div><div class="line"></div><div class="line">        &lt;div class="container-fluid"&gt;</div><div class="line">            &lt;%= render <span class="string">"common/navbar"</span> %&gt;</div><div class="line">            &lt;%= <span class="keyword">yield</span> %&gt;</div><div class="line">        &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp"></span></div><div class="line"><span class="regexp">        &lt;%= render "common/footer</span><span class="string">" %&gt;</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    &lt;/body&gt;</span></div><div class="line"><span class="string">&lt;/html&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>Step 5. 产生一个新的空 Hello World 页面 </strong>（放在 welcome#index)</p>
+<p>执行<br><code>rails g controller welcome</code></p>
+<p>新增一个 welcome controller<code>touch app/views/welcome/index.html.erb</code></p>
+<p>新增一个空的 HelloWorld 页面<br>填入</p>
+<figure class="highlight ruby"><figcaption><span>app/views/welcome/index.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;h1&gt; Hello World! &lt;<span class="regexp">/h1&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>Step 6. 将首页指到 welcome 下的 index.html.erb 页面</strong></p>
+<p>修改<code>config/routes.rb</code>，改成以下内容</p>
+<figure class="highlight ruby"><figcaption><span>config/routes.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Rails.application.routes.draw <span class="keyword">do</span></div><div class="line">  root <span class="string">'welcome#index'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p><strong>Step 7. git 进度存档</strong></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git <span class="keyword">add</span><span class="bash"> .</span></div><div class="line"><span class="bash">git commit -m <span class="string">"add bootstrap html"</span></span></div></pre></td></tr></table></figure>
+<p><strong>Step 8. 重开 Rails Server</strong></p>
+<h4 id="Part-3-增加-flash-功能"><a href="#Part-3-增加-flash-功能" class="headerlink" title="Part 3:增加 flash 功能"></a>Part 3:增加 flash 功能</h4><p><strong>Step 1. 将 Boostrap 的 js 提示套件 bootstrap/alert “挂”进专案里面</strong></p>
+<p>在 <code>requre_tree</code> 上加入一行 <code>//= require bootstrap/alert</code></p>
+<p><strong>Step 2. 新增 app/views/common/_flashes.html.erb</strong></p>
+<p><code>touch app/views/common/_flashes.html.erb</code></p>
+<p>填入</p>
+<figure class="highlight ruby"><figcaption><span>app/views/common/_flashes.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&lt;% <span class="keyword">if</span> flash.any? %&gt;</div><div class="line">  &lt;% user_facing_flashes.each <span class="keyword">do</span> <span class="params">|key, value|</span> %&gt;</div><div class="line">    &lt;div class="alert alert-dismissable alert-&lt;%= flash_class(key) %&gt;"&gt;</div><div class="line">      &lt;button class="close" data-dismiss="alert"&gt;×&lt;/button&gt;</div><div class="line">      &lt;%= value %&gt;</div><div class="line">    &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">  &lt;% end %&gt;</span></div><div class="line"><span class="regexp">&lt;% end %&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>Step 3. 加入 app/helpers/flashes_helper.rb</strong></p>
+<p><code>touch app/helpers/flashes_helper.rb</code></p>
+<p>填入以下内容：</p>
+<figure class="highlight ruby"><figcaption><span>app/helpers/flashes_helper.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">module</span> <span class="title">FlashesHelper</span></span></div><div class="line">  FLASH_CLASSES = &#123; <span class="symbol">alert:</span> <span class="string">"danger"</span>, <span class="symbol">notice:</span> <span class="string">"success"</span>, <span class="symbol">warning:</span> <span class="string">"warning"</span>&#125;.freeze</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">flash_class</span><span class="params">(key)</span></span></div><div class="line">    FLASH_CLASSES.fetch key.to_sym, key</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">user_facing_flashes</span></span></div><div class="line">    flash.to_hash.slice <span class="string">"alert"</span>, <span class="string">"notice"</span>,<span class="string">"warning"</span> </div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p><strong>Step 4. 在 application.html.erb 内加入 flash 这个 partial</strong></p>
+<p>在 <code>&lt;%= yield %&gt;</code> 前加入 <code>&lt;%= render &quot;common/flashes&quot; %&gt;</code></p>
+<figure class="highlight ruby"><figcaption><span>app/views/layouts/application.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;%= render <span class="string">"common/flashes"</span> %&gt;</div><div class="line">&lt;%= <span class="keyword">yield</span> %&gt;</div></pre></td></tr></table></figure>
+<p><strong>Step 5. git 存档</strong></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git <span class="keyword">add</span><span class="bash"> .</span></div><div class="line"><span class="bash">git commit -m <span class="string">"add bootstrap flash function"</span></span></div></pre></td></tr></table></figure>
+<p><strong>Step 6: 测试 flash helper 的功能</strong></p>
+<p>加入 <code>flash[:notice] = &quot;早安！你好！&quot;</code>。你应该可以看到系统跳出“绿色”提示窗。</p>
+<figure class="highlight ruby"><figcaption><span>app/controllers/welcome_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">WelcomeController</span> &lt; ApplicationController</span></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">index</span></span></div><div class="line">    flash[<span class="symbol">:notice</span>] = <span class="string">"早安！你好！"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h4 id="Part-4-安装-Devise"><a href="#Part-4-安装-Devise" class="headerlink" title="Part 4:安装 Devise"></a>Part 4:安装 Devise</h4><p><strong>Step 1: 安装登入系统</strong></p>
+<p>Devise 是一个 Rails 内热门的 gem，专门用来快速实作“登入系统”。在这一节我们会用 devise 实作登入功能。</p>
+<p>Gemfile 新增一行 <code>gem &#39;devise&#39;</code></p>
+<figure class="highlight ruby"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gem <span class="string">'devise'</span></div></pre></td></tr></table></figure>
+<p>然后执行<code>bundle install</code></p>
+<p><strong>Step 2 : 产生会员系统的必要档案</strong></p>
+<p>执行<br><figure class="highlight routeros"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rails g devise:install</div><div class="line">rails g devise user</div><div class="line">rake db:migrate</div></pre></td></tr></table></figure></p>
+<p>重启<code>rails s</code></p>
+<p><strong>Step 3: 修改 app/views/common/_navbar.html.erb</strong></p>
+<figure class="highlight ruby"><figcaption><span>app/views/common/_navbar.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">-                &lt;li&gt; &lt;%= link_to(<span class="string">"登入"</span>, <span class="string">'#'</span>) %&gt;   &lt;<span class="regexp">/li&gt;</span></div><div class="line"><span class="regexp">+                &lt;% if !current_user %&gt;</span></div><div class="line"><span class="regexp">+                  &lt;li&gt;&lt;%= link_to("注册", new_user_registration_path) %&gt; &lt;/li</span>&gt;</div><div class="line">+                  &lt;li&gt;&lt;%= link_to(<span class="string">"登入"</span>, new_user_session_path) %&gt;&lt;<span class="regexp">/li&gt;</span></div><div class="line"><span class="regexp">+                &lt;% else %&gt;</span></div><div class="line"><span class="regexp">+                  &lt;li class="dropdown"&gt;</span></div><div class="line"><span class="regexp">+                    &lt;a href="#" class="dropdown-toggle" data-toggle="dropdown"&gt;</span></div><div class="line"><span class="regexp">+                        Hi!, &lt;%= current_user.email %&gt;</span></div><div class="line"><span class="regexp">+                        &lt;b class="caret"&gt;&lt;/b</span>&gt;</div><div class="line">+                    &lt;<span class="regexp">/a&gt;</span></div><div class="line"><span class="regexp">+                    &lt;ul class="dropdown-menu"&gt;</span></div><div class="line"><span class="regexp">+                        &lt;li&gt; &lt;%= link_to("登出", destroy_user_session_path, method: :delete) %&gt; &lt;/li</span>&gt;</div><div class="line">+                    &lt;<span class="regexp">/ul&gt;</span></div><div class="line"><span class="regexp">+                  &lt;/li</span>&gt;</div><div class="line">+                &lt;% <span class="keyword">end</span> %&gt;</div></pre></td></tr></table></figure>
+<p><strong>Step 4: 修改 app/assets/javascripts/application.js</strong></p>
+<p>加入一行<code>//= require bootstrap/dropdown</code></p>
+<figure class="highlight ruby"><figcaption><span>app/assets/javascripts/application.js</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/<span class="regexp">/= require bootstrap/alert</span></div><div class="line">+ <span class="regexp">//</span>= <span class="keyword">require</span> bootstrap/dropdown</div></pre></td></tr></table></figure>
+<p>成果应该会是这样的效果。</p>
+<p><strong>Step 5: git 储存</strong></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git <span class="keyword">add</span><span class="bash"> .</span></div><div class="line"><span class="bash">git commit -m <span class="string">"user can login/logout/signup"</span></span></div></pre></td></tr></table></figure>
+<h4 id="Part-5-安装-SimpleForm"><a href="#Part-5-安装-SimpleForm" class="headerlink" title="Part 5: 安装 SimpleForm"></a>Part 5: 安装 SimpleForm</h4><p><strong>Step 1. 使用 SimpleForm 简化</strong></p>
+<p>首先我们要来安装 <code>simple_form</code></p>
+<p>打开 Gemfile，然后新增一行 <code>gem &#39;simple_form&#39;</code></p>
+<figure class="highlight ruby"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">gem <span class="string">'bootstrap-sass'</span></div><div class="line">gem <span class="string">'devise'</span></div><div class="line">+ gem <span class="string">'simple_form'</span></div></pre></td></tr></table></figure>
+<p>然后执行<code>bundle install</code> ,安装 gem。</p>
+<p><strong>Step 2. 安装 simple_form for bootstrap 的设定</strong></p>
+<p>执行：<code>rails generate simple_form:install --bootstrap</code></p>
+<p>然后重开 <code>rails server</code>（ <code>ctrl+c</code> 然后 <code>rails s</code>）</p>
+<p><strong>Step 3. git 存档</strong></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git <span class="keyword">add</span><span class="bash"> .</span></div><div class="line"><span class="bash">git commit -m <span class="string">"install simpleform with bootstrap"</span></span></div></pre></td></tr></table></figure>
+<h4 id="Part-6-安装-font-awesome-rails"><a href="#Part-6-安装-font-awesome-rails" class="headerlink" title="Part 6: 安装 font-awesome-rails"></a>Part 6: 安装 font-awesome-rails</h4><p><strong>Step 1. 挂上font-awesome-rails</strong></p>
+<figure class="highlight ruby"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">gem <span class="string">'devise'</span></div><div class="line">gem <span class="string">'simple_form'</span></div><div class="line">+ gem <span class="string">'font-awesome-rails'</span></div></pre></td></tr></table></figure>
+<p><strong>Step 2. bundle install</strong></p>
+<p>执行 <code>bundle install</code></p>
+<p>重启<code>rails s</code></p>
+<p><strong>Step 3. 将 font-awesome装进专案里面</strong></p>
+<figure class="highlight ruby"><figcaption><span>app/assets/stylesheets/application.scss</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@import <span class="string">"font-awesome"</span>;</div></pre></td></tr></table></figure>
+<p><strong>Step 4. 修改 app/views/common/_navbar.html.erb</strong></p>
+<figure class="highlight ruby"><figcaption><span>app/views/common/_navbar.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">             &lt;% <span class="keyword">if</span> !current_user %&gt;</div><div class="line">               &lt;li&gt;&lt;%= link_to(<span class="string">"注册"</span>, new_user_registration_path) %&gt; &lt;<span class="regexp">/li&gt;</span></div><div class="line"><span class="regexp">-                  &lt;li&gt;&lt;%= link_to("登入", new_user_session_path) %&gt;&lt;/li</span>&gt;</div><div class="line">+                  &lt;li&gt;&lt;%= link_to(content_tag(<span class="symbol">:i</span>, <span class="string">'登入'</span>, <span class="class"><span class="keyword">class</span>: '<span class="title">fa</span> <span class="title">fa</span>-<span class="title">sign</span>-<span class="title">in</span>'), <span class="title">new_user_session_path</span>) %&gt;&lt;/<span class="title">li</span>&gt;</span></div><div class="line">             &lt;% <span class="keyword">else</span> %&gt;</div><div class="line">               &lt;li class="dropdown"&gt;</div><div class="line">                 &lt;a href="#" class="dropdown-toggle" data-toggle="dropdown"&gt;</div><div class="line">                     Hi!, &lt;%= current_user.email %&gt;</div><div class="line">                     &lt;b class="caret"&gt;&lt;/b&gt;</div><div class="line">                 &lt;<span class="regexp">/a&gt;</span></div><div class="line"><span class="regexp">                 &lt;ul class="dropdown-menu"&gt;</span></div><div class="line"><span class="regexp">-                        &lt;li&gt; &lt;%= link_to("登出", destroy_user_session_path, method: :delete) %&gt; &lt;/li</span>&gt;</div><div class="line">+                        &lt;li&gt; &lt;%= link_to(content_tag(<span class="symbol">:i</span>, <span class="string">'登出'</span>, <span class="class"><span class="keyword">class</span>: '<span class="title">fa</span> <span class="title">fa</span>-<span class="title">sign</span>-<span class="title">out</span>'), <span class="title">destroy_user_session_path</span>, <span class="title">method</span>: :<span class="title">delete</span>) %&gt; &lt;/<span class="title">li</span>&gt;</span></div><div class="line">                 &lt;<span class="regexp">/ul&gt;</span></div><div class="line"><span class="regexp">               &lt;/li</span>&gt;</div><div class="line">             &lt;% <span class="keyword">end</span> %&gt;</div></pre></td></tr></table></figure>
+<p>登入、登出旁会出现新图标</p>
+<p><strong>Step 5. git存档</strong></p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git <span class="keyword">add</span><span class="bash"> .</span></div><div class="line"><span class="bash">git commit -m <span class="string">"install font-awesome-rails"</span></span></div></pre></td></tr></table></figure>
+<h4 id="Part-7-安装debug套件"><a href="#Part-7-安装debug套件" class="headerlink" title="Part 7: 安装debug套件"></a>Part 7: 安装debug套件</h4><p>打开Gemfile</p>
+<figure class="highlight ruby"><figcaption><span>Gemfile</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">group <span class="symbol">:development</span>, <span class="symbol">:test</span> <span class="keyword">do</span></div><div class="line">  <span class="comment"># Call 'byebug' anywhere in the code to stop execution and get a debugger console</span></div><div class="line">  gem <span class="string">'byebug'</span>, <span class="symbol">platform:</span> <span class="symbol">:mri</span></div><div class="line">  gem <span class="string">'sqlite3'</span></div><div class="line">+ gem <span class="string">'pry'</span></div><div class="line">+ gem <span class="string">'awesome_rails_console'</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>执行</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">bundle </span><span class="keyword">install</span></div><div class="line"><span class="keyword">rails </span>g awesome_rails_console:<span class="keyword">install</span></div><div class="line"><span class="keyword">git </span><span class="keyword">add </span>.</div><div class="line">git commit -m <span class="string">"install pry and awesome_rails_console"</span></div></pre></td></tr></table></figure>
+<h4 id="Part-8-安装展示model关系的gem套件"><a href="#Part-8-安装展示model关系的gem套件" class="headerlink" title="Part 8: 安装展示model关系的gem套件"></a>Part 8: 安装展示model关系的gem套件</h4><p><strong>安装 Graphviz 2.22+: </strong></p>
+<p>终端机中执行<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">brew </span><span class="keyword">install </span>graphviz</div></pre></td></tr></table></figure></p>
+<p>安装gem rails-erd</p>
+<figure class="highlight ruby"><figcaption><span>ruby Gemfile</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">gem <span class="string">'qiniu-rs'</span></div><div class="line">gem <span class="string">'figaro'</span></div><div class="line">+ gem <span class="string">'rails-erd'</span></div><div class="line">group <span class="symbol">:development</span>, <span class="symbol">:test</span> <span class="keyword">do</span></div></pre></td></tr></table></figure>
+<p>执行</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">bundle install</div><div class="line">git <span class="keyword">add</span><span class="bash"> .</span></div><div class="line"><span class="bash">git commit -m <span class="string">"install graphviz and rails-erd"</span></span></div></pre></td></tr></table></figure>
+<p>使用说明：</p>
+<ul>
+<li>终端机中执行<strong> rake erd </strong>可生成erd文件</li>
+<li>GEM自动生成的PDF格式文件，在ATOM中无法正常打开，显示一堆乱码。</li>
+<li>在ATOM中找到新建的 <strong>erd.pdf</strong> ，右击找到 <strong>Show in Finder</strong>点击进入文件夹找到该文件，打开即可看到目前的model之间的关系。</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Ruby-on-Rails/">Ruby on Rails</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/新生大学全栈营/">新生大学全栈营</a><a href="/tags/Ruby-on-Rails/">Ruby on Rails</a><a href="/tags/全栈营课程复盘/">全栈营课程复盘</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://kerzzi.github.io/2017/10/07/2017-10-07-rails-jdstore-01/" data-title="课程复盘 | Rails 实战：购物网站（1） | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/10/07/2017-10-07-rails-jdstore-02/" title="课程复盘 | Rails 实战：购物网站（2）">
+  <strong>上一篇：</strong><br/>
+  <span>
+  课程复盘 | Rails 实战：购物网站（2）</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/10/06/2017-10-06-rails-website-performance-02/"  title="课程复盘 | Rails 网站效能（2）">
+ <strong>下一篇：</strong><br/> 
+ <span>课程复盘 | Rails 网站效能（2）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程目标"><span class="toc-number">1.</span> <span class="toc-text">课程目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#课程复盘"><span class="toc-number">2.</span> <span class="toc-text">课程复盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-找出系统核心组件与角色"><span class="toc-number">2.1.</span> <span class="toc-text">1. 找出系统核心组件与角色</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-User-Story"><span class="toc-number">2.2.</span> <span class="toc-text">2. User Story</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#商家"><span class="toc-number">2.2.1.</span> <span class="toc-text">商家</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#消费者"><span class="toc-number">2.2.2.</span> <span class="toc-text">消费者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#订单部分"><span class="toc-number">2.2.3.</span> <span class="toc-text">订单部分</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-常用网站基础建设"><span class="toc-number">2.3.</span> <span class="toc-text">3. 常用网站基础建设</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Part-1-安装-Bootstrap"><span class="toc-number">2.3.1.</span> <span class="toc-text">Part 1: 安装 Bootstrap</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Part-2-修改样式"><span class="toc-number">2.3.2.</span> <span class="toc-text">Part 2:修改样式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Part-3-增加-flash-功能"><span class="toc-number">2.3.3.</span> <span class="toc-text">Part 3:增加 flash 功能</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Part-4-安装-Devise"><span class="toc-number">2.3.4.</span> <span class="toc-text">Part 4:安装 Devise</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Part-5-安装-SimpleForm"><span class="toc-number">2.3.5.</span> <span class="toc-text">Part 5: 安装 SimpleForm</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Part-6-安装-font-awesome-rails"><span class="toc-number">2.3.6.</span> <span class="toc-text">Part 6: 安装 font-awesome-rails</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Part-7-安装debug套件"><span class="toc-number">2.3.7.</span> <span class="toc-text">Part 7: 安装debug套件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Part-8-安装展示model关系的gem套件"><span class="toc-number">2.3.8.</span> <span class="toc-text">Part 8: 安装展示model关系的gem套件</span></a></li></ol></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="sponsor">
+  <br />
+  <p class="asidetitle">赞助商</p>
+  <a href="/sponsor">
+  <br />
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2zsxnnmpj30b405iq2t.jpg" width="235px" />
+  </a>
+
+  <!--
+  <br /><a href="/sponsor"><font color='#2ca6cb'>购买广告位</font></a>
+  -->
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Mac/" title="Mac">Mac</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Markdown/" title="Markdown">Markdown</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Meetup/" title="Meetup">Meetup</a></li>
+		  
+		
+		  
+			<li><a href="/categories/ORID/" title="ORID">ORID</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Photo/" title="Photo">Photo</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ruby-on-Rails/" title="Ruby on Rails">Ruby on Rails</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ruby-on-rails/" title="Ruby on rails">Ruby on rails</a></li>
+		  
+		
+		  
+			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp</a></li>
+		  
+		
+		  
+			<li><a href="/categories/两最一坑/" title="两最一坑">两最一坑</a></li>
+		  
+		
+		  
+			<li><a href="/categories/元学习/" title="元学习">元学习</a></li>
+		  
+		
+		  
+			<li><a href="/categories/全栈营/" title="全栈营">全栈营</a></li>
+		  
+		
+		  
+			<li><a href="/categories/通往财富自由之路/" title="通往财富自由之路">通往财富自由之路</a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://steemit.com/@seeyoo" target="_blank" title="Kerzzi&#39;s Steem">Kerzzi&#39;s Steem</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://kerzzi.logdown.com/" target="_blank" title="Old Blog">Old Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/Kerzzi" target="_blank" title="Kerzzi&#39;s Github">Kerzzi&#39;s Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://mindhacks.cn/" target="_blank" title="刘未鹏">刘未鹏</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://coolshell.cn/" target="_blank" title="酷壳">酷壳</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ruanyifeng.com/" target="_blank" title="阮一峰">阮一峰</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weixin">
+  <br />
+  <p class="asidetitle">微信公众号</p>
+  <p>关注我的公众号「叫我柯子就好」，与你分享关于实践的高频小套路：</p>
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2yv4g9d3j3076076wel.jpg" width="220px" />
+ </div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kerzzi">Kerzzi</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?61e2f14c0f84a3ab81a328239a38b6d8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
