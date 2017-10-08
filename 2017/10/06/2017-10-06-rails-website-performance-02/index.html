@@ -259,7 +259,7 @@
 <p>不过，如果你仔细想想，这两个查询根本就可以一次就捞出来，修改 <code>app/controllers/posts_controller.rb</code></p>
 <figure class="highlight ruby"><figcaption><span>app/controllers/posts_controller.rb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">   <span class="function"><span class="keyword">def</span> <span class="title">show</span></span></div><div class="line">     @post = Post.find(params[<span class="symbol">:id</span>])</div><div class="line">-    @comments = @post.comments.visible.includes(<span class="symbol">:user</span>)</div><div class="line"></div><div class="line">     <span class="keyword">if</span> current_user</div><div class="line">-      @my_comments = @post.comments.where( <span class="symbol">:status</span> =&gt; <span class="string">"private"</span>, <span class="symbol">:user_id</span> =&gt; current_user.id ).includes(<span class="symbol">:user</span>)</div><div class="line"></div><div class="line">+      all_comments = @post.comments.where(<span class="string">"status = ? OR (status = ? AND user_id = ?)"</span>, <span class="string">"public"</span>, <span class="string">"private"</span>, current_user.id).includes(<span class="symbol">:user</span>)</div><div class="line">+      @comments = all_comments.select&#123; <span class="params">|x|</span> x.status == <span class="string">"public"</span> &#125;</div><div class="line">+      @my_comments = all_comments.select&#123; <span class="params">|x|</span> x.status == <span class="string">"private"</span> &#125;</div><div class="line"></div><div class="line">+    <span class="keyword">else</span></div><div class="line">+      @comments  = @post.comments.visible.includes(<span class="symbol">:user</span>)</div><div class="line">     <span class="keyword">end</span></div><div class="line">   <span class="keyword">end</span></div></pre></td></tr></table></figure>
 <p>all_comments 就是我们预先捞出来的 comments，利用了 SQL 条件</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">"status = ? OR (status = ? AND user_id = ?)"</span></div></pre></td></tr></table></figure>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">"status = ? OR (status = ? AND user_id = ?)"</span></div></pre></td></tr></table></figure>
 <p>捞出所有公开或我的私密留言。然后 @comment 和 @my_comments 是用 select 这个数组方法，从内存中再分别过滤出公开留言和我的私密留言。</p>
 <p>这就是预先加载(Preload)概念: 我们尽可能合并 SQL 查询一次捞出，然后再用数组方法 select 过滤出需要的结果。</p>
 <p>再次看一下 log，只捞了一次 comments 了。<br><img src="https://ww2.sinaimg.cn/large/006tNc79gy1fk8nc5yrh0j30w007ggm1.jpg" alt=""></p>
@@ -331,18 +331,18 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/10/07/2017-10-07-rails-jdstore-01/" title="课程复盘 | Rails 实战：购物网站（1）">
+ <a href="/2017/10/06/2017-10-06-rails-website-performance-03/" title="课程复盘 | Rails 网站效能（3）">
   <strong>上一篇：</strong><br/>
   <span>
-  课程复盘 | Rails 实战：购物网站（1）</span>
+  课程复盘 | Rails 网站效能（3）</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2017/10/06/2017-10-06-rails-website-performance-03/"  title="课程复盘 | Rails 网站效能（3）">
+<a href="/2017/10/04/2017-10-06-rails-website-performance-01/"  title="课程复盘 | Rails 网站效能（1）">
  <strong>下一篇：</strong><br/> 
- <span>课程复盘 | Rails 网站效能（3）
+ <span>课程复盘 | Rails 网站效能（1）
 </span>
 </a>
 </div>
@@ -383,6 +383,10 @@
 <div class="categorieslist">
 	<p class="asidetitle">分类</p>
 		<ul>
+		
+		  
+			<li><a href="/categories/Github/" title="Github">Github</a></li>
+		  
 		
 		  
 			<li><a href="/categories/Mac/" title="Mac">Mac</a></li>
