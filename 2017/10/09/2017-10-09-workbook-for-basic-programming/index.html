@@ -1,0 +1,683 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>课程复盘 | 编程基础练习簿 | 柯子的行思笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kerzzi">
+    
+
+    
+    <meta name="description" content="原文链接：编程基础练习簿  课程目标这堂课将练习编程的基础逻辑，包括：  输入、处理、输出 基本算术 控制流程 函式方法 循环 Loop 数组 Array 散列 Hash 对象 Object 档案 File  课程复盘1. 输入、处理、输出 在终端中用 用 ruby 档名 就会执行 .rb 档案  标准萤幕输出(STDOUT)  puts 会输出变量在萤幕上，并且有换行 print 也会输出变量">
+<meta name="keywords" content="新生大学全栈营,Ruby on Rails,全栈营课程复盘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="课程复盘 | 编程基础练习簿">
+<meta property="og:url" content="https://kerzzi.github.io/2017/10/09/2017-10-09-workbook-for-basic-programming/index.html">
+<meta property="og:site_name" content="柯子的行思笔记">
+<meta property="og:description" content="原文链接：编程基础练习簿  课程目标这堂课将练习编程的基础逻辑，包括：  输入、处理、输出 基本算术 控制流程 函式方法 循环 Loop 数组 Array 散列 Hash 对象 Object 档案 File  课程复盘1. 输入、处理、输出 在终端中用 用 ruby 档名 就会执行 .rb 档案  标准萤幕输出(STDOUT)  puts 会输出变量在萤幕上，并且有换行 print 也会输出变量">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-09T12:27:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="课程复盘 | 编程基础练习簿">
+<meta name="twitter:description" content="原文链接：编程基础练习簿  课程目标这堂课将练习编程的基础逻辑，包括：  输入、处理、输出 基本算术 控制流程 函式方法 循环 Loop 数组 Array 散列 Hash 对象 Object 档案 File  课程复盘1. 输入、处理、输出 在终端中用 用 ruby 档名 就会执行 .rb 档案  标准萤幕输出(STDOUT)  puts 会输出变量在萤幕上，并且有换行 print 也会输出变量">
+
+    
+    <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
+				<h2 class="blog-motto">叫我柯子就好</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/09/2017-10-09-workbook-for-basic-programming/" title="课程复盘 | 编程基础练习簿" itemprop="url">课程复盘 | 编程基础练习簿</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-08T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-10-09</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程目标"><span class="toc-number">1.</span> <span class="toc-text">课程目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#课程复盘"><span class="toc-number">2.</span> <span class="toc-text">课程复盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-输入、处理、输出"><span class="toc-number">2.1.</span> <span class="toc-text">1. 输入、处理、输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-基本算术"><span class="toc-number">2.2.</span> <span class="toc-text">2. 基本算术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-控制流程"><span class="toc-number">2.3.</span> <span class="toc-text">3. 控制流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-方法-Method"><span class="toc-number">2.4.</span> <span class="toc-text">4. 方法 Method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-循环-Loop"><span class="toc-number">2.5.</span> <span class="toc-text">5. 循环 Loop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-数组-Array"><span class="toc-number">2.6.</span> <span class="toc-text">6. 数组 Array</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-散列-Hash"><span class="toc-number">3.</span> <span class="toc-text">7. 散列 Hash</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#给定一-Hash，输出有最大-value-的-key"><span class="toc-number"></span> <span class="toc-text">给定一 Hash，输出有最大 value 的 key</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-对象-Object"><span class="toc-number">1.</span> <span class="toc-text">8. 对象 Object</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是对象"><span class="toc-number">1.1.</span> <span class="toc-text">什么是对象?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何自订义对象"><span class="toc-number">1.2.</span> <span class="toc-text">如何自订义对象?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内建的类"><span class="toc-number">1.3.</span> <span class="toc-text">内建的类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是常数-Constant-？"><span class="toc-number">1.4.</span> <span class="toc-text">什么是常数 (Constant)？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-档案处理"><span class="toc-number">2.</span> <span class="toc-text">9. 档案处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是档案？"><span class="toc-number">2.1.</span> <span class="toc-text">什么是档案？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何开档读取和写入"><span class="toc-number">2.2.</span> <span class="toc-text">如何开档读取和写入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-推荐资源"><span class="toc-number">3.</span> <span class="toc-text">10.  推荐资源</span></a></li></ol>
+		
+		</div>
+		
+		<blockquote>
+<p>原文链接：<a href="https://fullstack.xinshengdaxue.com/courses/58/syllabus" target="_blank" rel="external">编程基础练习簿</a></p>
+</blockquote>
+<h2 id="课程目标"><a href="#课程目标" class="headerlink" title="课程目标"></a>课程目标</h2><p>这堂课将练习编程的基础逻辑，包括：</p>
+<ul>
+<li>输入、处理、输出</li>
+<li>基本算术</li>
+<li>控制流程</li>
+<li>函式方法</li>
+<li>循环 Loop</li>
+<li>数组 Array</li>
+<li>散列 Hash</li>
+<li>对象 Object</li>
+<li>档案 File</li>
+</ul>
+<h2 id="课程复盘"><a href="#课程复盘" class="headerlink" title="课程复盘"></a>课程复盘</h2><h3 id="1-输入、处理、输出"><a href="#1-输入、处理、输出" class="headerlink" title="1. 输入、处理、输出"></a>1. 输入、处理、输出</h3><ul>
+<li><p>在终端中用 用 <code>ruby 档名</code> 就会执行 <code>.rb</code> 档案</p>
+</li>
+<li><p><strong>标准萤幕输出(STDOUT)</strong></p>
+<ul>
+<li><code>puts</code> 会输出变量在萤幕上，并且有换行</li>
+<li><code>print</code> 也会输出变量在萤幕，不会换行</li>
+</ul>
+</li>
+<li><p><strong>标准萤幕输入(STDIN)</strong></p>
+<ul>
+<li><code>gets</code> 可以从键盘拿到输入的值。</li>
+</ul>
+</li>
+<li><p><strong>字符串 String</strong></p>
+<ul>
+<li><code>&quot;用双引号包起来&quot;</code></li>
+<li><code>&#39;或是用单引号&#39;</code></li>
+<li><code>&quot;如果里面有&#39;单引号&#39;，那就要用双引号包起来&quot;</code></li>
+<li><code>&#39;如果里面有&quot;双引号&quot;，那就要用单引号包起来&#39;</code></li>
+<li><code>&quot;如果你坚持双引号里面要有双引号，那你得写成 \&quot; 做逸出&quot;</code></li>
+</ul>
+</li>
+<li><p><strong>字符串串接</strong></p>
+<ul>
+<li>用 <code>+</code> 的，例如 <code>&quot;a&quot; + &quot;b&quot;</code></li>
+</ul>
+</li>
+<li><p><strong>字串内嵌</strong></p>
+<ul>
+<li>用 <code>#{}</code> 的语法可以将变量内嵌在字符串中</li>
+<li>例如 <code>&quot;This is #{a}&quot;</code></li>
+</ul>
+</li>
+</ul>
+<p><strong>题目 2</strong><br>交换变数 a 和变数 b 的值</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 题目: 交换 a, b 变数的值</span></div><div class="line"></div><div class="line">a = <span class="number">1</span></div><div class="line">b = <span class="number">2</span></div><div class="line"></div><div class="line">puts <span class="string">"a 是 <span class="subst">#&#123;a&#125;</span>"</span></div><div class="line">puts <span class="string">"b 是 <span class="subst">#&#123;b&#125;</span>"</span></div><div class="line"></div><div class="line">a, b = b, a</div><div class="line"></div><div class="line">puts <span class="string">"a 应该是 2，现在是 <span class="subst">#&#123;a&#125;</span>"</span></div><div class="line">puts <span class="string">"b 应该是 1，现在是 <span class="subst">#&#123;b&#125;</span>"</span></div></pre></td></tr></table></figure>
+<h3 id="2-基本算术"><a href="#2-基本算术" class="headerlink" title="2. 基本算术"></a>2. 基本算术</h3><ul>
+<li><code>%</code> 馀数，例如 <code>20 % 3</code> 是 <code>2</code><br>注意，整数除整数还是整数。只有浮点数运算的结果才会是浮点数。</li>
+</ul>
+<p><strong>型别转换 (Type Conversion)</strong></p>
+<p>字符串和数字是不能直接相加的，会出现 TypeError 的错误，需要先做型别转换：</p>
+<ul>
+<li>透过 <code>to_i</code> 可以将字符串转成整数，例如 <code>&quot;123&quot;.to_i</code> 变成 <code>123</code></li>
+<li>透过 <code>to_f</code> 可以将整数转乘浮点数，例如 <code>123.to_f</code> 变成 <code>123.0</code></li>
+<li>透过<code>to_s</code> 可以转成字符串，例如 <code>123.to_s</code> 变成 <code>&quot;123&quot;</code></li>
+</ul>
+<p>注意，在 gets 中，拿到的是「字符串」，即使你输入的是数字。所以如我要做数字计算，记得先做型别转换。</p>
+<blockquote>
+<p>在 Rails controller 中，params 的值也都是字符串。</p>
+</blockquote>
+<p><strong>浮点数常用方法</strong></p>
+<p>四舍五入 <strong>round</strong><br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.4</span>.<span class="built_in">round</span>      <span class="comment">#=&gt; 1</span></div><div class="line"><span class="number">1.5</span>.<span class="built_in">round</span>      <span class="comment">#=&gt; 2</span></div><div class="line"><span class="number">1.6</span>.<span class="built_in">round</span>      <span class="comment">#=&gt; 2</span></div><div class="line">(<span class="number">-1.5</span>).<span class="built_in">round</span>   <span class="comment">#=&gt; -2</span></div></pre></td></tr></table></figure></p>
+<p>无条件进制 <strong>ceil</strong><br><figure class="highlight gauss"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.2</span>.<span class="built_in">ceil</span>      <span class="meta">#=&gt; 2</span></div><div class="line"><span class="number">2.0</span>.<span class="built_in">ceil</span>      <span class="meta">#=&gt; 2</span></div><div class="line">(<span class="number">-1.2</span>).<span class="built_in">ceil</span>   <span class="meta">#=&gt; -1</span></div><div class="line">(<span class="number">-2.0</span>).<span class="built_in">ceil</span>   <span class="meta">#=&gt; -2</span></div></pre></td></tr></table></figure></p>
+<p>无条件舍去 <strong>floor</strong><br><figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.2</span>.<span class="built_in">floor</span>      <span class="meta">#=&gt; 1</span></div><div class="line"><span class="number">2.0</span>.<span class="built_in">floor</span>      <span class="meta">#=&gt; 2</span></div><div class="line">(<span class="number">-1.2</span>).<span class="built_in">floor</span>   <span class="meta">#=&gt; -2</span></div><div class="line">(<span class="number">-2.0</span>).<span class="built_in">floor</span>   <span class="meta">#=&gt; -2</span></div></pre></td></tr></table></figure></p>
+<h3 id="3-控制流程"><a href="#3-控制流程" class="headerlink" title="3. 控制流程"></a>3. 控制流程</h3><p><strong>关系运算子</strong></p>
+<p>以下这些运算子，都会回传 Boolean 值，也就是 <code>true</code> 或 <code>false</code></p>
+<ul>
+<li>==</li>
+<li>!=</li>
+<li>&lt;</li>
+<li>&gt;</li>
+<li>&lt;=</li>
+<li><blockquote>
+<p>=</p>
+</blockquote>
+</li>
+</ul>
+<p>例如 <code>&quot;123&quot; == &quot;123&quot;</code> 会回传 <code>true</code>，<code>123 &gt; 555</code> 会回传 <code>false</code></p>
+<p><strong>控制流程(Control Flow)</strong></p>
+<p>透过 Boolean 条件，就可以决定程序怎么执行<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> <span class="keyword">if</span> <span class="keyword">a</span> &gt; b</div><div class="line">  <span class="comment"># ...</span></div><div class="line"></div><div class="line">elsif <span class="keyword">a</span> == b</div><div class="line">  <span class="comment"># ...</span></div><div class="line"></div><div class="line"><span class="keyword">else</span></div><div class="line">  <span class="comment"># ...</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p><strong>逻辑运算子</strong></p>
+<ul>
+<li><code>&amp;&amp;</code> 且</li>
+<li><code>||</code> 或</li>
+<li><code>!</code> 相反</li>
+</ul>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 题目: 使用者输入 x,y,z，请输出三个数中最大的数</span></div><div class="line"></div><div class="line">print <span class="string">"请输入一个数字x，然后按 Enter: "</span></div><div class="line">x = gets().to_i</div><div class="line"></div><div class="line">print <span class="string">"请输入一个数字y，然后按 Enter: "</span></div><div class="line">y = gets().to_i</div><div class="line"></div><div class="line">print <span class="string">"请输入一个数字z，然后按 Enter: "</span></div><div class="line">z = gets().to_i</div><div class="line"></div><div class="line">result = [x, y, z].max</div><div class="line"></div><div class="line">puts <span class="string">"最大的数是 #&#123;result&#125;"</span></div></pre></td></tr></table></figure>
+<p>事例代码：<br><figure class="highlight nix"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 题目: 使用者输入 x,y,z，请输出三个数中最大的数</span></div><div class="line"></div><div class="line">print <span class="string">"请输入一个数字x，然后按 Enter: "</span></div><div class="line"><span class="attr">x</span> = gets.to_f</div><div class="line"></div><div class="line">print <span class="string">"请输入一个数字y，然后按 Enter: "</span></div><div class="line"><span class="attr">y</span> = gets.to_f</div><div class="line"></div><div class="line">print <span class="string">"请输入一个数字z，然后按 Enter: "</span></div><div class="line"><span class="attr">z</span> = gets.to_f</div><div class="line"></div><div class="line"><span class="keyword">if</span> x &gt;= y &amp;&amp; x &gt;= z</div><div class="line">  <span class="attr">result</span> = x</div><div class="line">elsif y &gt;= x &amp;&amp; y &gt;= z</div><div class="line">  <span class="attr">result</span> = y</div><div class="line"><span class="keyword">else</span> z &gt;= x &amp;&amp; z &gt;= y</div><div class="line">  <span class="attr">result</span> = z</div><div class="line">end</div><div class="line"></div><div class="line"></div><div class="line">puts <span class="string">"最大的数是 #&#123;result&#125;"</span></div></pre></td></tr></table></figure></p>
+<h3 id="4-方法-Method"><a href="#4-方法-Method" class="headerlink" title="4. 方法 Method"></a>4. 方法 Method</h3><p>在方法中用 return 返回一个值，让我们可以把它存进一个变量，在后面的程序来使用。<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_hello</span><span class="params">(name)</span></span></div><div class="line">  <span class="keyword">return</span> <span class="string">"Hello, <span class="subst">#&#123;name&#125;</span>"</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>如果没有写 return，该方法的最后一行的值会自动被返回。例如上述程式的 return 可以省略：<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_hello</span><span class="params">(name)</span></span></div><div class="line"> <span class="string">"Hello, <span class="subst">#&#123;name&#125;</span>"</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<h3 id="5-循环-Loop"><a href="#5-循环-Loop" class="headerlink" title="5. 循环 Loop"></a>5. 循环 Loop</h3><figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="attr"># 题目: 列出 1</span> 到 <span class="number">100</span> 之间，所有 <span class="number">7</span> 的倍数</div><div class="line"></div><div class="line">i = <span class="number">1</span></div><div class="line"><span class="keyword">while</span> <span class="comment">( i &lt;= 100 )</span></div><div class="line">  i+=<span class="number">1</span></div><div class="line">  puts i <span class="keyword">if</span> i <span class="meta">%</span> <span class="number">7</span> == <span class="number">0</span></div><div class="line">e<span class="symbol">nd</span></div></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 题目: 输入一个数字 N，输出 N * N 乘法表</span></div><div class="line"></div><div class="line">print <span class="string">"请输入数字 N，然后按 Enter: "</span></div><div class="line">n = gets().to_i</div><div class="line"></div><div class="line">i = <span class="number">0</span></div><div class="line">j = <span class="number">0</span></div><div class="line"></div><div class="line"><span class="keyword">while</span> ( i &lt;= n )</div><div class="line">  j = <span class="number">0</span></div><div class="line">  <span class="keyword">while</span> ( j &lt;= n )</div><div class="line">    puts <span class="string">"<span class="subst">#&#123;i&#125;</span> x <span class="subst">#&#123;j&#125;</span> = <span class="subst">#&#123;i*j&#125;</span>"</span></div><div class="line">    j += <span class="number">1</span></div><div class="line">  <span class="keyword">end</span></div><div class="line">  i += <span class="number">1</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 输入一个数字 N，请检查是不是质数</span></div><div class="line">提示：从 <span class="number">2</span> 开始到 N/<span class="number">2</span> 不断去除这个数字，如果可以整除就表示不是质数</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">is_prime</span><span class="params">(n)</span></span></div><div class="line">  i = <span class="number">2</span></div><div class="line"></div><div class="line">  <span class="keyword">while</span> ( i &lt;= n-<span class="number">1</span> )</div><div class="line">    <span class="keyword">return</span> <span class="literal">false</span> <span class="keyword">if</span> n &lt;= <span class="number">1</span> <span class="params">||</span> n % i == <span class="number">0</span></div><div class="line">    i += <span class="number">1</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="literal">true</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">print <span class="string">"请输入数字 N，然后按 Enter: "</span></div><div class="line">n = gets().to_i</div><div class="line"></div><div class="line"><span class="keyword">if</span> is_prime(n)</div><div class="line">  puts <span class="string">"这是质数"</span></div><div class="line"><span class="keyword">else</span></div><div class="line">  puts <span class="string">"这不是质数"</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h3 id="6-数组-Array"><a href="#6-数组-Array" class="headerlink" title="6. 数组 Array"></a>6. 数组 Array</h3><p><strong>什么是数组？</strong></p>
+<ul>
+<li>一个有顺序的容器，用数字当作索引。</li>
+<li>索引从 0 开始</li>
+<li>原则上里面的元素，数据类型最好都是一样的，例如都存整数，或是都存字符串。</li>
+</ul>
+<p>以下就是一个数组，用中括号前后包住，用逗号分隔：</p>
+<p><code>array = [5,1,2,3,5]</code><br>数组里面还可以放数组，这样会变成二维数组：<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">array = [</div><div class="line">  [1,2,3],</div><div class="line">  [4,5,6],</div><div class="line">  [7,8,9]</div><div class="line">]</div><div class="line"></div><div class="line">array[<span class="string">0</span>][<span class="symbol">0</span>] # 这是 1</div><div class="line">array[<span class="string">0</span>][<span class="symbol">1</span>] # 这是 2</div><div class="line">array[<span class="string">2</span>][<span class="symbol">2</span>] # 这是 9</div></pre></td></tr></table></figure></p>
+<p><strong>如何走访数组？</strong></p>
+<p>用 <code>for</code> 方法：<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for i in array</div><div class="line">  puts i</div><div class="line">end</div></pre></td></tr></table></figure></p>
+<p>在 Ruby 中更习惯用 <code>each</code> 方法：<br><figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">array.each <span class="built_in">do</span> |<span class="type">i</span>|<span class="type"></span></div><div class="line"><span class="type"> puts</span> i</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>如果走访时，需要索引值，可以改用 <code>each_with_index</code> 方法：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">array</span>.each_with_index <span class="keyword">do</span> |i, j|</div><div class="line"> <span class="built_in">puts</span> i</div><div class="line"> <span class="built_in">puts</span> j   <span class="meta"># j 从 0 开始数</span></div><div class="line"></div><div class="line">end</div></pre></td></tr></table></figure></p>
+<p><strong>如何操作数组？</strong></p>
+<p><code>array.size</code> 会回传数组长度<br><code>array[1]</code> 会读取第二个元素<br><code>array[1] = 999</code> 会更改第二的元素的值<br><code>array[99999]</code> 读取一个不存在的值，会回传 <code>nil</code><br><code>array[0]</code> 或 <code>array.first</code> 是数组的第一个元素<br><code>array[-1]</code> 或 <code>array.last</code> 是数组的最后一个元素<br><code>array.push(999)</code> 或 <code>array &lt;&lt; 999</code> 会新增一个元素 <code>999</code> 到数组的最后面<br><code>array.unshift(999)</code> 会新增一个元素 <code>999</code> 到数组的最前面<br><code>array.delete_at(i)</code> 会删除索引值在 i 的元素<br>更多 Ruby 的 Array 方法请参考 <a href="https://ruby-doc.org/core-2.4.1/Array.html" target="_blank" rel="external">Ruby Array API</a></p>
+<p><strong>字符串与数组</strong></p>
+<p>编程语言内部实作字符串的方式，就是将一个一个字符用数组连结起来。这就是为什么字符串也可以用数字索引操作：</p>
+<figure class="highlight hsp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">str</span> = <span class="string">"ABCDEFG"</span></div><div class="line"></div><div class="line"><span class="keyword">str</span>[<span class="number">0</span>]  <span class="meta"># 得到 <span class="meta-string">"A"</span></span></div><div class="line"></div><div class="line"><span class="keyword">str</span>[<span class="number">1</span>] = <span class="string">"x"</span></div><div class="line"><span class="keyword">str</span>   <span class="meta"># 变成 <span class="meta-string">"AxCDEFG"</span></span></div><div class="line"></div><div class="line">str.split(<span class="string">""</span>) <span class="meta"># 用 <span class="meta-string">""</span> 拆开字符串，得到数组 [<span class="meta-string">"A"</span>, <span class="meta-string">"B"</span>, <span class="meta-string">"C"</span>, <span class="meta-string">"D"</span>, <span class="meta-string">"E"</span>, <span class="meta-string">"F"</span>, <span class="meta-string">"G"</span>]</span></div><div class="line"></div><div class="line">[<span class="string">"x"</span>, <span class="string">"y"</span>, <span class="string">"z"</span>].join(<span class="string">" "</span>) <span class="meta"># 用 <span class="meta-string">" "</span> 串接成字符串，得到 <span class="meta-string">"x y z"</span></span></div></pre></td></tr></table></figure>
+<p><strong>示例代码：</strong></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"># 给定一阵列内含数字，输出最大值</div><div class="line"></div><div class="line">def find_max(array)</div><div class="line">  array.max</div><div class="line">end</div><div class="line"></div><div class="line">arr = [<span class="number">8</span>, <span class="number">12</span>, <span class="number">36</span>, <span class="number">53</span>, <span class="number">9</span>, <span class="number">75</span>, <span class="number">3</span>, <span class="number">71</span>, <span class="number">59</span>, <span class="number">88</span>]</div><div class="line"></div><div class="line">max = find_max(arr)</div><div class="line">puts <span class="string">"Max is #&#123;max&#125;"</span> # 应该是 <span class="number">88</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 使用者不断输入数字存进 Array，最后输出总和、平均、最大值、最小值</span></div><div class="line"><span class="comment"># 注意：如果没有输入任何东西直接按 Enter，gets 仍会读到一个换行符号，这是一个萤幕不可见的字符，在字符串中用 "\n"表示。</span></div><div class="line"></div><div class="line">arr = []</div><div class="line"></div><div class="line"><span class="keyword">while</span> (<span class="literal">true</span>)</div><div class="line">  print <span class="string">"请输入数字，结束请直接按 Enter: "</span></div><div class="line">  user_input = gets</div><div class="line">  <span class="keyword">if</span> user_input == <span class="string">"\n"</span></div><div class="line">    <span class="keyword">break</span></div><div class="line">  <span class="keyword">else</span></div><div class="line">    arr &lt;&lt; user_input.to_i</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">sum = <span class="number">0</span></div><div class="line">arr.each &#123; <span class="params">|i|</span> sum += i &#125;</div><div class="line"></div><div class="line">average = sum / arr.size</div><div class="line"></div><div class="line">puts arr.to_s</div><div class="line"></div><div class="line">puts <span class="string">"总和是 <span class="subst">#&#123;sum&#125;</span>"</span></div><div class="line">puts <span class="string">"平均是 <span class="subst">#&#123;average&#125;</span>"</span></div><div class="line">puts <span class="string">"最大值是 <span class="subst">#&#123;arr.max&#125;</span>"</span></div><div class="line">puts <span class="string">"最小值是 <span class="subst">#&#123;arr.min&#125;</span>"</span></div></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"># 建构一个阵列有一百个的元素，内容是 <span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25.</span>..... 每个元素是该索引的平方</div><div class="line"># 例如 N = <span class="number">1</span>，则数组是 [<span class="number">0</span>]</div><div class="line"># 例如 N = <span class="number">3</span>，则数组是 [<span class="number">0</span>,<span class="number">1</span>,<span class="number">4</span>]</div><div class="line"></div><div class="line">arr = []</div><div class="line"></div><div class="line">print <span class="string">"请输入数字 N，然后按 Enter: "</span></div><div class="line">n = gets().to_i</div><div class="line"></div><div class="line">(<span class="number">0.</span>.n).each_with_index do |object, index|</div><div class="line">  arr &lt;&lt; index ** <span class="number">2</span></div><div class="line">end</div><div class="line"></div><div class="line">puts arr.to_s</div></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"># 建构一个阵列有一百个的元素，内容是 <span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">25.</span>..... 每个元素是该索引的平方</div><div class="line"></div><div class="line">arr = []</div><div class="line"></div><div class="line">print <span class="string">"请输入数字 N，然后按 Enter: "</span></div><div class="line">n = gets.to_i</div><div class="line">i = <span class="number">0</span></div><div class="line"></div><div class="line">while i &lt; n</div><div class="line">  arr &lt;&lt; i*i</div><div class="line">  i += <span class="number">1</span></div><div class="line">end</div><div class="line"></div><div class="line">puts arr.to_s</div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 给定一数组内含数字，输出另一个数组只包含偶数，然后排序并去除重复的数字</span></div><div class="line"><span class="comment"># Hint: 可用 arr.sort 排序，和 arr.uniq 去除重复</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">filter_even</span><span class="params">(arr)</span></span></div><div class="line">  new_arr = []</div><div class="line"></div><div class="line">  arr.each <span class="keyword">do</span> <span class="params">|i|</span></div><div class="line">    <span class="keyword">if</span> i % <span class="number">2</span> == <span class="number">0</span></div><div class="line">      new_arr &lt;&lt; i</div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  new_arr.sort.uniq</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">arr =  [<span class="number">7</span>, <span class="number">68</span>, <span class="number">42</span>, <span class="number">46</span>, <span class="number">9</span>, <span class="number">91</span>, <span class="number">77</span>, <span class="number">46</span>, <span class="number">86</span>, <span class="number">1</span>]</div><div class="line"></div><div class="line"></div><div class="line">puts <span class="string">"<span class="subst">#&#123;filter_even(arr)&#125;</span>"</span> <span class="comment"># 应该是 [42, 46, 68, 86]</span></div></pre></td></tr></table></figure>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta"># 给定一数组内含数字，请实作选择排序法进行排序。</span></div><div class="line"><span class="meta"># 提示: 新建立一个空数组，然后走访本来的数组检查每一个元素，如果符合条件就塞进(push)进新的数组。</span></div><div class="line"><span class="meta"># https://zh.wikipedia.org/wiki/选择排序</span></div><div class="line"></div><div class="line">def insertion_sort(arr)</div><div class="line">  (<span class="number">0.</span>..arr.<span class="built_in">length</span>).each <span class="keyword">do</span> |i|</div><div class="line">    <span class="built_in">min</span>, <span class="keyword">index</span> = arr[i], i</div><div class="line">    (i...arr.<span class="built_in">length</span>).each &#123; |j| <span class="built_in">min</span>, <span class="keyword">index</span> = arr[j], j <span class="keyword">if</span> arr[j] &lt; <span class="built_in">min</span> &#125;</div><div class="line">    arr[i], arr[<span class="keyword">index</span>] = arr[<span class="keyword">index</span>], arr[i]</div><div class="line">  end</div><div class="line">  arr</div><div class="line">end</div><div class="line"></div><div class="line">arr =  [<span class="number">7</span>, <span class="number">68</span>, <span class="number">42</span>, <span class="number">46</span>, <span class="number">9</span>, <span class="number">91</span>, <span class="number">77</span>, <span class="number">46</span>, <span class="number">86</span>, <span class="number">1</span>]</div><div class="line"></div><div class="line">answer = insertion_sort(arr)</div><div class="line"></div><div class="line">puts answer.to_s <span class="meta"># 应该是 [1, 7, 9, 42, 46, 46, 68, 77, 86, 91]</span></div></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"># 给定一阵列内含数字，请输出 <span class="number">0</span>~<span class="number">9</span> 中不见的数字。例如 arr = [<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">4</span>]，输出 [<span class="number">0</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">9</span>]</div><div class="line"></div><div class="line">def find_missing(arr)</div><div class="line">  missing_num = []</div><div class="line"></div><div class="line">  (<span class="number">0.</span><span class="number">.9</span>).each do |i|</div><div class="line">    missing_num &lt;&lt; i unless arr.include?(i)</div><div class="line">  end</div><div class="line"></div><div class="line">  missing_num</div><div class="line">end</div><div class="line"></div><div class="line">answer = find_missing( [<span class="number">2</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">4</span>] )</div><div class="line"></div><div class="line">puts answer.to_s # 应该是 [<span class="number">0</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">9</span>]</div></pre></td></tr></table></figure>
+<h2 id="7-散列-Hash"><a href="#7-散列-Hash" class="headerlink" title="7. 散列 Hash"></a>7. 散列 Hash</h2><p><strong>什么是散列 Hash？</strong></p>
+<p>用键(key)当作索引的容器，例如</p>
+<p><code>h = { &quot;a&quot; =&gt; 123, &quot;b&quot; =&gt; 456 }</code></p>
+<p><code>h[&quot;a&quot;] 就是 123</code></p>
+<p><code>h[&quot;b&quot;] 就是 456</code></p>
+<p><code>h[&quot;qweqkleklwqen&quot;]</code> 如果读取一个不存在的key，结果会是 nil</p>
+<p><code>h[&quot;new_key&quot;] = 123</code> 如果本来没有这个 key，就会直接新增一组 key-value</p>
+<p><strong>如何走访散列 Hash？</strong></p>
+<figure class="highlight q"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">h.<span class="built_in">each</span> <span class="keyword">do</span> |<span class="built_in">key</span>, <span class="built_in">value</span>|</div><div class="line"> puts <span class="built_in">key</span></div><div class="line"> puts <span class="built_in">value</span></div><div class="line">end</div></pre></td></tr></table></figure>
+<p><strong>常用方法</strong></p>
+<p><code>h.keys</code> 会回传一个数组包括所有 keys</p>
+<p><code>h.values</code> 会回传一个数组包括所有 values</p>
+<p><code>h.merge(h2)</code> 会合并散列 h2 到散列 h</p>
+<p>更多 Ruby 的 Hash 方法请参考 <a href="https://ruby-doc.org/core-2.4.1/Hash.html" target="_blank" rel="external">Ruby Hash API</a></p>
+<p><strong>示例代码：</strong></p>
+<h1 id="给定一-Hash，输出有最大-value-的-key"><a href="#给定一-Hash，输出有最大-value-的-key" class="headerlink" title="给定一 Hash，输出有最大 value 的 key"></a>给定一 Hash，输出有最大 value 的 key</h1><figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">def find_max(hash)</div><div class="line">  hash.each <span class="built_in">do</span> |<span class="type">key</span>, value|<span class="type"></span></div><div class="line"><span class="type">    return</span> key <span class="keyword">if</span> value == hash.values.max</div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">h = &#123;</div><div class="line">  <span class="string">"a"</span> =&gt; <span class="number">71</span>,</div><div class="line">  <span class="string">"b"</span> =&gt; <span class="number">38</span>,</div><div class="line">  <span class="string">"c"</span> =&gt; <span class="number">21</span>,</div><div class="line">  <span class="string">"d"</span> =&gt; <span class="number">80</span>,</div><div class="line">  <span class="string">"e"</span> =&gt; <span class="number">10</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">answer = find_max(h)</div><div class="line"></div><div class="line">puts <span class="string">"有最大 value 的是 #&#123;answer&#125;"</span> # 应该是 d</div></pre></td></tr></table></figure>
+<figure class="highlight ocaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"># 给定一 <span class="type">Hash</span>，输出 <span class="keyword">value</span> 是偶数的 keys</div><div class="line"></div><div class="line">def find_even_keys(hash)</div><div class="line">  result = <span class="literal">[]</span></div><div class="line"></div><div class="line">  hash.each <span class="keyword">do</span> |key, <span class="keyword">value</span>|</div><div class="line">    result &lt;&lt; key <span class="keyword">if</span> <span class="keyword">value</span> % <span class="number">2</span> == <span class="number">0</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  result</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">h = &#123;</div><div class="line">  <span class="string">"a"</span> =&gt; <span class="number">71</span>,</div><div class="line">  <span class="string">"b"</span> =&gt; <span class="number">38</span>,</div><div class="line">  <span class="string">"c"</span> =&gt; <span class="number">21</span>,</div><div class="line">  <span class="string">"d"</span> =&gt; <span class="number">80</span>,</div><div class="line">  <span class="string">"e"</span> =&gt; <span class="number">10</span></div><div class="line">&#125;</div><div class="line"></div><div class="line">answer = find_even_keys(h)</div><div class="line"></div><div class="line">puts <span class="string">"有偶数 value 的 keys 有 #&#123;answer&#125;"</span> # 应该是数组 [b,d,e]</div></pre></td></tr></table></figure>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"># 计算一个阵列中各个元素的出现频率</div><div class="line"></div><div class="line">def count(arr)</div><div class="line">  h = &#123;&#125;</div><div class="line"></div><div class="line">  arr.each <span class="built_in">do</span> |<span class="type">i</span>|<span class="type"></span></div><div class="line"><span class="type">    a</span> = arr.count(i)</div><div class="line">    h[i] = a</div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  <span class="keyword">return</span> h # 回传一个 hash</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">arr =  [<span class="string">"a"</span>, <span class="string">"d"</span>, <span class="string">"d"</span>, <span class="string">"c"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>, <span class="string">"c"</span>, <span class="string">"c"</span>, <span class="string">"d"</span>, <span class="string">"d"</span>, <span class="string">"e"</span>, <span class="string">"e"</span>, <span class="string">"e"</span>, <span class="string">"d"</span>, <span class="string">"a"</span>, <span class="string">"c"</span>, <span class="string">"e"</span>, <span class="string">"a"</span>, <span class="string">"d"</span>, <span class="string">"e"</span>]</div><div class="line"></div><div class="line">answer = count(arr)</div><div class="line"></div><div class="line">puts answer # 答案应该是 &#123;<span class="string">"a"</span>=&gt;<span class="number">3</span>, <span class="string">"d"</span>=&gt;<span class="number">6</span>, <span class="string">"c"</span>=&gt;<span class="number">5</span>, <span class="string">"b"</span>=&gt;<span class="number">1</span>, <span class="string">"e"</span>=&gt;<span class="number">5</span>&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"># 给定一个散列 Hash，请根据指定的键值进行过滤和排序</div><div class="line"></div><div class="line">arr = [</div><div class="line">  &#123; <span class="string">"name"</span> =&gt; <span class="string">"Peter"</span>, <span class="string">"age"</span> =&gt; <span class="number">30</span> &#125;,</div><div class="line">  &#123; <span class="string">"name"</span> =&gt; <span class="string">"John"</span>, <span class="string">"age"</span> =&gt; <span class="number">15</span> &#125;,</div><div class="line">  &#123; <span class="string">"name"</span> =&gt; <span class="string">"David"</span>, <span class="string">"age"</span> =&gt; <span class="number">45</span> &#125;,</div><div class="line">  &#123; <span class="string">"name"</span> =&gt; <span class="string">"Steven"</span>, <span class="string">"age"</span> =&gt; <span class="number">22</span> &#125;,</div><div class="line">  &#123; <span class="string">"name"</span> =&gt; <span class="string">"Vincent"</span>, <span class="string">"age"</span> =&gt; <span class="number">6</span> &#125;,</div><div class="line">]</div><div class="line"></div><div class="line">def filter(arr)</div><div class="line">  result_arr = []</div><div class="line"></div><div class="line">  arr.each <span class="built_in">do</span> |<span class="type">h</span>|<span class="type"></span></div><div class="line"><span class="type">    if</span> h[<span class="string">"age"</span>] &gt;= <span class="number">18</span></div><div class="line">      result_arr.push(h)</div><div class="line">    <span class="keyword">end</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"></div><div class="line">  result_arr.sort_by &#123; |<span class="type">i</span>| <span class="type">i</span>[<span class="string">"age"</span>] &#125;</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">puts <span class="string">"所有成年人，并由小到大: #&#123;filter(arr)&#125;"</span></div><div class="line"></div><div class="line"># 答案应该是</div><div class="line">#[</div><div class="line">#  &#123; <span class="string">"name"</span> =&gt; <span class="string">"Steven"</span>, <span class="string">"age"</span> =&gt; <span class="number">22</span> &#125;,</div><div class="line">#  &#123; <span class="string">"name"</span> =&gt; <span class="string">"Peter"</span>, <span class="string">"age"</span> =&gt; <span class="number">30</span> &#125;,</div><div class="line">#  &#123; <span class="string">"name"</span> =&gt; <span class="string">"David"</span>, <span class="string">"age"</span> =&gt; <span class="number">45</span> &#125;</div><div class="line">#]</div></pre></td></tr></table></figure>
+<h2 id="8-对象-Object"><a href="#8-对象-Object" class="headerlink" title="8. 对象 Object"></a>8. 对象 Object</h2><h3 id="什么是对象"><a href="#什么是对象" class="headerlink" title="什么是对象?"></a>什么是对象?</h3><p>对象(Object)也是一种数据类型，这种数据除了拥有<strong>属性</strong>，也有<strong>方法</strong>可以调用。</p>
+<p>在 Ruby 之中，其实<strong>每种数据类型</strong>，例如 String、Integer、Float、Array、Hash 等等，<strong>也都是对象(Object)</strong>。</p>
+<p>例如字符串的 <code>size</code> 方法和 <code>split</code> 方法：</p>
+<p><code>&quot;abc&quot;.size</code> 会回传 3</p>
+<p><code>&quot;a,b,c,d&quot;.split(&quot;,&quot;)</code> 会回传数组 <code>[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;]</code></p>
+<p>其中 <code>.</code> 就是调用方法的意思。</p>
+<h3 id="如何自订义对象"><a href="#如何自订义对象" class="headerlink" title="如何自订义对象?"></a>如何自订义对象?</h3><p>需要透过类 Class 自订义 Object。Class 就像一种样板，定义出同一种类型的对象有哪些共同的属性和方法。</p>
+<p>例如以下的代码定义了 <code>Car</code> 类：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span></span></div><div class="line"></div><div class="line">  <span class="keyword">attr_accessor</span> <span class="symbol">:color</span>  <span class="comment"># 这会定义属性 <span class="doctag">@color</span></span></div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">run</span></span></div><div class="line">    puts <span class="string">"This <span class="subst">#&#123;@color&#125;</span> car is running"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>有了类，就可以用 <code>new</code> 来产生出对象：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">car1 = Car.new</div><div class="line">car1<span class="selector-class">.color</span> = <span class="string">"red"</span></div><div class="line">car1.run</div><div class="line"></div><div class="line">car2 = Car.new</div><div class="line">car2<span class="selector-class">.color</span> = <span class="string">"blue"</span></div><div class="line">car2.run</div></pre></td></tr></table></figure>
+<h3 id="内建的类"><a href="#内建的类" class="headerlink" title="内建的类"></a>内建的类</h3><p>刚刚说在 Ruby 之中，每种数据类型，例如 String、Integer、Float、Array、Hash 等等，也都是对象(Object)。</p>
+<p>这些对象，其实也都是从类产生出来的，例如</p>
+<p><code>&quot;foobar&quot;.class</code> 会回传 <code>String</code> 是个类</p>
+<p><code>String.new(&quot;foobar&quot;)</code> 等同于 <code>&quot;foobar&quot;</code></p>
+<p><code>[1,2,3].class</code> 会回传 <code>Array</code> 是个类</p>
+<p><code>Array.new([1,2,3])</code> 等同于 <code>[1,2,3]</code></p>
+<p>不过因为这些数据类型太常用了，所以就不需要写 <code>.new</code> 来产生，直接用符号表示就可以了。</p>
+<h3 id="什么是常数-Constant-？"><a href="#什么是常数-Constant-？" class="headerlink" title="什么是常数 (Constant)？"></a>什么是常数 (Constant)？</h3><p>在 Ruby 中，<strong>大写开头的变量又叫做常数</strong>，指一个数值固定不变的常量。</p>
+<p>例如：</p>
+<p><code>STATUS = [&quot;pending&quot;, &quot;confirmed&quot;]</code></p>
+<p><code>Pi = 3.1415926</code></p>
+<p>所有的类(Class)都是一种常数，所以这也是为什么命名类的时候一律都是大写开头。</p>
+<h2 id="9-档案处理"><a href="#9-档案处理" class="headerlink" title="9. 档案处理"></a>9. 档案处理</h2><h3 id="什么是档案？"><a href="#什么是档案？" class="headerlink" title="什么是档案？"></a>什么是档案？</h3><p>所有正在执行中的程序和数据，都是放在内存(memory)之中。内存存取速度快，但是容量小而且一关机数据就不见了。<br>档案则是存在硬盘上，容量大但存取慢，但是关机重来还是继续保存着。</p>
+<p>所谓的读取档案就是将数据从<strong>硬盘</strong>放进<strong>内存</strong>里面，<strong>让程序可以操作</strong>。反之写入档案则是将内存的数据写入硬盘进行保存。</p>
+<h3 id="如何开档读取和写入"><a href="#如何开档读取和写入" class="headerlink" title="如何开档读取和写入"></a>如何开档读取和写入</h3><p>使用 Ruby 的 <a href="https://ruby-doc.org/core-2.4.1/File.html" target="_blank" rel="external">File API</a>：</p>
+<p><strong>读取档案</strong>内容：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">file</span> = <span class="keyword">File</span>.<span class="keyword">open</span>(<span class="string">"foo.txt"</span>)</div><div class="line">doc = <span class="keyword">file</span>.<span class="keyword">read</span>(<span class="string">"foo.txt"</span>)</div></pre></td></tr></table></figure></p>
+<p><strong>写入档案</strong>：<br><figure class="highlight coq"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">File</span>.open(<span class="string">"bar.txt"</span>, <span class="string">"w+"</span>) <span class="built_in">do</span> |<span class="type">f</span>|<span class="type"></span></div><div class="line"><span class="type">  f</span> &lt;&lt; <span class="string">"aaa"</span></div><div class="line">  f &lt;&lt; <span class="string">"\n"</span></div><div class="line">  f &lt;&lt; <span class="string">"bbb"</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<p>这样就会写入 bar.txt，内容是 ：<br><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">aaa</span></div><div class="line"><span class="attribute">bbb</span></div></pre></td></tr></table></figure></p>
+<p><strong>示例代码</strong>：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 请打开 wordcount.txt，计算每个单字出现的次数</span></div><div class="line"></div><div class="line">doc = File.<span class="built_in">read</span>(<span class="string">"wordcount.txt"</span>)</div><div class="line"></div><div class="line"><span class="built_in">words</span> = doc.downcase.scan(/\w+/)</div><div class="line"></div><div class="line"><span class="literal">result</span> = &#123;&#125;</div><div class="line"></div><div class="line"><span class="built_in">words</span>.each do |i|</div><div class="line">  <span class="literal">result</span>[i] = <span class="built_in">words</span>.<span class="built_in">count</span>(i)</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">puts <span class="literal">result</span></div></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 请打开 wordcount.txt，计算每个单字出现的次数</span></div><div class="line"></div><div class="line">doc = File.<span class="built_in">read</span>(<span class="string">"wordcount.txt"</span>)</div><div class="line"></div><div class="line"><span class="built_in">words</span> = doc.downcase.scan(/\w+/)</div><div class="line"></div><div class="line"><span class="literal">result</span> = <span class="built_in">words</span>.each_with_object(Hash.new(<span class="number">0</span>)) &#123; |<span class="built_in">word</span>, hash| hash[<span class="built_in">word</span>] += <span class="number">1</span> &#125;</div><div class="line"></div><div class="line">puts <span class="literal">result</span></div></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 简易 Todo 代办事项应用</span></div><div class="line"></div><div class="line"><span class="keyword">require</span> <span class="string">'byebug'</span></div><div class="line"></div><div class="line">text = File.read(<span class="string">"todos.txt"</span>)</div><div class="line"></div><div class="line">todos = []</div><div class="line">text.each_line <span class="keyword">do</span> <span class="params">|line|</span></div><div class="line">  todos &lt;&lt; line.chomp</div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line">todos.each_with_index <span class="keyword">do</span> <span class="params">|todo, index|</span></div><div class="line">  puts <span class="string">"<span class="subst">#&#123;index&#125;</span>: <span class="subst">#&#123;todo&#125;</span>"</span></div><div class="line"><span class="keyword">end</span></div><div class="line"></div><div class="line"><span class="keyword">while</span> (<span class="literal">true</span>)</div><div class="line">  print <span class="string">"请输入指令 1. add 2. remove 3. save，然后按 Enter: "</span></div><div class="line">  command = gets.chomp</div><div class="line"></div><div class="line">  <span class="keyword">if</span> command == <span class="string">"add"</span></div><div class="line">    print <span class="string">"请输入代办事项: "</span></div><div class="line">    todos &lt;&lt; gets</div><div class="line">  <span class="keyword">elsif</span> command == <span class="string">"remove"</span></div><div class="line">    print <span class="string">"请输入要删除的编号: "</span></div><div class="line"></div><div class="line">    choose = gets().to_i</div><div class="line">    todos.delete_at(choose)</div><div class="line">  <span class="keyword">elsif</span> command == <span class="string">"save"</span></div><div class="line">    puts <span class="string">"存盘离开"</span></div><div class="line"></div><div class="line">    File.open(<span class="string">"todos.txt"</span>, <span class="string">"w+"</span>) <span class="keyword">do</span> <span class="params">|f|</span></div><div class="line">      <span class="keyword">for</span> a <span class="keyword">in</span> todos</div><div class="line">        f &lt;&lt; a + <span class="string">"\n"</span></div><div class="line">      <span class="keyword">end</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"></div><div class="line">    todos.each_with_index <span class="keyword">do</span> <span class="params">|todo, index|</span></div><div class="line">      puts <span class="string">"<span class="subst">#&#123;index&#125;</span>: <span class="subst">#&#123;todo&#125;</span>"</span></div><div class="line">    <span class="keyword">end</span></div><div class="line"></div><div class="line">    <span class="keyword">break</span>;</div><div class="line">  <span class="keyword">else</span></div><div class="line">    puts <span class="string">"看不懂，请再输入一次"</span></div><div class="line">  <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<h2 id="10-推荐资源"><a href="#10-推荐资源" class="headerlink" title="10.  推荐资源"></a>10.  推荐资源</h2><blockquote>
+<p>如果这教程对你来说偏简单，推荐你接下来买一本 <a href="http://www.ptpress.cn/book.aspx?id=39228" target="_blank" rel="external">Ruby 基础教程, 人民邮电</a>，如果你要找工作面试，请尽量念完这一本。</p>
+<p>如果想继续练习基础编程，或是面试的公司有考算法，请练习以下的题库网站(请练习 Easy 程度程度即可，更高难度需要学完数据结构课程)</p>
+<ul>
+<li><a href="https://coderbyte.com/challenges" target="_blank" rel="external">Coderbyte</a></li>
+<li><a href="https://leetcode.com/problemset/algorithms/" target="_blank" rel="external">LeetCode Online Judge</a> 硅谷、BAT 大公司面试必备刷题题库网站</li>
+<li><a href="https://codility.com/programmers/lessons/1-iterations/" target="_blank" rel="external">Codility</a> 模拟线上算法测试，很刺激</li>
+</ul>
+<p>如果这教程对你来说还是偏难太过抽象，建议你可以找啊哈磊的<a href="http://www.ahalei.com/" target="_blank" rel="external">小学生坐在马桶上都能看懂的编程入门书</a>，会用更浅显的对话和例子，用一整本书的长度来讲这教程的内容。</p>
+</blockquote>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Ruby-on-Rails/">Ruby on Rails</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/新生大学全栈营/">新生大学全栈营</a><a href="/tags/Ruby-on-Rails/">Ruby on Rails</a><a href="/tags/全栈营课程复盘/">全栈营课程复盘</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://kerzzi.github.io/2017/10/09/2017-10-09-workbook-for-basic-programming/" data-title="课程复盘 | 编程基础练习簿 | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/10/08/2017-10-08-github-cooperation/"  title="课程复盘 | Github协作指南">
+ <strong>下一篇：</strong><br/> 
+ <span>课程复盘 | Github协作指南
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#课程目标"><span class="toc-number">1.</span> <span class="toc-text">课程目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#课程复盘"><span class="toc-number">2.</span> <span class="toc-text">课程复盘</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-输入、处理、输出"><span class="toc-number">2.1.</span> <span class="toc-text">1. 输入、处理、输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-基本算术"><span class="toc-number">2.2.</span> <span class="toc-text">2. 基本算术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-控制流程"><span class="toc-number">2.3.</span> <span class="toc-text">3. 控制流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-方法-Method"><span class="toc-number">2.4.</span> <span class="toc-text">4. 方法 Method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-循环-Loop"><span class="toc-number">2.5.</span> <span class="toc-text">5. 循环 Loop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-数组-Array"><span class="toc-number">2.6.</span> <span class="toc-text">6. 数组 Array</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-散列-Hash"><span class="toc-number">3.</span> <span class="toc-text">7. 散列 Hash</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#给定一-Hash，输出有最大-value-的-key"><span class="toc-number"></span> <span class="toc-text">给定一 Hash，输出有最大 value 的 key</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-对象-Object"><span class="toc-number">1.</span> <span class="toc-text">8. 对象 Object</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是对象"><span class="toc-number">1.1.</span> <span class="toc-text">什么是对象?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何自订义对象"><span class="toc-number">1.2.</span> <span class="toc-text">如何自订义对象?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内建的类"><span class="toc-number">1.3.</span> <span class="toc-text">内建的类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是常数-Constant-？"><span class="toc-number">1.4.</span> <span class="toc-text">什么是常数 (Constant)？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-档案处理"><span class="toc-number">2.</span> <span class="toc-text">9. 档案处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是档案？"><span class="toc-number">2.1.</span> <span class="toc-text">什么是档案？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何开档读取和写入"><span class="toc-number">2.2.</span> <span class="toc-text">如何开档读取和写入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-推荐资源"><span class="toc-number">3.</span> <span class="toc-text">10.  推荐资源</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="sponsor">
+  <br />
+  <p class="asidetitle">赞助商</p>
+  <a href="/sponsor">
+  <br />
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2zsxnnmpj30b405iq2t.jpg" width="235px" />
+  </a>
+
+  <!--
+  <br /><a href="/sponsor"><font color='#2ca6cb'>购买广告位</font></a>
+  -->
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Github/" title="Github">Github</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac/" title="Mac">Mac</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Markdown/" title="Markdown">Markdown</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Meetup/" title="Meetup">Meetup</a></li>
+		  
+		
+		  
+			<li><a href="/categories/ORID/" title="ORID">ORID</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Photo/" title="Photo">Photo</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ruby-on-Rails/" title="Ruby on Rails">Ruby on Rails</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ruby-on-rails/" title="Ruby on rails">Ruby on rails</a></li>
+		  
+		
+		  
+			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp</a></li>
+		  
+		
+		  
+			<li><a href="/categories/两最一坑/" title="两最一坑">两最一坑</a></li>
+		  
+		
+		  
+			<li><a href="/categories/元学习/" title="元学习">元学习</a></li>
+		  
+		
+		  
+			<li><a href="/categories/全栈营/" title="全栈营">全栈营</a></li>
+		  
+		
+		  
+			<li><a href="/categories/通往财富自由之路/" title="通往财富自由之路">通往财富自由之路</a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://steemit.com/@seeyoo" target="_blank" title="Kerzzi&#39;s Steem">Kerzzi&#39;s Steem</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://kerzzi.logdown.com/" target="_blank" title="Old Blog">Old Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/Kerzzi" target="_blank" title="Kerzzi&#39;s Github">Kerzzi&#39;s Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://mindhacks.cn/" target="_blank" title="刘未鹏">刘未鹏</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://coolshell.cn/" target="_blank" title="酷壳">酷壳</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ruanyifeng.com/" target="_blank" title="阮一峰">阮一峰</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weixin">
+  <br />
+  <p class="asidetitle">微信公众号</p>
+  <p>关注我的公众号「叫我柯子就好」，与你分享关于实践的高频小套路：</p>
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2yv4g9d3j3076076wel.jpg" width="220px" />
+ </div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kerzzi">Kerzzi</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?61e2f14c0f84a3ab81a328239a38b6d8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
