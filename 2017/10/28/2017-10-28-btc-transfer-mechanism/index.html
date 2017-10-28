@@ -1,0 +1,552 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>001  比特币的转账机制以及基本概念 | 柯子的行思笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kerzzi">
+    
+
+    
+    <meta name="description" content="第0章 引言复习首先简单复习一下上一篇文章《从实物货币到记账货币》中的核心内容：记账货币是一种中心化记账的模式，比特币是一种非中心化记账的机制，人人都可以记账，并且它还具备传递信息的同时去同步传递价值，这一切的背后都依赖于比特币的底层技术——区块链——它被认为可能会带来人类社会去中心化价值传输的革命性的改变。 主要知识点今天主要讲两个知识点：第一个是比特币的转账机制，也就是如果你有了比特币，怎么样">
+<meta name="keywords" content="区块链,比特币（BTC）,BCRC,区块链研习俱乐部">
+<meta property="og:type" content="article">
+<meta property="og:title" content="001  比特币的转账机制以及基本概念">
+<meta property="og:url" content="https://kerzzi.github.io/2017/10/28/2017-10-28-btc-transfer-mechanism/index.html">
+<meta property="og:site_name" content="柯子的行思笔记">
+<meta property="og:description" content="第0章 引言复习首先简单复习一下上一篇文章《从实物货币到记账货币》中的核心内容：记账货币是一种中心化记账的模式，比特币是一种非中心化记账的机制，人人都可以记账，并且它还具备传递信息的同时去同步传递价值，这一切的背后都依赖于比特币的底层技术——区块链——它被认为可能会带来人类社会去中心化价值传输的革命性的改变。 主要知识点今天主要讲两个知识点：第一个是比特币的转账机制，也就是如果你有了比特币，怎么样">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-10-28T10:10:25.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="001  比特币的转账机制以及基本概念">
+<meta name="twitter:description" content="第0章 引言复习首先简单复习一下上一篇文章《从实物货币到记账货币》中的核心内容：记账货币是一种中心化记账的模式，比特币是一种非中心化记账的机制，人人都可以记账，并且它还具备传递信息的同时去同步传递价值，这一切的背后都依赖于比特币的底层技术——区块链——它被认为可能会带来人类社会去中心化价值传输的革命性的改变。 主要知识点今天主要讲两个知识点：第一个是比特币的转账机制，也就是如果你有了比特币，怎么样">
+
+    
+    <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
+				<h2 class="blog-motto">叫我柯子就好</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/28/2017-10-28-btc-transfer-mechanism/" title="001  比特币的转账机制以及基本概念" itemprop="url">001  比特币的转账机制以及基本概念</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-27T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-10-28</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第0章-引言"><span class="toc-number">1.</span> <span class="toc-text">第0章 引言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复习"><span class="toc-number">1.1.</span> <span class="toc-text">复习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主要知识点"><span class="toc-number">1.2.</span> <span class="toc-text">主要知识点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-现实生活的转账机制"><span class="toc-number">2.</span> <span class="toc-text">第1章 现实生活的转账机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-比特币的转账机制"><span class="toc-number">3.</span> <span class="toc-text">第2章 比特币的转账机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3章-学习区块链须要掌握的基本名词"><span class="toc-number">4.</span> <span class="toc-text">第3章 学习区块链须要掌握的基本名词</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念：矿工和挖矿"><span class="toc-number">4.1.</span> <span class="toc-text">概念：矿工和挖矿</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#概念：算力"><span class="toc-number">4.2.</span> <span class="toc-text">概念：算力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#概念：工作量证明和权益证明"><span class="toc-number">4.3.</span> <span class="toc-text">概念：工作量证明和权益证明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#概念：区块和区块链"><span class="toc-number">4.4.</span> <span class="toc-text">概念：区块和区块链</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第4章-结束语"><span class="toc-number">5.</span> <span class="toc-text">第4章 结束语</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="第0章-引言"><a href="#第0章-引言" class="headerlink" title="第0章 引言"></a>第0章 引言</h2><h3 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h3><p>首先简单复习一下上一篇文章《从实物货币到记账货币》中的核心内容：<br>记账货币是一种中心化记账的模式，比特币是一种非中心化记账的机制，人人都可以记账，并且它还具备传递信息的同时去同步传递价值，这一切的背后都依赖于比特币的底层技术——区块链——它被认为可能会带来人类社会去中心化价值传输的革命性的改变。</p>
+<h3 id="主要知识点"><a href="#主要知识点" class="headerlink" title="主要知识点"></a>主要知识点</h3><p>今天主要讲两个知识点：<br>第一个是<strong>比特币的转账机制</strong>，也就是如果你有了比特币，怎么样去转给别人？<br>第二个是以比特币为例详细讲解<strong>学习区块链需要掌握的基本概念</strong>。</p>
+<h2 id="第1章-现实生活的转账机制"><a href="#第1章-现实生活的转账机制" class="headerlink" title="第1章 现实生活的转账机制"></a>第1章 现实生活的转账机制</h2><p>让我们先回顾一下在现实生活中我们是怎样转账给朋友的。<br>假设你准备转给朋友一千块钱人民币，整个转账过程一般会经过以下步骤：</p>
+<ol>
+<li>先让朋友把银行卡号发给你。假设你朋友给你一张建设银行的卡号，而你自己的银行卡是招商银行的。</li>
+<li>于是你就登录招商银行的网银，并找到转账的菜单。</li>
+<li>输入你朋友建设银行卡的卡号，并输入金额一千元。</li>
+<li>屏幕上可能会显示两元的手续费，这时点击确定。</li>
+<li>然后银行会让你填一下你招商银行的密码，填上的密码提交之后，这个汇款单就会提交给银行后台去处理了。</li>
+<li>等到处理完毕，你的账户里面就会减去一千元，你朋友的银行卡里就会增加一千元。</li>
+</ol>
+<p>对比这种转账方式和行为，使用比特币转账的过程是差不多的。</p>
+<h2 id="第2章-比特币的转账机制"><a href="#第2章-比特币的转账机制" class="headerlink" title="第2章 比特币的转账机制"></a>第2章 比特币的转账机制</h2><p>假设你手里有非常多的比特币，你想转账给朋友一般需要以下几步？<br>第一步，你需要登录你的比特币钱包（类似于招商银行的网银）。然后此时你需要选择转出币的地址（相当于你自己的银行卡），这个地址是一串长30位的，由大小写字母和数字组成的字符串。<br>第二步，你需要选择转入比特币的钱包地址（也就是你朋友的银行卡）。<br>第三步，填写好要转账的金额，比如一个比特币（1BTC），然后写下你想要为这笔交易付出的手续费。最终签上你的签名，提交给比特币网络，然后就等着矿工来打包处理了。</p>
+<p>与使用银行转账不一样的地方是，<strong>你可以自己选择转账手续费是多少，也可以不给转账手续费</strong>。不过你如果不支付转账手续费的话，这笔转账交易就可能不会被矿工记帐确认，或者说很长时间后才被矿工记账确认。这个就是比特币的转账机制。</p>
+<h2 id="第3章-学习区块链须要掌握的基本名词"><a href="#第3章-学习区块链须要掌握的基本名词" class="headerlink" title="第3章 学习区块链须要掌握的基本名词"></a>第3章 学习区块链须要掌握的基本名词</h2><p>恭喜你已经获得了第一个知识点，下面我们一起来学习一下第二个知识点：以比特币为例，学习区块链须要掌握的基本概念。</p>
+<h3 id="概念：矿工和挖矿"><a href="#概念：矿工和挖矿" class="headerlink" title="概念：矿工和挖矿"></a>概念：矿工和挖矿</h3><p>第一个和第二个概念：矿工和挖矿。</p>
+<p>为什么叫矿工呢？<br>上文中已经提到当你给比特币网络提交了转账的请求后，需要等着矿工来帮你做确认处理。<br>在比特币网络中因为竞争记账能够获得新生的比特币奖励，很像开采在地底下的矿物的过程，所以大家<strong>把争相去记账的这个过程，形象的比喻做挖矿</strong>，<strong>这些竞争的人或者组织，我们把它叫做矿工</strong>。<br>在比特币的网络里面，每一个矿工能否在十分钟之内计算出每道超难的比特币的数学题的<strong>概率取决于他所掌握的算力占全网算力的比例</strong>。</p>
+<p>矿工就是在比特币网络世界里面记账的人或者组织，那么<strong>矿工是怎么记账的</strong>呢？<br>在比特币的网络世界里面，这个网络大约每10分钟给每一个矿工出一道超级难的数学题，哪个矿工能够最先解出这道数学题，就能够获得记账的权利。而谁获得记账的权力，谁就能获得新发行的比特币的奖励。<br>而矿工是否能够计算出这道数学难题取决于它的计算能力，也就是刚才提到的算力。他成功计算出来这道数学难题的概率，等于他所掌握的算力占全网算力的百分比。</p>
+<h3 id="概念：算力"><a href="#概念：算力" class="headerlink" title="概念：算力"></a>概念：算力</h3><p>那么什么是<strong>算力</strong>呢？<br>可以简单的理解为计算能力。解决比特币的数学题只能依靠计算机做随机的哈希碰撞。哈希碰撞是一种哈希算法的称呼，哈希算法是一种伟大的密码学算法。对密码学感兴趣的同学可以研究一下，具体的介绍我会在后续的进阶文章中进行介绍。<br>算力一般用每秒能做多少次哈希碰撞来代表，目前主流的矿机为10T左右的计算量，即一台矿机每秒钟能做至少10的13次方次哈希碰撞，这一台10T的矿机就有了10T的算力。<br><strong>一个矿工所掌握的矿机占比特币全网的总算力的百分比是多少，就代表着他在这十分钟的记账竞争中大概有多少的概率能够获胜。</strong><br>举个例子，如果比特币现在全网的算力是100，某一个矿工，他拥有了10的算力，那么他能够在每一次竞争记账中所成功记账的概率是10%，</p>
+<h3 id="概念：工作量证明和权益证明"><a href="#概念：工作量证明和权益证明" class="headerlink" title="概念：工作量证明和权益证明"></a>概念：工作量证明和权益证明</h3><p><strong>工作量证明</strong>和<strong>权益证明</strong>是两个关键的名词。<br>一个矿工成功计算出数学题后，他会把之前打包好的网络上的交易记录到一页账本（一个区块）上，然后同步给其他矿工。<br>因为这个矿工能够最先计算出网络出给他的这道难题，给出正确答案，说明这个矿工付出了<strong>工作量</strong>，是一个有权利记账的人，因此其他人也会认同他记的这一页账单（区块）。<br>这种依靠工作量来证明记账的权利，大家以此来达成共识的机制，就叫做<strong>工作量证明</strong>。简而言之就是<strong>结果可以证明你付出了多少工作量</strong>，简称<strong>POW</strong> (Proof Of Work)。工作量证明机制看似很神秘，其实在社会中的应用非常广泛。例如，毕业证、学位证等证书，就是工作量证明，拥有证书即表明你在过去投入了学习与工作。生活大部分事情都是通过结果来判断的。</p>
+<p>第二个名词叫做<strong>权益证明</strong>，这是跟比特币的工作量证明相对应的另外一种共识机制。<br>权益证明其实就是根据你在这个网络里面持有的币的数量，来决定你竞争记账的权利。<strong>如果你持有的币比较多，你获得记账权力的概率就越大</strong>。<br>这种证明机制在一定程度上缩短了共识的达成时间，也不再需要消耗大量的能源去挖矿。简而言之，持有币的数量越多，获得记账权力的概率就越大，这种共识机制叫做<strong>权益证明</strong>，英文简称<strong>POS （Proof of Stake）</strong>，</p>
+<p>此外还有其他的共识机制，我会在后续的进阶文章中详细介绍。</p>
+<h3 id="概念：区块和区块链"><a href="#概念：区块和区块链" class="headerlink" title="概念：区块和区块链"></a>概念：区块和区块链</h3><p>第六个和第七个概念：<strong>区块</strong>和<strong>区块链</strong>。<br>这是一对非常简单的概念，上篇文章《从实物货币到记账货币》中讲到比特币网络是一个巨大的账本，平均每十分钟网络就产生一个新的账本。这新的一页就叫做区块，每个区块被打上时间戳，按照严格的先后顺序连接起来，然后形成一个总账本，这个总账本叫做区块链。</p>
+<p>区块中包含什么信息呢？<br>大体来说去看里面包含了两部分信息。<br>一部分是这个<strong>区块的身份信息</strong>，包括这个区块诞生的时间，它的编号是多少（第几个区块）？它的哈希值是多少？整个区块的大小是多少等等。<br>另一部分信息是这段时间内<strong>网络里新产生的交易记录</strong>，也就是这个账本上记录的每一笔交易。<br>注意，这里所说的交易是指“你在给隔壁老王在某个时间点转了N个比特币”，这样的转账信息，而不是用法定货币兑换比特币这样的买入卖出的交易信息。</p>
+<h2 id="第4章-结束语"><a href="#第4章-结束语" class="headerlink" title="第4章 结束语"></a>第4章 结束语</h2><p>回顾一下本文的核心的内容：</p>
+<p>第一个知识点：比特币的转账就像我们用银行卡转账一样简单。<br>第二个知识点是区块链的七个概念：</p>
+<ul>
+<li>挖矿——获得记账权力的过程。</li>
+<li>矿工——是指竞争挖矿的人或者组织。</li>
+<li>算力——就是计算出题目的能力和速度，假设你有一台矿机，计算能力是10T每秒，我们就可以说这一台矿机拥有10T的算力。</li>
+<li>工作量证明——简单的理解就是从结果可以推导出你付出了多少工作量，简称POW。在这种模式下干的越多，能够获得记账的权力的概率就越大。</li>
+<li>权益证明——是另外一种共识机制，它不是比特币的共识机制，简称POS。在这种模式下能够获得记账的概率和你持有的币的数量有关。</li>
+<li>区块——平均每十分钟在网络里诞生，账本上了一页。</li>
+<li>区块链链——也就是这个总的账本。每个区块上被打上时间戳，然后按照严格的先后顺序连接起来，就叫做区块链。</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/区块链/">区块链</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/区块链/">区块链</a><a href="/tags/比特币（BTC）/">比特币（BTC）</a><a href="/tags/BCRC/">BCRC</a><a href="/tags/区块链研习俱乐部/">区块链研习俱乐部</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://kerzzi.github.io/2017/10/28/2017-10-28-btc-transfer-mechanism/" data-title="001  比特币的转账机制以及基本概念 | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/10/22/2017-10-22-rails-code-refactoring/"  title="课程复盘 | Rails 代码重构">
+ <strong>下一篇：</strong><br/> 
+ <span>课程复盘 | Rails 代码重构
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第0章-引言"><span class="toc-number">1.</span> <span class="toc-text">第0章 引言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复习"><span class="toc-number">1.1.</span> <span class="toc-text">复习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主要知识点"><span class="toc-number">1.2.</span> <span class="toc-text">主要知识点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-现实生活的转账机制"><span class="toc-number">2.</span> <span class="toc-text">第1章 现实生活的转账机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-比特币的转账机制"><span class="toc-number">3.</span> <span class="toc-text">第2章 比特币的转账机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3章-学习区块链须要掌握的基本名词"><span class="toc-number">4.</span> <span class="toc-text">第3章 学习区块链须要掌握的基本名词</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念：矿工和挖矿"><span class="toc-number">4.1.</span> <span class="toc-text">概念：矿工和挖矿</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#概念：算力"><span class="toc-number">4.2.</span> <span class="toc-text">概念：算力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#概念：工作量证明和权益证明"><span class="toc-number">4.3.</span> <span class="toc-text">概念：工作量证明和权益证明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#概念：区块和区块链"><span class="toc-number">4.4.</span> <span class="toc-text">概念：区块和区块链</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第4章-结束语"><span class="toc-number">5.</span> <span class="toc-text">第4章 结束语</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="sponsor">
+  <br />
+  <p class="asidetitle">赞助商</p>
+  <a href="/sponsor">
+  <br />
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2zsxnnmpj30b405iq2t.jpg" width="235px" />
+  </a>
+
+  <!--
+  <br /><a href="/sponsor"><font color='#2ca6cb'>购买广告位</font></a>
+  -->
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Github/" title="Github">Github</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac/" title="Mac">Mac</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Markdown/" title="Markdown">Markdown</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Meetup/" title="Meetup">Meetup</a></li>
+		  
+		
+		  
+			<li><a href="/categories/ORID/" title="ORID">ORID</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Photo/" title="Photo">Photo</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ruby-on-Rails/" title="Ruby on Rails">Ruby on Rails</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ruby-on-rails/" title="Ruby on rails">Ruby on rails</a></li>
+		  
+		
+		  
+			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp</a></li>
+		  
+		
+		  
+			<li><a href="/categories/git/" title="git">git</a></li>
+		  
+		
+		  
+			<li><a href="/categories/两最一坑/" title="两最一坑">两最一坑</a></li>
+		  
+		
+		  
+			<li><a href="/categories/元学习/" title="元学习">元学习</a></li>
+		  
+		
+		  
+			<li><a href="/categories/全栈营/" title="全栈营">全栈营</a></li>
+		  
+		
+		  
+			<li><a href="/categories/关于写作/" title="关于写作">关于写作</a></li>
+		  
+		
+		  
+			<li><a href="/categories/区块链/" title="区块链">区块链</a></li>
+		  
+		
+		  
+			<li><a href="/categories/善用佳软/" title="善用佳软">善用佳软</a></li>
+		  
+		
+		  
+			<li><a href="/categories/直播笔记/" title="直播笔记">直播笔记</a></li>
+		  
+		
+		  
+			<li><a href="/categories/通往财富自由之路/" title="通往财富自由之路">通往财富自由之路</a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://steemit.com/@seeyoo" target="_blank" title="Kerzzi&#39;s Steem">Kerzzi&#39;s Steem</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://kerzzi.logdown.com/" target="_blank" title="Old Blog">Old Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/Kerzzi" target="_blank" title="Kerzzi&#39;s Github">Kerzzi&#39;s Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://mindhacks.cn/" target="_blank" title="刘未鹏">刘未鹏</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://coolshell.cn/" target="_blank" title="酷壳">酷壳</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ruanyifeng.com/" target="_blank" title="阮一峰">阮一峰</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weixin">
+  <br />
+  <p class="asidetitle">微信公众号</p>
+  <p>关注我的公众号「叫我柯子就好」，与你分享关于实践的高频小套路：</p>
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2yv4g9d3j3076076wel.jpg" width="220px" />
+ </div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kerzzi">Kerzzi</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?61e2f14c0f84a3ab81a328239a38b6d8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
