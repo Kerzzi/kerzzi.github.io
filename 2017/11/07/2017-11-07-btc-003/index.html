@@ -11,19 +11,19 @@
     
 
     
-    <meta name="description" content="第0章 引言复习上一篇文章中，主要介绍了比特币转账机制和七个区块链的基本概念，让我们来一起复习一下。 比特币的转账机制就像我们使用银行卡转账一样简单：  第一步登录你的比特币钱包。 第二步选好要从自己的哪一个比特币地址里面去转币。 第三步填写收币人的地址以及你要转币的数量，输入手续费。 最后你要填写上你的密码进行签名，然后等待矿工打包处理就ok了。  七个区块链的基本概念：  第一个挖矿：获得记账">
+    <meta name="description" content="第0章 复习上一篇文章中，主要介绍了比特币转账机制和七个区块链的基本概念，让我们来一起复习一下。 比特币的转账机制就像我们使用银行卡转账一样简单：  第一步登录你的比特币钱包。 第二步选好要从自己的哪一个比特币地址里面去转币。 第三步填写收币人的地址以及你要转币的数量，输入手续费。 最后你要填写上你的密码进行签名，然后等待矿工打包处理就ok了。  七个区块链的基本概念：  第一个挖矿：获得记账权的">
 <meta name="keywords" content="区块链,比特币（BTC）,BCRC,区块链研习俱乐部">
 <meta property="og:type" content="article">
 <meta property="og:title" content="003  比特币的发行、记账、加密机制">
 <meta property="og:url" content="https://kerzzi.github.io/2017/11/07/2017-11-07-btc-003/index.html">
 <meta property="og:site_name" content="柯子的行思笔记">
-<meta property="og:description" content="第0章 引言复习上一篇文章中，主要介绍了比特币转账机制和七个区块链的基本概念，让我们来一起复习一下。 比特币的转账机制就像我们使用银行卡转账一样简单：  第一步登录你的比特币钱包。 第二步选好要从自己的哪一个比特币地址里面去转币。 第三步填写收币人的地址以及你要转币的数量，输入手续费。 最后你要填写上你的密码进行签名，然后等待矿工打包处理就ok了。  七个区块链的基本概念：  第一个挖矿：获得记账">
+<meta property="og:description" content="第0章 复习上一篇文章中，主要介绍了比特币转账机制和七个区块链的基本概念，让我们来一起复习一下。 比特币的转账机制就像我们使用银行卡转账一样简单：  第一步登录你的比特币钱包。 第二步选好要从自己的哪一个比特币地址里面去转币。 第三步填写收币人的地址以及你要转币的数量，输入手续费。 最后你要填写上你的密码进行签名，然后等待矿工打包处理就ok了。  七个区块链的基本概念：  第一个挖矿：获得记账权的">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79ly1fl9qo33iwtj30u00uamzb.jpg">
-<meta property="og:updated_time" content="2017-11-07T11:31:40.000Z">
+<meta property="og:updated_time" content="2017-11-07T11:38:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="003  比特币的发行、记账、加密机制">
-<meta name="twitter:description" content="第0章 引言复习上一篇文章中，主要介绍了比特币转账机制和七个区块链的基本概念，让我们来一起复习一下。 比特币的转账机制就像我们使用银行卡转账一样简单：  第一步登录你的比特币钱包。 第二步选好要从自己的哪一个比特币地址里面去转币。 第三步填写收币人的地址以及你要转币的数量，输入手续费。 最后你要填写上你的密码进行签名，然后等待矿工打包处理就ok了。  七个区块链的基本概念：  第一个挖矿：获得记账">
+<meta name="twitter:description" content="第0章 复习上一篇文章中，主要介绍了比特币转账机制和七个区块链的基本概念，让我们来一起复习一下。 比特币的转账机制就像我们使用银行卡转账一样简单：  第一步登录你的比特币钱包。 第二步选好要从自己的哪一个比特币地址里面去转币。 第三步填写收币人的地址以及你要转币的数量，输入手续费。 最后你要填写上你的密码进行签名，然后等待矿工打包处理就ok了。  七个区块链的基本概念：  第一个挖矿：获得记账权的">
 <meta name="twitter:image" content="https://ww4.sinaimg.cn/large/006tNc79ly1fl9qo33iwtj30u00uamzb.jpg">
 
     
@@ -95,11 +95,11 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第0章-引言"><span class="toc-number">1.</span> <span class="toc-text">第0章 引言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复习"><span class="toc-number">1.1.</span> <span class="toc-text">复习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-比特币的发行、记账、交易机制"><span class="toc-number">2.</span> <span class="toc-text">第1章 比特币的发行、记账、交易机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-比特币发行机制"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 比特币发行机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-比特币的记账机制"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 比特币的记账机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-比特币的加密机制"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 比特币的加密机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-结束语"><span class="toc-number">3.</span> <span class="toc-text">第2章 结束语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3张-小问题"><span class="toc-number">4.</span> <span class="toc-text">第3张 小问题</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第0章-复习"><span class="toc-number">1.</span> <span class="toc-text">第0章 复习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-比特币的发行、记账、交易机制"><span class="toc-number">2.</span> <span class="toc-text">第1章 比特币的发行、记账、交易机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-比特币发行机制"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 比特币发行机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-比特币的记账机制"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 比特币的记账机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-比特币的加密机制"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 比特币的加密机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-结束语"><span class="toc-number">3.</span> <span class="toc-text">第2章 结束语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3章-小问题"><span class="toc-number">4.</span> <span class="toc-text">第3章 小问题</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="第0章-引言"><a href="#第0章-引言" class="headerlink" title="第0章 引言"></a>第0章 引言</h2><h3 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h3><p>上一篇文章中，主要介绍了比特币转账机制和七个区块链的基本概念，让我们来一起复习一下。</p>
+		<h2 id="第0章-复习"><a href="#第0章-复习" class="headerlink" title="第0章 复习"></a>第0章 复习</h2><p>上一篇文章中，主要介绍了比特币转账机制和七个区块链的基本概念，让我们来一起复习一下。</p>
 <p>比特币的转账机制就像我们使用银行卡转账一样简单：</p>
 <ul>
 <li>第一步登录你的比特币钱包。</li>
@@ -136,7 +136,7 @@
 <p>比特币伴随着每一个区块的诞生而发行。随着区块发行的比特币数量每四年减半。<br>比特币的记账采用竞争记账方式，即记账者需要通过工作量证明来获得记账的权利。获得记账权利之后进行记账，记账的同时能够获得新生的比特币奖励，以及获得被记录在这一页账单里的所有的交易的手续费，而比特币的交易和银行卡的交易基本上是类似的。</p>
 </blockquote>
 <p>比特币的网络，通过规定发行机制、共识机制、加密技术，将比特币的发行、转账和记账环节环环相扣，形成了一个自发壮大的一个去中心化体系。</p>
-<h2 id="第3张-小问题"><a href="#第3张-小问题" class="headerlink" title="第3张 小问题"></a>第3张 小问题</h2><p>一个小问题：<strong>随着打包的交易数据越来越多，当每个区块的1M字节的容量越来越无法应对的时候，该怎么办呢？</strong></p>
+<h2 id="第3章-小问题"><a href="#第3章-小问题" class="headerlink" title="第3章 小问题"></a>第3章 小问题</h2><p>一个小问题：<strong>随着打包的交易数据越来越多，当每个区块的1M字节的容量越来越无法应对的时候，该怎么办呢？</strong></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -192,7 +192,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第0章-引言"><span class="toc-number">1.</span> <span class="toc-text">第0章 引言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复习"><span class="toc-number">1.1.</span> <span class="toc-text">复习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-比特币的发行、记账、交易机制"><span class="toc-number">2.</span> <span class="toc-text">第1章 比特币的发行、记账、交易机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-比特币发行机制"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 比特币发行机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-比特币的记账机制"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 比特币的记账机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-比特币的加密机制"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 比特币的加密机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-结束语"><span class="toc-number">3.</span> <span class="toc-text">第2章 结束语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3张-小问题"><span class="toc-number">4.</span> <span class="toc-text">第3张 小问题</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第0章-复习"><span class="toc-number">1.</span> <span class="toc-text">第0章 复习</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-比特币的发行、记账、交易机制"><span class="toc-number">2.</span> <span class="toc-text">第1章 比特币的发行、记账、交易机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-比特币发行机制"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 比特币发行机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-比特币的记账机制"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 比特币的记账机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-比特币的加密机制"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 比特币的加密机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-结束语"><span class="toc-number">3.</span> <span class="toc-text">第2章 结束语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3章-小问题"><span class="toc-number">4.</span> <span class="toc-text">第3章 小问题</span></a></li></ol>
  
   </div>
 
