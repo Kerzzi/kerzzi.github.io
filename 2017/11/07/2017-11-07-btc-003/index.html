@@ -1,0 +1,557 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>003  比特币的发行、记账、加密机制 | 柯子的行思笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kerzzi">
+    
+
+    
+    <meta name="description" content="第0章 引言复习上一篇文章中，主要介绍了比特币转账机制和七个区块链的基本概念，让我们来一起复习一下。 比特币的转账机制就像我们使用银行卡转账一样简单：  第一步登录你的比特币钱包。 第二步选好要从自己的哪一个比特币地址里面去转币。 第三步填写收币人的地址以及你要转币的数量，输入手续费。 最后你要填写上你的密码进行签名，然后等待矿工打包处理就ok了。  七个区块链的基本概念：  第一个挖矿：获得记账">
+<meta name="keywords" content="区块链,比特币（BTC）,BCRC,区块链研习俱乐部">
+<meta property="og:type" content="article">
+<meta property="og:title" content="003  比特币的发行、记账、加密机制">
+<meta property="og:url" content="https://kerzzi.github.io/2017/11/07/2017-11-07-btc-003/index.html">
+<meta property="og:site_name" content="柯子的行思笔记">
+<meta property="og:description" content="第0章 引言复习上一篇文章中，主要介绍了比特币转账机制和七个区块链的基本概念，让我们来一起复习一下。 比特币的转账机制就像我们使用银行卡转账一样简单：  第一步登录你的比特币钱包。 第二步选好要从自己的哪一个比特币地址里面去转币。 第三步填写收币人的地址以及你要转币的数量，输入手续费。 最后你要填写上你的密码进行签名，然后等待矿工打包处理就ok了。  七个区块链的基本概念：  第一个挖矿：获得记账">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ww4.sinaimg.cn/large/006tNc79ly1fl9qo33iwtj30u00uamzb.jpg">
+<meta property="og:updated_time" content="2017-11-07T11:31:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="003  比特币的发行、记账、加密机制">
+<meta name="twitter:description" content="第0章 引言复习上一篇文章中，主要介绍了比特币转账机制和七个区块链的基本概念，让我们来一起复习一下。 比特币的转账机制就像我们使用银行卡转账一样简单：  第一步登录你的比特币钱包。 第二步选好要从自己的哪一个比特币地址里面去转币。 第三步填写收币人的地址以及你要转币的数量，输入手续费。 最后你要填写上你的密码进行签名，然后等待矿工打包处理就ok了。  七个区块链的基本概念：  第一个挖矿：获得记账">
+<meta name="twitter:image" content="https://ww4.sinaimg.cn/large/006tNc79ly1fl9qo33iwtj30u00uamzb.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
+				<h2 class="blog-motto">叫我柯子就好</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/11/07/2017-11-07-btc-003/" title="003  比特币的发行、记账、加密机制" itemprop="url">003  比特币的发行、记账、加密机制</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2017-11-06T16:00:00.000Z" itemprop="datePublished"> 发表于 2017-11-07</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第0章-引言"><span class="toc-number">1.</span> <span class="toc-text">第0章 引言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复习"><span class="toc-number">1.1.</span> <span class="toc-text">复习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-比特币的发行、记账、交易机制"><span class="toc-number">2.</span> <span class="toc-text">第1章 比特币的发行、记账、交易机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-比特币发行机制"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 比特币发行机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-比特币的记账机制"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 比特币的记账机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-比特币的加密机制"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 比特币的加密机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-结束语"><span class="toc-number">3.</span> <span class="toc-text">第2章 结束语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3张-小问题"><span class="toc-number">4.</span> <span class="toc-text">第3张 小问题</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="第0章-引言"><a href="#第0章-引言" class="headerlink" title="第0章 引言"></a>第0章 引言</h2><h3 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h3><p>上一篇文章中，主要介绍了比特币转账机制和七个区块链的基本概念，让我们来一起复习一下。</p>
+<p>比特币的转账机制就像我们使用银行卡转账一样简单：</p>
+<ul>
+<li>第一步登录你的比特币钱包。</li>
+<li>第二步选好要从自己的哪一个比特币地址里面去转币。</li>
+<li>第三步填写收币人的地址以及你要转币的数量，输入手续费。</li>
+<li>最后你要填写上你的密码进行签名，然后等待矿工打包处理就ok了。</li>
+</ul>
+<p>七个区块链的基本概念：</p>
+<ul>
+<li>第一个挖矿：获得记账权的过程，我们形象地把它叫做挖矿。</li>
+<li>第二个矿工：矿工是竞争挖矿的人或者组织。</li>
+<li>第三个算力：假设一台矿机为10T左右的计算量级，就可以说这台10T的矿机有10T的算力。</li>
+<li>第四个工作量证明：简单理解就是干的越多收获越多，简称POW。</li>
+<li>六个权益证明：简单理解就是持有越多获得越多，简称POS。</li>
+<li>第六个区块：平均每十分钟比特币网络会诞生账本上的一页，这一页我们称之为区块。</li>
+<li>第七个区块链：每个区块被打上时间戳，并按照严格的先后顺序连接起来成为一个“链条”，被称为区块链。</li>
+</ul>
+<h2 id="第1章-比特币的发行、记账、交易机制"><a href="#第1章-比特币的发行、记账、交易机制" class="headerlink" title="第1章 比特币的发行、记账、交易机制"></a>第1章 比特币的发行、记账、交易机制</h2><p>之前已经讲过，2008年神秘人中本聪发明比特币的时候，当时发生了全球的经济危机。中本聪想如果能够构建一个没有中心机构发行的货币的发行体系，货币就不会被无限超发，这样对大家都很公平。于是中本聪就构建了比特币这样的一个体系。</p>
+<p><strong>那么在一个没有中心化机构的情况下，比特币的发行、记账、交易等又是怎样进行的呢？</strong></p>
+<p>在构建比特币时，中本聪就做了一些巧妙的规定。</p>
+<h3 id="1-1-比特币发行机制"><a href="#1-1-比特币发行机制" class="headerlink" title="1.1 比特币发行机制"></a>1.1 比特币发行机制</h3><p>首先，中本聪规定<strong>比特币的总量为2100万枚</strong>，比特币网络大<strong>约十分钟出一页账单（区块）</strong>，每个比特币的产生伴随着每页账单的产生。也就是说每一个区块问世的时候，比特币也就随之而发行。<br>中本聪还规定<strong>最开始每一个区块比特币的发行量是50枚</strong>，然后<strong>每21万个区块减半一次</strong>，直到<strong>2140</strong>年所有的比特币发行完毕。<br>让我们来算一算：平均每十分钟出一个区块，21万个区块需要多久呢？理论上是需要1458.3天，就是3.99年，这就是大众所说的<strong>比特币产量每四年减半</strong>的由来。<br>2016年7月8号是比特币最近的一次减半，也是比特币的第二次减半，也就是说每一个区块伴随着比特币的奖励变成了12.5枚。</p>
+<p>那我们怎么去计算现在的区块是第多少个区块呢？<br>很简单，我们一般用<strong>区块高度</strong>去标记它。一个区块的高度就是从比特币最初诞生以来目前已经发行了多少个区块。<br>打开任意一个比特币的浏览器（如 <a href="https://btc.com/" target="_blank" rel="external">btc.com</a> ， <a href="https://blockchain.info/zh-cn/" target="_blank" rel="external">blockchain.info</a>），我们可以看到现在出来的最新的区块的高度。通过区块的高度，我们可以计算出大概还有多久，比特币会进行下一次减半，以及还有多久比特币会进行难度调整等。</p>
+<h3 id="1-2-比特币的记账机制"><a href="#1-2-比特币的记账机制" class="headerlink" title="1.2 比特币的记账机制"></a>1.2 比特币的记账机制</h3><p>比特币采用的是<strong>工作量证明机制</strong>进行记账，即<strong>POW</strong>机制。所有的矿工通过哈希计算的方式去争夺记账权力，大约每十分钟就有一道数学题被丢到比特币网络中，所有矿工比赛看谁算得快。<br>在每一轮的竞争中，谁最先计算出正确的答案，谁就获取了本轮的记账权力。其他矿工会以他记录的这一页账单为准，紧接着大家在这一页账单的基础之上，去争夺下一张账单的记账权，<br>通过这种共识机制，中本聪解决了一个在去中心化的体系下账本的唯一性的难题。</p>
+<p><strong>矿工为什么愿意记账呢？</strong><br>用计算机去进行记账需要耗电，需要消耗大量的存储空间。这样做对矿工有什么好处呢？毕竟纯粹靠公益这样的体系是走不长远。<br>这就不得不提到中本聪的发明里面最聪明的一个地方：<strong>他把比特币的发行和竞争记账这两件事情绑定在了一起，记账的人每获得一次记账的权力，同时也会获得系统新发行产生的比特币来作为奖励。</strong><br>也就是最快得到结果的计算机就会挖到一定数量的比特币。在每一轮的竞争记账的过程当中，谁获得记账的权力，谁就能够获得这一个区块里新诞生的比特币的奖励，并获得这个区块里面所有交易的手续费。<br>在2017年，如果你是一个矿工，并且一轮的竞争记账过程中获得了记账权，你就会获得12.5个新发行的比特币奖励，还有这个区块上所有交易的手续费，大概是零点几到两个比特币之间，</p>
+<p>随着新生的比特币每四年减半，<strong>新生的比特币奖励会越来越少，矿工还会有动力去挖矿吗？</strong><br>答案是肯定的。我们刚刚提到矿工还有另外一部分收入——比特币转账的手续费。之前的文章我提到在比特币世界里面转账手续费是可以自己填的，随着使用比特币的人和机构越来越多，全球的比特币的转账就会越来越频繁，转账的的手续费的总量也就会越来越大，手<strong>续费会未来成为矿工的主要收入来源。</strong></p>
+<h3 id="1-3-比特币的加密机制"><a href="#1-3-比特币的加密机制" class="headerlink" title="1.3 比特币的加密机制"></a>1.3 比特币的加密机制</h3><p>我们知道比特币的转账跟我们平时进行银行转账的时候一样：先选择一个自己的地址，然后输入对方的比特币地址，输入想要转账的金额，输入我想给的矿工的手续费，然后用私钥签名，提交之后就能够等着矿工来处理了。</p>
+<p>中本聪通过<strong>加密机制</strong>使得随机生成的一个私钥能够对应一个地址，这样就保证了每个地址发出的比特币的合法性，详细的机制我会在后面的进阶文章中进行介绍。<br>比特币现在每一个<strong>区块大小是1M字节</strong>，<strong>这1M字节大概能够容纳一千笔交易</strong>。当网络转账的人比较少的时候，转账可能只需要十分钟左右就能够被下一个区块确认了。但如果当前转账的人比较多，则可能要排队，你可能要多等一个十分钟，甚至更长的时间。</p>
+<p>因为<strong>矿工们会不断的去从等待记录的转账交易里面去选择手续费比较高的交易来进行记账</strong>。如果你的手续费不排在前面，矿工可能要过了很久才会记录你的交易。当然如果你的手续费过低，则可能永远不会被矿工确认，也就是说你的比特币”消失“了。</p>
+<p>通过这样的设计，中本聪使得比特币的发行、比特币的记账、转账等环节环环相扣，使整个体系能够<strong>自发的运转</strong>起来。现在即使中本聪这个核心人物已经销声匿迹，我们在比特币的世界里面，还是能看到它自发的很强的生命力，这就是比特币去中心化的魅力。</p>
+<p>此外，虽然比特币的总量只有2100万枚，但是<strong>每1枚比特币可以分割到小数点后八位</strong>，也就是说1枚比特币可以被分割1亿份（<strong>亿分之一个比特币被称为1聪</strong>），你可以转给别人非常非常小的一份比特币。</p>
+<p>这里要给各位分享一个真实的事情：<br><img src="https://ww4.sinaimg.cn/large/006tNc79ly1fl9qo33iwtj30u00uamzb.jpg" alt=""></p>
+<h2 id="第2章-结束语"><a href="#第2章-结束语" class="headerlink" title="第2章 结束语"></a>第2章 结束语</h2><p>本文我们了解了比特币的发行、记账和交易的原理：</p>
+<blockquote>
+<p>比特币伴随着每一个区块的诞生而发行。随着区块发行的比特币数量每四年减半。<br>比特币的记账采用竞争记账方式，即记账者需要通过工作量证明来获得记账的权利。获得记账权利之后进行记账，记账的同时能够获得新生的比特币奖励，以及获得被记录在这一页账单里的所有的交易的手续费，而比特币的交易和银行卡的交易基本上是类似的。</p>
+</blockquote>
+<p>比特币的网络，通过规定发行机制、共识机制、加密技术，将比特币的发行、转账和记账环节环环相扣，形成了一个自发壮大的一个去中心化体系。</p>
+<h2 id="第3张-小问题"><a href="#第3张-小问题" class="headerlink" title="第3张 小问题"></a>第3张 小问题</h2><p>一个小问题：<strong>随着打包的交易数据越来越多，当每个区块的1M字节的容量越来越无法应对的时候，该怎么办呢？</strong></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/区块链/">区块链</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/区块链/">区块链</a><a href="/tags/比特币（BTC）/">比特币（BTC）</a><a href="/tags/BCRC/">BCRC</a><a href="/tags/区块链研习俱乐部/">区块链研习俱乐部</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://kerzzi.github.io/2017/11/07/2017-11-07-btc-003/" data-title="003  比特币的发行、记账、加密机制 | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/11/02/2017-11-02-error-record-01/"  title="错误记录 | 新建项目时出现 “The i18n gem is not available”的错误提示">
+ <strong>下一篇：</strong><br/> 
+ <span>错误记录 | 新建项目时出现 “The i18n gem is not available”的错误提示
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第0章-引言"><span class="toc-number">1.</span> <span class="toc-text">第0章 引言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#复习"><span class="toc-number">1.1.</span> <span class="toc-text">复习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-比特币的发行、记账、交易机制"><span class="toc-number">2.</span> <span class="toc-text">第1章 比特币的发行、记账、交易机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-比特币发行机制"><span class="toc-number">2.1.</span> <span class="toc-text">1.1 比特币发行机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-比特币的记账机制"><span class="toc-number">2.2.</span> <span class="toc-text">1.2 比特币的记账机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-比特币的加密机制"><span class="toc-number">2.3.</span> <span class="toc-text">1.3 比特币的加密机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-结束语"><span class="toc-number">3.</span> <span class="toc-text">第2章 结束语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3张-小问题"><span class="toc-number">4.</span> <span class="toc-text">第3张 小问题</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="sponsor">
+  <br />
+  <p class="asidetitle">赞助商</p>
+  <a href="/sponsor">
+  <br />
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2zsxnnmpj30b405iq2t.jpg" width="235px" />
+  </a>
+
+  <!--
+  <br /><a href="/sponsor"><font color='#2ca6cb'>购买广告位</font></a>
+  -->
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Github/" title="Github">Github</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac/" title="Mac">Mac</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Markdown/" title="Markdown">Markdown</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Meetup/" title="Meetup">Meetup</a></li>
+		  
+		
+		  
+			<li><a href="/categories/ORID/" title="ORID">ORID</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Photo/" title="Photo">Photo</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ruby-on-Rails/" title="Ruby on Rails">Ruby on Rails</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ruby-on-rails/" title="Ruby on rails">Ruby on rails</a></li>
+		  
+		
+		  
+			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp</a></li>
+		  
+		
+		  
+			<li><a href="/categories/git/" title="git">git</a></li>
+		  
+		
+		  
+			<li><a href="/categories/两最一坑/" title="两最一坑">两最一坑</a></li>
+		  
+		
+		  
+			<li><a href="/categories/元学习/" title="元学习">元学习</a></li>
+		  
+		
+		  
+			<li><a href="/categories/全栈营/" title="全栈营">全栈营</a></li>
+		  
+		
+		  
+			<li><a href="/categories/关于写作/" title="关于写作">关于写作</a></li>
+		  
+		
+		  
+			<li><a href="/categories/区块链/" title="区块链">区块链</a></li>
+		  
+		
+		  
+			<li><a href="/categories/善用佳软/" title="善用佳软">善用佳软</a></li>
+		  
+		
+		  
+			<li><a href="/categories/直播笔记/" title="直播笔记">直播笔记</a></li>
+		  
+		
+		  
+			<li><a href="/categories/通往财富自由之路/" title="通往财富自由之路">通往财富自由之路</a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://steemit.com/@seeyoo" target="_blank" title="Kerzzi&#39;s Steem">Kerzzi&#39;s Steem</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://kerzzi.logdown.com/" target="_blank" title="Old Blog">Old Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/Kerzzi" target="_blank" title="Kerzzi&#39;s Github">Kerzzi&#39;s Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://mindhacks.cn/" target="_blank" title="刘未鹏">刘未鹏</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://coolshell.cn/" target="_blank" title="酷壳">酷壳</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ruanyifeng.com/" target="_blank" title="阮一峰">阮一峰</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weixin">
+  <br />
+  <p class="asidetitle">微信公众号</p>
+  <p>关注我的公众号「叫我柯子就好」，与你分享关于实践的高频小套路：</p>
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2yv4g9d3j3076076wel.jpg" width="220px" />
+ </div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="Kerzzi">Kerzzi</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?61e2f14c0f84a3ab81a328239a38b6d8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
