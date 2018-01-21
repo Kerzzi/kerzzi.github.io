@@ -1,0 +1,551 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>ROR豆知识： 使用 ransack 实现搜索功能 | 柯子的行思笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kerzzi">
+    
+
+    
+    <meta name="description" content="第0章 目标最近的一个项目中，需要在不同的页面实现搜索功能，之前有项目做过搜索功能，但没有认真总结，每次需要做这个功能时，还是需要去网上搜索，浪费时间，因此趁此机会，将这个功能的加入我的私人代码库，方便后续使用。 第1章 安装gems在Gemfile中加入如下gems: 1234gem ‘ransack’gem ‘will_paginate’gem &apos;will_paginate-bootstrap">
+<meta name="keywords" content="Ruby on rails,ROR豆知识,Chain Club">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ROR豆知识： 使用 ransack 实现搜索功能">
+<meta property="og:url" content="https://kerzzi.github.io/2018/01/21/2018-10-21-ror-use-ransack/index.html">
+<meta property="og:site_name" content="柯子的行思笔记">
+<meta property="og:description" content="第0章 目标最近的一个项目中，需要在不同的页面实现搜索功能，之前有项目做过搜索功能，但没有认真总结，每次需要做这个功能时，还是需要去网上搜索，浪费时间，因此趁此机会，将这个功能的加入我的私人代码库，方便后续使用。 第1章 安装gems在Gemfile中加入如下gems: 1234gem ‘ransack’gem ‘will_paginate’gem &apos;will_paginate-bootstrap">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://ww2.sinaimg.cn/large/006tNc79ly1fno47vyqhxg30sc132gqh.gif">
+<meta property="og:updated_time" content="2018-01-21T04:31:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ROR豆知识： 使用 ransack 实现搜索功能">
+<meta name="twitter:description" content="第0章 目标最近的一个项目中，需要在不同的页面实现搜索功能，之前有项目做过搜索功能，但没有认真总结，每次需要做这个功能时，还是需要去网上搜索，浪费时间，因此趁此机会，将这个功能的加入我的私人代码库，方便后续使用。 第1章 安装gems在Gemfile中加入如下gems: 1234gem ‘ransack’gem ‘will_paginate’gem &apos;will_paginate-bootstrap">
+<meta name="twitter:image" content="https://ww2.sinaimg.cn/large/006tNc79ly1fno47vyqhxg30sc132gqh.gif">
+
+    
+    <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
+				<h2 class="blog-motto">叫我柯子就好</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/01/21/2018-10-21-ror-use-ransack/" title="ROR豆知识： 使用 ransack 实现搜索功能" itemprop="url">ROR豆知识： 使用 ransack 实现搜索功能</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2018-01-20T16:00:00.000Z" itemprop="datePublished"> 发表于 2018-01-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第0章-目标"><span class="toc-number">1.</span> <span class="toc-text">第0章 目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-安装gems"><span class="toc-number">2.</span> <span class="toc-text">第1章 安装gems</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-在相应的页面添加-View-代码"><span class="toc-number">3.</span> <span class="toc-text">第2章 在相应的页面添加 View 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3章-在job-index页面增加search-bar"><span class="toc-number">4.</span> <span class="toc-text">第3章 在job/index页面增加search_bar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第4章-修改jobs-controller-rb"><span class="toc-number">5.</span> <span class="toc-text">第4章 修改jobs_controller.rb</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第5章-修改routes-rb"><span class="toc-number">6.</span> <span class="toc-text">第5章 修改routes.rb</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第6章-新增搜索页面"><span class="toc-number">7.</span> <span class="toc-text">第6章 新增搜索页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第7张-实现搜索结果高亮"><span class="toc-number">8.</span> <span class="toc-text">第7张 实现搜索结果高亮</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第8章-结束语"><span class="toc-number">9.</span> <span class="toc-text">第8章 结束语</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="第0章-目标"><a href="#第0章-目标" class="headerlink" title="第0章 目标"></a>第0章 目标</h2><p>最近的一个项目中，需要在不同的页面实现搜索功能，之前有项目做过搜索功能，但没有认真总结，每次需要做这个功能时，还是需要去网上搜索，浪费时间，因此趁此机会，将这个功能的加入我的私人代码库，方便后续使用。</p>
+<h2 id="第1章-安装gems"><a href="#第1章-安装gems" class="headerlink" title="第1章 安装gems"></a>第1章 安装gems</h2><p>在Gemfile中加入如下gems:</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">gem</span> ‘ransack’</div><div class="line">gem ‘will_paginate’</div><div class="line">gem <span class="string">'will_paginate-bootstrap'</span></div><div class="line">gem ‘seo_helper’</div></pre></td></tr></table></figure>
+<p>执行 <code>bundle install</code></p>
+<p>备注：<code>gem &#39;will_paginate-bootstrap&#39;</code>用来美化分页效果的。</p>
+<h2 id="第2章-在相应的页面添加-View-代码"><a href="#第2章-在相应的页面添加-View-代码" class="headerlink" title="第2章 在相应的页面添加 View 代码"></a>第2章 在相应的页面添加 View 代码</h2><p>新建一个search_bar， <code>touch app/views/jobs/_search_bar.html.erb</code></p>
+<p>加入如下代码：<br><figure class="highlight ruby"><figcaption><span>app/views/jobs/_search_bar.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;div class="row"&gt;</div><div class="line">  &lt;div class="col-sm-9 col-lg-8 col-lg-offset-2"&gt;</div><div class="line">    &lt;%= form_tag search_jobs_path , <span class="symbol">:method</span> =&gt; <span class="symbol">:get</span>, <span class="symbol">:class</span> =&gt; <span class="string">"jobs-search-form"</span> <span class="keyword">do</span> %&gt;</div><div class="line">      &lt;div class="input-group"&gt;</div><div class="line">        &lt;input type="text" class="form-control" name="q" value="&lt;%= params[:q] %&gt;" placeholder="搜索工作关键字..."&gt;</div><div class="line"></div><div class="line">        &lt;span class="input-group-btn"&gt;</div><div class="line">          &lt;button type="submit" class="btn btn-default"&gt;</div><div class="line">            &lt;span class="glyphicon glyphicon-search"&gt;&lt;/span&gt;</div><div class="line">          &lt;<span class="regexp">/button&gt;</span></div><div class="line"><span class="regexp">        &lt;/span</span>&gt;</div><div class="line">      &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">    &lt;% end %&gt;</span></div><div class="line"><span class="regexp">  &lt;/div</span>&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="第3章-在job-index页面增加search-bar"><a href="#第3章-在job-index页面增加search-bar" class="headerlink" title="第3章 在job/index页面增加search_bar"></a>第3章 在job/index页面增加search_bar</h2><p>修改 views/jobs/index.html.erb，加入下列代码</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;%= <span class="keyword">render</span> <span class="string">"jobs/search_bar"</span> %&gt;</div></pre></td></tr></table></figure>
+<h2 id="第4章-修改jobs-controller-rb"><a href="#第4章-修改jobs-controller-rb" class="headerlink" title="第4章 修改jobs_controller.rb"></a>第4章 修改jobs_controller.rb</h2><p>修改<code>jobs_controller.rb</code>，加入如下代码</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span></span></div><div class="line">   <span class="keyword">if</span> @query_string.present?</div><div class="line">     search_result = Job.ransack(@search_criteria).result(<span class="symbol">:distinct</span> =&gt; <span class="literal">true</span>)</div><div class="line">     @jobs = search_result.paginate(<span class="symbol">:page</span> =&gt; params[<span class="symbol">:page</span>], <span class="symbol">:per_page</span> =&gt; <span class="number">15</span> )</div><div class="line">   <span class="keyword">end</span></div><div class="line"> <span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"> protected</div><div class="line"></div><div class="line"> <span class="comment"># 取到params[:q]的内容并去掉非法的内容</span></div><div class="line"> <span class="function"><span class="keyword">def</span> <span class="title">validate_search_key</span></span></div><div class="line">   @query_string = params[<span class="symbol">:q</span>].gsub(<span class="regexp">/\\|\'|\/|\?/</span>, <span class="string">""</span>) <span class="keyword">if</span> params[<span class="symbol">:q</span>].present?</div><div class="line">   @search_criteria = search_criteria(@query_string)</div><div class="line"> <span class="keyword">end</span></div><div class="line"></div><div class="line"></div><div class="line"> <span class="function"><span class="keyword">def</span> <span class="title">search_criteria</span><span class="params">(query_string)</span></span></div><div class="line">   &#123; <span class="symbol">:title_cont</span> =&gt; query_string &#125;</div><div class="line"> <span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>并在jobs_controller.rb里，加入如下代码</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="selector-tag">before_action</span> <span class="selector-pseudo">:validate_search_key</span>, <span class="selector-tag">only</span>: <span class="selector-attr">[:search]</span></div></pre></td></tr></table></figure>
+<p>这里补充两点：<br>（1）如果你后面不想增加search结果页面，可以继续使用index页面，但是上述search action部分代码要修改为：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">search</span></span></div><div class="line">  <span class="keyword">if</span> @query_string.present?</div><div class="line">    search_result = Job.ransack(@search_criteria).result(<span class="symbol">:distinct</span> =&gt; <span class="literal">true</span>)</div><div class="line">    @jobs = search_result.paginate(<span class="symbol">:page</span> =&gt; params[<span class="symbol">:page</span>], <span class="symbol">:per_page</span> =&gt; <span class="number">15</span> )</div><div class="line">  <span class="keyword">end</span></div><div class="line">  render <span class="symbol">:index</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>上述代码其实还可以伪造一个空的@jobs以便处理搜索没有值的情况，比如在if语句前加入<code>@jobs = Job.where(id:-1)</code></p>
+<p>（2）ransack是用hash（字典）的key, value，来实现模糊搜索功能的,而key的可以分为两部分，前一部分是字段组合，后一部分是搜索前缀。</p>
+<p>目前我的Job model里面只有title,description等几个字段，这次我只实现title字段模糊查询，<br>所以我构造了一个<code>{ :title_cont =&gt; query_string }</code>。<br>如果我想是想title,description（多字段）字段模糊查询，则需要改为<br><code>{ :title_or_description_cont =&gt; query_string }</code></p>
+<h2 id="第5章-修改routes-rb"><a href="#第5章-修改routes-rb" class="headerlink" title="第5章 修改routes.rb"></a>第5章 修改routes.rb</h2><p>修改routes.rb，加入search action<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">resources <span class="symbol">:jobs</span> <span class="keyword">do</span></div><div class="line">   collection <span class="keyword">do</span></div><div class="line">     get <span class="symbol">:search</span></div><div class="line">   <span class="keyword">end</span></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure></p>
+<h2 id="第6章-新增搜索页面"><a href="#第6章-新增搜索页面" class="headerlink" title="第6章 新增搜索页面"></a>第6章 新增搜索页面</h2><p>新增搜索页面，<code>touch app/views/jobs/search.html.erb</code>，加入如下代码</p>
+<figure class="highlight ruby"><figcaption><span>app/views/jobs/search.html.erb</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">&lt;div class="panel panel-default col-md-10 col-md-offset-1"&gt;</div><div class="line">  </div><div class="line">  &lt;div class="panel-body"&gt;</div><div class="line">    </div><div class="line">    &lt;div class="group"&gt;</div><div class="line">      &lt;div class="row"&gt;</div><div class="line">        &lt;div class="col-sm-2 col-lg-1 "&gt;</div><div class="line">        &lt;<span class="regexp">/div&gt;</span></div><div class="line"><span class="regexp">        &lt;%= render :partial =&gt; "jobs/search</span>_bar<span class="string">" %&gt;</span></div><div class="line"><span class="string">      &lt;/div&gt;</span></div><div class="line"><span class="string">    &lt;/div&gt; </span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">    &lt;br&gt;</span></div><div class="line"><span class="string">    &lt;% if @query_string.blank? %&gt;</span></div><div class="line"><span class="string">        &lt;h4 class="</span>search-info-title<span class="string">"&gt;搜索信息不能为空，请输入关键字搜索&lt;/h4&gt;</span></div><div class="line"><span class="string">    &lt;% elsif @jobs.blank? %&gt;</span></div><div class="line"><span class="string">        &lt;br&gt;</span></div><div class="line"><span class="string">        &lt;h4 class="</span>search-info-title<span class="string">"&gt;亲，没有搜索到相关工作信息哦，要不换个关键词试试？&lt;/h4&gt;</span></div><div class="line"><span class="string">    &lt;% else %&gt;</span></div><div class="line"><span class="string">        &lt;h4 class="</span>search-info-title<span class="string">"&gt; 有关"</span>&lt;%= @query_string %&gt;<span class="string">"的工作信息 &lt;/h4&gt;</span></div><div class="line"><span class="string">        &lt;hr&gt;</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">        &lt;div class="</span>search-result<span class="string">"&gt;</span></div><div class="line"><span class="string"></span></div><div class="line"><span class="string">          &lt;% @jobs.each do |job| %&gt;</span></div><div class="line"><span class="string">           &lt;div class="</span>job-item<span class="string">"&gt;</span></div><div class="line"><span class="string">             &lt;p&gt;&lt;span&gt;&lt;%= job.publisher %&gt;&lt;/span&gt;&lt;span class="</span>pull-right<span class="string">"&gt;更新于 &lt;%= job.updated_at %&gt;&lt;/span&gt;&lt;/p&gt;</span></div><div class="line"><span class="string">             &lt;h4&gt;&lt;%= link_to(render_highlight_content(job,@query_string), job_path(job)) %&gt;&lt;/h4&gt;</span></div><div class="line"><span class="string">             &lt;p&gt;&lt;i class="</span>fa fa-street-view<span class="string">" aria-hidden="</span><span class="literal">true</span><span class="string">"&gt;&lt;/i&gt; &lt;%= job.city %&gt;&lt;/p&gt;</span></div><div class="line"><span class="string">             &lt;p&gt;&lt;i class="</span>fa fa-clock-o<span class="string">" aria-hidden="</span><span class="literal">true</span><span class="string">"&gt;&lt;/i&gt; &lt;%= job.deadline %&gt;&lt;/p&gt;</span></div><div class="line"><span class="string">             &lt;p&gt;&lt;span class="</span>label label-success<span class="string">"&gt;&lt;%= t(job.category) %&gt;&lt;/span&gt;&lt;/p&gt;</span></div><div class="line"><span class="string">             &lt;hr&gt;</span></div><div class="line"><span class="string">           &lt;/div&gt;</span></div><div class="line"><span class="string">          &lt;% end %&gt;</span></div><div class="line"><span class="string">        &lt;/div&gt;</span></div><div class="line"><span class="string">        &lt;% if @jobs.present? %&gt;</span></div><div class="line"><span class="string">        &lt;div class="</span>text-center<span class="string">"&gt;</span></div><div class="line"><span class="string">          &lt;%= will_paginate(@jobs, renderer: BootstrapPagination::Rails) %&gt;</span></div><div class="line"><span class="string">        &lt;/div&gt;</span></div><div class="line"><span class="string">        &lt;% end %&gt;</span></div><div class="line"><span class="string">    &lt;% end %&gt;</span></div><div class="line"><span class="string">  &lt;/div&gt;</span></div><div class="line"><span class="string">&lt;/div&gt;</span></div></pre></td></tr></table></figure>
+<p>上述代码请根据你的job的实际属性来修改。</p>
+<p>PS：如果想修改分页按钮的名称，将代码<br><figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">%=</span></span></span><span class="ruby"> will_paginate @jobs, <span class="symbol">renderer:</span> BootstrapPagination::Rails </span><span class="xml"><span class="tag">%&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p>修改为:</p>
+<figure class="highlight erb"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="xml"><span class="tag">&lt;<span class="name">%=</span></span></span><span class="ruby"> will_paginate @jobs, <span class="symbol">renderer:</span> BootstrapPagination::Rails, <span class="symbol">:previous_label</span> =&gt; t(<span class="string">'上一页'</span>), <span class="symbol">:next_label</span> =&gt; t(<span class="string">'下一页'</span>) </span><span class="xml"><span class="tag">%&gt;</span></span></div></pre></td></tr></table></figure>
+<h2 id="第7张-实现搜索结果高亮"><a href="#第7张-实现搜索结果高亮" class="headerlink" title="第7张 实现搜索结果高亮"></a>第7张 实现搜索结果高亮</h2><p>由于我只搜索title这一个字段，所以这里我使用了一种讨巧的方法，即使用seo的方式来实现单个关键字高亮显示。</p>
+<p>需要注意的是这种方式不能同时显示多个高亮关键字，比如同时显示title和descrpiton中匹配到的关键字。</p>
+<p>思路:</p>
+<blockquote>
+<p>实作一个高亮显示的helper方法，然后在搜索结果页面调用这个helper方法，其中传入两个参数，分别是资料的model名和在搜索栏中输入的关键词，并设置高亮显示的范围。</p>
+</blockquote>
+<p>在<code>app/helpers/jobs_helper.rb</code>里添加如下代码</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#定义高亮显示功能的helper方法</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">render_highlight_content</span><span class="params">(job,query_string)</span></span></div><div class="line"></div><div class="line">  excerpt_cont = excerpt(job.title, query_string, <span class="symbol">radius:</span> <span class="number">500</span>)</div><div class="line">  highlight(excerpt_cont, query_string)</div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<p>在搜索结果页面调用高亮显示功能的helper方法</p>
+<p>在<code>app/views/jobs/search.html.erb</code>里修改代码<code>&lt;%= link_to(job.title,job_path(job)) %&gt;</code>，<br>将其改为<code>&lt;%= link_to(render_highlight_content(job,@query_string),job_path(job)) %&gt;</code></p>
+<h2 id="第8章-结束语"><a href="#第8章-结束语" class="headerlink" title="第8章 结束语"></a>第8章 结束语</h2><p>至此，简单的搜索功能完成，但是这只是基础的方法，更多优秀方法等待挖掘。下面是我的成果：</p>
+<p><img src="https://ww2.sinaimg.cn/large/006tNc79ly1fno47vyqhxg30sc132gqh.gif" alt=""></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Ruby-on-rails/">Ruby on rails</a><a href="/tags/ROR豆知识/">ROR豆知识</a><a href="/tags/Chain-Club/">Chain Club</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://kerzzi.github.io/2018/01/21/2018-10-21-ror-use-ransack/" data-title="ROR豆知识： 使用 ransack 实现搜索功能 | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2018/01/07/2018-01-07-ORID-20180107/"  title="ORID | 新年的第一篇文章没有认真写 20180107">
+ <strong>下一篇：</strong><br/> 
+ <span>ORID | 新年的第一篇文章没有认真写 20180107
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第0章-目标"><span class="toc-number">1.</span> <span class="toc-text">第0章 目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第1章-安装gems"><span class="toc-number">2.</span> <span class="toc-text">第1章 安装gems</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-在相应的页面添加-View-代码"><span class="toc-number">3.</span> <span class="toc-text">第2章 在相应的页面添加 View 代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第3章-在job-index页面增加search-bar"><span class="toc-number">4.</span> <span class="toc-text">第3章 在job/index页面增加search_bar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第4章-修改jobs-controller-rb"><span class="toc-number">5.</span> <span class="toc-text">第4章 修改jobs_controller.rb</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第5章-修改routes-rb"><span class="toc-number">6.</span> <span class="toc-text">第5章 修改routes.rb</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第6章-新增搜索页面"><span class="toc-number">7.</span> <span class="toc-text">第6章 新增搜索页面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第7张-实现搜索结果高亮"><span class="toc-number">8.</span> <span class="toc-text">第7张 实现搜索结果高亮</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第8章-结束语"><span class="toc-number">9.</span> <span class="toc-text">第8章 结束语</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="sponsor">
+  <br />
+  <p class="asidetitle">赞助商</p>
+  <a href="/sponsor">
+  <br />
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2zsxnnmpj30b405iq2t.jpg" width="235px" />
+  </a>
+
+  <!--
+  <br /><a href="/sponsor"><font color='#2ca6cb'>购买广告位</font></a>
+  -->
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Github/" title="Github">Github</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac/" title="Mac">Mac</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Markdown/" title="Markdown">Markdown</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Meetup/" title="Meetup">Meetup</a></li>
+		  
+		
+		  
+			<li><a href="/categories/ORID/" title="ORID">ORID</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Photo/" title="Photo">Photo</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ruby-on-Rails/" title="Ruby on Rails">Ruby on Rails</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ruby-on-rails/" title="Ruby on rails">Ruby on rails</a></li>
+		  
+		
+		  
+			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp</a></li>
+		  
+		
+		  
+			<li><a href="/categories/git/" title="git">git</a></li>
+		  
+		
+		  
+			<li><a href="/categories/两最一坑/" title="两最一坑">两最一坑</a></li>
+		  
+		
+		  
+			<li><a href="/categories/元学习/" title="元学习">元学习</a></li>
+		  
+		
+		  
+			<li><a href="/categories/全栈营/" title="全栈营">全栈营</a></li>
+		  
+		
+		  
+			<li><a href="/categories/关于写作/" title="关于写作">关于写作</a></li>
+		  
+		
+		  
+			<li><a href="/categories/区块链/" title="区块链">区块链</a></li>
+		  
+		
+		  
+			<li><a href="/categories/善用佳软/" title="善用佳软">善用佳软</a></li>
+		  
+		
+		  
+			<li><a href="/categories/直播笔记/" title="直播笔记">直播笔记</a></li>
+		  
+		
+		  
+			<li><a href="/categories/通往财富自由之路/" title="通往财富自由之路">通往财富自由之路</a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://steemit.com/@seeyoo" target="_blank" title="Kerzzi&#39;s Steem">Kerzzi&#39;s Steem</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://kerzzi.logdown.com/" target="_blank" title="Old Blog">Old Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/Kerzzi" target="_blank" title="Kerzzi&#39;s Github">Kerzzi&#39;s Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://mindhacks.cn/" target="_blank" title="刘未鹏">刘未鹏</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://coolshell.cn/" target="_blank" title="酷壳">酷壳</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ruanyifeng.com/" target="_blank" title="阮一峰">阮一峰</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weixin">
+  <br />
+  <p class="asidetitle">微信公众号</p>
+  <p>关注我的公众号「叫我柯子就好」，与你分享关于实践的高频小套路：</p>
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2yv4g9d3j3076076wel.jpg" width="220px" />
+ </div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Kerzzi">Kerzzi</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?61e2f14c0f84a3ab81a328239a38b6d8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
