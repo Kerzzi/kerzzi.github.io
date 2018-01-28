@@ -4,24 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>「从零开始做购物网站」第1章 生产准备 | 柯子的行思笔记</title>
+    <title>错误记录 | 部署项目时出现的错误 | 柯子的行思笔记</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="Kerzzi">
     
 
     
-    <meta name="description" content="柯子的行思笔记 —— 叫我柯子就好">
+    <meta name="description" content="问题1错误提示今天在准备将新项目部署到阿里云上，在安装完成 Capistrano 后，执行部署操作cap production deploy时出现了错误提示。 提示显示：建立migration时，无法建立索引index_topics_on_excellent，原因是excellent栏位不存在。 但实际情况是model中excellent栏位是存在的。 解决办法我看了我的migration文件，我">
+<meta name="keywords" content="Ruby on rails,错误记录,ChainClub">
 <meta property="og:type" content="article">
-<meta property="og:title" content="「从零开始做购物网站」第1章 生产准备">
-<meta property="og:url" content="https://kerzzi.github.io/2017/06/14/2017-06-14-1951194/index.html">
+<meta property="og:title" content="错误记录 | 部署项目时出现的错误">
+<meta property="og:url" content="https://kerzzi.github.io/2018/01/27/2018-01-27-bug-blog-02/index.html">
 <meta property="og:site_name" content="柯子的行思笔记">
-<meta property="og:description" content="柯子的行思笔记 —— 叫我柯子就好">
+<meta property="og:description" content="问题1错误提示今天在准备将新项目部署到阿里云上，在安装完成 Capistrano 后，执行部署操作cap production deploy时出现了错误提示。 提示显示：建立migration时，无法建立索引index_topics_on_excellent，原因是excellent栏位不存在。 但实际情况是model中excellent栏位是存在的。 解决办法我看了我的migration文件，我">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-30T14:18:49.000Z">
+<meta property="og:updated_time" content="2018-01-28T04:57:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="「从零开始做购物网站」第1章 生产准备">
-<meta name="twitter:description" content="柯子的行思笔记 —— 叫我柯子就好">
+<meta name="twitter:title" content="错误记录 | 部署项目时出现的错误">
+<meta name="twitter:description" content="问题1错误提示今天在准备将新项目部署到阿里云上，在安装完成 Capistrano 后，执行部署操作cap production deploy时出现了错误提示。 提示显示：建立migration时，无法建立索引index_topics_on_excellent，原因是excellent栏位不存在。 但实际情况是model中excellent栏位是存在的。 解决办法我看了我的migration文件，我">
 
     
     <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
@@ -76,14 +77,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/14/2017-06-14-1951194/" title="「从零开始做购物网站」第1章 生产准备" itemprop="url">「从零开始做购物网站」第1章 生产准备</a>
+      <a href="/2018/01/27/2018-01-27-bug-blog-02/" title="错误记录 | 部署项目时出现的错误" itemprop="url">错误记录 | 部署项目时出现的错误</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-14T15:27:00.000Z" itemprop="datePublished"> 发表于 2017-06-14</time>
+    <time datetime="2018-01-27T12:38:00.000Z" itemprop="datePublished"> 发表于 2018-01-27</time>
     
   </p>
 </header>
@@ -92,15 +93,57 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题1"><span class="toc-number">1.</span> <span class="toc-text">问题1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#错误提示"><span class="toc-number">1.1.</span> <span class="toc-text">错误提示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决办法"><span class="toc-number">1.2.</span> <span class="toc-text">解决办法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题2"><span class="toc-number">2.</span> <span class="toc-text">问题2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#错误提示-1"><span class="toc-number">2.1.</span> <span class="toc-text">错误提示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决办法-1"><span class="toc-number">2.2.</span> <span class="toc-text">解决办法</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		  
+		<h2 id="问题1"><a href="#问题1" class="headerlink" title="问题1"></a>问题1</h2><h3 id="错误提示"><a href="#错误提示" class="headerlink" title="错误提示"></a>错误提示</h3><p>今天在准备将新项目部署到阿里云上，在安装完成 Capistrano 后，执行部署操作<code>cap production deploy</code>时出现了错误提示。</p>
+<p>提示显示：建立migration时，无法建立索引<code>index_topics_on_excellent</code>，原因是excellent栏位不存在。</p>
+<p>但实际情况是model中excellent栏位是存在的。</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>我看了我的<code>migration</code>文件，我在建立<code>excellent</code>栏位时，将建立索引写在了同一个<code>migration</code>中，但是分成2行写了。因此我怀疑，系统在建立迁移文件时，在执行到这个<code>migration</code>的时候，认为这个<code>excellent</code>栏位尚未建立，因此也就无法建立索引。</p>
+<p>由于目前这个索引确实没有必要建立，所以我将建立索引的语句删除了，重新部署后没有出现问题。</p>
+<h2 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h2><p>如果想远程登录aliyun管理网站，除了输入密码之外，SSH 还可以用非对称加密(Public Key Encryption)的方式来做登入。</p>
+<p>在非对称加密算法中，会有两把钥匙(key)，一把叫做公钥(public key)、一把叫做密钥(private key)。</p>
+<ul>
+<li>透过公钥加密的密文，只有密钥能够解开</li>
+<li>透过密钥加密的密文，只有公钥能够解开</li>
+</ul>
+<p>于是我们就可以用这个机制来做登入：首先我们把自己的公钥先放在服务器上，那么之后登入时，服务器会送一个乱数字符串给用户，用户用密钥加密后返回服务器，如果服务器可以用公钥解回来，就表示认证成功。</p>
+<p>以下是设定的步骤，：</p>
+<p><code>mkdir ~/.ssh</code></p>
+<p><code>touch ~/.ssh/authorized_keys</code></p>
+<p>回到本机电脑把公钥印出来，执行 <code>cat ~/.ssh/id_rsa.pub</code> 就会印在画面上</p>
+<p>但是在执行到这一步时，我出现了错误</p>
+<h3 id="错误提示-1"><a href="#错误提示-1" class="headerlink" title="错误提示"></a>错误提示</h3><p>错误显示，找不到相应的公钥文件。</p>
+<p>这个原因我是知道的，因为我之前为了能在本地管理2个github账号，就建立了2套SSH登录。而且我还将相应的文件名改了，所以默认的<code>~/.ssh/id_rsa.pub</code>就不存在了。</p>
+<h3 id="解决办法-1"><a href="#解决办法-1" class="headerlink" title="解决办法"></a>解决办法</h3><p>解决办法也很简单，新建一对密钥即可。</p>
+<p>执行 <code>ssh-keygen -t rsa</code> 就会产生公钥 ~/.ssh/id_rsa.pub 以及密钥 ~/.ssh/id_rsa 这两个档案。</p>
+<p>在提示存放密钥的文件名称时：填写 <code>~/.ssh/id_rsa</code> ，注意路径要加上，但是不要加上<code>.pub</code>。</p>
+<p>请一直按 Enter，不需要设定 passphrse 密码(不然你每次用key都要输入一次密码很麻烦)。</p>
+<p>本机 cat 公钥如下：</p>
+<figure class="highlight ruby"><figcaption><span>liuzheng@266 ⮀ ~/workspace/ChainClub ⮀ ⭠ ch46 ⮀ cat ~/.ssh/id_rsa.pub</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCb6XUNJm0P3p3SMrqmE4XIP0tIAQW05vX4Gg6/Qt+yR0Xg/dmOp5CCeKd1zGDxJTxBCUX1z0pP/rsIlBdvmKFqfqcp4wEYL26FKJSWY9qTnSrdekTgKQM+rtmS3XnJM1T8B08W7ZQoK+D9bEgf8WtrhjUwyzBnlVlB0l1USxTzd/z5Su9xZi4DKjeHupgHOtdxcW9rpwVPtMCUrSII56v6/TYO5ID+tAnh86bFTbzOTe9R39l/<span class="number">9</span>aM3ZyvZnz3b6bYQVvcrBxjrq5/H410tCLrsTlOPYaOWr23pAvrwGJYm8PzYT7ctDxDNAQxMs+VUwV47YtAt7dsWoqWlXND7cN13 liuzheng@266.local</div></pre></td></tr></table></figure>
+<p>公钥可以公开给别人没关系，密钥就千万要保管好喔。</p>
+<p>然后回到远端服务器继续：</p>
+<p><code>nano ~/.ssh/authorized_keys</code> 把公钥贴上去</p>
+<p><code>chmod 700 ~/.ssh</code></p>
+<p><code>chmod 644 ~/.ssh/authorized_keys</code></p>
+<p>这样就好了，你可以试试看再次登入就不用打密码了，太棒了！</p>
+<p>不过这里还有个小问题，我的Github相应的ssh也有更改，去Github里面删除原有的公钥，替换为新的公钥，然后保存即可。这里要保证阿里云上和Github的公钥是相同的！</p>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Ruby-on-rails/">Ruby on rails</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Ruby-on-rails/">Ruby on rails</a><a href="/tags/错误记录/">错误记录</a><a href="/tags/ChainClub/">ChainClub</a>
+  </div>
 
 </div>
 
@@ -108,7 +151,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="https://kerzzi.github.io/2017/06/14/2017-06-14-1951194/" data-title="「从零开始做购物网站」第1章 生产准备 | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  <div data-url="https://kerzzi.github.io/2018/01/27/2018-01-27-bug-blog-02/" data-title="错误记录 | 部署项目时出现的错误 | 柯子的行思笔记" data-tsina="" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -121,19 +164,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/14/2017-06-14-objective/" title="前言">
-  <strong>上一篇：</strong><br/>
-  <span>
-  前言</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/05/14/2017-05-14-1835625/"  title="【豆知识】 routes.rb中: resources 、namespace、member 和 collection的使用区别">
+<a href="/2018/01/21/2018-10-21-ror-use-ransack/"  title="ROR豆知识： 使用 ransack 实现搜索功能">
  <strong>下一篇：</strong><br/> 
- <span>【豆知识】 routes.rb中: resources 、namespace、member 和 collection的使用区别
+ <span>ROR豆知识： 使用 ransack 实现搜索功能
 </span>
 </a>
 </div>
@@ -149,7 +184,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#问题1"><span class="toc-number">1.</span> <span class="toc-text">问题1</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#错误提示"><span class="toc-number">1.1.</span> <span class="toc-text">错误提示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决办法"><span class="toc-number">1.2.</span> <span class="toc-text">解决办法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题2"><span class="toc-number">2.</span> <span class="toc-text">问题2</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#错误提示-1"><span class="toc-number">2.1.</span> <span class="toc-text">错误提示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解决办法-1"><span class="toc-number">2.2.</span> <span class="toc-text">解决办法</span></a></li></ol></li></ol>
  
   </div>
 
