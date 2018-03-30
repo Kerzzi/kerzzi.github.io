@@ -1,0 +1,600 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>区块链行思笔记 20180327期 | 柯子的行思笔记</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Kerzzi">
+    
+
+    
+    <meta name="description" content="坚持过后，才知道许多事情，坚持坚持，就过来了。——《龙猫》  大家好，今天是星期二，给自己一个微笑，让我们用轻松的心情一起来学习今天的【区块链行思笔记】吧。 01 区区区块链双重支付——Double-spend双重支付也常备译作“双花”，即一笔钱被花费了两次，用在区块链中就是一笔数字资产既支付给了A，又支付给了B。 还是不太明白？没关系，稍后的【区区区块链】专栏会为你详细讲透这个概念，以及如何">
+<meta name="keywords" content="区块链行思笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="区块链行思笔记 20180327期">
+<meta property="og:url" content="https://kerzzi.github.io/2018/03/27/2018-03-27-BCN20180327/index.html">
+<meta property="og:site_name" content="柯子的行思笔记">
+<meta property="og:description" content="坚持过后，才知道许多事情，坚持坚持，就过来了。——《龙猫》  大家好，今天是星期二，给自己一个微笑，让我们用轻松的心情一起来学习今天的【区块链行思笔记】吧。 01 区区区块链双重支付——Double-spend双重支付也常备译作“双花”，即一笔钱被花费了两次，用在区块链中就是一笔数字资产既支付给了A，又支付给了B。 还是不太明白？没关系，稍后的【区区区块链】专栏会为你详细讲透这个概念，以及如何">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/101825-fe047dd97ba9292e..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-03-30T08:45:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="区块链行思笔记 20180327期">
+<meta name="twitter:description" content="坚持过后，才知道许多事情，坚持坚持，就过来了。——《龙猫》  大家好，今天是星期二，给自己一个微笑，让我们用轻松的心情一起来学习今天的【区块链行思笔记】吧。 01 区区区块链双重支付——Double-spend双重支付也常备译作“双花”，即一笔钱被花费了两次，用在区块链中就是一笔数字资产既支付给了A，又支付给了B。 还是不太明白？没关系，稍后的【区区区块链】专栏会为你详细讲透这个概念，以及如何">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/101825-fe047dd97ba9292e..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+    
+    <link rel="alternative" href="/atom.xml" title="柯子的行思笔记" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.png">
+    
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="柯子的行思笔记">柯子的行思笔记</a></h1>
+				<h2 class="blog-motto">叫我柯子就好</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:kerzzi.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2018/03/27/2018-03-27-BCN20180327/" title="区块链行思笔记 20180327期" itemprop="url">区块链行思笔记 20180327期</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Kerzzi" target="_blank" itemprop="author">Kerzzi</a>
+		
+  <p class="article-time">
+    <time datetime="2018-03-26T16:00:00.000Z" itemprop="datePublished"> 发表于 2018-03-27</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#01-区区区块链"><span class="toc-number">1.</span> <span class="toc-text">01 区区区块链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#02-币圈那点事"><span class="toc-number">2.</span> <span class="toc-text">02 币圈那点事</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#【社区资讯】"><span class="toc-number">2.1.</span> <span class="toc-text">【社区资讯】</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#03-今日币知道"><span class="toc-number">3.</span> <span class="toc-text">03 今日币知道</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#04-结束语"><span class="toc-number">4.</span> <span class="toc-text">04 结束语</span></a></li></ol>
+		
+		</div>
+		
+		<p><img src="http://upload-images.jianshu.io/upload_images/101825-fe047dd97ba9292e..jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<blockquote>
+<p>坚持过后，才知道许多事情，坚持坚持，就过来了。——《龙猫》</p>
+</blockquote>
+<p>大家好，今天是星期二，给自己一个微笑，让我们用轻松的心情一起来学习今天的【区块链行思笔记】吧。</p>
+<h2 id="01-区区区块链"><a href="#01-区区区块链" class="headerlink" title="01 区区区块链"></a>01 区区区块链</h2><p><strong>双重支付——Double-spend</strong><br>双重支付也常备译作“<strong>双花</strong>”，即一笔钱被花费了两次，用在区块链中就是一笔数字资产既支付给了A，又支付给了B。</p>
+<p>还是不太明白？没关系，稍后的【区区区块链】专栏会为你详细讲透这个概念，以及如何防止“双重支付”。</p>
+<h2 id="02-币圈那点事"><a href="#02-币圈那点事" class="headerlink" title="02 币圈那点事"></a>02 币圈那点事</h2><h3 id="【社区资讯】"><a href="#【社区资讯】" class="headerlink" title="【社区资讯】"></a>【社区资讯】</h3><ul>
+<li><p>据彭博报道，哈萨克斯坦共和国国家银行开始通过区块链向公众出售债券。</p>
+</li>
+<li><p>今日，ONO的首席执行官徐克通过官方微博正式宣布，将使用EOS超级节点运营第一个区块链社交网络。这意味着EOS全球21个超级节点正式启动。</p>
+</li>
+<li><p>人民网总裁叶蓁蓁今天在人民创投主办的“链·未来，2018春季区块链技术论坛”上表示，要用四种眼光看待“区块链热”。第一，用发展的眼光看区块链技术。第二，用科学的眼光看区块链标签。第三，用战略的眼光看区块链产业。第四，用冷静的眼光看区块链商机。 </p>
+</li>
+<li><p>据Coindesk报道，以隐私性能著称的数字货币Zcash或将迎来它的第一次硬分叉，这次分叉被称为“越冬（Overwinter）”，开发团队希望为未来更多的大规模升级打下基础。据悉，3月初Zcash团队曾宣布将进行首次网络升级，预计不会出现分叉。</p>
+</li>
+<li><p>中国著名经济金融学家、厦门大学金融研究所所长 张亦春教授表示，区块链金融的底线是守住中央银行的货币发行权。人民银行是国家唯一的货币发行机构，而区块链金融最重要的一个特点就是去中心化，各种各样的数字货币与人民银行的货币发行权形成对立。如果不对数字货币进行管控，流通中的货币将无法统计，国家也无法进行正常的宏观调控。所以，不能触犯人民银行的货币发行权是第一个底线。区块链金融的发展前提是统一用中央银行发行的数字货币。 </p>
+</li>
+<li><p>中国人民大学大数据与监管科技实验室主任杨东在人民网区块链论坛上透露，证监会正重新启动股权众筹的相关法律研究，合法的股权众筹ICO可能很快就会到来。</p>
+</li>
+</ul>
+<p>###【链产品】</p>
+<ul>
+<li><p>今日中午12:00，公信宝布洛克城上线首款币理财应用——余币宝，该公测版本首期仅对前9999名创世居民开放，30000GXS额度在15秒内被认购完毕。GXS官方表示，后续布洛克城还将陆续上线十余款应用，如近期的Lend Chain。此外布洛克城已开通区块链应用自主申请入住布洛克城功能。</p>
+</li>
+<li><p>今日网易星球黑钻竞拍开放，每个整数时间点均有拍品开放。每位用户有10次竞拍机会，一旦出价，将不可撤销。 </p>
+</li>
+<li><p>据MOAC（墨客）官方消息，MOAC1.0公测版将于3月31日上线，首个实现“分片”技术公链，50余款DAPP应用将陆续部署，挖矿测试也将同步开启，测试完成之后，参与底层POW共识的大算力矿机和参与上层处理智能合约的手机、盒子等小算力设备都可在墨客链上挖矿。</p>
+</li>
+</ul>
+<p>###【交易所资讯】</p>
+<ul>
+<li><p>火币Pro将于今晚22:00-3月28日2:00期间进行系统升级。</p>
+</li>
+<li><p>火币韩国站将于近期正式上线，目前已接受预注册。</p>
+</li>
+<li><p>比特币中国将于2018年4月2日针对未提现的数字资产收取管理费用。</p>
+</li>
+<li><p>Aex目前已开放Windows版本客户端，后续將开放MAC版本和手机APP。</p>
+</li>
+<li><p>火币自主数字资产交易所（HADAX）第二期投票上币第二轮投票于今天新加坡标准时间3月27日13:00结束，将于投票结束后1~3个工作日内对数据进行清洗分析、人工回访等动作，确保投票的真实性后再行公布投票结果。</p>
+</li>
+<li><p>OTCBTC 已于 2018/3/23 上架 BCB 币种，同时开放场外、币币交易。</p>
+</li>
+<li><p>Bibox将上线Alphacat(ACAT)，具体时间如下： 北京时间2018年3月28日11:00开放ACAT充值/提现；北京时间2018年3月28日16:00开放ACAT/BTC,ACAT/ETH交易对。</p>
+</li>
+<li><p>gate.io上线SentinelChain(SENC)。</p>
+</li>
+</ul>
+<h2 id="03-今日币知道"><a href="#03-今日币知道" class="headerlink" title="03 今日币知道"></a>03 今日币知道</h2><p><strong>OCT（OracleChain）</strong>————让世界与区块链互联</p>
+<p>OracleChain——欧链作为全球第一个直面区块链生态Oracle（预言机）需求的基础应用，将区块链技术服务和现实生活中的多种需求场景直接高效对接。</p>
+<p>OracleChain是一个多区块链的去中心化Oracle技术平台，也是<strong>全球第一个在EOS生态上构筑的应用</strong>。OracleChain采用自主的PoRD机制，将现实世界数据引入区块链，并将此作为基础设施为其他区块链应用提供基于现实世界数据，记忆跨链数据的Oracle服务。基于OracleChain除了能实现Augur、Gnosis等预测市场（Prediction Market）应用的功能之外，还能支撑对链外数据有更高频率访问需求的智能合约业务，比如智能投顾等场景。</p>
+<p>OracleChain将改变当前区块链应用的开发模式，建立全新的生态圈，服务于真正能改变现实世界的区块链应用。OracleChain的使命是“让世界与区块链互联”，立志成为<strong>链接现实世界与区块链世界的基础设施</strong>，通过把外部数据引入区块链来实现链内链外的数据互通，OracleChain将是未来区块链世界中最高效的获取链外数据的服务提供平台。</p>
+<p><strong>官网：</strong><br><a href="https://oraclechain.io/" target="_blank" rel="external">https://oraclechain.io/</a></p>
+<p><strong>白皮书：</strong><br><a href="https://oraclechain.io/files/oraclechain_white_paper.pdf" target="_blank" rel="external">https://oraclechain.io/files/oraclechain_white_paper.pdf</a></p>
+<p><strong>公告：</strong><br><a href="https://oraclechain.io/projectInfo" target="_blank" rel="external">https://oraclechain.io/projectInfo</a></p>
+<p><strong>微博：</strong><br><a href="https://weibo.com/u/6347445425" target="_blank" rel="external">https://weibo.com/u/6347445425</a></p>
+<p><strong>Twitter:</strong><br><a href="https://twitter.com/Oracle_Chain" target="_blank" rel="external">https://twitter.com/Oracle_Chain</a></p>
+<p><strong>Reddit:</strong><br><a href="https://www.reddit.com/user/Oracle_Chain" target="_blank" rel="external">https://www.reddit.com/user/Oracle_Chain</a></p>
+<p>关于欧链（OCT）的深度分析，将会在稍后的【今日币知道】栏目与你分享。</p>
+<h2 id="04-结束语"><a href="#04-结束语" class="headerlink" title="04 结束语"></a>04 结束语</h2><p>以上就是今天的【区块链行思笔记】，欢迎你与我一起学习，我是Kerzzi，叫我柯子就好。我的微信公众号：<strong>叫我柯子就好</strong>。知识星球：<strong>行思区块链</strong>。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/区块链行思笔记/">区块链行思笔记</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/区块链行思笔记/">区块链行思笔记</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="https://kerzzi.github.io/2018/03/27/2018-03-27-BCN20180327/" data-title="区块链行思笔记 20180327期 | 柯子的行思笔记" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2018/03/28/2018-03-28-BCN20180328/" title="区块链行思笔记 20180328期">
+  <strong>上一篇：</strong><br/>
+  <span>
+  区块链行思笔记 20180328期</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2018/03/26/2018-03-26-BCN20180326/"  title="区块链行思笔记 20180326期">
+ <strong>下一篇：</strong><br/> 
+ <span>区块链行思笔记 20180326期
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#01-区区区块链"><span class="toc-number">1.</span> <span class="toc-text">01 区区区块链</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#02-币圈那点事"><span class="toc-number">2.</span> <span class="toc-text">02 币圈那点事</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#【社区资讯】"><span class="toc-number">2.1.</span> <span class="toc-text">【社区资讯】</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#03-今日币知道"><span class="toc-number">3.</span> <span class="toc-text">03 今日币知道</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#04-结束语"><span class="toc-number">4.</span> <span class="toc-text">04 结束语</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  <div class="sponsor">
+  <br />
+  <p class="asidetitle">赞助商</p>
+  <a href="/sponsor">
+  <br />
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2zsxnnmpj30b405iq2t.jpg" width="235px" />
+  </a>
+
+  <!--
+  <br /><a href="/sponsor"><font color='#2ca6cb'>购买广告位</font></a>
+  -->
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Github/" title="Github">Github</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Mac/" title="Mac">Mac</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Markdown/" title="Markdown">Markdown</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Meetup/" title="Meetup">Meetup</a></li>
+		  
+		
+		  
+			<li><a href="/categories/ORID/" title="ORID">ORID</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Photo/" title="Photo">Photo</a></li>
+		  
+		
+		  
+			<li><a href="/categories/ROR/" title="ROR">ROR</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ruby-on-Rails/" title="Ruby on Rails">Ruby on Rails</a></li>
+		  
+		
+		  
+			<li><a href="/categories/Ruby-on-rails/" title="Ruby on rails">Ruby on rails</a></li>
+		  
+		
+		  
+			<li><a href="/categories/freeCodeCamp/" title="freeCodeCamp">freeCodeCamp</a></li>
+		  
+		
+		  
+			<li><a href="/categories/git/" title="git">git</a></li>
+		  
+		
+		  
+			<li><a href="/categories/两最一坑/" title="两最一坑">两最一坑</a></li>
+		  
+		
+		  
+			<li><a href="/categories/元学习/" title="元学习">元学习</a></li>
+		  
+		
+		  
+			<li><a href="/categories/全栈营/" title="全栈营">全栈营</a></li>
+		  
+		
+		  
+			<li><a href="/categories/关于写作/" title="关于写作">关于写作</a></li>
+		  
+		
+		  
+			<li><a href="/categories/区块链/" title="区块链">区块链</a></li>
+		  
+		
+		  
+			<li><a href="/categories/区块链研习笔记/" title="区块链研习笔记">区块链研习笔记</a></li>
+		  
+		
+		  
+			<li><a href="/categories/区块链行思笔记/" title="区块链行思笔记">区块链行思笔记</a></li>
+		  
+		
+		  
+			<li><a href="/categories/善用佳软/" title="善用佳软">善用佳软</a></li>
+		  
+		
+		  
+			<li><a href="/categories/直播笔记/" title="直播笔记">直播笔记</a></li>
+		  
+		
+		  
+			<li><a href="/categories/通往财富自由之路/" title="通往财富自由之路">通往财富自由之路</a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://steemit.com/@seeyoo" target="_blank" title="Kerzzi&#39;s Steem">Kerzzi&#39;s Steem</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://kerzzi.logdown.com/" target="_blank" title="Old Blog">Old Blog</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://github.com/Kerzzi" target="_blank" title="Kerzzi&#39;s Github">Kerzzi&#39;s Github</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://mindhacks.cn/" target="_blank" title="刘未鹏">刘未鹏</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://coolshell.cn/" target="_blank" title="酷壳">酷壳</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ruanyifeng.com/" target="_blank" title="阮一峰">阮一峰</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  <div class="weixin">
+  <br />
+  <p class="asidetitle">微信公众号</p>
+  <p>关注我的公众号「叫我柯子就好」，与你分享关于实践的高频小套路：</p>
+  <img src="https://ww2.sinaimg.cn/large/006tNc79ly1fk2yv4g9d3j3076076wel.jpg" width="220px" />
+ </div>
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="Kerzzi">Kerzzi</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?61e2f14c0f84a3ab81a328239a38b6d8";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
